@@ -1,0 +1,457 @@
+/* ============================================
+   DESIGN V2 — "NordicTV Blue & White"
+   Token layer. Loaded AFTER variables.css and
+   redesign-theme.css so it remaps their custom
+   properties and reskins every page at once.
+   ============================================ */
+
+/* Sora and Space Grotesk are self-hosted; inc/performance.php inlines their
+   @font-face block in the head. */
+
+:root {
+    /* --- Design v2 palette --- */
+    --dv2-bg: #f7fbff;
+    --dv2-surface: #ffffff;
+    --dv2-surface-alt: #eef6fe;
+    --dv2-surface-tint: #e2effd;
+
+    /* Brand blue scale, all derived from #1089f2 (h 209deg). */
+    --dv2-blue: #1089f2;
+    --dv2-blue-600: #0b70d0;
+    --dv2-blue-700: #095baa;
+    --dv2-blue-800: #07447e;
+    --dv2-blue-900: #042a4e;
+    --dv2-blue-soft: #55a7f6;
+
+    --dv2-ink: #0b1f33;
+    --dv2-ink-2: #22364c;
+    --dv2-body: #4a5c70;
+    --dv2-faint: #5b6d80;
+    --dv2-muted: #6f8298;
+
+    --dv2-green: #00b67a;
+    --dv2-amber: #ffb800;
+
+    --dv2-border: rgba(7, 68, 126, 0.10);
+    --dv2-border-medium: rgba(7, 68, 126, 0.12);
+    --dv2-border-strong: rgba(16, 137, 242, 0.30);
+
+    --dv2-shadow-sm: 0 2px 10px rgba(7, 68, 126, 0.05);
+    --dv2-shadow-md: 0 8px 30px rgba(7, 68, 126, 0.08);
+    --dv2-shadow-lg: 0 24px 60px rgba(16, 137, 242, 0.35);
+    --dv2-shadow-green: 0 18px 50px rgba(0, 182, 122, 0.32);
+
+    --dv2-font-display: 'Sora', sans-serif;
+    --dv2-font-body: 'Space Grotesk', sans-serif;
+
+    --dv2-radius-sm: 8px;
+    --dv2-radius-md: 14px;
+    --dv2-radius-lg: 18px;
+    --dv2-radius-xl: 20px;
+    --dv2-radius-pill: 999px;
+
+    --dv2-shell: 1280px;
+    --dv2-gutter: 40px;
+
+    /* Header flow height, pinned rather than left to the content. The hero
+       pulls itself up by exactly this much to sit under the floating bar, so
+       the two have to agree — if this were implicit the hero would drift and
+       leave a strip of page background above it. */
+    --dv2-header-h: 71px;
+    --dv2-header-rail: 12px;
+
+    /* --- Remap redesign-theme.css tokens --- */
+    --color-navy: var(--dv2-ink);
+    --color-indigo: var(--dv2-blue);
+    --color-indigo-hover: var(--dv2-blue-600);
+    --color-teal: var(--dv2-blue);
+    --color-teal-text: var(--dv2-blue-600);
+    --color-coral: var(--dv2-blue-soft);
+    --color-gold: var(--dv2-amber);
+    --color-live: #e5484d;
+
+    --bg-page: var(--dv2-bg);
+    --bg-section: var(--dv2-surface-alt);
+    --bg-card: var(--dv2-surface);
+    --bg-nav: var(--dv2-surface);
+    --bg-dark: var(--dv2-blue-900);
+    --bg-footer: var(--dv2-surface-alt);
+
+    --text-primary: var(--dv2-ink);
+    --text-secondary: var(--dv2-body);
+    --text-muted: var(--dv2-muted);
+    --text-inverse: #ffffff;
+    --text-nav: var(--dv2-ink);
+
+    --border-subtle: var(--dv2-border);
+    --border-medium: var(--dv2-border-medium);
+    --border-indigo: var(--dv2-border-strong);
+    --border-teal: var(--dv2-border-strong);
+
+    --shadow-sm: var(--dv2-shadow-sm);
+    --shadow-md: var(--dv2-shadow-md);
+    --shadow-lg: var(--dv2-shadow-md);
+    --shadow-glow: 0 18px 50px rgba(16, 137, 242, 0.30);
+
+    /* --- Remap variables.css tokens --- */
+    --white: #ffffff;
+    --bg: var(--dv2-surface);
+    --bg-alt: var(--dv2-surface-alt);
+    --dark: var(--dv2-ink);
+    --dark-alt: var(--dv2-blue-900);
+    --text: var(--dv2-ink);
+    --border: var(--dv2-border-medium);
+
+    --violet-500: var(--dv2-blue);
+    --violet-600: var(--dv2-blue-600);
+    --violet-700: var(--dv2-blue-700);
+
+    --blue-50: var(--dv2-bg);
+    --blue-100: var(--dv2-surface-tint);
+    --blue-500: var(--dv2-blue);
+    --blue-600: var(--dv2-blue-600);
+    --blue-700: var(--dv2-blue-800);
+
+    --amber-400: var(--dv2-amber);
+    --amber-500: #f59e0b;
+
+    --green-500: var(--dv2-green);
+    --green-100: #d8f7ec;
+    --orange-500: #f97316;
+    --orange-100: #ffedd5;
+
+    --shadow: var(--dv2-shadow-sm);
+    --shadow-xl: var(--dv2-shadow-md);
+}
+
+/* -------------------------------------------
+   BASE
+   ------------------------------------------- */
+/* The page colour lives on <html> only. If <body> also carries a background it
+   paints as an ordinary block background, which in CSS paint order comes after
+   negative z-index layers — and that covers .dv2-grid-wash completely.
+   base.css and redesign-theme.css both set a body background and load earlier,
+   so clearing it here has to be explicit rather than just omitted. */
+html {
+    background: var(--dv2-bg);
+}
+
+body {
+    background: transparent;
+}
+
+body {
+    font-family: var(--dv2-font-body);
+    font-weight: 400;
+    color: var(--dv2-ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+}
+
+body::selection,
+::selection {
+    background: var(--dv2-blue);
+    color: #ffffff;
+}
+
+a {
+    color: var(--dv2-blue);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--dv2-blue-600);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.section-title,
+.dv2-display {
+    font-family: var(--dv2-font-display);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--dv2-ink);
+}
+
+/* The old palette leaned on gradient text for emphasis.
+   Design v2 uses a flat blue accent instead. */
+.gradient-text {
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: currentColor;
+    background-clip: initial;
+    color: var(--dv2-blue);
+}
+
+/* -------------------------------------------
+   SHELL
+   ------------------------------------------- */
+.dv2-shell,
+.container,
+.features-inner,
+.sports-container,
+.comparison-inner,
+.steps-container,
+.devices-inner,
+.dashboard-inner,
+.faq-container {
+    max-width: var(--dv2-shell);
+    margin: 0 auto;
+    padding-left: var(--dv2-gutter);
+    padding-right: var(--dv2-gutter);
+}
+
+.dv2-page {
+    position: relative;
+    overflow: hidden;
+    background: var(--dv2-bg);
+}
+
+/* Faint grid wash behind the top of the page, as in the mockup.
+   Anchored to body (redesign-theme.css sets body{position:relative}). */
+/* Full-page backdrop. Fixed to the viewport rather than sized to the document,
+   so the vignette stays centred on what you are actually looking at and the
+   grid never runs out on a long page.
+
+   z-index is -1, not 0: sections are non-positioned children of <body>, so a
+   positioned layer at 0 or above would paint over them (the .dv2-page > section
+   rule below matches nothing — no such wrapper exists in the markup). At -1 the
+   layer sits above the canvas background but below all in-flow content. */
+.dv2-grid-wash {
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(16, 137, 242, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 137, 242, 0.07) 1px, transparent 1px);
+    background-size: 64px 64px;
+    /* Solid through the middle, gone by the edges and corners. */
+    -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 50%, #000 35%, transparent 78%);
+    mask-image: radial-gradient(ellipse 75% 65% at 50% 50%, #000 35%, transparent 78%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.dv2-page > .container,
+.dv2-page > section,
+.dv2-page > header {
+    position: relative;
+    z-index: 1;
+}
+
+/* -------------------------------------------
+   SECTION HEADINGS
+   ------------------------------------------- */
+.dv2-section {
+    padding: 96px 0 0;
+}
+
+.dv2-section-head {
+    text-align: center;
+}
+
+.dv2-section-head h2,
+.section-title {
+    font-family: var(--dv2-font-display);
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: var(--dv2-ink);
+    margin: 0;
+}
+
+.dv2-section-head p,
+.section-subtitle {
+    font-family: var(--dv2-font-body);
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--dv2-body);
+    max-width: 820px;
+    margin: 18px auto 0;
+}
+
+.section-tag {
+    display: inline-block;
+    background: var(--dv2-surface-tint);
+    color: var(--dv2-blue-700);
+    border-radius: var(--dv2-radius-pill);
+    padding: 7px 16px;
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    text-transform: none;
+}
+
+/* -------------------------------------------
+   BUTTONS
+   ------------------------------------------- */
+.dv2-btn,
+.btn,
+.button,
+.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 17px;
+    padding: 16px 30px;
+    border-radius: var(--dv2-radius-pill);
+    border: none;
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    text-decoration: none;
+}
+
+.dv2-btn:hover,
+.btn:hover,
+.button:hover,
+.cta-btn:hover {
+    transform: translateY(-1px);
+}
+
+.dv2-btn-primary,
+.btn-primary,
+.button-primary,
+.cta-btn,
+.nav-btn-primary {
+    background: var(--dv2-blue);
+    color: #ffffff;
+    box-shadow: 0 14px 40px rgba(16, 137, 242, 0.28);
+}
+
+.dv2-btn-primary:hover,
+.btn-primary:hover,
+.button-primary:hover,
+.cta-btn:hover,
+.nav-btn-primary:hover {
+    background: var(--dv2-blue-600);
+    color: #ffffff;
+}
+
+/* Size modifier for the hero pair of CTAs. */
+.dv2-btn-lg {
+    font-size: 19px;
+    padding: 20px 34px;
+}
+
+.dv2-btn-ink,
+.btn-secondary,
+.button-secondary {
+    background: var(--dv2-ink);
+    color: #ffffff;
+    box-shadow: none;
+}
+
+.dv2-btn-ink:hover,
+.btn-secondary:hover,
+.button-secondary:hover {
+    background: var(--dv2-blue-900);
+    color: #ffffff;
+}
+
+.dv2-btn-soft {
+    background: var(--dv2-surface-tint);
+    color: var(--dv2-ink);
+    box-shadow: none;
+}
+
+.dv2-btn-soft:hover {
+    background: #e2effd;
+    color: var(--dv2-ink);
+}
+
+.dv2-btn-white {
+    background: #ffffff;
+    color: var(--dv2-blue-800);
+    box-shadow: none;
+}
+
+.dv2-btn-white:hover {
+    background: #ffffff;
+    color: var(--dv2-blue-600);
+}
+
+/* Circular arrow chip used inside panel CTAs. */
+.dv2-btn-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: var(--dv2-radius-pill);
+    background: #ffffff;
+    color: var(--dv2-blue);
+    font-size: 15px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.dv2-btn-ink .dv2-btn-arrow {
+    color: var(--dv2-ink);
+}
+
+/* -------------------------------------------
+   SURFACES
+   ------------------------------------------- */
+.dv2-card {
+    background: var(--dv2-surface);
+    border: 1px solid var(--dv2-border);
+    border-radius: var(--dv2-radius-md);
+    box-shadow: var(--dv2-shadow-sm);
+}
+
+.dv2-panel {
+    background: var(--dv2-surface);
+    border: 1px solid var(--dv2-border-strong);
+    border-radius: var(--dv2-radius-xl);
+    box-shadow: var(--dv2-shadow-md);
+}
+
+/* -------------------------------------------
+   RESPONSIVE BASE
+   ------------------------------------------- */
+@media (max-width: 1024px) {
+    :root {
+        --dv2-gutter: 24px;
+    }
+
+    .dv2-section-head h2,
+    .section-title {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --dv2-gutter: 20px;
+    }
+
+    .dv2-section {
+        padding: 64px 0 0;
+    }
+
+    .dv2-section-head h2,
+    .section-title {
+        font-size: 28px;
+        letter-spacing: -0.5px;
+    }
+
+    .dv2-section-head p,
+    .section-subtitle {
+        font-size: 16px;
+    }
+
+    .dv2-btn,
+    .btn,
+    .button {
+        font-size: 16px;
+        padding: 14px 24px;
+    }
+}

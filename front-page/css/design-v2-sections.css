@@ -1,0 +1,2661 @@
+/* ============================================
+   DESIGN V2 — SECTION COMPONENTS
+   Class-based translation of the
+   "NordicTV Blue & White" mockup.
+   Loaded last so it wins over the old layers.
+   ============================================ */
+
+/* -------------------------------------------
+   HEADER
+   The old header was a dark glassmorphic pill.
+   Design v2 sits flat on the light background.
+   ------------------------------------------- */
+/* Floating header: the bar itself is a transparent full-width rail and the
+   white pill is .nav-container inside it.
+
+   position:sticky rather than the previous scroll-triggered switch to fixed --
+   fixed takes the header out of flow the moment .scrolled lands, so the page
+   jumped by the header's height. Sticky never leaves flow, so there is nothing
+   to jump. It works here because nothing above it scrolls or clips: .dv2-page
+   carries overflow:hidden but no markup ever uses that class, and no loaded
+   stylesheet puts overflow-x on html/body. */
+/* Fixed height, not content-derived: the hero pulls itself up by
+   --dv2-header-h to sit beneath the bar, and any disagreement between the two
+   shows as a strip of page background above the hero. */
+.site-header {
+    position: sticky;
+    top: var(--dv2-header-rail, 12px);
+    left: 0;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    height: var(--dv2-header-h, 71px);
+    margin: 0;
+    padding: var(--dv2-header-rail, 12px) 0 0;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    z-index: 60;
+}
+
+/* .scrolled is still toggled by header.js. Sticky already does the floating,
+   so it only has to firm the bar up once it is over page content. */
+.site-header.scrolled {
+    position: sticky;
+    padding: var(--dv2-header-rail, 12px) 0 0;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+}
+
+/* Dark translucent bar. It reads as glass over the hero photo, and the alpha
+   is high enough (0.78) that it still composites dark over the light pages
+   this header is also used on — universal-header.php includes it everywhere,
+   so white nav text has to stay legible on both. */
+.site-header .nav-container {
+    max-width: calc(var(--dv2-shell) - 48px);
+    height: calc(var(--dv2-header-h, 71px) - var(--dv2-header-rail, 12px));
+    margin: 0 auto;
+    padding: 0 10px 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background: rgba(11, 31, 51, 0.78);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--dv2-radius-pill);
+    box-shadow: 0 8px 30px rgba(4, 20, 40, 0.28);
+    transition: background .25s ease, box-shadow .25s ease;
+}
+
+.site-header.scrolled .nav-container {
+    background: rgba(11, 31, 51, 0.90);
+    box-shadow: 0 12px 38px rgba(4, 20, 40, 0.38);
+}
+
+/* Anchor targets stop below the floating bar instead of under it. */
+#features,
+#pricing,
+#contact,
+#faq,
+.dv2-section[id] {
+    scroll-margin-top: calc(var(--dv2-header-h, 71px) + 12px);
+}
+
+/* Same 34px as .site-footer .footer-logo-img, so the mark reads at one size
+   across the page. The light (white) variant of the same lockup, because the
+   dark one is black type and would disappear against this bar. */
+.site-header .logo-img {
+    height: 34px;
+    width: auto;
+    display: block;
+}
+
+.site-header .nav-links,
+.site-header .nav-links ul {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.site-header .nav-links a {
+    font-family: var(--dv2-font-body);
+    font-weight: 600;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.86);
+    white-space: nowrap;
+}
+
+.site-header .nav-links a:hover {
+    color: #ffffff;
+}
+
+.site-header .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.site-header .country-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--dv2-radius-pill);
+    padding: 7px 12px;
+    color: #ffffff;
+    font-family: var(--dv2-font-body);
+    font-weight: 600;
+    font-size: 13px;
+    box-shadow: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.site-header .country-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.30);
+}
+
+.country-dropdown,
+.footer-country-dropdown {
+    background: var(--dv2-surface);
+    border: 1px solid var(--dv2-border-medium);
+    border-radius: var(--dv2-radius-md);
+    box-shadow: var(--dv2-shadow-md);
+    overflow: hidden;
+}
+
+.country-option,
+.footer-country-option {
+    color: var(--dv2-ink);
+    font-family: var(--dv2-font-body);
+    font-size: 14px;
+}
+
+.country-option:hover,
+.footer-country-option:hover,
+.country-option.selected {
+    background: var(--dv2-surface-tint);
+    color: var(--dv2-blue-700);
+}
+
+.site-header .nav-btn-primary {
+    background: var(--dv2-blue);
+    color: #ffffff;
+    font-family: var(--dv2-font-body);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 10px 22px;
+    border-radius: var(--dv2-radius-pill);
+    box-shadow: 0 6px 18px rgba(16, 137, 242, 0.35);
+    white-space: nowrap;
+}
+
+.site-header .nav-btn-primary:hover {
+    background: var(--dv2-blue-600);
+    color: #ffffff;
+}
+
+.site-header .mobile-menu-toggle span {
+    background: #ffffff;
+}
+
+.mobile-menu {
+    background: var(--dv2-bg);
+}
+
+.mobile-menu a,
+.mobile-menu ul a {
+    color: var(--dv2-ink);
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+}
+
+.mobile-menu a:hover {
+    color: var(--dv2-blue);
+}
+
+.mobile-menu-close {
+    color: var(--dv2-ink);
+}
+
+.mobile-language-label {
+    color: var(--dv2-muted);
+}
+
+.mobile-lang-btn {
+    background: var(--dv2-surface);
+    border: 1px solid var(--dv2-border-medium);
+    color: var(--dv2-ink);
+    border-radius: var(--dv2-radius-pill);
+}
+
+.mobile-lang-btn:hover {
+    background: var(--dv2-surface-tint);
+    color: var(--dv2-blue-700);
+}
+
+/* -------------------------------------------
+   HERO
+   ------------------------------------------- */
+/* The two-column grid. plan/sections/plan-hero.php reuses this class for its
+   own hero, so it stays as it was -- the front page's backdrop treatment is the
+   --backdrop modifier below rather than a rewrite of this rule. */
+.dv2-hero {
+    display: grid;
+    /* Media capped at 500px - 20% down from the 624px the old 1fr/1.2fr split
+       gave it - so the image stops dominating the fold. Gap and top padding
+       pulled in to match. */
+    grid-template-columns: minmax(0, 1fr) minmax(0, min(500px, 45%));
+    gap: 36px;
+    align-items: center;
+    padding: 45px var(--dv2-gutter) 0;
+}
+
+/* Full-bleed backdrop hero (front page). The copy is a single column now that
+   the foreground artwork is gone; the shell lives on .dv2-hero-inner so the
+   photo can run edge to edge behind it.
+
+   Pulled up under the floating header (which is sticky, so it stays in flow and
+   would otherwise leave a white band above the photo). */
+.dv2-hero--backdrop {
+    position: relative;
+    display: block;
+    /* Exactly the header's flow height, so the photo starts at the very top of
+       the page and the bar floats on it. Any mismatch here is visible as a
+       band of page background above the hero. */
+    margin-top: calc(-1 * var(--dv2-header-h, 71px));
+    padding: calc(var(--dv2-header-h, 71px) + 70px) var(--dv2-gutter) 110px;
+    background-color: var(--dv2-blue-900);
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.dv2-hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: var(--dv2-shell);
+    margin: 0 auto;
+}
+
+.dv2-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-size: cover;
+    /* The artwork's left third is near-empty dark, which is where the copy
+       sits; anchoring right keeps the busy tiles out from under the text. */
+    background-position: center right;
+    background-repeat: no-repeat;
+}
+
+/* Scrim: a flat dark wash over the whole photo, plus a little extra weight on
+   the left where the copy sits. No light fade anywhere — the section ends on
+   its own dark edge rather than dissolving into the page background. */
+.dv2-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg,
+            rgba(4, 22, 42, 0.72) 0%,
+            rgba(4, 22, 42, 0.46) 55%,
+            rgba(4, 22, 42, 0.30) 100%),
+        rgba(4, 22, 42, 0.42);
+}
+
+/* --- Hero copy inverted for the dark backdrop --- */
+.dv2-hero--backdrop .dv2-hero-title {
+    color: #ffffff;
+}
+
+.dv2-hero--backdrop .dv2-hero-accent {
+    /* --dv2-blue only clears 3.1:1 on this backdrop; the lighter tint reads. */
+    color: var(--dv2-blue-soft);
+}
+
+.dv2-hero--backdrop .dv2-hero-sub {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.dv2-trustpilot {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--dv2-surface);
+    border: 1px solid var(--dv2-border-medium);
+    border-radius: var(--dv2-radius-sm);
+    padding: 8px 14px;
+    font-size: 14px;
+    color: var(--dv2-body);
+    box-shadow: 0 2px 10px rgba(7, 68, 126, 0.05);
+}
+
+.dv2-trustpilot-name {
+    color: var(--dv2-green);
+    font-weight: 700;
+}
+
+.dv2-trustpilot-stars {
+    display: inline-flex;
+    gap: 2px;
+}
+
+.dv2-trustpilot-stars span {
+    background: var(--dv2-green);
+    color: #ffffff;
+    padding: 0 3px;
+    line-height: 1.4;
+}
+
+.dv2-trustpilot strong {
+    color: var(--dv2-ink);
+}
+
+/* 20% down from the original 51px. */
+.dv2-hero-title {
+    font-family: var(--dv2-font-display);
+    font-weight: 800;
+    font-size: 41px;
+    line-height: 1.1;
+    letter-spacing: -1.3px;
+    color: var(--dv2-ink);
+    margin: 26px 0 0;
+}
+
+/* Each headline line is its own block, so the two lines break where the copy
+   says they should instead of wherever the container happens to run out. */
+.dv2-hero-line {
+    display: block;
+}
+
+/* Second line of the hero headline. Matches .dv2-split-title em, which is how
+   the split sections already mark their accent words. */
+.dv2-hero-accent {
+    color: var(--dv2-blue);
+}
+
+.dv2-hero-sub {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--dv2-body);
+    max-width: 520px;
+    margin: 24px 0 0;
+}
+
+.dv2-hero-actions {
+    margin-top: 26px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* Secondary hero CTA: a white button rather than a bare text link, so the
+   pair reads as two actions. Border and shadow give it an edge against the
+   near-white page background. */
+.dv2-hero-link {
+    background: #ffffff;
+    color: var(--dv2-blue-700);
+    border: 1px solid var(--dv2-border-strong);
+    box-shadow: 0 6px 20px rgba(7, 68, 126, 0.08);
+}
+
+.dv2-hero-link:hover {
+    background: #ffffff;
+    color: var(--dv2-blue-600);
+    border-color: var(--dv2-blue);
+    box-shadow: 0 10px 26px rgba(16, 137, 242, 0.16);
+}
+
+/* The front-page hero no longer has foreground artwork -- it is a backdrop now.
+   These stay because plan/sections/plan-hero.php still renders .dv2-hero-media
+   and .dv2-hero-glow and inherits its image styling from here (see the note in
+   plan/css/plan.css); the plan pages load this file too. */
+.dv2-hero-media {
+    position: relative;
+}
+
+.dv2-hero-glow {
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(ellipse 60% 55% at 50% 55%, rgba(16, 137, 242, 0.28), transparent 70%);
+    filter: blur(20px);
+    pointer-events: none;
+}
+
+.dv2-hero-media img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--dv2-radius-xl);
+}
+
+/* -------------------------------------------
+   FEATURE CARDS
+
+   The rotating accent glow on the card edge is an animated conic gradient.
+   --dv2-border-angle is registered as an <angle> below so the browser can
+   interpolate it; without @property support the gradient simply sits still,
+   which still reads as a tinted hairline.
+   ------------------------------------------- */
+@property --dv2-border-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes dv2-border-spin {
+    to {
+        --dv2-border-angle: 360deg;
+    }
+}
+
+.dv2-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 44px;
+    text-align: left;
+}
+
+.dv2-feature-card {
+    position: relative;
+    background: var(--dv2-surface);
+    border: 1px solid var(--dv2-border);
+    border-radius: var(--dv2-radius-md);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: var(--dv2-shadow-sm);
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+
+/* The gradient ring: painted over the whole card, then masked down to the
+   border band so only the edge lights up. */
+.dv2-feature-card::before,
+.dv2-total-card::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: conic-gradient(from var(--dv2-border-angle),
+            transparent 0%,
+            var(--dv2-blue) 12%,
+            transparent 28%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: dv2-border-spin 4s linear infinite;
+    pointer-events: none;
+}
+
+.dv2-feature-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--dv2-shadow-md);
+}
+
+.dv2-feature-card-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.dv2-feature-card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dv2-blue);
+    flex-shrink: 0;
+}
+
+.dv2-feature-card-title {
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 1.3;
+    letter-spacing: -0.2px;
+    color: var(--dv2-ink);
+    margin: 0;
+    min-width: 0;
+}
+
+.dv2-feature-card-desc {
+    color: var(--dv2-body);
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0;
+}
+
+.dv2-chip-badge {
+    border: 1.6px solid var(--dv2-blue);
+    color: var(--dv2-blue);
+    border-radius: 5px;
+    padding: 2px 6px;
+    font-family: var(--dv2-font-display);
+    font-weight: 800;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+/* -------------------------------------------
+   SPLIT PANELS (channels / VOD / sports)
+   ------------------------------------------- */
+.dv2-split {
+    /* Panels are cards, so they carry their own gutter rather than sitting
+       inside a .container. */
+    width: calc(100% - 2 * var(--dv2-gutter));
+    max-width: calc(var(--dv2-shell) - 2 * var(--dv2-gutter));
+    margin: 26px auto 0;
+    /* --dv2-ink is #0b1f33. Dark panels, light type. */
+    background: var(--dv2-ink);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--dv2-radius-xl);
+    padding: 52px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    box-shadow: var(--dv2-shadow-md);
+}
+
+.dv2-split--first {
+    margin-top: 44px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Sizes are 20% down from the original 46px / 52px so the split headings sit
+   below the hero rather than competing with it. */
+.dv2-split-title {
+    font-family: var(--dv2-font-display);
+    font-weight: 800;
+    font-size: 37px;
+    line-height: 1.05;
+    letter-spacing: -1.2px;
+    color: #ffffff;
+    margin: 0;
+}
+
+.dv2-split-title--lg {
+    font-size: 42px;
+}
+
+/* --dv2-blue only clears 4.7:1 against the #0b1f33 panel; the lighter
+   --dv2-blue-soft gets to 6.5:1, so the accent stays legible on the dark. */
+.dv2-split-title em {
+    font-style: normal;
+    color: var(--dv2-blue-soft);
+}
+
+.dv2-split-copy p {
+    font-size: 18px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 440px;
+    margin: 22px 0 30px;
+}
+
+/* No panel of its own. The channel rows and the artwork each bring their own
+   background, so the aside is just a positioning box on the section's dark
+   ground. */
+.dv2-split-aside {
+    background: none;
+    border: 0;
+    padding: 0;
+}
+
+/* Artwork variant: centres the image in the aside. Panel styling is already
+   absent from the base rule. */
+.dv2-split-aside--image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dv2-split-aside--image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Channel list */
+.dv2-channel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dv2-channel-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--dv2-surface);
+    border-radius: var(--dv2-radius-sm);
+    padding: 10px 14px;
+}
+
+.dv2-channel-num {
+    color: var(--dv2-muted);
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    width: 36px;
+    flex-shrink: 0;
+}
+
+.dv2-channel-name {
+    flex: 1;
+    color: var(--dv2-ink-2);
+    font-size: 15px;
+}
+
+.dv2-channel-row--active {
+    background: var(--dv2-blue);
+}
+
+.dv2-channel-row--active .dv2-channel-num,
+.dv2-channel-row--active .dv2-channel-name {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.dv2-channel-more {
+    text-align: center;
+    color: var(--dv2-muted);
+    font-size: 14px;
+    padding: 8px;
+    background: var(--dv2-surface);
+    border-radius: var(--dv2-radius-sm);
+}
+
+/* VOD panel */
+.dv2-vod-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--dv2-surface);
+    border: 1px solid rgba(7, 68, 126, 0.08);
+    border-radius: var(--dv2-radius-sm);
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    color: var(--dv2-ink-2);
+    font-size: 15px;
+}
+
+.dv2-vod-search span {
+    flex: 1;
+}
+
+.dv2-vod-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 6px;
+    color: var(--dv2-ink);
+    font-size: 16px;
+}
+
+.dv2-vod-poster {
+    width: 44px;
+    height: 60px;
+    border-radius: 6px;
+    background: repeating-linear-gradient(135deg, #e6f2fe, #e6f2fe 6px, #d5e9fd 6px, #d5e9fd 12px);
+    flex-shrink: 0;
+}
+
+.dv2-vod-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 6px;
+    color: var(--dv2-blue);
+    font-size: 15px;
+}
+
+.dv2-vod-note-mark {
+    width: 22px;
+    height: 22px;
+    border-radius: var(--dv2-radius-pill);
+    border: 1.5px solid var(--dv2-blue);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Sports mosaic */
+.dv2-sport-mosaic {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+/* Single-artwork variant, replacing the six-tile grid. No panel of its own —
+   the image sits directly on the split section's dark background. */
+.dv2-sport-mosaic--image {
+    display: block;
+    background: none;
+    padding: 0;
+}
+
+.dv2-sport-mosaic--image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.dv2-sport-tile {
+    aspect-ratio: 16 / 10;
+    border-radius: 10px;
+    background: repeating-linear-gradient(135deg, #e9f4fe, #e9f4fe 8px, #dceafd 8px, #dceafd 16px);
+    display: flex;
+    align-items: flex-end;
+    padding: 8px;
+    color: #7d94ab;
+    font-family: monospace;
+    font-size: 11px;
+    overflow: hidden;
+}
+
+/* Photo tiles bleed to the edge; the hatch is only a loading fallback. */
+.dv2-sport-tile--photo {
+    padding: 0;
+}
+
+.dv2-sport-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+}
+
+.dv2-sport-tile--solid {
+    background: var(--dv2-blue-900);
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-family: var(--dv2-font-display);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+}
+
+/* -------------------------------------------
+   BIG CTA BAR
+   ------------------------------------------- */
+.dv2-cta-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 34px;
+    background: var(--dv2-blue);
+    color: #ffffff;
+    font-family: var(--dv2-font-display);
+    font-weight: 800;
+    font-size: 28px;
+    letter-spacing: .5px;
+    text-align: center;
+    padding: 34px;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(16, 137, 242, 0.35);
+}
+
+.dv2-cta-bar:hover {
+    background: var(--dv2-blue-600);
+    color: #ffffff;
+}
+
+.dv2-cta-bar-arrow {
+    font-size: 30px;
+    line-height: 1;
+}
+
+/* -------------------------------------------
+   COMPARISON TABLE
+   ------------------------------------------- */
+.dv2-compare {
+    margin-top: 44px;
+    border-radius: var(--dv2-radius-lg);
+    overflow: hidden;
+    text-align: left;
+    border: 1px solid var(--dv2-border-medium);
+    box-shadow: var(--dv2-shadow-md);
+}
+
+.dv2-compare-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.dv2-compare-head-ours {
+    background: var(--dv2-blue);
+    color: #ffffff;
+    padding: 26px 30px;
+}
+
+.dv2-compare-head-theirs {
+    background: var(--dv2-surface-alt);
+    color: var(--dv2-muted);
+    padding: 26px 30px;
+}
+
+.dv2-compare-head-label {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.dv2-compare-head-theirs .dv2-compare-head-label {
+    color: var(--dv2-body);
+}
+
+.dv2-compare-head-price {
+    font-family: var(--dv2-font-display);
+    font-weight: 800;
+    font-size: 30px;
+    margin-top: 6px;
+}
+
+.dv2-compare-head-theirs .dv2-compare-head-price {
+    text-decoration: line-through;
+}
+
+.dv2-compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid rgba(7, 68, 126, 0.08);
+}
+
+.dv2-compare-good,
+.dv2-compare-bad {
+    padding: 16px 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+}
+
+.dv2-compare-good {
+    background: var(--dv2-surface);
+    color: var(--dv2-ink-2);
+}
+
+.dv2-compare-good::before {
+    content: "✓";
+    color: var(--dv2-blue);
+    flex-shrink: 0;
+}
+
+.dv2-compare-bad {
+    background: var(--dv2-bg);
+    color: var(--dv2-muted);
+}
+
+.dv2-compare-bad::before {
+    content: "✗";
+    color: #a9d4fb;
+    flex-shrink: 0;
+}
+
+/* -------------------------------------------
+   REVIEWS
+   ------------------------------------------- */
+/* Two rows of reviews scrolling on a loop. Each track prints its cards twice
+   and travels exactly -50%, so the clone lands where the original started and
+   the seam is invisible. Cards use margin-right rather than a flex gap so that
+   half the track width is a whole number of cards. */
+/* One arrow-driven row. The old build was two auto-scrolling marquee tracks,
+   each printed twice so the loop had a seam to hide; without autoplay none of
+   that is needed, so the duplicate pass and the keyframes are gone and each
+   review is now in the DOM exactly once. */
+.dv2-review-carousel {
+    position: relative;
+    margin-top: 36px;
+    padding: 0 var(--dv2-gutter);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: var(--dv2-shell);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dv2-review-viewport {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    /* Native scrollbar hidden: the arrows are the control, and the row still
+       scrolls by drag/trackpad/keyboard. */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex: 1;
+    min-width: 0;
+}
+
+.dv2-review-viewport::-webkit-scrollbar {
+    display: none;
+}
+
+.dv2-review-track {
+    display: flex;
+    width: max-content;
+}
+
+.dv2-review-nav {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    line-height: 1;
+    color: var(--dv2-blue-700);
+    background: #ffffff;
+    border: 1px solid var(--dv2-border-medium);
+    border-radius: 50%;
+    box-shadow: var(--dv2-shadow-sm);
+    cursor: pointer;
+    transition: border-color .18s ease, box-shadow .18s ease, opacity .18s ease;
+}
+
+.dv2-review-nav:hover:not(:disabled) {
+    border-color: var(--dv2-blue);
+    box-shadow: 0 8px 22px rgba(16, 137, 242, 0.18);
+}
+
+/* Disabled at the ends of the row rather than hidden, so the control does not
+   jump position as you page through. */
+.dv2-review-nav:disabled {
+    opacity: .35;
+    cursor: default;
+}
+
+/* --- Score summary --- */
+.dv2-review-summary {
+    display: grid;
+    grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+    gap: 40px;
+    align-items: center;
+    max-width: 900px;
+    margin: 40px auto 0;
+    padding: 28px 32px;
+    background: var(--dv2-surface);
+    border: 1px solid var(--dv2-border);
+    border-radius: var(--dv2-radius-lg);
+    box-shadow: var(--dv2-shadow-sm);
+}
+
+.dv2-review-score {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.dv2-review-score-value {
+    font-family: var(--dv2-font-display);
+    font-weight: 800;
+    font-size: 62px;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: var(--dv2-ink);
+}
+
+.dv2-review-score-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dv2-review-score-stars {
+    color: var(--dv2-amber);
+    font-size: 22px;
+    letter-spacing: 3px;
+}
+
+.dv2-review-score-label {
+    color: var(--dv2-body);
+    font-size: 15px;
+}
+
+.dv2-review-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dv2-review-bar-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--dv2-body);
+    margin-bottom: 5px;
+}
+
+.dv2-review-bar-head strong {
+    color: var(--dv2-ink);
+    font-weight: 700;
+}
+
+.dv2-review-bar-track {
+    height: 6px;
+    border-radius: 999px;
+    background: var(--dv2-surface-tint);
+    overflow: hidden;
+}
+
+.dv2-review-bar-fill {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: var(--dv2-amber);
+}
+
+.dv2-review-card {
+    background: var(--dv2-surface);
+    border: 1px solid var(--dv2-border);
+    border-radius: var(--dv2-radius-md);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--dv2-shadow-sm);
+    width: 360px;
+    flex: 0 0 360px;
+    margin-right: 16px;
+    scroll-snap-align: start;
+}
+
+.dv2-review-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.dv2-review-stars {
+    background: var(--dv2-green);
+    color: #ffffff;
+    padding: 3px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.dv2-review-when {
+    color: var(--dv2-muted);
+    font-size: 13px;
+}
+
+.dv2-review-title {
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--dv2-ink);
+    margin-bottom: 8px;
+}
+
+.dv2-review-body {
+    color: var(--dv2-body);
+    font-size: 14px;
+    line-height: 1.55;
+    flex: 1;
+}
+
+.dv2-review-name {
+    color: var(--dv2-ink);
+    font-weight: 600;
+    font-size: 15px;
+    margin-top: 16px;
+}
+
+/* -------------------------------------------
+   PRICING (configurator kept, restyled)
+   ------------------------------------------- */
+.pricing {
+    padding: 96px 0 0;
+}
+
+.pricing .pricing-header h2 {
+    font-family: var(--dv2-font-display);
+    font-weight: 800;
+    font-size: 40px;
+    letter-spacing: -1px;
+    color: var(--dv2-ink);
+}
+
+/* "Your total" summary. Carries the same rotating conic-gradient border as the
+   feature cards (see .dv2-feature-card::before, which this shares). */
+.dv2-total-card {
+    position: relative;
+    background: var(--dv2-surface-alt);
+    border: 1px solid var(--dv2-border);
+    border-radius: var(--dv2-radius-lg);
+    padding: 26px 28px;
+    margin-top: 28px;
+    text-align: left;
+}
+
+.dv2-total-label {
+    display: block;
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dv2-muted);
+}
+
+.dv2-total-main {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    margin-top: 10px;
+}
+
+.dv2-total-price {
+    font-family: var(--dv2-font-display);
+    font-weight: 800;
+    font-size: 54px;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: var(--dv2-ink);
+}
+
+.dv2-total-aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    text-align: right;
+}
+
+.dv2-total-aside.is-hidden,
+.dv2-total-lock.is-hidden {
+    display: none;
+}
+
+.dv2-total-was {
+    color: var(--dv2-muted);
+    font-size: 19px;
+    text-decoration: line-through;
+}
+
+.dv2-total-save {
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--dv2-green);
+}
+
+.dv2-total-meta {
+    color: var(--dv2-body);
+    font-size: 15px;
+    margin: 14px 0 0;
+}
+
+.dv2-total-lock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--dv2-border-medium);
+    color: var(--dv2-body);
+    font-size: 15px;
+}
+
+.dv2-total-lock strong {
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    color: var(--dv2-blue);
+    font-variant-numeric: tabular-nums;
+}
+
+.dv2-total-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--dv2-radius-pill);
+    background: var(--dv2-green);
+    box-shadow: 0 0 0 4px rgba(0, 182, 122, 0.16);
+    flex-shrink: 0;
+}
+
+/* Single centred panel, per the annotated spec. */
+.configurator {
+    width: 100%;
+    max-width: 720px;
+    background: var(--dv2-surface);
+    border: 1px solid var(--dv2-border-strong);
+    border-radius: var(--dv2-radius-xl);
+    padding: 32px;
+    margin: 44px auto 0;
+    box-shadow: var(--dv2-shadow-md);
+}
+
+.configurator .config-section {
+    background: var(--dv2-bg) !important;
+    border: 1px solid var(--dv2-border);
+    border-radius: var(--dv2-radius-md) !important;
+    padding: 20px !important;
+    margin-bottom: 18px !important;
+}
+
+.config-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.config-step-num {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border-radius: var(--dv2-radius-pill);
+    background: var(--dv2-blue);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.configurator .config-title {
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--dv2-ink);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.configurator .config-title svg {
+    color: var(--dv2-blue) !important;
+}
+
+/* Step 1 - screen pills */
+.dv2-screen-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.dv2-screen-pill {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 10px;
+    border-radius: var(--dv2-radius-pill);
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+}
+
+.dv2-screen-pill:focus-visible {
+    outline: 2px solid var(--dv2-blue);
+    outline-offset: 2px;
+}
+
+.dv2-pill-badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dv2-green);
+    color: #ffffff;
+    border-radius: var(--dv2-radius-pill);
+    padding: 3px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+}
+
+/* Step 2 - duration cards */
+.dv2-duration-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.dv2-duration-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 20px 10px 16px;
+}
+
+.dv2-duration-card:focus-visible {
+    outline: 2px solid var(--dv2-blue);
+    outline-offset: 2px;
+}
+
+.badge.is-hidden {
+    display: none;
+}
+
+.dv2-scarcity {
+    text-align: center;
+    color: var(--dv2-ink);
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 15px;
+    margin: 4px 0 14px;
+}
+
+/* Trust row directly under the CTA */
+.dv2-checkout-trust {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 28px;
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+}
+
+.dv2-checkout-trust li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--dv2-ink-2);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.dv2-checkout-trust li::before {
+    content: "✓";
+    color: var(--dv2-green);
+    font-weight: 700;
+}
+
+.dv2-guarantee {
+    text-align: center;
+    color: var(--dv2-muted);
+    font-size: 14px;
+    margin: 12px 0 0;
+}
+
+/* "Every plan is fully loaded" */
+.dv2-loaded {
+    margin-top: 22px;
+    background: var(--dv2-bg);
+    border: 1px solid var(--dv2-border);
+    border-radius: var(--dv2-radius-md);
+    padding: 24px;
+}
+
+.dv2-loaded-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--dv2-font-display);
+    font-weight: 800;
+    font-size: 19px;
+    color: var(--dv2-ink);
+    margin: 0 0 18px;
+}
+
+.dv2-loaded-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dv2-loaded-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: var(--dv2-body);
+    font-size: 15px;
+    line-height: 1.45;
+}
+
+.dv2-loaded-list li::before {
+    content: "✓";
+    color: var(--dv2-blue);
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+/* Trial bar */
+.dv2-trial {
+    margin-top: 18px;
+    background: var(--dv2-surface-tint);
+    border: 1px solid var(--dv2-border-strong);
+    border-radius: var(--dv2-radius-md);
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.dv2-trial-copy {
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--dv2-ink);
+}
+
+.dv2-trial-btn {
+    background: var(--dv2-blue);
+    color: #ffffff;
+    font-size: 15px;
+    padding: 13px 22px;
+    box-shadow: none;
+}
+
+.dv2-trial-btn:hover {
+    background: var(--dv2-blue-600);
+    color: #ffffff;
+}
+
+/* Payment methods */
+.dv2-payments {
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid var(--dv2-border);
+    text-align: center;
+}
+
+.dv2-payments-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--dv2-muted);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.dv2-payment-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+}
+
+.dv2-payment-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--dv2-surface);
+    border: 1px solid var(--dv2-border-medium);
+    border-radius: 6px;
+    padding: 7px 12px;
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--dv2-ink-2);
+}
+
+.dv2-payment-badge--visa {
+    color: #1a1f71;
+}
+
+.dv2-payment-badge--amex {
+    color: #1f72cd;
+}
+
+.dv2-payment-badge--paypal {
+    color: #003087;
+    letter-spacing: 0;
+}
+
+.dv2-payment-badge--btc {
+    color: #f7931a;
+    letter-spacing: 0;
+}
+
+.dv2-payment-badge--mc {
+    letter-spacing: 0;
+}
+
+.dv2-mc-mark {
+    display: inline-flex;
+    align-items: center;
+}
+
+.dv2-mc-mark i {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: block;
+}
+
+.dv2-mc-mark i:first-child {
+    background: #eb001b;
+}
+
+.dv2-mc-mark i:last-child {
+    background: #f79e1b;
+    margin-left: -5px;
+}
+
+.select-card {
+    position: relative;
+    background: var(--dv2-surface);
+    border: 1px solid var(--dv2-border-medium);
+    border-radius: var(--dv2-radius-md);
+    padding: 18px 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.select-card:hover {
+    border-color: var(--dv2-border-strong);
+    transform: translateY(-2px);
+}
+
+.select-card.selected,
+.select-card.active {
+    border-color: var(--dv2-blue);
+    background: var(--dv2-surface-tint);
+    box-shadow: 0 8px 26px rgba(16, 137, 242, 0.18);
+}
+
+.select-card .num,
+.select-card .duration-header {
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    color: var(--dv2-ink);
+}
+
+.select-card .duration-price {
+    font-family: var(--dv2-font-display);
+    font-weight: 800;
+    font-size: 30px;
+    color: var(--dv2-ink);
+    margin: 6px 0 2px;
+}
+
+.select-card .duration-per,
+.select-card .duration-savings {
+    color: var(--dv2-muted);
+    font-size: 13px;
+}
+
+.select-card .badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: var(--dv2-radius-pill);
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.badge-green {
+    background: var(--dv2-green);
+    color: #ffffff;
+}
+
+.badge-orange {
+    background: var(--dv2-blue);
+    color: #ffffff;
+}
+
+/* pricing.css paints this button with an !important indigo gradient. */
+.cta-btn {
+    display: flex;
+    width: 100%;
+    background: var(--dv2-blue) !important;
+    box-shadow: 0 14px 40px rgba(16, 137, 242, 0.28) !important;
+    font-family: var(--dv2-font-display) !important;
+}
+
+.cta-btn:hover {
+    background: var(--dv2-blue-600) !important;
+    box-shadow: 0 18px 48px rgba(16, 137, 242, 0.38) !important;
+}
+
+.trust-badges {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.trust-badges > div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--dv2-bg);
+    border: 1px solid var(--dv2-border);
+    border-radius: var(--dv2-radius-md);
+    padding: 16px;
+}
+
+.trust-badges svg {
+    stroke: var(--dv2-blue) !important;
+}
+
+.trust-badges > div > div:first-child {
+    background: var(--dv2-surface-tint) !important;
+}
+
+/* -------------------------------------------
+   DEVICE CHIPS
+   ------------------------------------------- */
+.dv2-device-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 36px;
+}
+
+.dv2-device-chip {
+    background: var(--dv2-surface);
+    border: 1px solid var(--dv2-border-medium);
+    border-radius: 10px;
+    padding: 14px 22px;
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--dv2-ink);
+    box-shadow: var(--dv2-shadow-sm);
+    transition: transform .18s ease, border-color .18s ease;
+}
+
+.dv2-device-chip:hover {
+    transform: translateY(-2px);
+    border-color: var(--dv2-border-strong);
+}
+
+/* -------------------------------------------
+   FAQ
+   ------------------------------------------- */
+.dv2-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 1120px;
+    margin: 44px auto 0;
+}
+
+.dv2-faq-item {
+    background: var(--dv2-surface);
+    border: 1px solid var(--dv2-border);
+    border-radius: var(--dv2-radius-md);
+    overflow: hidden;
+    box-shadow: var(--dv2-shadow-sm);
+}
+
+.dv2-faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    padding: 22px 26px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--dv2-ink);
+}
+
+.dv2-faq-icon {
+    color: var(--dv2-blue);
+    font-size: 20px;
+    line-height: 1;
+    transition: transform .2s ease;
+    flex-shrink: 0;
+}
+
+.dv2-faq-item.open .dv2-faq-icon {
+    transform: rotate(90deg);
+}
+
+.dv2-faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+}
+
+.dv2-faq-item.open .dv2-faq-a {
+    max-height: 600px;
+}
+
+.dv2-faq-a-inner {
+    padding: 0 26px 22px;
+    color: var(--dv2-body);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.dv2-faq-a-inner a {
+    color: var(--dv2-blue);
+    font-weight: 600;
+}
+
+/* -------------------------------------------
+   ONBOARDING / 3 STEPS
+
+   One accent panel framed by a thick page-coloured border, so it reads as a
+   card floating on the page. Copy column is deliberately the narrower of the
+   two: an even split squeezes the step cards and wraps their titles.
+   ------------------------------------------- */
+.dv2-journey {
+    width: calc(100% - 2 * var(--dv2-gutter));
+    max-width: calc(var(--dv2-shell) - 2 * var(--dv2-gutter));
+    margin: 64px auto 0;
+    background: radial-gradient(ellipse at 30% 20%, #55a7f6, #0b70d0 70%);
+    border: 8px solid var(--dv2-bg);
+    border-radius: 32px;
+    padding: 48px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+    gap: 40px;
+    align-items: center;
+}
+
+.dv2-journey-copy {
+    min-width: 0;
+}
+
+.dv2-journey-title {
+    font-family: var(--dv2-font-display);
+    font-weight: 800;
+    font-size: 46px;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    color: #ffffff;
+    margin: 0;
+}
+
+.dv2-journey-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #eaf4fe;
+    font-size: 16px;
+    margin: 22px 0 28px;
+}
+
+.dv2-journey-note-mark {
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid #eaf4fe;
+    border-radius: var(--dv2-radius-pill);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.dv2-journey-cta {
+    max-width: 100%;
+}
+
+.dv2-journey-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    align-items: stretch;
+}
+
+.dv2-journey-card {
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid rgba(7, 68, 126, 0.08);
+    border-radius: var(--dv2-radius-md);
+    padding: 18px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+    box-shadow: 0 6px 18px rgba(4, 42, 78, 0.12);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+/* Accent hairline across the top edge of each card. */
+.dv2-journey-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--dv2-blue), var(--dv2-blue-soft));
+}
+
+.dv2-journey-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 34px rgba(4, 42, 78, 0.22);
+}
+
+.dv2-journey-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.dv2-journey-num {
+    width: 26px;
+    height: 26px;
+    border-radius: var(--dv2-radius-pill);
+    background: var(--dv2-blue);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 13px;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(16, 137, 242, 0.35);
+    flex-shrink: 0;
+}
+
+.dv2-journey-card h3 {
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    color: #111111;
+    font-size: 16px;
+    line-height: 1.25;
+    margin: 0;
+    min-width: 0;
+}
+
+/* Decorative mock-up. flex:1 makes it soak up the leftover height so all three
+   cards line up no matter how long each description runs. */
+.dv2-journey-visual {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    min-height: 92px;
+    background: var(--dv2-surface-alt);
+    border: 1px solid #dfeefd;
+    border-radius: var(--dv2-radius-sm);
+    padding: 12px;
+}
+
+.dv2-journey-bar {
+    display: block;
+    height: 12px;
+    background: #ffffff;
+    border: 1px solid #dfeefd;
+    border-radius: 4px;
+}
+
+.dv2-journey-bar--short {
+    width: 70%;
+}
+
+.dv2-journey-hint {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--dv2-faint);
+}
+
+.dv2-journey-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--dv2-blue);
+    color: #ffffff;
+    text-align: center;
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.dv2-journey-chip--sm {
+    align-self: flex-start;
+    padding: 7px 16px;
+}
+
+.dv2-journey-chip--ink {
+    align-self: flex-start;
+    background: #111111;
+    border-radius: var(--dv2-radius-pill);
+    padding: 7px 14px;
+}
+
+.dv2-journey-tiles {
+    display: flex;
+    gap: 6px;
+}
+
+.dv2-journey-tile {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #dfeefd;
+    border-radius: 6px;
+    background: #ffffff;
+    color: var(--dv2-blue);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.dv2-journey-formats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.dv2-journey-format {
+    border: 1px solid #cfe6fc;
+    border-radius: var(--dv2-radius-pill);
+    padding: 3px 9px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--dv2-blue-700);
+    background: #ffffff;
+}
+
+.dv2-journey-card p {
+    color: #555555;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* -------------------------------------------
+   SUPPORT
+   ------------------------------------------- */
+/* The support block is a blue panel, matching .dv2-journey — same gradient,
+   same 8px page-coloured border and 32px radius. The white background lives on
+   .contact in contact.css, so it is cleared here by the higher-specificity ID.
+   The panel is the .container, not the section, so the tint stays inset. */
+#contact.contact {
+    background: none;
+    padding: 0;
+}
+
+#contact .container {
+    width: calc(100% - 2 * var(--dv2-gutter));
+    max-width: calc(var(--dv2-shell) - 2 * var(--dv2-gutter));
+    /* No bottom margin: the footer's 80px top padding provides the gap, and it
+       sits inside the footer's tint so no band of page colour appears. */
+    margin: 64px auto 0;
+    background: radial-gradient(ellipse at 30% 20%, #55a7f6, #0b70d0 70%);
+    border: 8px solid var(--dv2-bg);
+    border-radius: 32px;
+    padding: 48px;
+}
+
+/* Heading and subtitle default to dark ink, which disappears on the blue panel. */
+#contact .dv2-section-head h2,
+#contact .dv2-section-head p {
+    color: #ffffff;
+}
+
+.dv2-support-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 900px;
+    margin: 36px auto 0;
+}
+
+.dv2-support-card {
+    display: block;
+    background: var(--dv2-surface);
+    border: 1px solid var(--dv2-border);
+    border-radius: var(--dv2-radius-md);
+    padding: 26px;
+    box-shadow: var(--dv2-shadow-sm);
+    text-align: center;
+    transition: transform .18s ease, border-color .18s ease;
+}
+
+.dv2-support-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--dv2-border-strong);
+}
+
+.dv2-support-card h3 {
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--dv2-ink);
+    margin: 0;
+}
+
+.dv2-support-card p {
+    color: var(--dv2-muted);
+    font-size: 14px;
+    margin: 6px 0 0;
+}
+
+/* The card is one big link, so the CTA is a span styled as a button rather
+   than a nested anchor. It inherits the card's click target. */
+.dv2-support-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 18px;
+    padding: 11px 20px;
+    border-radius: var(--dv2-radius-pill);
+    font-family: var(--dv2-font-body);
+    font-weight: 700;
+    font-size: 14px;
+    color: #ffffff;
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.dv2-support-cta--blue {
+    background: var(--dv2-blue);
+    box-shadow: 0 8px 20px rgba(16, 137, 242, 0.26);
+}
+
+.dv2-support-cta--green {
+    /* WhatsApp brand green, not --dv2-green (that one is the Trustpilot
+       green used by the review stars). */
+    background: #25d366;
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.30);
+}
+
+.dv2-support-card:hover .dv2-support-cta {
+    transform: translateY(-1px);
+}
+
+/* The WhatsApp number is the card's payload, so it gets the weight the
+   generic muted line would not give it. */
+.dv2-support-card--whatsapp p {
+    color: var(--dv2-ink);
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: .2px;
+}
+
+/* --- Features CTA (hands off to the pricing configurator below) --- */
+.dv2-features-cta {
+    margin-top: 36px;
+    text-align: center;
+}
+
+.dv2-features-cta-note {
+    margin: 14px 0 0;
+    color: var(--dv2-muted);
+    font-size: 14px;
+}
+
+/* -------------------------------------------
+   FINAL CTA (dark-cta section)
+   ------------------------------------------- */
+.cta {
+    padding: 64px 0 0;
+}
+
+.cta .cta-box {
+    max-width: var(--dv2-shell);
+    margin: 0 auto;
+    background: radial-gradient(ellipse at 30% 20%, #55a7f6, #0b70d0 70%);
+    border-radius: var(--dv2-radius-xl);
+    padding: 56px var(--dv2-gutter);
+    text-align: center;
+    color: #ffffff;
+}
+
+.cta .cta-box h2 {
+    font-family: var(--dv2-font-display);
+    font-weight: 800;
+    font-size: 44px;
+    line-height: 1.08;
+    letter-spacing: -1.2px;
+    color: #ffffff;
+    margin: 0;
+}
+
+.cta .cta-box p {
+    color: #eaf4fe;
+    font-size: 18px;
+    max-width: 620px;
+    margin: 18px auto 28px;
+}
+
+.cta .cta-box .btn,
+.cta .cta-box .btn-primary {
+    background: #ffffff;
+    color: var(--dv2-blue-800);
+    box-shadow: none;
+    font-size: 19px;
+    padding: 20px 40px;
+}
+
+.cta .cta-box .btn:hover {
+    background: #ffffff;
+    color: var(--dv2-blue-600);
+}
+
+.cta-features {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-top: 32px;
+}
+
+.cta-feature {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #eaf4fe;
+    font-size: 15px;
+}
+
+/* -------------------------------------------
+   FOOTER
+   Design v2 footer is light, not navy.
+   ------------------------------------------- */
+/* No margin-top here. The footer is tinted (--dv2-surface-alt) while the page
+   behind it is not, so any margin above it showed as a band of page colour
+   between the support section and the footer. The gap is padding instead, which
+   sits inside the tinted area. */
+/* Dark footer. --dv2-ink is exactly the header bar's base colour
+   (rgba(11,31,51,.78) is this at 78%), so the two bookends match and both
+   carry the light logo. Everything inside is inverted to suit. */
+.site-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    margin-top: 0;
+    padding: 80px 0 40px;
+    background: var(--dv2-ink);
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.site-footer .container {
+    max-width: var(--dv2-shell);
+    margin: 0 auto;
+    padding: 0 var(--dv2-gutter);
+}
+
+.site-footer .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 0;
+}
+
+.site-footer .footer-logo-img {
+    height: 34px !important;
+    max-height: 34px !important;
+    margin-bottom: 18px;
+}
+
+.site-footer .footer-desc {
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 320px;
+}
+
+.site-footer .footer-col h4 {
+    font-family: var(--dv2-font-display);
+    font-weight: 700;
+    font-size: 20px;
+    color: #ffffff;
+    margin-bottom: 18px;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.site-footer .footer-col ul,
+.site-footer .footer-col > div {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.site-footer .footer-col a {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 15px;
+}
+
+/* --dv2-blue only reaches 4.7:1 on this background; the lighter tint is the
+   same accent the dark panels elsewhere use. */
+.site-footer .footer-col a:hover {
+    color: var(--dv2-blue-soft);
+}
+
+.site-footer .footer-bottom {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 14px;
+    margin-top: 48px;
+    border-top: none;
+    padding-top: 0;
+}
+
+.site-footer .footer-country-btn {
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--dv2-radius-pill);
+    color: #ffffff;
+    padding: 9px 14px;
+}
+
+.site-footer .footer-country-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.30);
+}
+
+/* -------------------------------------------
+   RESPONSIVE
+   ------------------------------------------- */
+@media (max-width: 1180px) {
+    .dv2-feature-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .site-header .nav-links,
+    .site-header .nav-right {
+        display: none;
+    }
+
+    /* flex-direction matters here: header.css lays the three spans out as
+       stacked blocks, and a bare `display:flex` put them in a row instead —
+       the burger rendered as one 72px hairline. */
+    .site-header .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        /* 44px square: the bars are only 2px tall, so the button needs its own
+           box to be a reliable tap target. */
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        margin-right: -6px;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .site-header .mobile-menu-toggle span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        /* header.css sets margin:5px 0; with gap that would double the
+           spacing, so it is cleared rather than inherited. */
+        margin: 0;
+        border-radius: 2px;
+        background: #ffffff;
+    }
+
+    .dv2-hero--backdrop {
+        margin-top: calc(-1 * var(--dv2-header-h, 71px));
+        padding: calc(var(--dv2-header-h, 71px) + 40px) var(--dv2-gutter) 70px;
+    }
+
+    /* Narrow viewports crop a wide backdrop to its middle, which on this
+       artwork is the busiest part. Hold the dark left edge instead. */
+    .dv2-hero-bg {
+        background-position: center left;
+    }
+
+    /* Plan-page hero only (see the base rule). Stacked, the media has the full
+       column width, so cap it or the image row swallows the fold. */
+    .dv2-hero-media {
+        max-width: 560px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .dv2-hero-title {
+        font-size: 28px;
+        letter-spacing: -0.8px;
+    }
+
+    .dv2-hero-sub {
+        font-size: 18px;
+        max-width: none;
+    }
+
+    .dv2-split,
+    .dv2-journey {
+        grid-template-columns: 1fr;
+        padding: 36px;
+    }
+
+    #contact .container {
+        padding: 36px;
+    }
+
+    .dv2-split-title,
+    .dv2-split-title--lg {
+        font-size: 29px;
+        letter-spacing: -0.8px;
+    }
+
+    /* Two steps down from the desktop size, per the spec. */
+    .dv2-journey-title {
+        font-size: 34px;
+        letter-spacing: -1px;
+    }
+
+    .dv2-split-copy p {
+        max-width: none;
+    }
+
+    .dv2-cta-bar {
+        font-size: 22px;
+        padding: 28px 24px;
+    }
+
+    .cta .cta-box h2 {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Plan-page hero. The image runs nearly the full width on a phone, so the
+       glow's -30px horizontal bleed lands outside the viewport and gives the
+       whole page a horizontal scrollbar. Keep the vertical bleed, drop the
+       horizontal — invisible on a blurred 28%-opacity radial gradient. */
+    .dv2-hero-glow {
+        inset: -30px 0;
+    }
+
+    /* Score above, breakdown below — side by side there is not enough width
+       left for the bars to mean anything. */
+    .dv2-review-summary {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 24px;
+        margin-top: 28px;
+    }
+
+    .dv2-review-score-value {
+        font-size: 48px;
+    }
+
+    .dv2-review-carousel {
+        padding: 0 16px;
+        gap: 8px;
+    }
+
+    .dv2-review-nav {
+        width: 38px;
+        height: 38px;
+        font-size: 22px;
+    }
+
+    .dv2-feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .dv2-feature-card {
+        padding: 16px;
+        gap: 8px;
+    }
+
+    .dv2-feature-card-title {
+        font-size: 15px;
+    }
+
+    .dv2-feature-card-desc {
+        font-size: 13px;
+    }
+
+    .dv2-support-grid,
+    .dv2-journey-cards,
+    .trust-badges {
+        grid-template-columns: 1fr;
+    }
+
+    .dv2-review-card {
+        width: 300px;
+        flex-basis: 300px;
+        padding: 20px;
+    }
+
+    .dv2-total-card {
+        padding: 20px;
+    }
+
+    .dv2-total-price {
+        font-size: 40px;
+        letter-spacing: -1.4px;
+    }
+
+    .dv2-total-main {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .dv2-total-aside {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .dv2-total-lock {
+        justify-content: flex-start;
+    }
+
+    .dv2-hero-title {
+        font-size: 22px;
+    }
+
+    .dv2-split,
+    .dv2-journey {
+        padding: 24px;
+        border-radius: var(--dv2-radius-md);
+    }
+
+    #contact .container {
+        padding: 24px;
+        border-radius: var(--dv2-radius-md);
+    }
+
+    .dv2-split-title,
+    .dv2-split-title--lg {
+        font-size: 22px;
+    }
+
+    .dv2-journey-title {
+        font-size: 28px;
+    }
+
+    .dv2-compare-good,
+    .dv2-compare-bad {
+        padding: 14px 16px;
+        font-size: 14px;
+    }
+
+    .dv2-compare-head-ours,
+    .dv2-compare-head-theirs {
+        padding: 18px 16px;
+    }
+
+    .dv2-compare-head-price {
+        font-size: 22px;
+    }
+
+    .dv2-cta-bar {
+        font-size: 18px;
+        gap: 12px;
+    }
+
+    .dv2-faq-q {
+        font-size: 16px;
+        padding: 18px 18px;
+    }
+
+    .configurator {
+        padding: 20px;
+    }
+
+    .dv2-screen-row,
+    .dv2-duration-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dv2-screen-pill {
+        font-size: 14px;
+    }
+
+    .dv2-loaded-list {
+        grid-template-columns: 1fr;
+    }
+
+    .dv2-trial {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .dv2-checkout-trust {
+        gap: 8px 18px;
+        font-size: 14px;
+    }
+
+    .site-footer .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+@media (max-width: 560px) {
+    .dv2-feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* The badge needs ~348px of content at the desktop size but only gets
+       ~350px of column here, so every child was breaking its own text onto a
+       second line — the badge rendered 63px tall with its parts on mismatched
+       baselines. Scaling it down buys enough room to sit on one line; nowrap
+       stops it silently re-breaking on a narrower phone or a longer
+       translation ("Excellent" is "Fremragende" in Danish). */
+    .dv2-trustpilot {
+        gap: 6px;
+        padding: 6px 10px;
+        font-size: 12px;
+        max-width: 100%;
+        white-space: nowrap;
+    }
+
+    .dv2-trustpilot-stars span {
+        padding: 0 2px;
+        font-size: 11px;
+    }
+
+    .dv2-hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .dv2-hero-actions .dv2-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .dv2-journey {
+        border-width: 3px;
+        border-radius: 20px;
+        padding: 20px;
+    }
+
+    .dv2-journey-title {
+        font-size: clamp(22px, 6.4vw, 28px);
+        letter-spacing: -0.6px;
+    }
+
+    /* One line, never wrapped: long translations truncate instead of blowing
+       the button open on a narrow screen. */
+    .dv2-journey-cta {
+        display: block;
+        width: 100%;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .dv2-review-card {
+        width: 268px;
+        flex-basis: 268px;
+    }
+}
+
+/* -------------------------------------------
+   REDUCED MOTION
+   ------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+
+    .dv2-feature-card::before,
+    .dv2-total-card::before {
+        animation: none;
+    }
+
+    .dv2-journey-card:hover {
+        transform: none;
+    }
+
+    /* The reviews row no longer animates on its own -- it only moves when the
+       arrows are pressed -- so there is no loop to stop here. All that is left
+       is to make that arrow-driven jump instant rather than smooth. */
+    .dv2-review-viewport {
+        scroll-behavior: auto;
+    }
+}
+
+/* ---------------------------------------------
+   CONTACT PAGE — [nordictv_contact]
+   The support cards rendered inside page content
+   rather than a full-width section, so they need
+   their own spacing. The grid itself is shared
+   with the front page's support section.
+   --------------------------------------------- */
+.dv2-contact-page {
+    margin: 0 auto;
+    max-width: 960px;
+}
+
+.dv2-contact-page-intro {
+    margin: 0 0 28px;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--dv2-body, #4a5c70);
+}
+
+.dv2-contact-page .dv2-support-grid {
+    margin-top: 0;
+}

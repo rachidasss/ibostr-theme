@@ -1,0 +1,30 @@
+# WordPress Theme - Ignore unnecessary files
+*.log
+*.swp
+*.DS_Store
+.env
+node_modules/
+vendor/
+.vscode/
+.idea/
+
+# Keep source files, ignore compiled/minified
+# (uncomment if you compile assets)
+# *.min.js
+# *.min.css
+
+# --- Added 2026-08-20 ---
+# Agent/tooling scaffolding: not part of the theme, no reason to deploy or publish.
+.agent/
+.claude/
+docs/
+
+# One-off probes left in the theme root. Nothing references them and they are
+# web-reachable in wp-content/themes/, so they should not ship.
+test_coupon.php
+test-attrs.php
+tmp-canonical-probe.php
+wp-test-polylang.php
+
+# WooCommerce product export, kept locally as a reference only.
+wc-product-export-*.csv

@@ -1,0 +1,325 @@
+/* Pricing Section Styles - Configurator */
+.pricing {
+    padding: var(--space-lg) 0;
+    background: transparent;
+}
+
+.pricing .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: transparent;
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl) var(--space-xl);
+}
+
+@media (max-width: 1440px) {
+    .pricing .container {
+        margin: 0 var(--space-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing .container {
+        margin: 0 var(--space-sm);
+        padding: var(--space-xl) var(--space-md);
+    }
+}
+
+.pricing-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.pricing-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-navy);
+}
+
+.pricing-header h2 .gradient-text {
+    background: linear-gradient(135deg, var(--color-teal), var(--color-indigo-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Step indicators */
+.steps-container #step2[style],
+.steps-container #step3[style] {
+    background: var(--border-subtle) !important;
+}
+
+/* Pricing Configurator */
+.configurator {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+}
+
+.config-section {
+    background: var(--bg-section);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.config-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    margin-bottom: 1rem;
+}
+
+.config-title svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-teal) !important;
+    stroke: var(--color-teal) !important;
+}
+
+/* Card Grid - Devices & Durations */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* Tighter gap buys back horizontal room for long currency strings —
+       ISK runs to four digits plus the suffix, e.g. "8749 kr". */
+    gap: 0.625rem;
+}
+
+.select-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 2px solid var(--border-medium);
+    border-radius: var(--radius-md);
+    /* Narrower side padding widens the usable card interior by ~1rem. */
+    padding: 1.25rem 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.select-card:hover {
+    border-color: var(--color-teal);
+    box-shadow: var(--shadow-sm);
+}
+
+.select-card.active {
+    border-color: var(--color-teal);
+    background: rgba(16, 137, 242, 0.08);
+    box-shadow: 0 0 0 3px rgba(16, 137, 242, 0.15);
+}
+
+.select-card .num {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Duration Card Specifics */
+.duration-card {
+    padding-top: 1.5rem;
+}
+
+.duration-header {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.duration-price {
+    /* 10% down from 1.75rem so ISK amounts stay on one line. */
+    font-size: 1.575rem;
+    font-weight: 800;
+    color: var(--color-indigo);
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+}
+
+.duration-per {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.duration-savings {
+    font-size: 0.75rem;
+    color: var(--color-teal-text);
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+/* Badges on duration cards */
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.badge-green {
+    background: #1089F2 !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.badge-orange {
+    background: linear-gradient(135deg, #1089F2, #1089F2) !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+/* Trust Badges */
+.trust-badges {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.trust-badges > div {
+    background: var(--bg-section);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+/* Trust badge icon circles — override inline blue styles */
+.trust-badges .icon-circle {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgba(16, 137, 242, 0.1);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.trust-badges svg {
+    stroke: var(--color-teal) !important;
+}
+
+/* Step indicators — override inline blue */
+.steps-container span[style*="blue-600"] {
+    background: var(--color-teal) !important;
+}
+
+/* CTA button */
+@keyframes cta-shimmer {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.cta-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 1.15rem 2rem !important;
+    background: linear-gradient(90deg, #095BAA 0%, #1089F2 50%, #55A7F6 100%) !important;
+    background-size: unset !important;
+    color: #ffffff !important;
+    border-radius: var(--radius-full) !important;
+    font-weight: 800 !important;
+    font-size: 1.15rem !important;
+    letter-spacing: 0.02em !important;
+    text-decoration: none !important;
+    box-shadow: 0 6px 32px rgba(9, 91, 170, 0.6) !important;
+    animation: none !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    margin-bottom: 1rem !important;
+}
+
+.cta-btn:hover {
+    transform: translateY(-3px) scale(1.015) !important;
+    box-shadow: 0 14px 52px rgba(9, 91, 170, 0.75) !important;
+    animation: none !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .configurator {
+        padding: 1rem;
+        border-radius: var(--radius-lg);
+    }
+
+    .config-section {
+        padding: 1rem;
+    }
+
+    .config-title {
+        font-size: 0.9rem;
+    }
+
+    /* Devices: always 4 columns */
+    #devices.card-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 0.4rem;
+    }
+
+    #devices.card-grid .select-card {
+        padding: 0.6rem 0.25rem !important;
+    }
+
+    #devices.card-grid .select-card .num {
+        font-size: 0.72rem !important;
+        white-space: nowrap;
+    }
+
+    #devices.card-grid .select-card svg {
+        width: 1rem !important;
+        height: 1rem !important;
+        margin-bottom: 0.2rem !important;
+    }
+
+    /* Durations: 2 per row */
+    #durations.card-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.5rem;
+    }
+
+    .select-card {
+        padding: 0.875rem 0.5rem;
+    }
+
+    .select-card .num {
+        font-size: 0.9rem;
+    }
+
+    .duration-price {
+        font-size: 1.125rem;
+        white-space: nowrap;
+    }
+
+    .duration-header {
+        font-size: 0.75rem;
+    }
+
+    .trust-badges {
+        grid-template-columns: 1fr;
+    }
+
+    /* CTA button: keep text on one line */
+    .cta-btn {
+        font-size: 1rem !important;
+        padding: 1rem 1.5rem !important;
+        white-space: nowrap;
+    }
+}

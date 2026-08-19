@@ -1,0 +1,1431 @@
+/* ============================================
+   NORDIC TV REDESIGN - THEME CSS
+   Aggregated from user provided assets
+   ============================================ */
+
+/* Font Imports — Outfit is self-hosted; inc/performance.php inlines its
+   @font-face block in the head. Space Mono was imported here but never named
+   in a font-family rule anywhere in the theme, so it is simply dropped. */
+
+/* -------------------------------------------
+   00 - VARIABLES & BASE
+   ------------------------------------------- */
+:root {
+    --color-navy: #0F2847;
+    --color-indigo: #1089F2;
+    --color-indigo-hover: #0B70D0;
+    --color-teal: #1089F2;
+    --color-coral: #FF6B4A;
+    --color-gold: #FFB830;
+    --color-live: #FF4757;
+
+    --bg-page: #F2F8FE;
+    --bg-section: #E2EFFD;
+    --bg-card: #FFFFFF;
+    --bg-nav: #FFFFFF;
+    --bg-dark: #0F2847;
+    --bg-footer: #091E38;
+
+    --text-primary: #0F2847;
+    --text-secondary: #4A6282;
+    --text-muted: #8B9DB8;
+    --text-inverse: #FFFFFF;
+    --text-nav: #22364C;
+
+    --border-subtle: rgba(15, 40, 71, 0.07);
+    --border-indigo: rgba(16, 137, 242, 0.15);
+    --border-teal: rgba(16, 137, 242, 0.35);
+    --color-teal-text: #0b70d0;
+    --border-medium: rgba(15, 40, 71, 0.12);
+    --shadow-sm: 0 2px 8px rgba(15, 40, 71, 0.06);
+    --shadow-md: 0 8px 32px rgba(15, 40, 71, 0.08);
+    --shadow-lg: 0 16px 64px rgba(15, 40, 71, 0.12);
+    --shadow-glow: 0 8px 40px rgba(16, 137, 242, 0.25);
+
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2.5rem;
+    --space-xl: 4rem;
+    --space-2xl: 2.4rem;
+
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --radius-full: 100px;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    background: #ffffff;
+    color: var(--text-primary);
+    line-height: 1.6;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Base Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    padding: 14px 28px;
+    border-radius: var(--radius-full);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-teal), var(--color-indigo-hover));
+    color: #ffffff !important;
+    box-shadow: var(--shadow-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 48px rgba(16, 137, 242, 0.4);
+}
+
+.btn-secondary {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 2px solid var(--border-medium);
+}
+
+.btn-secondary:hover {
+    border-color: var(--color-teal);
+    background: rgba(16, 137, 242, 0.05);
+}
+
+/* Boxed Section Wrapper */
+.section-box {
+    max-width: 1400px;
+    margin: 0 auto;
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl) var(--space-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.section-box--alt {
+    background: var(--bg-section);
+}
+
+.section-box--dark {
+    background: linear-gradient(135deg, var(--color-navy), var(--color-indigo));
+    color: white;
+}
+
+@media (max-width: 1440px) {
+    .section-box {
+        margin: 0 auto;
+        padding-left: var(--space-md);
+        padding-right: var(--space-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .section-box {
+        margin: 0 auto;
+        padding: var(--space-xl) var(--space-md);
+        border-radius: var(--radius-lg);
+    }
+}
+
+/* Section outer wrapper (transparent, provides vertical spacing) */
+.section-outer {
+    padding: 0.45rem 0;
+    background: transparent;
+}
+
+/* Ensure all boxed section containers are always centered */
+.sports-container,
+.steps .steps-container,
+.pricing .container,
+.faq-container,
+.reviews .container,
+.cta-box,
+.logos-bar,
+.features-inner,
+.devices-inner,
+.comparison-inner {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Section Common */
+.section-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-tag {
+    display: inline-block;
+    padding: 10px 22px;
+    background: rgba(16, 137, 242, 0.12);
+    border-radius: var(--radius-lg);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-teal-text);
+    margin-bottom: var(--space-sm);
+    letter-spacing: 0.01em;
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+    letter-spacing: -0.02em;
+}
+
+.section-title .gradient-text {
+    background: linear-gradient(135deg, var(--color-teal), var(--color-indigo-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.15);
+    }
+}
+
+/* -------------------------------------------
+   01 - HERO SECTION CSS (Strearena Style)
+   ------------------------------------------- */
+.hero {
+    padding: 8rem var(--space-lg) var(--space-2xl);
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 85vh;
+    justify-content: center;
+}
+
+/* Aurora Background (Moved from base to avoid global issues, applied to hero or body) */
+.bg-aurora {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle 400px at 20% 80%, rgba(16, 137, 242, 0.2), transparent),
+        radial-gradient(circle 400px at 80% 20%, rgba(16, 137, 242, 0.2), transparent);
+    background-size: 100% 100%, 100% 100%;
+}
+
+.bg-aurora::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+        radial-gradient(ellipse 80% 50% at 20% 10%, rgba(16, 137, 242, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(26, 75, 124, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 30% at 50% 80%, rgba(255, 107, 74, 0.03) 0%, transparent 50%);
+    animation: auroraMove 25s ease-in-out infinite;
+}
+
+@keyframes auroraMove {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    33% {
+        transform: translate(2%, 1%) rotate(1deg);
+    }
+
+    66% {
+        transform: translate(-1%, 2%) rotate(-1deg);
+    }
+}
+
+.hero-content {
+    animation: fadeInUp 0.8s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+/* Rating Badge */
+.hero-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--color-navy);
+    /* Dark text-safe background */
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    margin-bottom: var(--space-sm);
+    border: 1px solid var(--border-subtle);
+    color: white;
+    /* Force white text */
+}
+
+.hero-rating .stars {
+    color: var(--color-gold);
+    letter-spacing: 1px;
+}
+
+.hero-rating .rating-text {
+    color: rgba(255, 255, 255, 0.9);
+    /* High contrast white */
+    font-weight: 500;
+}
+
+/* Savings Badge */
+.hero-savings {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    /* Match padding to rating */
+    background: rgba(16, 137, 242, 0.1);
+    border: 1px solid rgba(16, 137, 242, 0.3);
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    /* Match font size to rating */
+    font-weight: 600;
+    color: var(--color-teal-text);
+    margin-bottom: var(--space-sm);
+    vertical-align: middle;
+    /* Better inline alignment */
+}
+
+.hero-savings svg {
+    color: var(--color-teal-text);
+    width: 16px;
+    height: 16px;
+}
+
+/* Container for badges to ensure alignment */
+.hero-badges-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-md);
+}
+
+/* Headline */
+.hero h1 {
+    font-size: clamp(2.1rem, 4.2vw, 3.15rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: var(--space-md);
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+}
+
+.hero h1 .gradient-text {
+    background: linear-gradient(to right, var(--color-teal), #2A81C2, var(--color-indigo-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Subtitle */
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+    max-width: 600px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.hero-subtitle strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Feature Pills */
+.hero-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+}
+
+.hero-feature {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.hero-feature:hover {
+    border-color: var(--color-teal);
+    background: rgba(16, 137, 242, 0.05);
+}
+
+.hero-feature svg {
+    color: var(--color-teal);
+    flex-shrink: 0;
+}
+
+/* CTA Button */
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+
+/* CTA glow container */
+.hero-cta-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--space-xl);
+    padding: 1.5rem 3rem;
+    background: radial-gradient(ellipse 80% 100% at 50% 50%, rgba(16, 137, 242, 0.15), transparent 70%);
+    border-radius: var(--radius-xl);
+}
+
+/* ============================================
+   STATS CARDS - 4 HORIZONTAL
+   ============================================ */
+.hero-stats {
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+    display: flex;
+    gap: var(--space-md);
+    width: 100%;
+    justify-content: center;
+}
+
+.stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--color-teal);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(16, 137, 242, 0.3);
+}
+
+.stat-card:hover::before {
+    opacity: 1;
+}
+
+/* Card Header with Live Dot */
+.stat-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.live-dot {
+    width: 10px;
+    height: 10px;
+    background: #FF4757;
+    border-radius: 50%;
+    animation: livePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7);
+    }
+
+    50% {
+        opacity: 0.8;
+        box-shadow: 0 0 0 8px rgba(255, 71, 87, 0);
+    }
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #FF4757;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.stat-label-large {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+.stat-value {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: var(--color-indigo);
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.stat-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .hero {
+        min-height: auto;
+        padding-top: 7rem;
+    }
+
+    .hero h1 {
+        font-size: 1.9rem;
+    }
+
+    .hero-features {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-stats {
+        flex-direction: column;
+    }
+
+    .stat-card {
+        width: 100%;
+    }
+
+    .stat-value {
+        font-size: 1.875rem;
+    }
+
+    .hero-cta-wrap {
+        padding: 1rem 1.5rem;
+    }
+}
+
+/* -------------------------------------------
+   02 - LOGOS BAR CSS
+   ------------------------------------------- */
+.logos-bar {
+    padding: 0.45rem 0;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+/* -------------------------------------------
+   03 - FEATURES SECTION CSS
+   ------------------------------------------- */
+.features {
+    padding: 0.45rem 0;
+}
+
+.features-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-xl);
+}
+
+@media (max-width: 1440px) {
+    .features-inner {
+        margin: 0 auto;
+        padding-left: var(--space-md);
+        padding-right: var(--space-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .features-inner {
+        margin: 0 auto;
+        padding: var(--space-xl) var(--space-md);
+    }
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+}
+
+@media (max-width: 1024px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.feature-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-teal), var(--color-indigo-hover));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+}
+
+.feature-card:hover::before {
+    transform: scaleX(1);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, rgba(16, 137, 242, 0.12), rgba(26, 75, 124, 0.08));
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-md);
+    color: var(--color-teal);
+}
+
+.feature-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+    color: var(--text-primary);
+}
+
+.feature-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* -------------------------------------------
+   04 - SPORTS SECTION CSS
+   ------------------------------------------- */
+.sports {
+    padding: 0.45rem 0;
+}
+
+.sports-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: rgba(240, 244, 250, 1);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl) var(--space-xl);
+}
+
+@media (max-width: 1440px) {
+    .sports {
+        padding-left: var(--space-md);
+        padding-right: var(--space-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .sports {
+        padding-left: var(--space-sm);
+        padding-right: var(--space-sm);
+    }
+
+    .sports-container {
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl) var(--space-md);
+    }
+}
+
+.sports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-md);
+}
+
+.sport-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.sport-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(16, 137, 242, 0.3);
+}
+
+.sport-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-sm);
+}
+
+.sport-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+}
+
+/* Sports uses light bg — use standard dark text colors */
+.sports-container .section-title {
+    color: var(--text-primary);
+}
+
+.sports-container .section-subtitle {
+    color: var(--text-secondary);
+}
+
+.sports-container .section-tag {
+    background: rgba(16, 137, 242, 0.12);
+    color: var(--color-teal-text);
+}
+
+.sport-leagues {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.sport-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: var(--space-sm);
+    padding: 5px 12px;
+    background: rgba(16, 137, 242, 0.1);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-teal-text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.sport-live::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--color-teal);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@media (max-width: 768px) {
+    .sports-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .sports-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* -------------------------------------------
+   05 - COMPARISON SECTION CSS
+   ------------------------------------------- */
+.comparison {
+    padding: 0.45rem 0;
+}
+
+.comparison-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-xl);
+}
+
+@media (max-width: 1440px) {
+    .comparison-inner {
+        padding-left: var(--space-md);
+        padding-right: var(--space-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .comparison-inner {
+        padding: var(--space-xl) var(--space-md);
+    }
+}
+
+/* Comparison card layout */
+.comp-cards-wrap {
+    max-width: 580px;
+    margin: 0 auto var(--space-xl);
+    font-family: 'Outfit', sans-serif;
+}
+
+.feat-card {
+    background: #1e293b;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fc-left {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.fc-name {
+    font-size: 0.9rem;
+    color: #e2e8f0;
+    font-weight: 500;
+}
+
+.fc-cable {
+    font-size: 0.95rem;
+    color: var(--color-coral);
+    text-decoration: line-through;
+    opacity: 0.65;
+    font-weight: 600;
+}
+
+.fc-right {
+    font-size: 0.9rem;
+    color: var(--color-teal);
+    font-weight: 600;
+    white-space: nowrap;
+    margin-left: 12px;
+}
+
+/* Annual cost card */
+.annual-card {
+    background: #0d1f35;
+    border: 1px solid rgba(16, 137, 242, 0.25);
+    border-radius: 10px;
+    padding: 16px;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ac-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ac-label {
+    font-size: 0.7rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.ac-cable {
+    font-size: 1.1rem;
+    color: var(--color-coral);
+    text-decoration: line-through;
+    opacity: 0.65;
+    font-weight: 700;
+}
+
+.ac-right {
+    text-align: right;
+}
+
+.ac-price {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-teal);
+    letter-spacing: -0.02em;
+}
+
+.ac-sub {
+    font-size: 0.7rem;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+/* Savings bar */
+.savings-bar {
+    margin-top: 12px;
+    background: rgba(16, 137, 242, 0.08);
+    border: 1px solid rgba(16, 137, 242, 0.2);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+}
+
+.sav-label {
+    font-size: 0.7rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+}
+
+.sav-val {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-teal);
+    letter-spacing: -0.02em;
+}
+
+/* -------------------------------------------
+   06 - STEPS SECTION CSS
+   ------------------------------------------- */
+.steps {
+    padding: 0.45rem 0;
+}
+
+.steps .steps-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(240, 244, 250, 1);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl) var(--space-xl);
+}
+
+@media (max-width: 1440px) {
+    .steps .steps-container {
+        margin: 0 auto;
+        padding-left: var(--space-md);
+        padding-right: var(--space-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .steps .steps-container {
+        margin: 0 auto;
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl) var(--space-md);
+    }
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+    position: relative;
+}
+
+.steps-grid::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: calc(16.66% + 50px);
+    right: calc(16.66% + 50px);
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-teal), var(--color-indigo-hover), var(--color-teal));
+    border-radius: 3px;
+    z-index: 0;
+}
+
+.step-card {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.step-number {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto var(--space-md);
+    background: linear-gradient(135deg, var(--color-teal), var(--color-indigo-hover));
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    box-shadow: 0 8px 32px rgba(16, 137, 242, 0.3);
+    line-height: 1.1;
+    text-align: center;
+}
+
+.step-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+    color: var(--text-primary);
+}
+
+.step-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    max-width: 280px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Steps uses light bg — standard dark text */
+.steps .steps-container .section-title {
+    color: var(--text-primary);
+}
+
+.steps .steps-container .section-subtitle {
+    color: var(--text-secondary);
+}
+
+.steps .steps-container .section-tag {
+    background: rgba(16, 137, 242, 0.12);
+    color: var(--color-teal-text);
+}
+
+.steps .steps-container .step-title {
+    color: var(--text-primary);
+}
+
+.steps .steps-container .step-desc {
+    color: var(--text-secondary);
+}
+
+@media (max-width: 1024px) {
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+
+    .steps-grid::before {
+        display: none;
+    }
+}
+
+/* -------------------------------------------
+   07 - DEVICES SECTION CSS
+   ------------------------------------------- */
+.devices {
+    padding: 0.45rem 0;
+}
+
+.devices-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-xl) 0.1rem var(--space-xl);
+}
+
+@media (max-width: 1440px) {
+    .devices-inner {
+        margin: 0 auto;
+        padding-left: var(--space-md);
+        padding-right: var(--space-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .devices-inner {
+        margin: 0 auto;
+        padding: 1rem var(--space-md);
+    }
+}
+
+.devices-grid {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.device-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 0.1rem var(--space-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.device-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(16, 137, 242, 0.3);
+}
+
+.device-icon {
+    font-size: 2.25rem;
+}
+
+.device-name {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+@media (max-width: 480px) {
+    .devices-grid {
+        gap: var(--space-sm);
+    }
+
+    .device-item {
+        min-width: 100px;
+        padding: var(--space-sm);
+    }
+}
+
+/* -------------------------------------------
+   08 - FAQ SECTION CSS
+   ------------------------------------------- */
+.faq {
+    padding: 0.45rem 0;
+}
+
+.faq-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: transparent;
+    padding: var(--space-2xl) var(--space-xl);
+}
+
+.faq-inner {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1440px) {
+    .faq-container {
+        margin: 0 auto;
+        padding-left: var(--space-md);
+        padding-right: var(--space-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .faq-container {
+        margin: 0 auto;
+        padding: var(--space-xl) var(--space-md);
+    }
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: rgba(16, 137, 242, 0.3);
+}
+
+.faq-question {
+    width: 100%;
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s ease;
+}
+
+.faq-question:hover {
+    background: var(--bg-section);
+}
+
+.faq-icon {
+    font-size: 1.5rem;
+    color: var(--color-teal);
+    transition: transform 0.3s ease;
+    font-weight: 300;
+}
+
+.faq-item.open .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.faq-item.open .faq-answer {
+    max-height: 300px;
+}
+
+.faq-answer-content {
+    padding: 0 var(--space-lg) var(--space-lg);
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* -------------------------------------------
+   09 - FINAL CTA SECTION CSS
+   ------------------------------------------- */
+.cta {
+    padding: 0.45rem 0;
+    background: transparent;
+}
+
+.cta-box {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--color-navy), var(--color-indigo));
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl) var(--space-xl);
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: visible;
+}
+
+.cta-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(16, 137, 242, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(85, 167, 246, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    border-radius: var(--radius-xl);
+}
+
+.cta-content {
+    position: relative;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1440px) {
+    .cta-box {
+        margin: 0 auto;
+        padding-left: var(--space-md);
+        padding-right: var(--space-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .cta-box {
+        margin: 0 auto;
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl) var(--space-md);
+    }
+}
+
+/* ============================================
+   MEMBER DASHBOARD SECTION
+   ============================================ */
+/* Outer section — same minimal wrapper as .steps */
+.member-dashboard {
+    padding: 0.45rem 0;
+}
+
+/* Boxed inner — mirrors .steps .steps-container */
+.dashboard-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl) var(--space-xl);
+    text-align: center;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin: var(--space-2xl) 0;
+    text-align: left;
+}
+
+.dashboard-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    background: #fff;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.dashboard-card:hover {
+    border-color: var(--color-teal);
+    transform: translateY(-3px);
+}
+
+.dashboard-card-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(16,137,242,0.12), rgba(99,102,241,0.10));
+    border-radius: var(--radius-md);
+    color: var(--color-teal);
+}
+
+.dashboard-card-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.dashboard-feature-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.dashboard-card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.4rem;
+}
+
+.dashboard-card-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.dashboard-cta {
+    margin-top: var(--space-xl);
+}
+
+@media (max-width: 1440px) {
+    .dashboard-inner {
+        margin: 0 auto;
+        padding-left: var(--space-md);
+        padding-right: var(--space-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .dashboard-inner {
+        padding: var(--space-xl) var(--space-md);
+        border-radius: var(--radius-lg);
+    }
+}

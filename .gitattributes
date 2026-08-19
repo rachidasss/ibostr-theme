@@ -1,0 +1,22 @@
+# The theme is checked out on a Linux server by WP Pusher. Committing CRLF from a
+# Windows working copy would ship Windows line endings into PHP running on Linux,
+# which is at best noisy diffs and at worst a stray \r in a header() call.
+* text=auto eol=lf
+
+*.php  text eol=lf
+*.css  text eol=lf
+*.js   text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+*.txt  text eol=lf
+
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+*.gif  binary
+*.svg  text eol=lf
+*.woff binary
+*.woff2 binary
+*.ttf  binary
+*.ico  binary
