@@ -4,7 +4,7 @@
  * Converted from the prerendered landing page 2026-08-20. Markup is reproduced
  * exactly; only copy and links are ACF-driven.
  *
- * @package Nordic_IPTV
+ * @package iBostreaming
  */
 
 if (!defined('ABSPATH')) { exit; }

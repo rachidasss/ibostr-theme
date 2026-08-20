@@ -1,4 +1,4 @@
-# NordicTV — Design System
+# iBostreaming — Design System
 
 ---
 

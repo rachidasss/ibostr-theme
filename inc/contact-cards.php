@@ -10,12 +10,12 @@
  * cards on all six Contact pages. Pasting the markup into each page's content
  * would have meant six copies to keep in step.
  *
- * Usage in a page: [nordictv_contact]
+ * Usage in a page: [iptv_contact]
  *   heading="1"  also render the section's <h2> (the page template already
  *                prints the page title, so this is off by default)
  *   intro="0"    drop the intro paragraph
  *
- * @package Nordic_IPTV
+ * @package iBostreaming
  */
 
 if (!defined('ABSPATH')) {
@@ -276,14 +276,14 @@ if (!function_exists('iptv_contact_cards_grid')) {
 }
 
 /**
- * [nordictv_contact] — the front page's support cards, for use on the Contact
+ * [iptv_contact] — the front page's support cards, for use on the Contact
  * page in place of a contact form.
  */
-add_shortcode('nordictv_contact', function ($atts) {
+add_shortcode('iptv_contact', function ($atts) {
     $atts = shortcode_atts(array(
         'heading' => '0',
         'intro'   => '1',
-    ), $atts, 'nordictv_contact');
+    ), $atts, 'iptv_contact');
 
     $out = '<div class="dv2-contact-page">';
 

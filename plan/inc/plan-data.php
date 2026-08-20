@@ -12,7 +12,7 @@
  * recalculation on a visitor's request. Checkout is the same panel URL the
  * configurator builds: {checkout_base}?connections=N&duration=M.
  *
- * @package Nordic_IPTV
+ * @package iBostreaming
  */
 
 if (!defined('ABSPATH')) {
@@ -164,9 +164,9 @@ if (!function_exists('iptv_plan_currency')) {
 
         $currency = 'usd';
 
-        if (function_exists('pll_current_language') && function_exists('nordictv_lang_by_currency')) {
+        if (function_exists('pll_current_language') && function_exists('iptv_lang_by_currency')) {
             $lang = pll_current_language('slug');
-            $map  = array_flip(nordictv_lang_by_currency()); // slug => currency
+            $map  = array_flip(iptv_lang_by_currency()); // slug => currency
             if ($lang && isset($map[$lang])) {
                 $currency = $map[$lang];
                 return $currency;
@@ -387,8 +387,8 @@ if (!function_exists('iptv_plan_url')) {
             ),
         );
 
-        if (function_exists('nordictv_lang_slugs')) {
-            $languages = nordictv_lang_slugs();
+        if (function_exists('iptv_lang_slugs')) {
+            $languages = iptv_lang_slugs();
             if (!empty($languages)) {
                 $args['lang'] = implode(',', $languages);
             }

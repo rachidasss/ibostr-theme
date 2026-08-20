@@ -1,5 +1,5 @@
-/* Dark CTA Section - Nordic Comparison Cards */
-.nordic-dark-section {
+/* Dark CTA Section - Comparison Cards */
+.ibo-dark-section {
     background-color: #0f172a;
     padding: 80px 20px;
     font-family: 'DM Sans', sans-serif;
@@ -91,7 +91,7 @@
     margin-top: 4px;
 }
 
-/* RIGHT CARD: Nordic Solution (Positive) */
+/* RIGHT CARD: iBostreaming Solution (Positive) */
 .card-positive {
     background-color: #111827;
     border: 2px solid #4ade80;

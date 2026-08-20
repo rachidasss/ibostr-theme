@@ -91,7 +91,7 @@ if (!$is_thank_you_page && class_exists('WooCommerce') && function_exists('WC') 
                     <label for="billing_phone">Phone Number *</label>
                     <div class="phone-input">
                         <select name="phone_country" id="phone_country">
-                            <!-- Priority: USA & Nordic -->
+                            <!-- Priority: USA & EU -->
                             <option value="+1">🇺🇸 United States +1</option>
                             <option value="+46">🇸🇪 Sweden +46</option>
                             <option value="+47">🇳🇴 Norway +47</option>

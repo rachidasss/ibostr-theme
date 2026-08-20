@@ -34,7 +34,7 @@ if (empty($reviews)) {
     // publishes, copied verbatim on 2026-08-19 so this template shows exactly
     // what the Elementor homepage it replaces showed. They are NOT the theme's
     // original bundled set — that was a different, invented list carried over
-    // from the NordicTV build and it must not come back.
+    // from the iBostreaming build and it must not come back.
     $reviews = [
         ['title' => 'Stellar Stability and Quality', 'when' => '1 week ago', 'author' => 'Johan S. · Stockholm, Sweden', 'text' => 'iBo Streaming stands out for its rock-solid live football stability. I have experienced zero interruptions, making my viewing experience thoroughly enjoyable. Top service!'],
         ['title' => 'Reliability Redefined', 'when' => '3 days ago', 'author' => 'Mikkel B. · Copenhagen, Denmark', 'text' => 'With iBo Streaming, I\'ve found the reliability I\'ve been searching for in an IPTV service. The 4K streams are stable and crisp on my LG OLED, making it a true pleasure to use.'],

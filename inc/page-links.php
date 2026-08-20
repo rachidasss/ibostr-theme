@@ -15,7 +15,7 @@
  * translation does not exist yet it returns the page it did find, because a link
  * to the English page is more use than a dead one.
  *
- * @package Nordic_IPTV
+ * @package iBostreaming
  */
 
 if (!defined('ABSPATH')) {
@@ -120,8 +120,8 @@ if (!function_exists('iptv_page_url')) {
         // Which translation the query lands on does not matter — every member of
         // a translation group maps to the same set, so pll_get_post() below
         // resolves the right one either way.
-        if (function_exists('nordictv_lang_slugs')) {
-            $languages = nordictv_lang_slugs();
+        if (function_exists('iptv_lang_slugs')) {
+            $languages = iptv_lang_slugs();
             if (!empty($languages)) {
                 $args['lang'] = implode(',', $languages);
             }

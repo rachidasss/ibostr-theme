@@ -6,7 +6,7 @@
  * match one character for character silently falls back to English, so copy
  * edited in plan-strings.php has to be mirrored here.
  *
- * @package Nordic_IPTV
+ * @package iBostreaming
  */
 
 return array(

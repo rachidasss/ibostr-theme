@@ -14,7 +14,7 @@
  * sections that print them, so the registration loop and the templates read the
  * same array. Copy edited in one place cannot fall out of registration.
  *
- * @package Nordic_IPTV
+ * @package iBostreaming
  */
 
 if (!defined('ABSPATH')) {
@@ -23,7 +23,7 @@ if (!defined('ABSPATH')) {
 
 if (!function_exists('iptv_plan_translations')) {
     /**
-     * Bundled Nordic copy for this template, english => translation.
+     * Bundled translations for this template, english => translation.
      *
      * Ships with the theme so the plan pages read correctly in every language
      * the moment they are published, rather than after someone remembers to

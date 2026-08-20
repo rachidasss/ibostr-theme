@@ -87,7 +87,7 @@ if (!function_exists('iptv_front_page_schema')) {
      * the same @id anchors so nothing that already references them breaks. The
      * numbers are read from the live price table rather than hard-coded, so the
      * AggregateOffer can never claim a range the page does not actually sell -
-     * which is the failure the old NordicTV price list caused.
+     * which is the failure the old iBostreaming price list caused.
      */
     function iptv_front_page_schema()
     {

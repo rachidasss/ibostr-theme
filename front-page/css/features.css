@@ -1,42 +1,42 @@
-/* Features Section Styles - "Nordic Premium" Design */
-.nordic-features-section {
+/* Features Section Styles - "iBostreaming Premium" Design */
+.ibo-features-section {
     padding: 5rem 0;
     background: #f9fafb;
 }
 
-.nordic-container {
+.ibo-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1.5rem;
 }
 
-.nordic-header {
+.ibo-header {
     text-align: center;
     margin-bottom: 4rem;
 }
 
-.nordic-header h2 {
+.ibo-header h2 {
     font-size: 2.5rem;
     font-weight: 800;
     color: var(--dark);
     margin-bottom: 1rem;
 }
 
-.nordic-header h2 .text-highlight {
+.ibo-header h2 .text-highlight {
     background: linear-gradient(135deg, var(--color-teal), var(--color-indigo-hover));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-.nordic-header p {
+.ibo-header p {
     font-size: 1.125rem;
     color: var(--text-secondary);
     max-width: 600px;
     margin: 0 auto;
 }
 
-.nordic-grid {
+.ibo-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;

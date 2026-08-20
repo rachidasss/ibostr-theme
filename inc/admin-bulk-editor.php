@@ -7,7 +7,7 @@
  * 
  * Also supports the Trial product.
  *
- * @package Nordic_IPTV
+ * @package iBostreaming
  */
 
 // Prevent direct access

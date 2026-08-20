@@ -1049,7 +1049,7 @@ require_once get_template_directory() . '/inc/currency-rates-api.php';
 // Used by the footer, which previously hardcoded '#' for every legal link.
 require_once get_template_directory() . '/inc/page-links.php';
 
-// Support cards shared by the front page section and the [nordictv_contact]
+// Support cards shared by the front page section and the [iptv_contact]
 // shortcode used on the Contact page.
 require_once get_template_directory() . '/inc/contact-cards.php';
 

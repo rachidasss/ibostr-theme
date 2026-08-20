@@ -1,4 +1,4 @@
-# NordicTV - Complete Color Palette & Design System
+# iBostreaming - Complete Color Palette & Design System
 
 ---
 

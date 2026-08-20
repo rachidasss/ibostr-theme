@@ -9,7 +9,7 @@
  * Nothing here changes markup, copy or layout. The rules are deliberately
  * narrow — each one names the thing it removes and why it is safe to remove.
  *
- * @package Nordic_IPTV
+ * @package iBostreaming
  */
 
 if (!defined('ABSPATH')) {
@@ -66,7 +66,7 @@ add_action('wp_default_scripts', function ($scripts) {
  *
  * @return string
  */
-function nordictv_font_face_css()
+function iptv_font_face_css()
 {
     static $css = null;
 
@@ -90,11 +90,12 @@ function nordictv_font_face_css()
  * The hero has no artwork, so the largest element above the fold is the
  * headline — which means the font is the LCP dependency, and preloading it is
  * the equivalent of preloading an LCP image. Only the `latin` subsets are
- * preloaded: every Nordic character the site sets, including ð and þ, lives in
+ * preloaded: every accented character this site sets — French é/à/ç, German
+ * ä/ö/ü/ß, Swedish å/ä/ö, Dutch ï — lives in
  * U+0000-00FF, so `latin-ext` is fetched only if a page actually needs it.
  */
 add_action('wp_head', function () {
-    $css = nordictv_font_face_css();
+    $css = iptv_font_face_css();
 
     if ($css === '') {
         return;
@@ -109,7 +110,7 @@ add_action('wp_head', function () {
         );
     }
 
-    echo '<style id="nordictv-fonts">' . $css . '</style>' . "\n";
+    echo '<style id="ibostreaming-fonts">' . $css . '</style>' . "\n";
 }, 1);
 
 /* -------------------------------------------------------------------------
@@ -128,7 +129,7 @@ add_action('wp_head', function () {
 add_action('wp_head', function () {
     ?>
     <script>
-        window.nordictvWhenIdle = (function () {
+        window.ibostreamingWhenIdle = (function () {
             var queue = [];
             var fired = false;
 
@@ -189,7 +190,7 @@ add_action('wp_head', function () {
     <script>
         (function (c, a, i) {
             c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
-            window.nordictvWhenIdle(function () {
+            window.ibostreamingWhenIdle(function () {
                 var t = document.createElement('script');
                 t.async = 1;
                 t.src = 'https://www.clarity.ms/tag/' + i + '?ref=wordpress';
@@ -221,7 +222,7 @@ add_action('wp_head', function () {
         }(window, document, 'script');
         fbq('init', '2000858220840148');
         fbq('track', 'PageView');
-        window.nordictvWhenIdle(function () {
+        window.ibostreamingWhenIdle(function () {
             var t = document.createElement('script');
             t.async = !0;
             t.src = 'https://connect.facebook.net/en_US/fbevents.js';

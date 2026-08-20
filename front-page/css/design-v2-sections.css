@@ -1,7 +1,7 @@
 /* ============================================
    DESIGN V2 — SECTION COMPONENTS
    Class-based translation of the
-   "NordicTV Blue & White" mockup.
+   "iBostreaming Blue & White" mockup.
    Loaded last so it wins over the old layers.
    ============================================ */
 
@@ -2652,7 +2652,7 @@
 }
 
 /* ---------------------------------------------
-   CONTACT PAGE — [nordictv_contact]
+   CONTACT PAGE — [iptv_contact]
    The support cards rendered inside page content
    rather than a full-width section, so they need
    their own spacing. The grid itself is shared

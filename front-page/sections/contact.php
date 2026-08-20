@@ -4,7 +4,7 @@
  *
  * Three contact cards. The cards themselves come from iptv_contact_cards_grid()
  * in inc/contact-cards.php, which the Contact page renders too through the
- * [nordictv_contact] shortcode — one definition, so the two cannot drift apart.
+ * [iptv_contact] shortcode — one definition, so the two cannot drift apart.
  */
 $title    = iptv_text('contact_title', 'Need Instant Help?');
 $subtitle = iptv_text('contact_subtitle', 'Reach out anytime via email, WhatsApp, or Telegram. Our support team typically responds within minutes.');

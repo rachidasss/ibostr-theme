@@ -1,4 +1,4 @@
-# NordicTV - Font Configuration
+# iBostreaming - Font Configuration
 
 ---
 

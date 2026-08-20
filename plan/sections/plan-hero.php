@@ -16,7 +16,7 @@
 
 // plan_str() inside iptv_text(): the front page has no plan_eyebrow field, so
 // iptv_text() would end at pll__('IPTV Subscription') and return it unchanged —
-// English on every Nordic page. Handing it the already-translated string keeps
+// English on every translated page. Handing it the already-translated string keeps
 // the front-page override working while giving the bundled copy a chance.
 $hero_eyebrow = iptv_plan_field('plan_eyebrow', iptv_text('plan_eyebrow', plan_str('IPTV Subscription')));
 

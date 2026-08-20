@@ -4,7 +4,7 @@
  * 
  * Provides SEO meta boxes, live preview, hreflang tags, and admin columns.
  * 
- * @package Nordic_IPTV
+ * @package iBostreaming
  */
 
 // Prevent direct access
@@ -16,14 +16,13 @@ class Theme_SEO_Manager
 {
 
     /**
-     * Hreflang mapping for Nordic countries
+     * Hreflang mapping for the languages this site publishes
      */
     private $hreflang_map = array(
-        'se' => 'sv-SE',  // Swedish
-        'no' => 'nb-NO',  // Norwegian
-        'dk' => 'da-DK',  // Danish
-        'fi' => 'fi-FI',  // Finnish
-        'is' => 'is-IS',  // Icelandic
+        'fr' => 'fr-FR',  // French
+        'de' => 'de-DE',  // German
+        'sv' => 'sv-SE',  // Swedish
+        'nl' => 'nl-NL',  // Dutch
     );
 
     /**

@@ -58,7 +58,7 @@ class IPTV_Currency_Settings
     // Taken 2026-08-19 from the 16-SKU matrix the live homepage checkout uses
     // (panel.ibostreaming.com/checkout?connections=N&duration=M) and matching the
     // Product schema's lowPrice 13.99 / highPrice 189.99 / offerCount 16.
-    // The previous values here were the NordicTV price list and quoted up to $10
+    // The previous values here were the iBostreaming price list and quoted up to $10
     // more than the panel actually charges.
     private $default_usd = array(
         '1_month' => array('1_device' => 13.99, '2_devices' => 19.99, '3_devices' => 26.99, '4_devices' => 32.99),

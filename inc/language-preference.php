@@ -9,7 +9,7 @@
  * The rules:
  *   - Whatever URL you ask for is the language you get. Landing on English keeps
  *     you on English, however your browser is configured and wherever you are.
- *   - Choosing a language in the switcher stores it in the `nordictv_lang`
+ *   - Choosing a language in the switcher stores it in the `ibostreaming_lang`
  *     cookie for a year.
  *   - On a later visit, arriving at the *front page* in a language other than
  *     the stored one sends you to the stored one's front page. That is the only
@@ -23,19 +23,19 @@
  * JavaScript (see front-page/js/currency.js) as well as through ?set_lang=,
  * which is the no-JavaScript path.
  *
- * @package Nordic_IPTV
+ * @package iBostreaming
  */
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-if (!defined('NORDICTV_LANG_COOKIE')) {
-    define('NORDICTV_LANG_COOKIE', 'nordictv_lang');
+if (!defined('IPTV_LANG_COOKIE')) {
+    define('IPTV_LANG_COOKIE', 'ibostreaming_lang');
 }
 
-if (!defined('NORDICTV_LANG_COOKIE_DAYS')) {
-    define('NORDICTV_LANG_COOKIE_DAYS', 365);
+if (!defined('IPTV_LANG_COOKIE_DAYS')) {
+    define('IPTV_LANG_COOKIE_DAYS', 365);
 }
 
 /**
@@ -43,7 +43,7 @@ if (!defined('NORDICTV_LANG_COOKIE_DAYS')) {
  *
  * @return string[]
  */
-function nordictv_lang_slugs()
+function iptv_lang_slugs()
 {
     static $slugs = null;
 
@@ -75,18 +75,24 @@ function nordictv_lang_slugs()
  *
  * @return array<string,string> currency code => language slug
  */
-function nordictv_lang_by_currency()
+function iptv_lang_by_currency()
 {
-    $map = apply_filters('nordictv_lang_by_currency', array(
+    // This site publishes English, French, German, Swedish and Dutch. The map
+    // used to list no, dk, fi and is - four languages that do not exist here -
+    // and because the filter below only drops inactive entries when Polylang is
+    // running, all four were shipping to every visitor in the inline script.
+    //
+    // eur covers French, German and Dutch alike, so it cannot pick a language on
+    // its own. It resolves to French to match front-page/js/currency.js; the
+    // switcher prefers each anchor's own href, which is language-specific, so
+    // this map is only ever the last-resort fallback.
+    $map = apply_filters('iptv_lang_by_currency', array(
         'usd' => 'en',
+        'eur' => 'fr',
         'sek' => 'sv',
-        'nok' => 'no',
-        'dkk' => 'dk',
-        'eur' => 'fi',
-        'isk' => 'is',
     ));
 
-    $active = nordictv_lang_slugs();
+    $active = iptv_lang_slugs();
     if (empty($active)) {
         return $map;
     }
@@ -102,10 +108,10 @@ function nordictv_lang_by_currency()
  * @param string $slug Polylang language slug.
  * @return bool Whether the preference was accepted.
  */
-function nordictv_remember_language($slug)
+function iptv_remember_language($slug)
 {
     $slug   = sanitize_key($slug);
-    $active = nordictv_lang_slugs();
+    $active = iptv_lang_slugs();
 
     if (!$slug || (!empty($active) && !in_array($slug, $active, true))) {
         return false;
@@ -113,13 +119,13 @@ function nordictv_remember_language($slug)
 
     // Reflected into $_COOKIE so the redirect below sees it on this same
     // request, not only on the next one.
-    $_COOKIE[NORDICTV_LANG_COOKIE] = $slug;
+    $_COOKIE[IPTV_LANG_COOKIE] = $slug;
 
     if (!headers_sent()) {
         setcookie(
-            NORDICTV_LANG_COOKIE,
+            IPTV_LANG_COOKIE,
             $slug,
-            time() + (NORDICTV_LANG_COOKIE_DAYS * DAY_IN_SECONDS),
+            time() + (IPTV_LANG_COOKIE_DAYS * DAY_IN_SECONDS),
             COOKIEPATH ? COOKIEPATH : '/',
             COOKIE_DOMAIN,
             is_ssl(),
@@ -135,14 +141,14 @@ function nordictv_remember_language($slug)
  *
  * @return string
  */
-function nordictv_stored_language()
+function iptv_stored_language()
 {
-    if (empty($_COOKIE[NORDICTV_LANG_COOKIE])) {
+    if (empty($_COOKIE[IPTV_LANG_COOKIE])) {
         return '';
     }
 
-    $slug   = sanitize_key(wp_unslash($_COOKIE[NORDICTV_LANG_COOKIE]));
-    $active = nordictv_lang_slugs();
+    $slug   = sanitize_key(wp_unslash($_COOKIE[IPTV_LANG_COOKIE]));
+    $active = iptv_lang_slugs();
 
     if (!empty($active) && !in_array($slug, $active, true)) {
         return '';
@@ -159,7 +165,7 @@ add_action('init', function () {
         return;
     }
 
-    nordictv_remember_language(wp_unslash($_GET['set_lang']));
+    iptv_remember_language(wp_unslash($_GET['set_lang']));
 });
 
 /**
@@ -185,7 +191,7 @@ add_action('template_redirect', function () {
 
     // Never bounce a crawler — each language has to stay reachable at its own
     // URL for hreflang to mean anything.
-    if (nordictv_is_bot()) {
+    if (iptv_is_bot()) {
         return;
     }
 
@@ -195,7 +201,7 @@ add_action('template_redirect', function () {
         return;
     }
 
-    $preferred = nordictv_stored_language();
+    $preferred = iptv_stored_language();
     if (!$preferred) {
         return;
     }
@@ -234,9 +240,9 @@ add_action('template_redirect', function () {
         return;
     }
 
-    header('X-LiteSpeed-Vary: cookie=' . NORDICTV_LANG_COOKIE);
+    header('X-LiteSpeed-Vary: cookie=' . IPTV_LANG_COOKIE);
 
-    if (nordictv_stored_language()) {
+    if (iptv_stored_language()) {
         header('X-LiteSpeed-Cache-Control: no-cache');
     }
 }, 1);
@@ -270,20 +276,20 @@ add_action('wp_head', function () {
     }
 
     $data = array(
-        'cookie'     => NORDICTV_LANG_COOKIE,
-        'days'       => NORDICTV_LANG_COOKIE_DAYS,
+        'cookie'     => IPTV_LANG_COOKIE,
+        'days'       => IPTV_LANG_COOKIE_DAYS,
         'current'    => function_exists('pll_current_language') ? pll_current_language('slug') : '',
-        'slugs'      => array_values(nordictv_lang_slugs()),
-        'byCurrency' => (object) nordictv_lang_by_currency(),
+        'slugs'      => array_values(iptv_lang_slugs()),
+        'byCurrency' => (object) iptv_lang_by_currency(),
         'urls'       => (object) $urls,
     );
 
-    echo '<script>window.nordictvLang=' . wp_json_encode($data) . ';';
+    echo '<script>window.ibostreamingLang=' . wp_json_encode($data) . ';';
 
     // Shared by both copies of the switcher — front-page/js/currency.js and the
     // inline one in inc/universal-header.php — so they cannot drift apart again.
-    echo 'window.nordictvLangUrl=function(c){'
-        . 'var g=window.nordictvLang;if(!g||!g.byCurrency)return null;'
+    echo 'window.ibostreamingLangUrl=function(c){'
+        . 'var g=window.ibostreamingLang;if(!g||!g.byCurrency)return null;'
         . 'var s=g.byCurrency[c];if(!s)return null;'
         . 'return (g.urls&&g.urls[s])||null;};';
 
@@ -297,7 +303,7 @@ add_action('wp_head', function () {
  *
  * @return bool
  */
-function nordictv_is_bot()
+function iptv_is_bot()
 {
     if (empty($_SERVER['HTTP_USER_AGENT'])) {
         return false;

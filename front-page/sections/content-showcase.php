@@ -32,7 +32,7 @@ $highlight_row = 2;
             <?php echo esc_html(iptv_text('showcase_title_3', 'live TV channels')); ?>
         </h2>
         <p>
-            <?php echo esc_html(iptv_text('showcase_subtitle', 'From local Nordic news to global sports, entertainment, kids, and international channels — 198 countries covered.')); ?>
+            <?php echo esc_html(iptv_text('showcase_subtitle', 'Sports, news, entertainment and kids channels from the USA, UK, Canada, France and Germany — one IPTV subscription, every device.')); ?>
         </p>
         <a href="<?php echo esc_url($showcase_cta_url); ?>" class="dv2-btn dv2-btn-white"<?php echo $showcase_cta_target; ?>>
             <?php echo esc_html($showcase_cta_label); ?>

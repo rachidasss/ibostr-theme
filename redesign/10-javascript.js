@@ -1,5 +1,5 @@
 /* ============================================
-   NORDIC TV - JAVASCRIPT
+   iBostreaming - JAVASCRIPT
    Add this to your WordPress theme or 
    include before closing </body> tag
    ============================================ */

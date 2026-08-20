@@ -2,7 +2,7 @@
 <?php
 // Current-language detection lives in $iptv_languages below, which is keyed on
 // the URL path. The block that used to sit here detected a *subsite* slug and
-// mapped it through a Nordic language table (sv/no/dk/fi/is) to set the
+// mapped it through a fixed sv/no/dk/fi/is language table to set the
 // switcher label. Both of its outputs, $default_flag and $default_name, were
 // then overwritten unconditionally further down, and none of those five
 // languages exists on this site - so it was dead code naming the wrong

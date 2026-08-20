@@ -19,7 +19,7 @@
  * (se/no/dk/fi/is). Polylang's Swedish slug is `sv`, so that layer never matched
  * and always fell through to English.
  *
- * @package Nordic_IPTV
+ * @package iBostreaming
  */
 
 if (!defined('ABSPATH')) {

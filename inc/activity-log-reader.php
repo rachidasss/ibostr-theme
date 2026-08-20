@@ -8,7 +8,7 @@
  * connector can read back. Nothing is exposed publicly.
  *
  * Delete this file, its require in functions.php, and the options it wrote
- * (bump NORDICTV_WSAL_DUMP_VERSION to 0 to have them purged) once the audit is
+ * (bump IPTV_WSAL_DUMP_VERSION to 0 to have them purged) once the audit is
  * done.
  */
 
@@ -17,23 +17,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Bump to re-run the dump. Set to 0 to purge every option it wrote.
-define( 'NORDICTV_WSAL_DUMP_VERSION', 1 );
+define( 'IPTV_WSAL_DUMP_VERSION', 1 );
 
 // Usernames matching this LIKE pattern get their full event history exported.
-define( 'NORDICTV_WSAL_DUMP_MATCH', '%rankmath%' );
+define( 'IPTV_WSAL_DUMP_MATCH', '%rankmath%' );
 
-const NORDICTV_WSAL_DUMP_CHUNK = 25;
-const NORDICTV_WSAL_DUMP_MAX   = 600;
+const IPTV_WSAL_DUMP_CHUNK = 25;
+const IPTV_WSAL_DUMP_MAX   = 600;
 
 /**
  * Option names written by the dump, so cleanup can find them again.
  *
  * @return string[]
  */
-function nordictv_wsal_dump_option_names() {
+function iptv_wsal_dump_option_names() {
 	$names = array( 'auditdump_state', 'auditdump_users' );
 
-	for ( $i = 1; $i <= (int) ceil( NORDICTV_WSAL_DUMP_MAX / NORDICTV_WSAL_DUMP_CHUNK ); $i++ ) {
+	for ( $i = 1; $i <= (int) ceil( IPTV_WSAL_DUMP_MAX / IPTV_WSAL_DUMP_CHUNK ); $i++ ) {
 		$names[] = sprintf( 'advlogchunk%02d_events', $i );
 	}
 
@@ -43,18 +43,18 @@ function nordictv_wsal_dump_option_names() {
 /**
  * Run the export once per version bump, on any request.
  */
-function nordictv_wsal_dump_maybe_run() {
+function iptv_wsal_dump_maybe_run() {
 	global $wpdb;
 
 	$state = get_option( 'auditdump_state' );
 
-	if ( is_array( $state ) && (int) ( $state['version'] ?? -1 ) === (int) NORDICTV_WSAL_DUMP_VERSION ) {
+	if ( is_array( $state ) && (int) ( $state['version'] ?? -1 ) === (int) IPTV_WSAL_DUMP_VERSION ) {
 		return;
 	}
 
 	// Version 0 means: clean up after yourself.
-	if ( 0 === (int) NORDICTV_WSAL_DUMP_VERSION ) {
-		foreach ( nordictv_wsal_dump_option_names() as $name ) {
+	if ( 0 === (int) IPTV_WSAL_DUMP_VERSION ) {
+		foreach ( iptv_wsal_dump_option_names() as $name ) {
 			delete_option( $name );
 		}
 
@@ -69,7 +69,7 @@ function nordictv_wsal_dump_maybe_run() {
 		update_option(
 			'auditdump_state',
 			array(
-				'version' => (int) NORDICTV_WSAL_DUMP_VERSION,
+				'version' => (int) IPTV_WSAL_DUMP_VERSION,
 				'error'   => 'wsal_occurrences table not found',
 				'tables'  => $wpdb->get_col( $wpdb->prepare( 'SHOW TABLES LIKE %s', '%wsal%' ) ),
 			),
@@ -108,8 +108,8 @@ function nordictv_wsal_dump_maybe_run() {
 		$rows = $wpdb->get_results(
 			$wpdb->prepare(
 				"SELECT o.* FROM `{$occurrences}` o WHERE o.username LIKE %s ORDER BY o.created_on ASC LIMIT %d", // phpcs:ignore WordPress.DB
-				NORDICTV_WSAL_DUMP_MATCH,
-				NORDICTV_WSAL_DUMP_MAX
+				IPTV_WSAL_DUMP_MATCH,
+				IPTV_WSAL_DUMP_MAX
 			),
 			ARRAY_A
 		);
@@ -117,8 +117,8 @@ function nordictv_wsal_dump_maybe_run() {
 		$rows = $wpdb->get_results(
 			$wpdb->prepare(
 				"SELECT o.* FROM `{$occurrences}` o INNER JOIN `{$metadata}` m ON m.occurrence_id = o.id WHERE m.name = 'Username' AND m.value LIKE %s ORDER BY o.created_on ASC LIMIT %d", // phpcs:ignore WordPress.DB
-				NORDICTV_WSAL_DUMP_MATCH,
-				NORDICTV_WSAL_DUMP_MAX
+				IPTV_WSAL_DUMP_MATCH,
+				IPTV_WSAL_DUMP_MAX
 			),
 			ARRAY_A
 		);
@@ -168,9 +168,9 @@ function nordictv_wsal_dump_maybe_run() {
 		);
 	}
 
-	$chunks = array_chunk( $events, NORDICTV_WSAL_DUMP_CHUNK );
+	$chunks = array_chunk( $events, IPTV_WSAL_DUMP_CHUNK );
 
-	foreach ( nordictv_wsal_dump_option_names() as $name ) {
+	foreach ( iptv_wsal_dump_option_names() as $name ) {
 		if ( 0 === strpos( $name, 'advlogchunk' ) ) {
 			delete_option( $name );
 		}
@@ -184,17 +184,17 @@ function nordictv_wsal_dump_maybe_run() {
 	update_option(
 		'auditdump_state',
 		array(
-			'version'      => (int) NORDICTV_WSAL_DUMP_VERSION,
-			'match'        => NORDICTV_WSAL_DUMP_MATCH,
+			'version'      => (int) IPTV_WSAL_DUMP_VERSION,
+			'match'        => IPTV_WSAL_DUMP_MATCH,
 			'schema'       => $has_username ? 'occurrences.username' : 'metadata.Username',
 			'total_events' => count( $events ),
 			'chunks'       => count( $chunks ),
-			'chunk_size'   => NORDICTV_WSAL_DUMP_CHUNK,
-			'capped'       => count( $events ) >= NORDICTV_WSAL_DUMP_MAX,
+			'chunk_size'   => IPTV_WSAL_DUMP_CHUNK,
+			'capped'       => count( $events ) >= IPTV_WSAL_DUMP_MAX,
 			'generated'    => wp_date( 'Y-m-d H:i:s' ),
 		),
 		false
 	);
 }
 
-add_action( 'init', 'nordictv_wsal_dump_maybe_run', 99 );
+add_action( 'init', 'iptv_wsal_dump_maybe_run', 99 );

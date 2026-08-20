@@ -9,7 +9,7 @@
  * 12 Months selected. Selection, price recalculation, the countdown and the
  * checkout redirect are wired separately in vanilla JS.
  *
- * @package Nordic_IPTV
+ * @package iBostreaming
  */
 
 if (!defined('ABSPATH')) {

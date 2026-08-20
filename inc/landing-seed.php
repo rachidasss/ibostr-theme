@@ -19,7 +19,7 @@
  * Safe to repeat. Fields that already hold a value are never touched, so a
  * second run is a no-op and nothing an editor has typed can be overwritten.
  *
- * @package Nordic_IPTV
+ * @package iBostreaming
  */
 
 if (!defined('ABSPATH')) {

@@ -3,7 +3,7 @@
 /* Tablet - 1024px */
 @media (max-width: 1024px) {
 
-    .nordic-grid,
+    .ibo-grid,
     .steps-grid,
     .benefits-grid,
     .reviews-grid,
@@ -66,14 +66,14 @@
         padding: 3rem 0;
     }
 
-    .nordic-header h2,
+    .ibo-header h2,
     .steps-header h2,
     .pricing-header h2,
     .faq-header h2 {
         font-size: 1.75rem;
     }
 
-    .nordic-grid,
+    .ibo-grid,
     .steps-grid,
     .benefits-grid,
     .reviews-grid,

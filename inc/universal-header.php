@@ -64,16 +64,16 @@ include get_template_directory() . '/front-page/sections/header.php';
             isk: '/is/'
         };
 
-        // Remember the choice for next visit. window.nordictvLang is printed
+        // Remember the choice for next visit. window.ibostreamingLang is printed
         // by inc/language-preference.php, which also reads the cookie back.
-        const cfg = window.nordictvLang;
+        const cfg = window.ibostreamingLang;
         if (cfg && cfg.byCurrency && cfg.byCurrency[currency]) {
             document.cookie = cfg.cookie + '=' + encodeURIComponent(cfg.byCurrency[currency]) +
                 ';path=/;max-age=' + (cfg.days * 24 * 60 * 60) + ';samesite=lax';
         }
 
         // This page's counterpart in the chosen language, not the language root.
-        let target = window.nordictvLangUrl && window.nordictvLangUrl(currency);
+        let target = window.ibostreamingLangUrl && window.ibostreamingLangUrl(currency);
         if (!target) {
             const path = countryUrls[currency];
             if (!path) return;

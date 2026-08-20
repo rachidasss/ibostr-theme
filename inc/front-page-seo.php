@@ -35,7 +35,7 @@
  * own `vod_image_alt` / `sports_image_alt` field rather than from the media
  * library, so the images do not need duplicating per language in Polylang.
  *
- * @package Nordic_IPTV
+ * @package iBostreaming
  */
 
 if (!defined('ABSPATH')) {
@@ -47,7 +47,7 @@ if (!defined('ABSPATH')) {
  *
  * Rank Math builds the front page's canonical from home_url(), which is not
  * language-aware here: /dk/, /is/, /no/, /fi/ and /sv/ were all sending
- * `rel=canonical https://nordictv.io`, telling Google to fold every translated
+ * `rel=canonical https://ibostreaming.com`, telling Google to fold every translated
  * home page into the English one — while the hreflang set right above it said
  * they were separate. Subpages were never affected; they canonicalise off the
  * permalink already.
@@ -176,7 +176,7 @@ if (!function_exists('iptv_front_page_analysis_elements')) {
         $out[] = array('structure', '<h3>' . $f('showcase_title', 'Explore')
             . ' ' . $f('showcase_title_span', '40,000+')
             . ' ' . $f('showcase_title_3', 'live TV channels') . '</h3>');
-        $out[] = array('copy', '<p>' . $f('showcase_subtitle', 'From local Nordic news to global sports, entertainment, kids, and international channels — 198 countries covered.') . '</p>');
+        $out[] = array('copy', '<p>' . $f('showcase_subtitle', 'Sports, news, entertainment and kids channels from the USA, UK, Canada, France and Germany — one IPTV subscription, every device.') . '</p>');
 
         // Movies & series, with the image the section renders.
         $out[] = array('structure', '<h3>' . $f('vod_title', 'Indulge in')
@@ -382,7 +382,7 @@ add_action('admin_enqueue_scripts', function ($hook) {
         return;
     }
 
-    wp.hooks.addFilter('rank_math_content', 'nordictv/front-page', function (content) {
+    wp.hooks.addFilter('rank_math_content', 'ibostreaming/front-page', function (content) {
         content = content || '';
 
         var words = content.replace(/<[^>]*>/g, ' ').split(/\s+/).filter(Boolean).length;

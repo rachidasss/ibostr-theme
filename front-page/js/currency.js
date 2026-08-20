@@ -11,9 +11,9 @@ function toggleFooterDropdown() {
 }
 
 // Remember the language the visitor just picked, so the next visit opens in it.
-// inc/language-preference.php reads this cookie and prints window.nordictvLang.
+// inc/language-preference.php reads this cookie and prints window.ibostreamingLang.
 function rememberLanguageChoice(currency) {
-    const cfg = window.nordictvLang;
+    const cfg = window.ibostreamingLang;
     if (!cfg || !cfg.byCurrency) return;
 
     const slug = cfg.byCurrency[currency];
@@ -25,7 +25,7 @@ function rememberLanguageChoice(currency) {
 
 // Where switching to `currency` should land.
 //
-// Prefer this page's counterpart in the chosen language — window.nordictvLangUrl
+// Prefer this page's counterpart in the chosen language — window.ibostreamingLangUrl
 // is printed by inc/language-preference.php from Polylang, which knows each
 // translation's URL and falls back to that language's front page by itself.
 // Switching language from /sv/about-us used to drop you on /no/ rather than
@@ -45,7 +45,7 @@ function languageTargetUrl(currency) {
         sek: '/sv/'
     };
 
-    const translated = window.nordictvLangUrl && window.nordictvLangUrl(currency);
+    const translated = window.ibostreamingLangUrl && window.ibostreamingLangUrl(currency);
     if (translated) return translated;
 
     const path = countryUrls[currency];
@@ -96,22 +96,13 @@ document.addEventListener('click', function (e) {
 // `code` stays for price formatting and anything reading the currency code.
 const currencyData = {
     usd: { symbol: '$', flag: '🇺🇸', code: 'USD', name: 'English', position: 'before' },
-    eur: { symbol: '€', flag: '🇫🇮', code: 'EUR', name: 'Suomi', position: 'before' },
-    sek: { symbol: 'kr', flag: '🇸🇪', code: 'SEK', name: 'Svenska', position: 'after' },
-    nok: { symbol: 'kr', flag: '🇳🇴', code: 'NOK', name: 'Norsk', position: 'after' },
-    dkk: { symbol: 'kr', flag: '🇩🇰', code: 'DKK', name: 'Dansk', position: 'after' },
-    isk: { symbol: 'kr', flag: '🇮🇸', code: 'ISK', name: 'Íslenska', position: 'after' }
+    eur: { symbol: '€', flag: '🇫🇷', code: 'EUR', name: 'Français', position: 'before' },
+    sek: { symbol: 'kr', flag: '🇸🇪', code: 'SEK', name: 'Svenska', position: 'after' }
 };
 
-// URL mappings for each currency/country
-const countryUrls = {
-    usd: '/',
-    eur: '/fi/',
-    sek: '/sv/',
-    nok: '/no/',
-    dkk: '/dk/',
-    isk: '/is/'
-};
+// The module-level countryUrls map that used to sit here listed /fi/ /no/ /dk/
+// and /is/ - none of which exist on this site - and was dead code besides:
+// languageTargetUrl() declares its own countryUrls, which shadowed this one.
 
 // Get default currency from URL path or localStorage
 // Get default currency from URL path
@@ -121,12 +112,13 @@ function getDefaultCurrency() {
 
 // Detect current currency from URL
 function getCurrentCurrencyFromUrl() {
+    // Was checking /no /dk /fi /is and had no case for French, German or Dutch,
+    // so every one of those pages reported itself as English.
     const currentPath = window.location.pathname;
     if (currentPath.startsWith('/sv')) return 'sek';
-    if (currentPath.startsWith('/no')) return 'nok';
-    if (currentPath.startsWith('/dk')) return 'dkk';
-    if (currentPath.startsWith('/fi')) return 'eur';
-    if (currentPath.startsWith('/is')) return 'isk';
+    if (currentPath.startsWith('/fr')) return 'eur';
+    if (currentPath.startsWith('/de')) return 'eur';
+    if (currentPath.startsWith('/nl')) return 'eur';
     return 'usd';
 }
 

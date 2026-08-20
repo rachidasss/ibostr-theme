@@ -4,7 +4,7 @@
  * 
  * Uses universal header and footer for consistency
  * 
- * @package Nordic_IPTV
+ * @package iBostreaming
  */
 ?>
 <!DOCTYPE html>

@@ -1,4 +1,4 @@
-# NordicTV Redesign - Implementation Guide
+# iBostreaming Redesign - Implementation Guide
 
 ## Files Overview
 

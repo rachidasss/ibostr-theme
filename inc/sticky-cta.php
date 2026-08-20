@@ -18,7 +18,7 @@
  * `iptvOfferDeadline`, window from Site Config → Discount Lock), so the two
  * timers always show the same number.
  *
- * @package Nordic_IPTV
+ * @package iBostreaming
  */
 
 if (!defined('ABSPATH')) {
