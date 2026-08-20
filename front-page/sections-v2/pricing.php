@@ -19,6 +19,32 @@ if (!defined('ABSPATH')) {
 $lp_price_front_id = get_option('page_on_front');
 
 /* -----------------------------------------------------------------------
+ * The price matrix, for the configurator.
+ *
+ * The markup below renders ONE screen column - the 1-screen ladder the server
+ * picked - because that is the state the prerendered page was captured in. The
+ * other twelve of the sixteen prices are not in the DOM at all, so a script
+ * cannot reprice the panel by reading what is on the page: clicking "2 Screens"
+ * moved the picker and left the numbers alone.
+ *
+ * So publish the whole table. Same source as everything else that quotes a
+ * price - IPTV_Currency_Settings::get_price_table(), keyed
+ * [duration][device][currency] - which means the configurator, the schema and
+ * the panel cannot drift apart. The React build did the same thing; its matrix
+ * just lived inside the bundle.
+ * -------------------------------------------------------------------- */
+$lp_price_table = class_exists('IPTV_Currency_Settings')
+    ? IPTV_Currency_Settings::get_price_table()
+    : array();
+
+if (!empty($lp_price_table)) : ?>
+<script>
+    window.iptvPrices = <?php echo wp_json_encode($lp_price_table); ?>;
+</script>
+<?php endif; ?>
+<?php
+
+/* -----------------------------------------------------------------------
  * Step 1 – screen count buttons
  * -------------------------------------------------------------------- */
 $lp_price_screens = function_exists('get_field') ? get_field('lp_price_screens', $lp_price_front_id) : null;
