@@ -204,8 +204,64 @@ if (!function_exists('iptv_lp_seed_lost_content')) {
     }
 }
 
+if (!function_exists('iptv_lp_seed_clear')) {
+    /**
+     * Remove every seeded lp_* value from one page.
+     *
+     * The counterpart to seeding. A page with nothing stored falls back to its
+     * language file and then to the template defaults, so clearing is how a page
+     * is put back to "whatever the theme ships" - which is also the fix if a
+     * seed run ever stores the wrong language.
+     *
+     * @param int $post_id
+     * @return array Keys that were removed.
+     */
+    function iptv_lp_seed_clear($post_id)
+    {
+        global $wpdb;
+
+        $keys = $wpdb->get_col($wpdb->prepare(
+            "SELECT DISTINCT meta_key FROM {$wpdb->postmeta}
+             WHERE post_id = %d AND meta_key LIKE %s",
+            $post_id,
+            'lp\_%'
+        ));
+
+        $removed = array();
+
+        foreach ($keys as $key) {
+            // Repeaters also store per-row keys (lp_faq_items_0_question) and an
+            // underscore-prefixed field reference for each. delete_post_meta on
+            // the row keys is what actually empties the list.
+            delete_post_meta($post_id, $key);
+            delete_post_meta($post_id, '_' . $key);
+            $removed[] = $key;
+        }
+
+        if (function_exists('acf_flush_value_cache')) {
+            acf_flush_value_cache($post_id);
+        }
+
+        wp_cache_delete($post_id, 'post_meta');
+
+        return $removed;
+    }
+}
+
 // Start collecting before the template runs.
 add_action('template_redirect', function () {
+    if (!empty($_GET['iptv_clear_fields'])
+        && is_user_logged_in() && current_user_can('manage_options')
+        && function_exists('iptv_is_landing_template') && iptv_is_landing_template()) {
+        $removed = iptv_lp_seed_clear(get_queried_object_id());
+
+        wp_die(esc_html(sprintf(
+            'Cleared %d stored values from page %d. Reload the page to see the theme defaults.',
+            count($removed),
+            get_queried_object_id()
+        )), 'Fields cleared', array('response' => 200));
+    }
+
     if (iptv_lp_seed_requested()) {
         $GLOBALS['iptv_lp_seed'] = array();
     }

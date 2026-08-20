@@ -76,43 +76,26 @@ if (!function_exists('iptv_text_resolve')) {
         // translated copy was unreachable. Polylang used to paper over this by
         // filtering page_on_front per language; it is no longer installed.
         //
-        // Current page first, front page as the fallback. A translated page that
-        // has not been filled in yet therefore shows the English copy rather than
-        // an empty section, which is the right failure mode.
-        $sources = array();
-
+        // Order matters, and getting it wrong is not subtle. The front page is a
+        // fallback for the translated landing pages, so once English copy was
+        // stored on it, every /fr/ lookup found an English value before it ever
+        // reached the French copy and the whole page rendered in English.
+        //
+        // So: this page's own value, then this language's copy, and only then
+        // the front page. A translated page with nothing of its own still falls
+        // back to English rather than rendering empty, which is the right
+        // failure mode - it just no longer does so ahead of its own language.
         $current_id = get_queried_object_id();
-        if ($current_id && get_post_type($current_id) === 'page') {
-            $sources[] = $current_id;
-        }
+        $current_id = ($current_id && get_post_type($current_id) === 'page') ? $current_id : 0;
 
-        if ($front_page_id && !in_array($front_page_id, $sources, true)) {
-            $sources[] = $front_page_id;
-        }
+        if ($current_id) {
+            $value = iptv_text_stored($key, $current_id, $acf_skip_keys);
 
-        foreach ($sources as $source_id) {
-            if (function_exists('get_field') && !in_array($key, $acf_skip_keys, true)) {
-                $value = get_field($key, $source_id);
-
-                if ($value !== null && $value !== '' && !is_array($value)) {
-                    return $value;
-                }
-            }
-
-            // get_field() resolves nothing for a field ACF has not registered,
-            // which is the case for any field added to acf-json/ but not yet
-            // synced into the database. The value is still plain post meta under
-            // the same key, so read it directly rather than falling through to
-            // the English default.
-            $meta = get_post_meta($source_id, $key, true);
-            if (is_string($meta) && $meta !== '') {
-                return $meta;
+            if ($value !== null) {
+                return $value;
             }
         }
 
-        // Nothing stored for this page. On a translated landing page the copy
-        // published in that language is the default; English falls through to
-        // the string the template ships.
         if (strpos($key, 'lp_') === 0) {
             $translated = iptv_lp_i18n_text();
 
@@ -121,11 +104,47 @@ if (!function_exists('iptv_text_resolve')) {
             }
         }
 
+        if ($front_page_id && (int) $front_page_id !== (int) $current_id) {
+            $value = iptv_text_stored($key, $front_page_id, $acf_skip_keys);
+
+            if ($value !== null) {
+                return $value;
+            }
+        }
+
         if ($default !== '' && function_exists('pll__')) {
             return pll__($default);
         }
 
         return $default;
+    }
+}
+
+if (!function_exists('iptv_text_stored')) {
+    /**
+     * The value stored on one page, or null when there is none.
+     *
+     * @param string $key
+     * @param int    $source_id
+     * @param array  $acf_skip_keys Keys whose ACF field is not a plain string.
+     * @return string|null
+     */
+    function iptv_text_stored($key, $source_id, $acf_skip_keys = array())
+    {
+        if (function_exists('get_field') && !in_array($key, $acf_skip_keys, true)) {
+            $value = get_field($key, $source_id);
+
+            if ($value !== null && $value !== '' && !is_array($value)) {
+                return $value;
+            }
+        }
+
+        // get_field() resolves nothing for a field ACF has not registered, which
+        // is the case for any field added to acf-json/ but not yet synced into
+        // the database. The value is still plain post meta under the same key.
+        $meta = get_post_meta($source_id, $key, true);
+
+        return (is_string($meta) && $meta !== '') ? $meta : null;
     }
 }
 
@@ -248,46 +267,17 @@ if (!function_exists('iptv_lp_list_resolve')) {
      * @return array
      */
     function iptv_lp_list_resolve($key, $defaults, $column = '') {
-        $sources = array();
-
+        // Same ordering rule as iptv_text_resolve(): this page, then this
+        // language, then the front page. Reading the front page first meant a
+        // seeded English homepage supplied every list on /fr/, /de/ and /sv/.
         $current_id = get_queried_object_id();
-        if ($current_id && get_post_type($current_id) === 'page') {
-            $sources[] = $current_id;
-        }
+        $current_id = ($current_id && get_post_type($current_id) === 'page') ? $current_id : 0;
 
-        $front_id = (int) get_option('page_on_front');
-        if ($front_id && !in_array($front_id, $sources, true)) {
-            $sources[] = $front_id;
-        }
+        if ($current_id) {
+            $rows = iptv_lp_list_stored($key, $current_id, $column);
 
-        foreach ($sources as $source_id) {
-            $value = function_exists('get_field') ? get_field($key, $source_id) : null;
-
-            if ($value === null || $value === '') {
-                $value = get_post_meta($source_id, $key, true);
-            }
-
-            // ACF PRO repeater: already the shape the template expects.
-            if (is_array($value) && !empty($value)) {
-                return $value;
-            }
-
-            // A repeater also leaves its row count behind as plain meta ("6"),
-            // which is not a list and must not be read as one.
-            if ($column !== '' && is_string($value) && trim($value) !== ''
-                && !ctype_digit(trim($value))) {
-                $rows = array();
-
-                foreach (preg_split('/\R/', $value) as $line) {
-                    $line = trim($line);
-                    if ($line !== '') {
-                        $rows[] = array($column => $line);
-                    }
-                }
-
-                if (!empty($rows)) {
-                    return $rows;
-                }
+            if ($rows !== null) {
+                return $rows;
             }
         }
 
@@ -305,8 +295,64 @@ if (!function_exists('iptv_lp_list_resolve')) {
                     }
                 }
             }
+
+            return $defaults;
+        }
+
+        $front_id = (int) get_option('page_on_front');
+
+        if ($front_id && $front_id !== (int) $current_id) {
+            $rows = iptv_lp_list_stored($key, $front_id, $column);
+
+            if ($rows !== null) {
+                return $rows;
+            }
         }
 
         return $defaults;
+    }
+}
+
+if (!function_exists('iptv_lp_list_stored')) {
+    /**
+     * The list stored on one page, or null when there is none.
+     *
+     * @param string $key
+     * @param int    $source_id
+     * @param string $column Sub-field name for the one-per-line textarea form.
+     * @return array|null
+     */
+    function iptv_lp_list_stored($key, $source_id, $column = '')
+    {
+        $value = function_exists('get_field') ? get_field($key, $source_id) : null;
+
+        if ($value === null || $value === '') {
+            $value = get_post_meta($source_id, $key, true);
+        }
+
+        // ACF PRO repeater: already the shape the template expects.
+        if (is_array($value) && !empty($value)) {
+            return $value;
+        }
+
+        // A repeater also leaves its row count behind as plain meta ("6"), which
+        // is not a list and must not be read as one.
+        if ($column !== '' && is_string($value) && trim($value) !== ''
+            && !ctype_digit(trim($value))) {
+            $rows = array();
+
+            foreach (preg_split('/\R/', $value) as $line) {
+                $line = trim($line);
+                if ($line !== '') {
+                    $rows[] = array($column => $line);
+                }
+            }
+
+            if (!empty($rows)) {
+                return $rows;
+            }
+        }
+
+        return null;
     }
 }
