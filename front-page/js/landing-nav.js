@@ -85,9 +85,45 @@
             return false;
         }
 
+        var before = window.scrollY;
+
         target.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
 
+        // Smooth scrolling is not universally honoured. Some browsers ship with
+        // it disabled, some extensions and accessibility tools suppress it, and
+        // automated browsers routinely ignore it — verified here: on this page
+        // window.scrollTo({behavior:'smooth'}) moved nothing while
+        // {behavior:'auto'} moved 2000px. When that happens the request is not
+        // queued for later, it is simply dropped, and the button looks broken.
+        //
+        // So check whether anything actually moved and fall back to an instant
+        // jump if not. 250ms is comfortably longer than a frame but shorter than
+        // a real smooth scroll, which will already be under way and will have
+        // changed scrollY by then — so this never interrupts a working animation.
+        window.setTimeout(function () {
+            var moved = Math.abs(window.scrollY - before) > 1;
+            var arrived = Math.abs(window.scrollY - targetTop(target)) <= 2;
+
+            if (!moved && !arrived) {
+                target.scrollIntoView({ behavior: 'auto', block: 'start' });
+            }
+        }, 250);
+
         return true;
+    }
+
+    /**
+     * Where the page would sit with `target` at the top, clamped to the document.
+     *
+     * Needed so the fallback above can tell "the smooth scroll was ignored" from
+     * "we are already there", which look identical if you only compare scrollY
+     * before and after.
+     */
+    function targetTop(target) {
+        var wanted = window.scrollY + target.getBoundingClientRect().top;
+        var max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+
+        return Math.min(Math.max(0, Math.round(wanted)), Math.round(max));
     }
 
     function wireCta(button) {
