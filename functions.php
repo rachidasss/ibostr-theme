@@ -331,6 +331,38 @@ function iptv_is_landing_template()
 }
 
 /**
+ * Let an explicitly chosen page template win on the front page.
+ *
+ * WordPress checks is_front_page() before is_page() in template-loader.php, and
+ * get_front_page_template() returns front-page.php whenever that file exists. So
+ * on the site's front page a template picked in Page Attributes is simply
+ * ignored: assigning template-landing.php to page 8434 changed the body class
+ * and nothing else, and the page carried on rendering front-page.php - a
+ * different design entirely.
+ *
+ * Putting the assigned template at the head of the hierarchy restores the
+ * behaviour an editor expects: choose a template, get that template. Pages with
+ * no template assigned are untouched, so the front page still falls through to
+ * front-page.php by default.
+ */
+add_filter('frontpage_template_hierarchy', function ($templates) {
+    $assigned = get_page_template_slug(get_queried_object_id());
+
+    // 'default' is what WordPress stores for "no custom template".
+    if (!$assigned || $assigned === 'default') {
+        return $templates;
+    }
+
+    if (!locate_template($assigned)) {
+        return $templates;
+    }
+
+    array_unshift($templates, $assigned);
+
+    return $templates;
+});
+
+/**
  * The landing template loads its own compiled Tailwind bundle, and nothing else.
  *
  * The sections under front-page/sections-v2/ carry the landing page's original
