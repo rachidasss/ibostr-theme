@@ -1,4 +1,27 @@
 /* Header Styles - Glassmorphic Floating Pill */
+/* Re-show the header the theme actually renders.
+ *
+ * A mu-plugin prints this into the <head> of every page:
+ *
+ *   #masthead,.site-header,header.ehf-header,.elementor-location-header,
+ *   #mainHeader,#ibo-nav,#ibo-header-solo,.ibo-header,.ibo-header-wrapper
+ *   {display:none!important}
+ *
+ * It was aimed at the headers left behind by the old page builders, and it
+ * still does that job - but .site-header is the header inc/universal-header.php
+ * renders on every inner page, so the rule took the header off the entire site.
+ * Only the four landing pages kept one, because their header is different
+ * markup that the list does not match.
+ *
+ * The kill rule is !important, so only greater specificity beats it: this is
+ * (0,1,2) against its (0,1,0). Everything else the mu-plugin hides stays
+ * hidden, which is still what we want - /iptv-france/ ships its own #mainHeader
+ * and is better off with this one.
+ */
+body header.site-header {
+    display: block !important;
+}
+
 .site-header {
     position: absolute;
     top: 1rem;
