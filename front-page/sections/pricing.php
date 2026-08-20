@@ -308,6 +308,65 @@ $screen_plural   = iptv_text('screen_plural', 'Screens');
                 </ul>
             </div>
 
+            <?php
+            // Every price, in the HTML.
+            //
+            // The configurator above is a picker: it renders one screen count at
+            // a time, so only four of the sixteen prices were ever in the markup.
+            // The other twelve existed solely inside window.iptvPrices, which
+            // means the page asserted a price range in its Product schema that
+            // its own text never showed. This table is the source those numbers
+            // come from, in a form a crawler, a screen reader and a visitor with
+            // JavaScript disabled can all read.
+            //
+            // Inside <details> so it does not disturb the configurator's layout.
+            // Content in <details> is in the DOM and is indexed; it is not
+            // hidden text in the spammy sense, it is the same data the picker
+            // shows, one interaction away.
+            $iptv_device_keys = array(
+                1 => '1_device',
+                2 => '2_devices',
+                3 => '3_devices',
+                4 => '4_devices',
+            );
+            ?>
+            <details class="dv2-price-table">
+                <summary><?php echo esc_html(iptv_text('price_table_summary', 'See all plans and prices')); ?></summary>
+
+                <table>
+                    <caption><?php echo esc_html(iptv_text('price_table_caption', 'One-time payment. No contract and no auto-renew.')); ?></caption>
+                    <thead>
+                        <tr>
+                            <th scope="col"><?php echo esc_html(iptv_text('price_table_col_plan', 'Plan')); ?></th>
+                            <?php foreach ($iptv_device_keys as $n => $key) : ?>
+                                <th scope="col">
+                                    <?php echo esc_html($n . ' ' . ($n > 1 ? $screen_plural : $screen_singular)); ?>
+                                </th>
+                            <?php endforeach; ?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($durations as $months => $d) : ?>
+                            <tr>
+                                <th scope="row"><?php echo esc_html($d['label']); ?></th>
+                                <?php foreach ($iptv_device_keys as $n => $key) : ?>
+                                    <?php $cell = isset($all_prices[$d['key']][$key]['usd']) ? $all_prices[$d['key']][$key]['usd'] : ''; ?>
+                                    <td>
+                                        <?php if ($cell !== '') : ?>
+                                            <a href="<?php echo esc_url($checkout_base . '?connections=' . $n . '&duration=' . $months); ?>">
+                                                $<?php echo esc_html($cell); ?>
+                                            </a>
+                                        <?php else : ?>
+                                            &mdash;
+                                        <?php endif; ?>
+                                    </td>
+                                <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </details>
+
         </div>
     </div>
 </section>

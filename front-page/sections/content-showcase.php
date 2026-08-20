@@ -80,13 +80,16 @@ $vod_cta_target = (!empty($vod_cta_field['target'])) ? ' target="' . esc_attr($v
 
     <div class="dv2-split-aside dv2-split-aside--image">
         <?php // 528px in the split at full width, full-bleed once it stacks at 1024px. ?>
-        <?php // No srcset: this attachment has no intermediate sizes generated,
-              // only the full file and a 150px thumbnail. Naming widths that do
-              // not exist just hands the browser 404s. ?>
-        <img src="https://ibostreaming.com/wp-content/uploads/2026/07/movies-series.webp"
-             sizes="(max-width: 1024px) calc(100vw - 152px), (max-width: 1280px) calc((100vw - 224px) / 2), 528px"
-             width="896" height="1200"
-             alt="<?php echo esc_attr(iptv_text('vod_image_alt', 'A selection of movies and series available on iBostreaming')); ?>"
-             decoding="async">
+        <?php
+        // Same as the sports panel: re-uploaded so the intermediate sizes exist,
+        // then rendered through the attachment so WordPress emits the srcset.
+        echo iptv_responsive_image(
+            'https://ibostreaming.com/wp-content/uploads/2026/08/movies-series-responsive.webp',
+            iptv_text('vod_image_alt', 'A selection of movies and series available on iBostreaming'),
+            'large',
+            '(max-width: 1024px) calc(100vw - 152px), (max-width: 1280px) calc((100vw - 224px) / 2), 528px',
+            array('loading' => 'lazy')
+        );
+        ?>
     </div>
 </section>

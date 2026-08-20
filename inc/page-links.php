@@ -22,6 +22,63 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+if (!function_exists('iptv_responsive_image')) {
+    /**
+     * Render an image from the media library, with a real srcset.
+     *
+     * The two content images were hand-written <img> tags carrying a `sizes`
+     * attribute and no `srcset`. `sizes` without `srcset` does nothing at all:
+     * every viewport, phones included, downloaded the full-size original.
+     *
+     * Going through the attachment lets wp_get_attachment_image() build the
+     * srcset from whatever intermediate sizes exist, and add width, height and
+     * decoding for free. It falls back to a plain <img> when the URL does not
+     * resolve to an attachment, so a missing image degrades to what was there
+     * before rather than to nothing.
+     *
+     * @param string $url      Full-size URL of the attachment.
+     * @param string $alt      Alt text.
+     * @param string $size     Registered size to use as the src.
+     * @param string $sizes    The sizes attribute for the layout.
+     * @param array  $extra    Extra attributes.
+     * @return string
+     */
+    function iptv_responsive_image($url, $alt, $size = 'large', $sizes = '', $extra = array())
+    {
+        $attachment_id = function_exists('attachment_url_to_postid')
+            ? attachment_url_to_postid($url)
+            : 0;
+
+        $attrs = array_merge(array(
+            'alt'      => $alt,
+            'decoding' => 'async',
+        ), $extra);
+
+        if ($sizes !== '') {
+            $attrs['sizes'] = $sizes;
+        }
+
+        if ($attachment_id) {
+            $html = wp_get_attachment_image($attachment_id, $size, false, $attrs);
+            if ($html) {
+                return $html;
+            }
+        }
+
+        // No attachment: emit the original URL, and drop `sizes` because there
+        // is no srcset for it to describe.
+        $out = '<img src="' . esc_url($url) . '"';
+        foreach ($attrs as $key => $value) {
+            if ($key === 'sizes') {
+                continue;
+            }
+            $out .= ' ' . esc_attr($key) . '="' . esc_attr($value) . '"';
+        }
+
+        return $out . '>';
+    }
+}
+
 if (!function_exists('iptv_page_url')) {
     /**
      * Permalink of a page in the current language, looked up by slug.

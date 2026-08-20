@@ -29,13 +29,19 @@ $sports_cta_target = (!empty($sports_cta_field['target'])) ? ' target="' . esc_a
 
     <div class="dv2-sport-mosaic dv2-sport-mosaic--image">
         <?php // 528px in the split at full width, full-bleed once it stacks at 1024px. ?>
-        <?php // No srcset: this attachment has no intermediate sizes generated,
-              // only the full file and a 150px thumbnail. Naming widths that do
-              // not exist just hands the browser 404s. ?>
-        <img src="https://ibostreaming.com/wp-content/uploads/2026/08/live-sports.webp"
-             sizes="(max-width: 1024px) calc(100vw - 152px), (max-width: 1280px) calc((100vw - 224px) / 2), 528px"
-             width="1024" height="1536"
-             alt="<?php echo esc_attr(iptv_text('sports_image_alt', 'Live sport available on iBostreaming')); ?>"
-             decoding="async">
+        <?php
+        // The original upload had no intermediate sizes, so this was a bare
+        // <img> with a sizes attribute and nothing for it to describe - every
+        // viewport pulled the full 1024x1536 file. Re-uploaded through the media
+        // library so WordPress generated the 683w and 768w copies, and rendered
+        // through the attachment so it builds the srcset itself.
+        echo iptv_responsive_image(
+            'https://ibostreaming.com/wp-content/uploads/2026/08/live-sports-responsive.webp',
+            iptv_text('sports_image_alt', 'Live sport available on iBostreaming'),
+            'large',
+            '(max-width: 1024px) calc(100vw - 152px), (max-width: 1280px) calc((100vw - 224px) / 2), 528px',
+            array('loading' => 'lazy')
+        );
+        ?>
     </div>
 </section>

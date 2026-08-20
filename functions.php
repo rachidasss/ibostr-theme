@@ -827,6 +827,11 @@ require_once get_template_directory() . '/inc/site-config.php';
 // render everything — so Rank Math needs to be handed the rendered content.
 require_once get_template_directory() . '/inc/front-page-seo.php';
 
+// Product + FAQPage schema for the front page, and the FAQ list the accordion
+// and that schema both read. See the file header for why the theme has to emit
+// this itself.
+require_once get_template_directory() . '/inc/front-page-schema.php';
+
 // Sticky mobile CTA bar (countdown + pricing/trial buttons) — loads after
 // site-config.php and iptv-text.php, both of which it reads through.
 require_once get_template_directory() . '/inc/sticky-cta.php';

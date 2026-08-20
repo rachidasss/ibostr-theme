@@ -2710,3 +2710,72 @@
 .ibo-xlinks-list a:focus-visible {
     text-decoration: underline;
 }
+
+/* ==========================================================================
+   Full price table (front-page/sections/pricing.php)
+   Every one of the 16 SKUs in the HTML, inside <details> so the configurator's
+   layout is untouched. Wrapped in its own scroll container because a 5-column
+   table cannot shrink below its content on a phone, and a table that widens the
+   page is a layout bug, not a table problem.
+   ========================================================================== */
+.dv2-price-table {
+    margin: 22px auto 0;
+    max-width: 100%;
+    font-size: 0.9rem;
+}
+
+.dv2-price-table > summary {
+    cursor: pointer;
+    padding: 10px 4px;
+    font-weight: 600;
+}
+
+.dv2-price-table > summary:focus-visible {
+    outline: 2px solid var(--dv2-blue, #007CEB);
+    outline-offset: 2px;
+}
+
+.dv2-price-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    /* The table itself scrolls, never the page. */
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.dv2-price-table caption {
+    caption-side: bottom;
+    padding-top: 10px;
+    font-size: 0.82rem;
+    opacity: 0.75;
+    text-align: left;
+    white-space: normal;
+}
+
+.dv2-price-table th,
+.dv2-price-table td {
+    border: 1px solid rgba(15, 40, 71, 0.14);
+    padding: 8px 12px;
+    text-align: center;
+}
+
+.dv2-price-table thead th,
+.dv2-price-table tbody th {
+    font-weight: 700;
+}
+
+.dv2-price-table tbody th {
+    text-align: left;
+}
+
+.dv2-price-table td a {
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.dv2-price-table td a:hover,
+.dv2-price-table td a:focus-visible {
+    text-decoration: underline;
+}
