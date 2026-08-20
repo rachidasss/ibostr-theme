@@ -40,6 +40,26 @@ if (!function_exists('iptv_sticky_cta_is_visible')) {
             return false;
         }
 
+        // OFF. This bar is not part of this site's design.
+        //
+        // It ships with the theme and hooks wp_footer, so it rendered on every
+        // page - including the live Elementor front page, where it sat under a
+        // landing page that never had it. Checked against the site's own markup:
+        // the front page contains no sticky element at all ("dv2-sticky",
+        // "sticky", "Offer ends" and "See Pricing" are each zero occurrences in
+        // the prerendered app), and its only two "Claim Discount" controls are
+        // the header pill and the hero button, both ordinary in-page buttons.
+        //
+        // So visitors were being shown a theme-authored "Offer ends in 5d …
+        // See Pricing" bar with a countdown nobody wrote, on top of a design
+        // that has its own conversion path. Removed on the owner's instruction.
+        //
+        // Not deleted, because the markup, styles and copy are still here and
+        // still work: to bring it back, drop this block. The real countdown -
+        // "Discount locked for:" inside the pricing panel - is a different
+        // thing entirely and belongs to the landing design.
+        return false;
+
         // Site Config toggle. Defaults to on so the bar works before the field
         // group has been synced into the database.
         if (!iptv_config('sticky_cta_enabled', true)) {

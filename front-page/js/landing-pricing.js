@@ -449,9 +449,85 @@
         return col;
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
+    /**
+     * The "Discount locked for: HH:MM:SS" clock in the total card.
+     *
+     * Reproduces what the React build did, which is worth stating plainly
+     * because it is not a real deadline: it counted down one second at a time
+     * from a fixed starting value and, on reaching zero, jumped straight back to
+     * that starting value and began again. Nothing was persisted, so every page
+     * load restarted it. From the shipped bundle:
+     *
+     *   useState({hours:3, minutes:36, seconds:39})
+     *   setInterval(() => set(c =>
+     *       c.seconds > 0 ? {...c, seconds: c.seconds - 1}
+     *     : c.minutes > 0 ? {...c, minutes: 59, seconds: 59}
+     *     : c.hours   > 0 ? {hours: c.hours - 1, minutes: 59, seconds: 59}
+     *     : {hours:3, minutes:36, seconds:39}), 1000)
+     *
+     * Same behaviour here, with the starting value read from the markup so it
+     * stays an ACF field (lp_price_timer_initial) rather than a number buried in
+     * a script. Deliberately NOT wired to the theme's localStorage deadline: that
+     * one belongs to the sticky bar, which this design does not have.
+     */
+    function initCountdown() {
+        var root = document.getElementById('pricing-section');
+        var el = root ? root.querySelector('.font-mono.font-extrabold.text-blue-300') : null;
+
+        if (!el) {
+            return;
+        }
+
+        var parts = String(el.textContent).trim().split(':');
+
+        if (parts.length !== 3) {
+            return; // not a clock — leave whatever the editor put there alone
+        }
+
+        var start = parts.map(function (n) {
+            return parseInt(n, 10);
+        });
+
+        if (start.some(isNaN)) {
+            return;
+        }
+
+        var h = start[0];
+        var m = start[1];
+        var s = start[2];
+
+        function pad(n) {
+            return n < 10 ? '0' + n : String(n);
+        }
+
+        window.setInterval(function () {
+            if (s > 0) {
+                s -= 1;
+            } else if (m > 0) {
+                m -= 1;
+                s = 59;
+            } else if (h > 0) {
+                h -= 1;
+                m = 59;
+                s = 59;
+            } else {
+                h = start[0];
+                m = start[1];
+                s = start[2];
+            }
+
+            el.textContent = pad(h) + ':' + pad(m) + ':' + pad(s);
+        }, 1000);
+    }
+
+    function boot() {
         init();
+        initCountdown();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+    } else {
+        boot();
     }
 }());
