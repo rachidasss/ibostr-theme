@@ -57,13 +57,16 @@ $default_name = $iptv_current_lang['name'];
             // and the original stays in the set for 3x screens. The original's
             // name contains spaces, so it has to be encoded — srcset splits on
             // whitespace and would otherwise read it as several candidates.
-            $iptv_logo_dir = get_template_directory_uri() . '/images/logo/';
-            $iptv_logo_2x  = $iptv_logo_dir . 'light-logo-230x69.png';
-            $iptv_logo_3x  = $iptv_logo_dir . rawurlencode('light logo 500_150.png');
+            // The bundled files under images/logo/ are the previous brand's
+            // artwork and still read "NordicTV" - they were showing on every
+            // inner page while the landing pages used the right one. Same
+            // source of truth as front-page/sections-v2/header.php now, so the
+            // logo is set in one place and editable in ACF.
+            $iptv_logo     = iptv_text('lp_nav_logo', 'https://ibostreaming.com/logo.png');
+            $iptv_logo_alt = iptv_text('lp_nav_logo_alt', 'iBostreaming IPTV');
             ?>
-            <img src="<?php echo esc_url($iptv_logo_2x); ?>"
-                srcset="<?php echo esc_url($iptv_logo_2x); ?> 230w, <?php echo esc_url($iptv_logo_3x); ?> 500w"
-                sizes="115px" width="500" height="150" alt="iBostreaming"
+            <img src="<?php echo esc_url($iptv_logo); ?>"
+                sizes="115px" width="240" height="123" alt="<?php echo esc_attr($iptv_logo_alt); ?>"
                 class="logo-img" fetchpriority="high">
         </a>
         <?php if (has_nav_menu('primary')): ?>
