@@ -26,11 +26,11 @@ $highlight_row = 2;
 <!-- Explore channels -->
 <section class="dv2-split dv2-split--first">
     <div class="dv2-split-copy">
-        <h3 class="dv2-split-title dv2-split-title--lg">
+        <h2 class="dv2-split-title dv2-split-title--lg">
             <?php echo esc_html(iptv_text('showcase_title', 'Explore')); ?>
             <em><?php echo esc_html(iptv_text('showcase_title_span', '40,000+')); ?></em>
             <?php echo esc_html(iptv_text('showcase_title_3', 'live TV channels')); ?>
-        </h3>
+        </h2>
         <p>
             <?php echo esc_html(iptv_text('showcase_subtitle', 'From local Nordic news to global sports, entertainment, kids, and international channels — 198 countries covered.')); ?>
         </p>
@@ -64,11 +64,11 @@ $vod_cta_target = (!empty($vod_cta_field['target'])) ? ' target="' . esc_attr($v
 ?>
 <section class="dv2-split">
     <div class="dv2-split-copy">
-        <h3 class="dv2-split-title">
+        <h2 class="dv2-split-title">
             <?php echo esc_html(iptv_text('vod_title', 'Indulge in')); ?>
             <em><?php echo esc_html(iptv_text('vod_title_span', '200,000+')); ?></em>
             <?php echo esc_html(iptv_text('vod_title_3', 'movies and series')); ?>
-        </h3>
+        </h2>
         <p>
             <?php echo esc_html(iptv_text('vod_subtitle', 'All genres and languages, on demand whenever it suits you. Full electronic program guide with daily content updates and multi-language subtitles.')); ?>
         </p>
@@ -87,6 +87,6 @@ $vod_cta_target = (!empty($vod_cta_field['target'])) ? ' target="' . esc_attr($v
              sizes="(max-width: 1024px) calc(100vw - 152px), (max-width: 1280px) calc((100vw - 224px) / 2), 528px"
              width="896" height="1200"
              alt="<?php echo esc_attr(iptv_text('vod_image_alt', 'A selection of movies and series available on iBostreaming')); ?>"
-             loading="lazy" decoding="async">
+             decoding="async">
     </div>
 </section>

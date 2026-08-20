@@ -31,13 +31,18 @@ function rememberLanguageChoice(currency) {
 // Switching language from /sv/about-us used to drop you on /no/ rather than
 // /no/about-us, because only the language roots below were ever consulted.
 function languageTargetUrl(currency) {
+    // The site publishes English, French, German, Swedish and Dutch. This map
+    // used to list /fi/ /no/ /dk/ /is/ — four paths that do not exist here — and
+    // had no entry for French, German or Dutch at all, so switching to those was
+    // impossible even with JavaScript enabled.
+    //
+    // eur covers fr, de and nl, so it cannot pick a language on its own. The
+    // click handler prefers the anchor's own href, which is language-specific;
+    // this map is only the last-resort fallback.
     const countryUrls = {
         usd: '/',
-        eur: '/fi/',
-        sek: '/sv/',
-        nok: '/no/',
-        dkk: '/dk/',
-        isk: '/is/'
+        eur: '/fr/',
+        sek: '/sv/'
     };
 
     const translated = window.nordictvLangUrl && window.nordictvLangUrl(currency);
@@ -234,16 +239,37 @@ function updateAllPrices() {
 document.addEventListener('DOMContentLoaded', function () {
 
     // Set up country option click handlers with redirect
-    document.querySelectorAll('.country-option').forEach(option => {
+    // These are real <a href> elements now (see front-page/sections/header.php).
+    // The href is the authoritative destination: it is language-specific, while
+    // data-currency is not — eur maps to French, German and Dutch alike, so
+    // routing by currency alone would send Dutch and German visitors to /fr/.
+    document.querySelectorAll('.country-option, .mobile-lang-btn').forEach(option => {
         option.addEventListener('click', function (e) {
-            e.preventDefault(); // Prevent default link behavior to ensure storage save
-
             const currency = this.dataset.currency;
 
             // This is the visitor choosing — remember it for next time.
             rememberLanguageChoice(currency);
 
-            const currentCurrency = htmlCurrentCurrency(); // Helper to safely get current
+            const href = this.getAttribute('href');
+
+            // Same language: no navigation, just re-price the page in place.
+            if (href && this.hasAttribute('aria-current')) {
+                e.preventDefault();
+                setCurrency(currency);
+                return;
+            }
+
+            if (href) {
+                // Let the anchor do its job, but keep the redirect guard that
+                // stops a stale language cookie bouncing the visitor back.
+                e.preventDefault();
+                window.location.href = withLangRedirectGuard(href);
+                return;
+            }
+
+            // No href (older markup): fall back to the currency map.
+            e.preventDefault();
+            const currentCurrency = htmlCurrentCurrency();
             const target = languageTargetUrl(currency);
 
             if (currency !== currentCurrency && target) {

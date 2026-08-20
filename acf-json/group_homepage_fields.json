@@ -4336,6 +4336,146 @@
             "append": ""
         },
         {
+            "key": "field_xlinks_tab",
+            "label": "🔗 Good to know",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_xlinks_title",
+            "label": "Heading",
+            "name": "xlinks_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small contextual link block near the end of the page. It is the front page's only in-content link into the shop, the setup guide and support, so it is worth keeping even though it is visually quiet.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Good to know",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_xlinks_subtitle",
+            "label": "Intro line",
+            "name": "xlinks_subtitle",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Three things worth reading before you decide:",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_xlinks_items",
+            "label": "Links",
+            "name": "xlinks_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Leave empty to use the three default links (plans and prices, setup guide, support).",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "button_label": "Add Link",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 10,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_xlinks_item_label",
+                    "label": "Link text",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "The anchor text. Describe the destination - avoid \"click here\".",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "45",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_xlinks_items"
+                },
+                {
+                    "key": "field_xlinks_item_slug",
+                    "label": "Page slug",
+                    "name": "slug",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Preferred: the page slug, e.g. shop. Resolved per language, and follows the page if it is renamed.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_xlinks_items"
+                },
+                {
+                    "key": "field_xlinks_item_url",
+                    "label": "Or full URL",
+                    "name": "url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "Use only when the target is not a page (a post, or an external URL). Overrides the slug.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_xlinks_items"
+                }
+            ]
+        },
+        {
             "key": "tab_footer",
             "label": "📝 Footer",
             "name": "",

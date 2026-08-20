@@ -16,9 +16,9 @@ $comp_rows = [
 <section class="comparison dv2-section">
     <div class="comparison-inner">
         <div class="dv2-section-head">
-            <h2><?php echo esc_html(iptv_text('comp_title_main', 'iBostreaming vs. Traditional Services')); ?></h2>
+            <h2><?php echo esc_html(iptv_text('comp_title_main', 'Tired of IPTV Providers Who Take Your Money & Disappear?')); ?></h2>
             <p>
-                <?php echo esc_html(iptv_text('comp_desc', 'As the most affordable IPTV service provider, stop paying for streaming apps, a sports package, and cable TV separately. iBostreaming replaces them all.')); ?>
+                <?php echo esc_html(iptv_text('comp_desc', 'Most IPTV sellers vanish the moment you make a payment. At iBo Streaming, we support you for every single day of your subscription — guaranteed 24/7 assistance and anti-freeze servers.')); ?>
             </p>
         </div>
 
@@ -29,7 +29,7 @@ $comp_rows = [
                     <div class="dv2-compare-head-price"><?php echo esc_html(iptv_text('comp_ours_price', 'from $8/mo')); ?></div>
                 </div>
                 <div class="dv2-compare-head-theirs">
-                    <div class="dv2-compare-head-label"><?php echo esc_html(iptv_text('comp_theirs_label', 'Traditional Services')); ?></div>
+                    <div class="dv2-compare-head-label"><?php echo esc_html(iptv_text('comp_theirs_label', 'Other IPTV Sellers')); ?></div>
                     <div class="dv2-compare-head-price"><?php echo esc_html(iptv_text('comp_theirs_price', '$60–$100+/mo')); ?></div>
                 </div>
             </div>

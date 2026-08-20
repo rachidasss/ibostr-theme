@@ -50,11 +50,18 @@ $sections_dir = $front_page_dir . '/sections';
 <?php
 // Load all sections in order
 // Order follows the "iBostreaming Blue & White" design.
-$sections = array(
+// Split into three groups so the <main> landmark can wrap the page's actual
+// content without swallowing the banner and contentinfo landmarks. <main> must
+// not contain <header> or <footer>.
+$sections_before = array(
     'header',           // Front-page header (source of truth for all headers)
+);
+
+$sections = array(
     'hero',             // Backdrop hero with Trustpilot badge
     'content-showcase', // Channels panel + VOD panel
     'sports',           // Sports panel with mosaic
+    'comparison',       // "Other IPTV sellers" vs us - re-enabled 2026-08-20
     'cta-bar',          // Full-width savings bar
     // Features sits directly above pricing and closes on a CTA into it, so the
     // capability pitch lands immediately before the plan configurator.
@@ -64,16 +71,57 @@ $sections = array(
     'unlock',           // Supported device chips
     'reviews',          // Score card + two-row review marquee
     'faq',              // Accordion
+    'dark-cta',         // Zero-buffering guarantee band - re-enabled 2026-08-20
     'contact',          // Support cards
-    'footer'
+    'xlinks',           // "Good to know" contextual internal links - added 2026-08-20
     // Not in this list (files and styles still exist - add the slug back to
     // render them again):
-    //   'comparison'  - iBostreaming vs. traditional services
+    //   'brands'      - logo strip; no ACF fields behind it
     //   'dashboard'   - Member area promo
-    //   'dark-cta'    - second CTA block; the journey panel closes this design
 );
 
+$sections_after = array(
+    'footer'
+);
+
+// 'comparison' and 'dark-cta' were commented out of this list while the page it
+// replaces still rendered both bands ("TIRED OF IPTV PROVIDERS WHO TAKE YOUR
+// MONEY & DISAPPEAR?" and "Guaranteed 0% Buffering During Big Matches"). Both
+// section files and their ACF fields already existed - 35 comp_* fields and 7
+// cta_* fields - so this is a re-enable, not new work.
+//
+// 'xlinks' is new: the live homepage's "Good to know" block is injected by a
+// mu-plugin that only fires on the Elementor landing pages, so it disappears the
+// moment this template takes over. It is the page's only contextual link into
+// /shop/, /guide/ and /contact/, which is exactly the internal linking worth
+// keeping.
+?>
+
+<?php
+// Three plain loops rather than one helper: the sections are included, not
+// required into a function, so they share this template's variable scope. Moving
+// them inside a closure would quietly change that for every section at once.
+foreach ($sections_before as $section) {
+    $path = $sections_dir . '/' . $section . '.php';
+    if (file_exists($path)) {
+        include $path;
+    }
+}
+?>
+
+<?php // Every other template in this theme has a <main> landmark; this one did not. ?>
+<main id="content">
+<?php
 foreach ($sections as $section) {
+    $path = $sections_dir . '/' . $section . '.php';
+    if (file_exists($path)) {
+        include $path;
+    }
+}
+?>
+</main>
+<?php
+foreach ($sections_after as $section) {
     $path = $sections_dir . '/' . $section . '.php';
     if (file_exists($path)) {
         include $path;

@@ -1,4 +1,14 @@
 <!-- Footer Section (Design v2) -->
+<?php
+// Hoisted out of the "Quick Links" column: the Legal column's fallbacks use it
+// too, and that column sits in its own has_nav_menu() else-branch. If a menu was
+// ever assigned to the footer_1 location, the Quick Links branch would not run,
+// $home would be undefined by the time the Legal column read it, and every Legal
+// fallback would resolve against an empty string (plus a PHP 8 warning).
+// home_url() ignores the current language, hence pll_home_url() first — that is
+// what stopped this column sending Swedish visitors to the English blog.
+$home = function_exists('pll_home_url') ? pll_home_url() : home_url('/');
+?>
 <footer class="site-footer">
     <div class="container">
         <div class="footer-grid">
@@ -119,15 +129,30 @@
                     )); ?>
                 <?php else: ?>
                     <?php
-                    // home_url() ignores the current language, so this column used
-                    // to send Swedish visitors to the English blog and guide.
-                    $home = function_exists('pll_home_url') ? pll_home_url() : home_url('/');
+                    // $home is defined at the top of this file — see the note there.
+                    // Slugs corrected 2026-08-20 against the pages that actually
+                    // exist. Every one of these was stale: iptv_page_url() finds
+                    // no page, so the entry either fell back to a wrong URL or
+                    // was dropped from the column entirely (see the skip in
+                    // inc/page-links.php). Symptoms in the live footer were
+                    // "Setup Guide" linking to the homepage and M3U Converter /
+                    // Contact Us simply not rendering.
+                    //   blog -> iptv-blog (the /blog/ fallback 301-redirected)
+                    //   iptv-guide-setup-apps-devices-tips -> guide
+                    //   contact-us -> contact
+                    // The M3U converter is a POST, not a page, so it cannot be
+                    // resolved by page slug — it is linked by URL like My Account.
                     iptv_footer_links(array(
-                        array('slug' => 'blog', 'key' => 'footer_link_blog', 'label' => 'Blog',
-                              'fallback' => trailingslashit($home) . 'blog/'),
-                        array('slug' => 'iptv-guide-setup-apps-devices-tips', 'key' => 'footer_link_guide', 'label' => 'Setup Guide'),
-                        array('slug' => 'm3u-playlist-convert-your-m3u-url', 'key' => 'footer_link_m3u', 'label' => 'M3U Converter'),
-                        array('slug' => 'contact-us', 'key' => 'footer_link_contact', 'label' => 'Contact Us'),
+                        array('slug' => 'iptv-blog', 'key' => 'footer_link_blog', 'label' => 'Blog',
+                              'fallback' => trailingslashit($home) . 'iptv-blog/'),
+                        array('slug' => 'guide', 'key' => 'footer_link_guide', 'label' => 'Setup Guide',
+                              'fallback' => trailingslashit($home) . 'guide/'),
+                        array('slug' => 'help-center', 'key' => 'footer_link_help', 'label' => 'Help Center',
+                              'fallback' => trailingslashit($home) . 'help-center/'),
+                        array('url' => trailingslashit($home) . 'free-m3u-to-xtream-codes-converter-2025/',
+                              'key' => 'footer_link_m3u', 'label' => 'M3U Converter'),
+                        array('slug' => 'contact', 'key' => 'footer_link_contact', 'label' => 'Contact Us',
+                              'fallback' => trailingslashit($home) . 'contact/'),
                         array('url' => 'https://panel.ibostreaming.com/login', 'key' => 'footer_link_account', 'label' => 'My Account'),
                     ));
                     ?>
@@ -145,12 +170,19 @@
                 <?php else: ?>
                     <?php
                     // These four all existed as pages while this column pointed
-                    // every one of them at '#'.
+                    // every one of them at '#'. Slugs corrected again 2026-08-20:
+                    // three of the four were still wrong (about-us,
+                    // terms-of-services, return-refund-policy), so the whole
+                    // Legal column rendered as a single Privacy Policy link.
                     iptv_footer_links(array(
-                        array('slug' => 'about-us', 'key' => 'footer_link_about', 'label' => 'About Us'),
-                        array('slug' => 'privacy-policy', 'key' => 'footer_link_privacy', 'label' => 'Privacy Policy'),
-                        array('slug' => 'terms-of-services', 'key' => 'footer_link_terms', 'label' => 'Terms of Service'),
-                        array('slug' => 'return-refund-policy', 'key' => 'footer_link_refund', 'label' => 'Return & Refund Policy'),
+                        array('slug' => 'about', 'key' => 'footer_link_about', 'label' => 'About Us',
+                              'fallback' => trailingslashit($home) . 'about/'),
+                        array('slug' => 'privacy-policy', 'key' => 'footer_link_privacy', 'label' => 'Privacy Policy',
+                              'fallback' => trailingslashit($home) . 'privacy-policy/'),
+                        array('slug' => 'terms-of-service', 'key' => 'footer_link_terms', 'label' => 'Terms of Service',
+                              'fallback' => trailingslashit($home) . 'terms-of-service/'),
+                        array('slug' => 'refund-returns', 'key' => 'footer_link_refund', 'label' => 'Refund & Returns Policy',
+                              'fallback' => trailingslashit($home) . 'refund-returns/'),
                     ));
                     ?>
                 <?php endif; ?>

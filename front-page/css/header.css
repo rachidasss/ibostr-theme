@@ -388,3 +388,33 @@
         height: 28px;
     }
 }
+/* --------------------------------------------------------------------------
+   Language switcher: these were <div class="country-option"> and
+   <button class="mobile-lang-btn"> and are now real <a href> elements, so that
+   Google has a crawlable link to every translated home page. The rules above
+   still apply (they key off the class, not the tag); anchors only add a default
+   underline, and the current language needs a state now that one is marked.
+   -------------------------------------------------------------------------- */
+a.country-option,
+a.mobile-lang-btn {
+    text-decoration: none;
+}
+
+a.country-option:hover,
+a.country-option:focus-visible,
+a.mobile-lang-btn:hover,
+a.mobile-lang-btn:focus-visible {
+    text-decoration: none;
+}
+
+.country-option--current {
+    background: rgba(16, 137, 242, 0.3);
+    color: #0F2847;
+    font-weight: 600;
+}
+
+.mobile-lang-btn--current {
+    background: rgba(16, 137, 242, 0.3);
+    border-color: rgba(16, 137, 242, 0.5);
+    font-weight: 700;
+}

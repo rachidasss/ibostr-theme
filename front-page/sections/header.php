@@ -1,50 +1,12 @@
 <!-- Header Section -->
 <?php
-// Detect current subsite for default currency/flag
-$site_slug = '';
-
-// Method 1: Polylang language detection (most reliable on this site)
-if (function_exists('pll_current_language')) {
-    $pll_lang = pll_current_language('slug');
-    if (!empty($pll_lang) && $pll_lang !== 'en') {
-        $site_slug = $pll_lang;
-    }
-}
-
-// Method 2: WordPress Multisite blog path
-if (empty($site_slug) && is_multisite() && function_exists('get_blog_details')) {
-    $blog_details = get_blog_details();
-    if ($blog_details && !empty($blog_details->path)) {
-        $site_slug = trim($blog_details->path, '/');
-    }
-}
-
-// Method 3: Fallback to REQUEST_URI parsing
-if (empty($site_slug)) {
-    $request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
-    $path_parts = explode('/', trim($request_uri, '/'));
-    $first_segment = isset($path_parts[0]) ? $path_parts[0] : '';
-    if (in_array($first_segment, array('sv', 'no', 'dk', 'fi', 'is'))) {
-        $site_slug = $first_segment;
-    }
-}
-
-// Map subsite to its language label (flag + native language name)
-$site_language_map = array(
-    'sv' => array('flag' => '🇸🇪', 'name' => 'Svenska'),
-    'no' => array('flag' => '🇳🇴', 'name' => 'Norsk'),
-    'dk' => array('flag' => '🇩🇰', 'name' => 'Dansk'),
-    'fi' => array('flag' => '🇫🇮', 'name' => 'Suomi'),
-    'is' => array('flag' => '🇮🇸', 'name' => 'Íslenska'),
-);
-
-// Get default based on current subsite (main site = English)
-$default_flag = '🇺🇸';
-$default_name = 'English';
-if (isset($site_language_map[$site_slug])) {
-    $default_flag = $site_language_map[$site_slug]['flag'];
-    $default_name = $site_language_map[$site_slug]['name'];
-}
+// Current-language detection lives in $iptv_languages below, which is keyed on
+// the URL path. The block that used to sit here detected a *subsite* slug and
+// mapped it through a Nordic language table (sv/no/dk/fi/is) to set the
+// switcher label. Both of its outputs, $default_flag and $default_name, were
+// then overwritten unconditionally further down, and none of those five
+// languages exists on this site - so it was dead code naming the wrong
+// languages. Removed 2026-08-20.
 
 // Polylang filters home_url() only when the path is empty or '/'. Anything with
 // a path or fragment — home_url('/#features') — comes back as the English URL,
@@ -53,10 +15,56 @@ if (isset($site_language_map[$site_slug])) {
 $nav_home = function_exists('pll_home_url') ? pll_home_url() : home_url('/');
 $nav_home = trailingslashit($nav_home);
 
-// The guide's real slug. home_url('/user-guide/') was a 404 in every language.
+// The guide's real slug. home_url('/user-guide/') was a 404 in every language,
+// and 'iptv-guide-setup-apps-devices-tips' no longer matches any page either —
+// it silently fell back to $nav_home, so "User Guide" linked to the homepage.
+// The page lives at /guide/.
 $nav_guide = function_exists('iptv_page_url')
-    ? iptv_page_url('iptv-guide-setup-apps-devices-tips', $nav_home)
-    : $nav_home;
+    ? iptv_page_url('guide', trailingslashit($nav_home) . 'guide/')
+    : trailingslashit($nav_home) . 'guide/';
+
+/**
+ * The languages this site actually publishes.
+ *
+ * Every entry is rendered as a real <a href> below. That is the whole point of
+ * this array: the switcher used to be <div class="country-option"> elements with
+ * no href at all, and the URLs lived only in front-page/js/currency.js. Google
+ * therefore had no crawlable link from any page to /fr/, /de/, /sv/ or /nl/ —
+ * four translated home pages reachable only by running JavaScript. hreflang in
+ * <head> is a hint about alternates, not an internal link, and passes no weight.
+ *
+ * The old list was also simply wrong for this site: it offered Norsk, Dansk,
+ * Suomi and Íslenska (/no/ /dk/ /fi/ /is/, none of which exist here) and offered
+ * nothing for French, German or Dutch. Verified 2026-08-20: / /fr/ /de/ /sv/
+ * /nl/ all return 200.
+ *
+ * data-currency is kept so the existing currency JS keeps working; 'code' feeds
+ * both hreflang and lang.
+ */
+$iptv_languages = array(
+    array('code' => 'en', 'path' => '/',    'flag' => '🇺🇸', 'name' => 'English',    'currency' => 'usd'),
+    array('code' => 'fr', 'path' => '/fr/', 'flag' => '🇫🇷', 'name' => 'Français',   'currency' => 'eur'),
+    array('code' => 'de', 'path' => '/de/', 'flag' => '🇩🇪', 'name' => 'Deutsch',    'currency' => 'eur'),
+    array('code' => 'sv', 'path' => '/sv/', 'flag' => '🇸🇪', 'name' => 'Svenska',    'currency' => 'sek'),
+    array('code' => 'nl', 'path' => '/nl/', 'flag' => '🇳🇱', 'name' => 'Nederlands', 'currency' => 'eur'),
+);
+
+// Which one we are on, so the current language can be marked and the button
+// label can show it. Longest path first so '/' does not match everything.
+$iptv_current_lang = $iptv_languages[0];
+$iptv_request_path = isset($_SERVER['REQUEST_URI'])
+    ? parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
+    : '/';
+
+foreach ($iptv_languages as $iptv_lang) {
+    if ($iptv_lang['path'] !== '/' && strpos((string) $iptv_request_path, $iptv_lang['path']) === 0) {
+        $iptv_current_lang = $iptv_lang;
+        break;
+    }
+}
+
+$default_flag = $iptv_current_lang['flag'];
+$default_name = $iptv_current_lang['name'];
 ?>
 <header class="site-header" id="site-header">
     <div class="container nav-container">
@@ -108,24 +116,25 @@ $nav_guide = function_exists('iptv_page_url')
                     </svg>
                 </button>
                 <div class="country-dropdown" id="countryDropdown">
-                    <div class="country-option" data-currency="usd" data-symbol="$" data-flag="🇺🇸">
-                        <span class="country-flag">🇺🇸</span><span>English</span>
-                    </div>
-                    <div class="country-option" data-currency="sek" data-symbol="kr" data-flag="🇸🇪">
-                        <span class="country-flag">🇸🇪</span><span>Svenska</span>
-                    </div>
-                    <div class="country-option" data-currency="nok" data-symbol="kr" data-flag="🇳🇴">
-                        <span class="country-flag">🇳🇴</span><span>Norsk</span>
-                    </div>
-                    <div class="country-option" data-currency="dkk" data-symbol="kr" data-flag="🇩🇰">
-                        <span class="country-flag">🇩🇰</span><span>Dansk</span>
-                    </div>
-                    <div class="country-option" data-currency="eur" data-symbol="€" data-flag="🇫🇮">
-                        <span class="country-flag">🇫🇮</span><span>Suomi</span>
-                    </div>
-                    <div class="country-option" data-currency="isk" data-symbol="kr" data-flag="🇮🇸">
-                        <span class="country-flag">🇮🇸</span><span>Íslenska</span>
-                    </div>
+                    <?php
+                    // Real anchors, not divs: this is the site's only crawlable
+                    // path from any page to the four translated home pages.
+                    $iptv_symbols = array('usd' => '$', 'eur' => '€', 'sek' => 'kr');
+                    foreach ($iptv_languages as $iptv_lang) :
+                        $iptv_is_current = ($iptv_lang['code'] === $iptv_current_lang['code']);
+                        $iptv_symbol     = isset($iptv_symbols[$iptv_lang['currency']]) ? $iptv_symbols[$iptv_lang['currency']] : '$';
+                        ?>
+                        <a class="country-option<?php echo $iptv_is_current ? ' country-option--current' : ''; ?>"
+                           href="<?php echo esc_url(home_url($iptv_lang['path'])); ?>"
+                           hreflang="<?php echo esc_attr($iptv_lang['code']); ?>"
+                           lang="<?php echo esc_attr($iptv_lang['code']); ?>"
+                           data-currency="<?php echo esc_attr($iptv_lang['currency']); ?>"
+                           data-symbol="<?php echo esc_attr($iptv_symbol); ?>"
+                           data-flag="<?php echo esc_attr($iptv_lang['flag']); ?>"
+                           <?php echo $iptv_is_current ? ' aria-current="true"' : ''; ?>>
+                            <span class="country-flag" aria-hidden="true"><?php echo esc_html($iptv_lang['flag']); ?></span><span><?php echo esc_html($iptv_lang['name']); ?></span>
+                        </a>
+                    <?php endforeach; ?>
                 </div>
             </div>
             <a href="<?php echo esc_url($nav_home . '#pricing'); ?>" class="nav-btn nav-btn-primary"><?php echo esc_html(iptv_text('nav_cta_label', 'Get Access Now')); ?></a>
@@ -161,12 +170,21 @@ $nav_guide = function_exists('iptv_page_url')
     <div class="mobile-language-selector">
         <span class="mobile-language-label"><?php echo esc_html(iptv_text('nav_region_label', 'Language')); ?></span>
         <div class="mobile-language-options">
-            <button class="mobile-lang-btn" data-currency="usd" onclick="redirectToRegion('usd')">🇺🇸 English</button>
-            <button class="mobile-lang-btn" data-currency="sek" onclick="redirectToRegion('sek')">🇸🇪 Svenska</button>
-            <button class="mobile-lang-btn" data-currency="nok" onclick="redirectToRegion('nok')">🇳🇴 Norsk</button>
-            <button class="mobile-lang-btn" data-currency="dkk" onclick="redirectToRegion('dkk')">🇩🇰 Dansk</button>
-            <button class="mobile-lang-btn" data-currency="eur" onclick="redirectToRegion('eur')">🇫🇮 Suomi</button>
-            <button class="mobile-lang-btn" data-currency="isk" onclick="redirectToRegion('isk')">🇮🇸 Íslenska</button>
+            <?php
+            // Anchors here too. These were <button onclick="redirectToRegion()">,
+            // so on mobile the language links did not exist in the HTML either.
+            foreach ($iptv_languages as $iptv_lang) :
+                $iptv_is_current = ($iptv_lang['code'] === $iptv_current_lang['code']);
+                ?>
+                <a class="mobile-lang-btn<?php echo $iptv_is_current ? ' mobile-lang-btn--current' : ''; ?>"
+                   href="<?php echo esc_url(home_url($iptv_lang['path'])); ?>"
+                   hreflang="<?php echo esc_attr($iptv_lang['code']); ?>"
+                   lang="<?php echo esc_attr($iptv_lang['code']); ?>"
+                   data-currency="<?php echo esc_attr($iptv_lang['currency']); ?>"
+                   <?php echo $iptv_is_current ? ' aria-current="true"' : ''; ?>>
+                    <span aria-hidden="true"><?php echo esc_html($iptv_lang['flag']); ?></span> <?php echo esc_html($iptv_lang['name']); ?>
+                </a>
+            <?php endforeach; ?>
         </div>
     </div>
 

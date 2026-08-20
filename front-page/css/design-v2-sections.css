@@ -2659,3 +2659,40 @@
 .dv2-contact-page .dv2-support-grid {
     margin-top: 0;
 }
+
+/* ==========================================================================
+   "Good to know" contextual internal links  (front-page/sections/xlinks.php)
+   Replaces the mu-plugin's inline-styled .ibo-xlinks block, which only ever
+   fired on the Elementor landing pages. Styling matches that block rather than
+   inventing a new look, so the cutover is invisible to visitors.
+   ========================================================================== */
+.ibo-xlinks {
+    padding: 26px 0 40px;
+}
+
+.ibo-xlinks-title {
+    font-size: 19px;
+    margin: 0 0 8px;
+}
+
+.ibo-xlinks-sub {
+    margin: 0 0 10px;
+}
+
+.ibo-xlinks-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ibo-xlinks-list a {
+    text-decoration: none;
+}
+
+.ibo-xlinks-list a:hover,
+.ibo-xlinks-list a:focus-visible {
+    text-decoration: underline;
+}

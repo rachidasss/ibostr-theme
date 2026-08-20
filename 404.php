@@ -145,7 +145,7 @@ http_response_code(404);
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="btn-primary">
                     ← Back to Home
                 </a>
-                <a href="<?php echo esc_url(home_url('/blog')); ?>" class="btn-secondary">
+                <a href="<?php echo esc_url(home_url('/iptv-blog/')); ?>" class="btn-secondary">
                     Visit Blog
                 </a>
             </div>

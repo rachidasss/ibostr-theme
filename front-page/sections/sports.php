@@ -14,10 +14,10 @@ $sports_cta_target = (!empty($sports_cta_field['target'])) ? ' target="' . esc_a
 ?>
 <section class="dv2-split">
     <div class="dv2-split-copy">
-        <h3 class="dv2-split-title">
+        <h2 class="dv2-split-title">
             <?php echo esc_html(iptv_text('sports_title', 'Every sport.')); ?>
             <em><?php echo esc_html(iptv_text('sports_title_span', 'Every match.')); ?></em>
-        </h3>
+        </h2>
         <p>
             <?php echo esc_html(iptv_text('sports_desc', 'Never miss a game again. Every major league, every tournament, every PPV event — football, basketball, motorsport, boxing and more, in HD and 4K.')); ?>
         </p>
@@ -36,6 +36,6 @@ $sports_cta_target = (!empty($sports_cta_field['target'])) ? ' target="' . esc_a
              sizes="(max-width: 1024px) calc(100vw - 152px), (max-width: 1280px) calc((100vw - 224px) / 2), 528px"
              width="1024" height="1536"
              alt="<?php echo esc_attr(iptv_text('sports_image_alt', 'Live sport available on iBostreaming')); ?>"
-             loading="lazy" decoding="async">
+             decoding="async">
     </div>
 </section>
