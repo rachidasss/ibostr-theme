@@ -247,6 +247,49 @@ add_action('wp_footer', function () {
     iptv_print_missing_front_page_assets('script');
 }, 999);
 
+/**
+ * True on the rebuilt landing-page template.
+ */
+function iptv_is_landing_template()
+{
+    return is_page_template('template-landing.php');
+}
+
+/**
+ * The landing template loads its own compiled Tailwind bundle, and nothing else.
+ *
+ * The sections under front-page/sections-v2/ carry the landing page's original
+ * Tailwind classes, so front-page/css/landing.css is the design. The theme's own
+ * thirteen stylesheets are a different design system built around .dv2-* classes;
+ * loading both means two sets of rules fighting over the same elements, and the
+ * one that wins is whichever loaded last. That is what stripped the hero of its
+ * container the first time these were mixed.
+ *
+ * So on this template: enqueue landing.css, and drop the theme's sheets rather
+ * than trusting cascade order to sort it out. Priority 100 so it runs after the
+ * default enqueue at 20.
+ */
+add_action('wp_enqueue_scripts', function () {
+    if (!iptv_is_landing_template()) {
+        return;
+    }
+
+    foreach (iptv_front_page_style_handles() as $handle) {
+        wp_dequeue_style('iptv-fp-' . $handle);
+    }
+
+    // style.css sets a body font, a background colour and a global anchor rule,
+    // all of which Tailwind's preflight already handles differently.
+    wp_dequeue_style('my-iptv-style');
+
+    wp_enqueue_style(
+        'iptv-landing',
+        get_template_directory_uri() . '/front-page/css/landing.css',
+        array(),
+        iptv_asset_version('front-page/css/landing.css')
+    );
+}, 100);
+
 // Enqueue theme styles
 function my_iptv_enqueue_styles()
 {
