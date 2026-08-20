@@ -36,6 +36,24 @@ if (!function_exists('iptv_text')) {
      */
     function iptv_text($key, $default = '')
     {
+        $value = iptv_text_resolve($key, $default);
+
+        iptv_lp_seed_record($key, $value);
+
+        return $value;
+    }
+}
+
+if (!function_exists('iptv_text_resolve')) {
+    /**
+     * iptv_text() without the seeding hook. Not called directly.
+     *
+     * @param string $key
+     * @param string $default
+     * @return string
+     */
+    function iptv_text_resolve($key, $default = '')
+    {
         // Keys backed by an ACF link field (an array). Templates read those
         // directly, so the lookup here would only ever return the wrong shape.
         static $acf_skip_keys = array('hero_cta');
@@ -212,6 +230,24 @@ if (!function_exists('iptv_lp_list')) {
      * @return array
      */
     function iptv_lp_list($key, $defaults, $column = '') {
+        $rows = iptv_lp_list_resolve($key, $defaults, $column);
+
+        iptv_lp_seed_record($key, $rows);
+
+        return $rows;
+    }
+}
+
+if (!function_exists('iptv_lp_list_resolve')) {
+    /**
+     * iptv_lp_list() without the seeding hook. Not called directly.
+     *
+     * @param string $key
+     * @param array  $defaults
+     * @param string $column
+     * @return array
+     */
+    function iptv_lp_list_resolve($key, $defaults, $column = '') {
         $sources = array();
 
         $current_id = get_queried_object_id();
