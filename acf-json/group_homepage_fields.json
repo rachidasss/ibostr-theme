@@ -1,6 +1,6 @@
 {
     "key": "group_homepage_fields",
-    "title": "Front Page Content",
+    "title": "Landing Page Content",
     "fields": [
         {
             "key": "tab_hero",
@@ -5138,6 +5138,4645 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_lp_tab_header",
+            "label": "🧭 Landing: Header",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_lp_nav_logo",
+            "label": "Header Logo URL",
+            "name": "lp_nav_logo",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Full URL of the header logo image. Keep the same aspect ratio as the original (240x123) — width/height are hardcoded in the markup to prevent layout shift.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "https://ibostreaming.com/logo.png",
+            "placeholder": ""
+        },
+        {
+            "key": "field_lp_nav_logo_alt",
+            "label": "Header Logo Alt Text",
+            "name": "lp_nav_logo_alt",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Alt text for the header logo. Describes the brand; keep it short.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "iBo Streaming IPTV",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_nav_links",
+            "label": "Header Navigation Links",
+            "name": "lp_nav_links",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The desktop navigation links (visible from the lg breakpoint up). Use #pricing-section, #reviews-section and #faq-section for on-page anchors.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_nav_links_label",
+                    "label": "Label",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Home",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_nav_links"
+                },
+                {
+                    "key": "field_lp_nav_links_url",
+                    "label": "URL or #anchor",
+                    "name": "url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "https://ibostreaming.com/",
+                    "placeholder": "",
+                    "parent_repeater": "field_lp_nav_links"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_nav_cta",
+            "label": "Header CTA Button Text",
+            "name": "lp_nav_cta",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Text inside the blue gradient button (hidden on mobile, visible from the sm breakpoint up). Keep it short — the button is whitespace-nowrap.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Claim Discount",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_nav_menu_aria",
+            "label": "Mobile Menu Button Aria Label",
+            "name": "lp_nav_menu_aria",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Accessible label for the hamburger button shown below the lg breakpoint. Not visible on screen — read by screen readers.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Toggle Navigation Menu",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_tab_hero",
+            "label": "🦸 Landing: Hero",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_lp_hero_bg_url",
+            "label": "Hero Background Image URL",
+            "name": "lp_hero_bg_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Full-size (1376x768) background photo behind the hero copy. This is the page's LCP image. If you change it, you MUST also update the Hero Background Srcset field with the matching generated sizes, or the browser will keep loading the old image on small screens.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "https://ibostreaming.com/wp-content/uploads/2026/07/hero-bg.webp",
+            "placeholder": ""
+        },
+        {
+            "key": "field_lp_hero_bg_srcset",
+            "label": "Hero Background Srcset",
+            "name": "lp_hero_bg_srcset",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Responsive sizes for the background image, comma separated, each entry \"URL 768w\". Must match the image set in Hero Background Image URL. Leave as-is unless the background image is replaced.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "https://ibostreaming.com/wp-content/uploads/2026/07/hero-bg-768x429.webp 768w, https://ibostreaming.com/wp-content/uploads/2026/07/hero-bg-1024x572.webp 1024w, https://ibostreaming.com/wp-content/uploads/2026/07/hero-bg.webp 1376w",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_hero_bg_alt",
+            "label": "Hero Background Alt Text",
+            "name": "lp_hero_bg_alt",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Alt text for the hero background image.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "iBo Streaming 4K Ultra HD Background",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_hero_badge",
+            "label": "Hero Badge",
+            "name": "lp_hero_badge",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small pill above the headline, next to the pulsing blue dot. Uppercase is applied by the design, type it normally. Keep it short — it must stay on one line on mobile.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#1 iBo Streaming Service • 4K Ultra HD",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_hero_title",
+            "label": "Hero Headline (line 1)",
+            "name": "lp_hero_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "First part of the H1, in white. The blue part is the next field and is joined to this one with a single space.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Every Channel You've Been Missing",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_hero_title_accent",
+            "label": "Hero Headline (blue accent)",
+            "name": "lp_hero_title_accent",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Second part of the H1, shown in light blue on the same line.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "All in One Place.",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_hero_title_savings",
+            "label": "Hero Headline (green savings line)",
+            "name": "lp_hero_title_savings",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Third line of the H1, shown smaller and in green on its own line.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Save $1,500/Year.",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_hero_subtitle",
+            "label": "Hero Paragraph",
+            "name": "lp_hero_subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Supporting paragraph under the headline. Plain text only — HTML is escaped.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "The world's largest IPTV service. Watch 40,000+ channels from USA, UK, Canada, Europe, Asia, and Latin America in crystal-clear 4K. No contracts. One time payment. No regional blocks. Works on any device, anywhere.",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_lp_hero_cta_label",
+            "label": "Hero Button Label",
+            "name": "lp_hero_cta_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Text on the blue button, between the sparkle and arrow icons. Two or three words maximum.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Claim Discount",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_hero_trust_items",
+            "label": "Hero Trust Items",
+            "name": "lp_hero_trust_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The small reassurance line under the button. Rows are separated automatically by a bullet, so do not type one. Four rows is what the design was built for; more will wrap to a second line.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_hero_trust_items_text",
+                    "label": "Text",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Instant 2-Min Setup / 7-Day Money Back Guarantee / No Contract & No Hidden Fees / Works On All Devices",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_hero_trust_items"
+                },
+                {
+                    "key": "field_lp_hero_trust_items_icon",
+                    "label": "Icon",
+                    "name": "icon",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "One of exactly: circle-check (green tick), shield-check (green shield), zap (blue lightning), tv (purple TV). Anything else falls back to circle-check. The colour is part of the icon and cannot be changed here.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "circle-check / shield-check / zap / tv",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_hero_trust_items"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_tab_showcase",
+            "label": "📺 Landing: What's Popular",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_lp_showcase_eyebrow",
+            "label": "Showcase — Eyebrow Badge",
+            "name": "lp_showcase_eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small pill above the heading. Keep it short — it sits on one line next to a trending-up icon.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "⚡ UNLIMITED 4K ENTERTAINMENT",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_showcase_title",
+            "label": "Showcase — Heading (first part)",
+            "name": "lp_showcase_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "First half of the H2, shown in white. IMPORTANT: keep the trailing space, it separates this from the blue part. Displayed uppercase.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "EVERY MATCH, MOVIE & SHOW — ",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_showcase_title_accent",
+            "label": "Showcase — Heading (blue part)",
+            "name": "lp_showcase_title_accent",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Second half of the H2, shown in brand blue (#38b6ff). Displayed uppercase.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "ONE SUBSCRIPTION",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_showcase_subtitle",
+            "label": "Showcase — Intro Paragraph",
+            "name": "lp_showcase_subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Two to three lines under the heading. Plain text only — no HTML.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Stop paying $200+/month to expensive cable & fragmented apps. Unlock 40,000+ live HD/4K channels, 200,000+ movies, every PPV fight night, and 60FPS live sports with zero buffering on all your devices.",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_lp_showcase_card_cta",
+            "label": "Showcase — Card Button Label",
+            "name": "lp_showcase_card_cta",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The small blue button label repeated on every card. One or two words maximum — the button is very narrow. Displayed uppercase.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Access",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_showcase_items",
+            "label": "Showcase — Carousel Cards",
+            "name": "lp_showcase_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The horizontally scrolling cards. Six by default. The counter pill in the header (\"01 / 06\") counts these rows automatically.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_showcase_items_card_id",
+                    "label": "HTML ID",
+                    "name": "card_id",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "offering-card-live-sports-40k",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_showcase_items"
+                },
+                {
+                    "key": "field_lp_showcase_items_image",
+                    "label": "Poster Image",
+                    "name": "image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url",
+                    "library": "all",
+                    "preview_size": "medium",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "parent_repeater": "field_lp_showcase_items"
+                },
+                {
+                    "key": "field_lp_showcase_items_img_width",
+                    "label": "Image Width (px)",
+                    "name": "img_width",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "1024",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_showcase_items"
+                },
+                {
+                    "key": "field_lp_showcase_items_img_height",
+                    "label": "Image Height (px)",
+                    "name": "img_height",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "1536",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_showcase_items"
+                },
+                {
+                    "key": "field_lp_showcase_items_title",
+                    "label": "Card Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "40,000+ Live Channels & Global Sports",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_showcase_items"
+                },
+                {
+                    "key": "field_lp_showcase_items_badge",
+                    "label": "Image Badge",
+                    "name": "badge",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "🔥 No Blackouts & Zero Lag",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_showcase_items"
+                },
+                {
+                    "key": "field_lp_showcase_items_text",
+                    "label": "Card Description",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Catch every goal, touchdown, and knockout live in crystal-clear quality. Zero regional blackouts, ultra-low latency streams, and full 7-day catch-up on all devices.",
+                    "maxlength": "",
+                    "rows": "",
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_lp_showcase_items"
+                },
+                {
+                    "key": "field_lp_showcase_items_feature",
+                    "label": "Footer Feature Line",
+                    "name": "feature",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Anti-Freeze Server Network",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_showcase_items"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_tab_trust",
+            "label": "🛡️ Landing: Why Us",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_lp_trust_eyebrow",
+            "label": "Trust — Eyebrow Badge",
+            "name": "lp_trust_eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small pill label above the headline. Uppercase, kept short (3-4 words) so the pill stays on one line.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "THE REAL IPTV TRUTH",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_trust_title",
+            "label": "Trust — Headline (first part)",
+            "name": "lp_trust_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "First half of the H2, rendered in white. A single space is added automatically before the red accent part — do not add a trailing space.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "TIRED OF IPTV PROVIDERS WHO",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_trust_title_accent",
+            "label": "Trust — Headline (red accent)",
+            "name": "lp_trust_title_accent",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Second half of the H2, rendered in red. Displayed uppercase by CSS.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "TAKE YOUR MONEY & DISAPPEAR?",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_trust_subtitle",
+            "label": "Trust — Intro Paragraph",
+            "name": "lp_trust_subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Supports inline HTML. Keep the <strong class=\"text-white font-bold\">…</strong> wrapper around the brand name — that is what makes it white and bold.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Most IPTV sellers vanish the moment you make a payment. At <strong class=\"text-white font-bold\">iBo Streaming</strong>, we support you for every single day of your subscription — guaranteed 24/7 assistance and anti-freeze servers.",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_lp_trust_bad_heading",
+            "label": "Trust — Left Card Title (Other Sellers)",
+            "name": "lp_trust_bad_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Heading of the red \"problem\" card. Displayed uppercase by CSS.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Other IPTV Sellers",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_trust_bad_badge",
+            "label": "Trust — Left Card Badge",
+            "name": "lp_trust_bad_badge",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small red pill on the right of the left card header. Keep it short — it sits on one line next to the title.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "⚠️ HIGH RISK",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_trust_bad_items",
+            "label": "Trust — Left Card Items (Other Sellers)",
+            "name": "lp_trust_bad_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The four red-X bullet points. 4 rows keeps both cards the same height — adding or removing rows will make the two cards uneven.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_trust_bad_items_title",
+                    "label": "Item Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Sell & Disappear (Zero Support)",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_trust_bad_items"
+                },
+                {
+                    "key": "field_lp_trust_bad_items_text",
+                    "label": "Item Description",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Once you pay, support tickets go unanswered right when you need help.",
+                    "maxlength": "",
+                    "rows": "",
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_lp_trust_bad_items"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_trust_bad_footnote",
+            "label": "Trust — Left Card Footnote",
+            "name": "lp_trust_bad_footnote",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Centred red line at the bottom of the left card.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "❌ Don't waste money on sellers who abandon you after day one.",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_trust_good_heading",
+            "label": "Trust — Right Card Title (Guarantee)",
+            "name": "lp_trust_good_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Heading of the blue \"solution\" card. Displayed uppercase by CSS.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "The iBo Streaming Guarantee",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_trust_good_badge",
+            "label": "Trust — Right Card Badge",
+            "name": "lp_trust_good_badge",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Green pill text next to the pulsing dot in the right card header. Keep it short.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "100% RELIABLE",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_trust_good_items",
+            "label": "Trust — Right Card Items (Guarantee)",
+            "name": "lp_trust_good_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The four green-check bullet points. Keep 4 rows so it matches the left card's height.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_trust_good_items_title",
+                    "label": "Item Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Support For Entire Subscription Duration",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_trust_good_items"
+                },
+                {
+                    "key": "field_lp_trust_good_items_text",
+                    "label": "Item Description",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Our live technical VIP team is online 24/7 on WhatsApp & Email whenever you need help.",
+                    "maxlength": "",
+                    "rows": "",
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_lp_trust_good_items"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_trust_cta_label",
+            "label": "Trust — Button Label",
+            "name": "lp_trust_cta_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Text inside the blue button at the bottom of the right card. Displayed uppercase by CSS.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "GET RELIABLE STREAMING NOW",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_tab_features",
+            "label": "⭐ Landing: Features",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_lp_feat_badge",
+            "label": "Features — Eyebrow Badge",
+            "name": "lp_feat_badge",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small pill above the heading. Rendered uppercase by CSS; keep it short (about 3-4 words) so the pill stays on one line.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "WORLDWIDE PREMIUM ENTERTAINMENT",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_feat_title",
+            "label": "Features — Heading (first line)",
+            "name": "lp_feat_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "First half of the H2, shown in near-black. Displayed uppercase by CSS.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "One Subscription.",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_feat_title_accent",
+            "label": "Features — Heading (blue part)",
+            "name": "lp_feat_title_accent",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Second half of the H2, shown in the brand blue (#007CEB). Displayed uppercase by CSS.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Every Channel Worldwide.",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_feat_subtitle",
+            "label": "Features — Intro Paragraph",
+            "name": "lp_feat_subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Basic inline HTML is allowed here. Keep the <strong class=\"text-zinc-900 font-bold\">…</strong> wrapper around the country list — that is what makes it darker and bold. Write & as &amp;.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Streaming built for top demand across <strong class=\"text-zinc-900 font-bold\">USA, France, Canada, Germany, UK &amp; Switzerland</strong>. Raw 4K streams, full sports packages, 200,000+ VODs and anti-freeze reliability.",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_lp_feat_countries",
+            "label": "Features — Country Chips",
+            "name": "lp_feat_countries",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The white flag chips under the intro paragraph. Six rows by default. The blue \"+ 140 More\" chip is a separate field and always renders last.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_feat_countries_label",
+                    "label": "Chip Label",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "🇺🇸 USA",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_feat_countries"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_feat_countries_more",
+            "label": "Features — Last (blue) Chip",
+            "name": "lp_feat_countries_more",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The blue chip that closes the country row.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "+ 140 More",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_feat_stats",
+            "label": "Features — Trust Strip Items",
+            "name": "lp_feat_stats",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The white bar of green-ticked claims between the intro and the cards. Four rows by default; the green tick icon is added automatically. More than four rows will wrap onto a second line.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_feat_stats_label",
+                    "label": "Claim",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "40k+ Worldwide Live Channels",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_feat_stats"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_feat_cards",
+            "label": "Features — Cards",
+            "name": "lp_feat_cards",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The six white feature cards. Layout is 3 across on desktop, 2 on tablet, 1 on mobile — so a multiple of 3 rows keeps the grid tidy. Each row needs an icon slug plus a badge, title, description and three tags.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_feat_cards_icon",
+                    "label": "Icon",
+                    "name": "icon",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "tv",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_feat_cards"
+                },
+                {
+                    "key": "field_lp_feat_cards_badge",
+                    "label": "Corner Badge",
+                    "name": "badge",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "USA • FR • CA • DE • UK • CH",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_feat_cards"
+                },
+                {
+                    "key": "field_lp_feat_cards_title",
+                    "label": "Card Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "40,000+ Worldwide Channels",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_feat_cards"
+                },
+                {
+                    "key": "field_lp_feat_cards_text",
+                    "label": "Card Description",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Complete live sports & premium TV from USA, France, Canada, Germany, UK & Switzerland. Football, American football, basketball, motorsport & MMA in 60FPS.",
+                    "maxlength": "",
+                    "rows": "",
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_lp_feat_cards"
+                },
+                {
+                    "key": "field_lp_feat_cards_tag_1",
+                    "label": "Tag 1",
+                    "name": "tag_1",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "✓ USA, FR, CA, DE, UK, CH",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_feat_cards"
+                },
+                {
+                    "key": "field_lp_feat_cards_tag_2",
+                    "label": "Tag 2",
+                    "name": "tag_2",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "✓ Live Football & Cup Nights",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_feat_cards"
+                },
+                {
+                    "key": "field_lp_feat_cards_tag_3",
+                    "label": "Tag 3",
+                    "name": "tag_3",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "✓ Live Sports in 60FPS",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_feat_cards"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_feat_cta_title",
+            "label": "Features — Dark Bar Title",
+            "name": "lp_feat_cta_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Headline inside the dark call-to-action bar at the bottom of the section.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Ready for 4K streaming anywhere in the world?",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_feat_cta_subtitle",
+            "label": "Features — Dark Bar Subtitle",
+            "name": "lp_feat_cta_subtitle",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Grey line under the dark bar headline. It is truncated to one line on mobile, so put the strongest words first.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Instant 2-minute setup • No contracts • Money-back guarantee",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_feat_cta_button",
+            "label": "Features — Dark Bar Button",
+            "name": "lp_feat_cta_button",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Blue button label in the dark bar. Displayed uppercase by CSS. Keep it under about 30 characters.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Start Streaming — Choose Plan",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_tab_pricing",
+            "label": "💳 Landing: Pricing",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_lp_price_eyebrow",
+            "label": "Pricing – Eyebrow Badge",
+            "name": "lp_price_eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small uppercase pill above the heading, next to the flame icon. Keep it short — it sits on one line.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "INSTANT ACTIVATION & SAVINGS",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_title",
+            "label": "Pricing – Heading (H2)",
+            "name": "lp_price_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The section H2.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Choose your plan that fits you",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_subtitle",
+            "label": "Pricing – Subheading",
+            "name": "lp_price_subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "One sentence under the H2.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Unlock unbeatable value and embrace remarkable savings with the best-priced IPTV available today!",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_lp_price_step1_num",
+            "label": "Pricing – Step 1 Number",
+            "name": "lp_price_step1_num",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The numeral in the blue circle before \"How many screens?\". Leave as 1.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "1",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_step1_title",
+            "label": "Pricing – Step 1 Title",
+            "name": "lp_price_step1_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Rendered uppercase by CSS.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "How many screens?",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_screens",
+            "label": "Pricing – Screen Options",
+            "name": "lp_price_screens",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The four screen-count buttons, in order. Exactly one row should have Selected ticked — that is the state the page loads in.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_price_screens_label",
+                    "label": "Label",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "1 Screen",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_price_screens"
+                },
+                {
+                    "key": "field_lp_price_screens_badge",
+                    "label": "Badge (optional)",
+                    "name": "badge",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_price_screens"
+                },
+                {
+                    "key": "field_lp_price_screens_selected",
+                    "label": "Selected on load",
+                    "name": "selected",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "parent_repeater": "field_lp_price_screens"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_price_step2_num",
+            "label": "Pricing – Step 2 Number",
+            "name": "lp_price_step2_num",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The numeral in the blue circle before \"How long?\". Leave as 2.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "2",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_step2_title",
+            "label": "Pricing – Step 2 Title",
+            "name": "lp_price_step2_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Rendered uppercase by CSS.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "How long?",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_durations",
+            "label": "Pricing – Duration Options",
+            "name": "lp_price_durations",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The four duration buttons, in order. Exactly one row should have Selected ticked. Prices shown here are the 1-screen prices the page loads with; the JS recalculates them when a different screen count is picked.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_price_durations_label",
+                    "label": "Label",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "1 Month",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_price_durations"
+                },
+                {
+                    "key": "field_lp_price_durations_badge",
+                    "label": "Badge (optional)",
+                    "name": "badge",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_price_durations"
+                },
+                {
+                    "key": "field_lp_price_durations_price",
+                    "label": "Price",
+                    "name": "price",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "$13.99",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_price_durations"
+                },
+                {
+                    "key": "field_lp_price_durations_per_month",
+                    "label": "Per-month price",
+                    "name": "per_month",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "$13.99/mo",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_price_durations"
+                },
+                {
+                    "key": "field_lp_price_durations_selected",
+                    "label": "Selected on load",
+                    "name": "selected",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "parent_repeater": "field_lp_price_durations"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_price_total_label",
+            "label": "Pricing – Total Label",
+            "name": "lp_price_total_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Top-left label inside the dark total panel.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "YOUR TOTAL",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_total_save",
+            "label": "Pricing – Savings Pill",
+            "name": "lp_price_total_save",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Green pill top-right of the dark panel. Recalculated by JS when the selection changes.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "SAVE $107.89 (64%)",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_total_price",
+            "label": "Pricing – Total Price",
+            "name": "lp_price_total_price",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The big price in the dark panel. Recalculated by JS.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "$59.99",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_total_strike",
+            "label": "Pricing – Crossed-out Price",
+            "name": "lp_price_total_strike",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The struck-through comparison price next to the total. Recalculated by JS.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "$167.88",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_total_note",
+            "label": "Pricing – Total Note",
+            "name": "lp_price_total_note",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small mono note to the right of the total. Recalculated by JS.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "one-time · $5.00/mo",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_timer_label",
+            "label": "Pricing – Countdown Label",
+            "name": "lp_price_timer_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Text before the countdown. The space before the clock digits is added by the template — do not add a trailing space here.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Discount locked for:",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_timer_initial",
+            "label": "Pricing – Countdown Start",
+            "name": "lp_price_timer_initial",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "HH:MM:SS shown before the JS countdown takes over on the first tick. Not translatable copy.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "03:36:29",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_cta",
+            "label": "Pricing – Checkout Button",
+            "name": "lp_price_cta",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Main CTA label. The price suffix is rewritten by JS when the selection changes.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "GET INSTANT ACCESS · $59.99",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_guarantee_1",
+            "label": "Pricing – Guarantee 1 (shield icon)",
+            "name": "lp_price_guarantee_1",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "7-day money-back",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_guarantee_2",
+            "label": "Pricing – Guarantee 2 (lightning icon)",
+            "name": "lp_price_guarantee_2",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Instant activation",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_guarantee_3",
+            "label": "Pricing – Guarantee 3 (check icon)",
+            "name": "lp_price_guarantee_3",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "No auto-renew",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_features_title",
+            "label": "Pricing – Features Heading",
+            "name": "lp_price_features_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Rendered uppercase by CSS.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Every plan is fully loaded",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_features_subtitle",
+            "label": "Pricing – Features Subheading",
+            "name": "lp_price_features_subtitle",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "All features included in every subscription with zero hidden fees",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_features",
+            "label": "Pricing – Feature Checklist",
+            "name": "lp_price_features",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Two-column checklist. Each line is truncated with an ellipsis if it overflows its pill, so keep entries short.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_price_features_text",
+                    "label": "Feature",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "40,000+ Live TV Channels",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_price_features"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_price_scarcity",
+            "label": "Pricing – Scarcity Line",
+            "name": "lp_price_scarcity",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Centred line with the flame icon under the panel.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Only 34 activation slots left this month",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_cards",
+            "label": "Pricing – Trust Cards",
+            "name": "lp_price_cards",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The four reassurance cards under the pricing panel. Icon must be one of: lock, zap, clock, award — it also sets the card's icon colour (emerald, amber, blue, red). Anything else falls back to lock. The badge is truncated with an ellipsis if too long.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_price_cards_icon",
+                    "label": "Icon (lock / zap / clock / award)",
+                    "name": "icon",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "lock",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_price_cards"
+                },
+                {
+                    "key": "field_lp_price_cards_badge",
+                    "label": "Badge",
+                    "name": "badge",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "BANK-GRADE SECURITY",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_price_cards"
+                },
+                {
+                    "key": "field_lp_price_cards_title",
+                    "label": "Card Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "256-Bit SSL Encrypted",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_price_cards"
+                },
+                {
+                    "key": "field_lp_price_cards_text",
+                    "label": "Card Text",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "100% encrypted and PCI-DSS compliant checkout. Your payment and privacy are fully protected.",
+                    "maxlength": "",
+                    "rows": "",
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_lp_price_cards"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_price_card_verified",
+            "label": "Pricing – Trust Card Footer",
+            "name": "lp_price_card_verified",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Repeated at the foot of all four trust cards, so it is a single field rather than a per-card one.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Verified & Protected",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_secure_label",
+            "label": "Pricing – Secure Checkout Label",
+            "name": "lp_price_secure_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Text next to the shield in the payment-methods bar.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Guaranteed Secure 256-Bit Checkout",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_price_payments",
+            "label": "Pricing – Payment Badges",
+            "name": "lp_price_payments",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Payment method badges. Tick Accent to render the badge in green — only CRYPTO uses it in the original design.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_price_payments_label",
+                    "label": "Label",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "VISA",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_price_payments"
+                },
+                {
+                    "key": "field_lp_price_payments_accent",
+                    "label": "Green accent",
+                    "name": "accent",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "parent_repeater": "field_lp_price_payments"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_tab_steps",
+            "label": "📋 Landing: How It Works",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_lp_steps_badge",
+            "label": "Steps — Badge",
+            "name": "lp_steps_badge",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small green pill above the heading. Keep it short — it renders uppercase.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Quick Setup",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_steps_title",
+            "label": "Steps — Heading (first part)",
+            "name": "lp_steps_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Black part of the H2. A space is added automatically before the blue part.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Start Streaming in",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_steps_title_accent",
+            "label": "Steps — Heading (blue part)",
+            "name": "lp_steps_title_accent",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The highlighted blue words at the end of the H2.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "3 Simple Steps",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_steps_subtitle",
+            "label": "Steps — Subtitle",
+            "name": "lp_steps_subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "One short line under the heading.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Connect in minutes. No hassle. Clear steps that work on any device.",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_lp_steps_items",
+            "label": "Steps — Cards",
+            "name": "lp_steps_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Exactly 3 rows. The step number (1, 2, 3) and the icon are set automatically by row order — only 3 icons exist (cart, mail, play), so a 4th row would reuse the first icon.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_steps_items_title",
+                    "label": "Card title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Select your plan",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_steps_items"
+                },
+                {
+                    "key": "field_lp_steps_items_text",
+                    "label": "Card text",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Pick the subscription that fits you and checkout securely in seconds.",
+                    "maxlength": "",
+                    "rows": "",
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_lp_steps_items"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_steps_cta",
+            "label": "Steps — Button label",
+            "name": "lp_steps_cta",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Blue button under the cards. Type it in caps as shown — the style also forces uppercase.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "SELECT YOUR PLAN NOW",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_tab_devices",
+            "label": "📱 Landing: Devices",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_lp_dev_badge",
+            "label": "Devices — Badge",
+            "name": "lp_dev_badge",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small pill above the heading. Displayed in uppercase by CSS — type it in caps to match the design.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "UNIVERSAL COMPATIBILITY",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_dev_title_pre",
+            "label": "Devices — Heading (before accent)",
+            "name": "lp_dev_title_pre",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "First part of the H2. A single space is added automatically before the blue accent word.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "WORKS ON",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_dev_title_accent",
+            "label": "Devices — Heading (blue accent)",
+            "name": "lp_dev_title_accent",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The part of the H2 shown in brand blue (#007CEB).",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "ANY DEVICE",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_dev_title_post",
+            "label": "Devices — Heading (after accent)",
+            "name": "lp_dev_title_post",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Final part of the H2. It follows the accent word with no space, so keep the leading comma.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ", ANYWHERE.",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_dev_subtitle",
+            "label": "Devices — Subtitle",
+            "name": "lp_dev_subtitle",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "One sentence under the heading. Renders as a single paragraph — line breaks are ignored.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Plug-and-play setup in less than 2 minutes on all Smart TVs, Firestick, Apple TV, iOS, Android, MAG & PC.",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_dev_items",
+            "label": "Devices — Cards",
+            "name": "lp_dev_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The five device cards. The grid is built for 5 columns on desktop and 2 on mobile — adding a 6th row will leave an odd row out. Leave empty to use the defaults.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_dev_items_icon",
+                    "label": "Icon",
+                    "name": "icon",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "tv",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_dev_items"
+                },
+                {
+                    "key": "field_lp_dev_items_title",
+                    "label": "Card title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Smart TV",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_dev_items"
+                },
+                {
+                    "key": "field_lp_dev_items_text",
+                    "label": "Card subtitle",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Samsung, LG, Android",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_dev_items"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_tab_reviews",
+            "label": "⭐ Landing: Reviews",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_lp_rev_badge",
+            "label": "Reviews – Badge",
+            "name": "lp_rev_badge",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small green pill above the heading. Rendered uppercase by CSS; type it in caps as shown.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "VERIFIED MEMBER REVIEWS",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_rev_title",
+            "label": "Reviews – Heading (H2)",
+            "name": "lp_rev_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The section H2.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Trusted by 10,000+ Viewers",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_rev_subtitle",
+            "label": "Reviews – Subheading",
+            "name": "lp_rev_subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "One short sentence under the H2. Plain text only.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Read real feedback from subscribers using iBo Streaming daily across all devices.",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_lp_rev_score",
+            "label": "Reviews – Score",
+            "name": "lp_rev_score",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The large rating number in the summary card, e.g. 5.0.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "5.0",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_rev_count",
+            "label": "Reviews – Review Count",
+            "name": "lp_rev_count",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Sits next to the score. Keep it short – it shares one line with the number.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Based on 642 Reviews",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_rev_source",
+            "label": "Reviews – Source Label",
+            "name": "lp_rev_source",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Text inside the green source pill next to the five stars.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Trustpilot",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_rev_verified",
+            "label": "Reviews – Verified Footer",
+            "name": "lp_rev_verified",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Green line with the shield icon at the bottom of the summary card.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "100% Verified Customer Feedback",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_rev_scroll_label",
+            "label": "Reviews – Scroll Button Label",
+            "name": "lp_rev_scroll_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Accessibility label for the round arrow button on the carousel. Not visible on screen, but read out by screen readers – translate it.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Scroll Right",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_rev_ratings",
+            "label": "Reviews – Category Scores",
+            "name": "lp_rev_ratings",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The three scored categories in the summary card. Each row always renders five amber stars – only the label is editable. Three rows fit the card height; adding more will make the card taller.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_rev_ratings_label",
+                    "label": "Category",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Streaming Quality",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_rev_ratings"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_rev_items",
+            "label": "Reviews – Review Cards",
+            "name": "lp_rev_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The horizontally scrolling review cards. Every card renders five green stars – there is no per-card star rating in this design. Keep the review text to roughly 4 lines: the card clamps at 4 lines (line-clamp-4) and anything longer is cut off. Keep the surrounding quotation marks if you want the quoted look.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_rev_items_time",
+                    "label": "When",
+                    "name": "time",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "1 week ago",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_rev_items"
+                },
+                {
+                    "key": "field_lp_rev_items_title",
+                    "label": "Review Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Stellar Stability and Quality",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_rev_items"
+                },
+                {
+                    "key": "field_lp_rev_items_text",
+                    "label": "Review Text",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "\"iBo Streaming stands out for its rock-solid live football stability. I have experienced zero interruptions, making my viewing experience thoroughly enjoyable. Top service!\"",
+                    "maxlength": "",
+                    "rows": "",
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_lp_rev_items"
+                },
+                {
+                    "key": "field_lp_rev_items_name",
+                    "label": "Reviewer Name",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Johan S.",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_rev_items"
+                },
+                {
+                    "key": "field_lp_rev_items_location",
+                    "label": "Reviewer Location",
+                    "name": "location",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Stockholm, Sweden",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_rev_items"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_tab_faq",
+            "label": "❓ Landing: FAQ",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_lp_faq_badge",
+            "label": "FAQ – Badge",
+            "name": "lp_faq_badge",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small green pill above the heading.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Got Questions?",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_faq_title",
+            "label": "FAQ – Heading (first part)",
+            "name": "lp_faq_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "First half of the H2. The second half renders in blue from the next field; a single space is added between them.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Frequently Asked",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_faq_title_accent",
+            "label": "FAQ – Heading (blue part)",
+            "name": "lp_faq_title_accent",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Second half of the H2, rendered in #007CEB.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Questions",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_faq_subtitle",
+            "label": "FAQ – Subtitle",
+            "name": "lp_faq_subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "One line of plain text under the heading. No HTML.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Straight answers on payment, activation, refunds, devices and how many screens you get.",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_lp_faq_items",
+            "label": "FAQ – Questions",
+            "name": "lp_faq_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Each row is one accordion panel. The FIRST row renders open; all others render closed (their answer is still in the HTML, carrying the hidden attribute). Leave both link fields empty for a row with no link. Rows 2, 3, 5, 6 and 7 have no link by default.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_faq_items_question",
+                    "label": "Question",
+                    "name": "question",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "What happens right after I pay?",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_faq_items"
+                },
+                {
+                    "key": "field_lp_faq_items_answer",
+                    "label": "Answer",
+                    "name": "answer",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Your IPTV subscription is activated automatically — nothing is queued for manual approval. Within about 2 to 5 minutes you get an email with your login details: an M3U playlist link plus your Xtream Codes username and password. The same line also appears under My IPTV Lines in your member panel. Paste the link into a free player such as TiviMate, IPTV Smarters or IBO Player Pro and you are watching in 4K. If the email is not there, check your spam folder before anything else.",
+                    "maxlength": "",
+                    "rows": "",
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_lp_faq_items"
+                },
+                {
+                    "key": "field_lp_faq_items_link_text",
+                    "label": "Link text (optional)",
+                    "name": "link_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Step-by-step setup guide",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_faq_items"
+                },
+                {
+                    "key": "field_lp_faq_items_link_url",
+                    "label": "Link URL (optional)",
+                    "name": "link_url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "https://ibostreaming.com/guide/",
+                    "placeholder": "",
+                    "parent_repeater": "field_lp_faq_items"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_faq_cta_text",
+            "label": "FAQ – Bottom bar text",
+            "name": "lp_faq_cta_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Text in the grey bar under the accordion.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Have a question that isn't answered here?",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_faq_cta_link_text",
+            "label": "FAQ – Bottom bar link text",
+            "name": "lp_faq_cta_link_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Link at the right of the grey bar. It always points at the in-page anchor #need-help-section, so only the label is editable.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Ask Support →",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_tab_guarantee",
+            "label": "🚀 Landing: Guarantee",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_lp_guar_badge",
+            "label": "Guarantee – Badge Text",
+            "name": "lp_guar_badge",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small uppercase pill above the heading. Keep it short – it sits on one line next to a lightning icon.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "ZERO-BUFFERING CDN GUARANTEE",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_guar_title_before",
+            "label": "Guarantee – Heading (before highlight)",
+            "name": "lp_guar_title_before",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "First part of the H2, rendered in near-black. A space is added automatically before the blue highlight.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Guaranteed",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_guar_title_highlight",
+            "label": "Guarantee – Heading (blue highlight)",
+            "name": "lp_guar_title_highlight",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Middle of the H2, rendered in brand blue (#007CEB).",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "0% Buffering",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_guar_title_after",
+            "label": "Guarantee – Heading (after highlight)",
+            "name": "lp_guar_title_after",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Last part of the H2, rendered in near-black. A space is added automatically after the blue highlight.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "During Big Matches",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_guar_subtitle",
+            "label": "Guarantee – Subtitle",
+            "name": "lp_guar_subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "One paragraph under the heading. Plain text only – no HTML is rendered here.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Our load-balanced CDN servers distribute traffic across 180+ global data centers to ensure crisp 60FPS stream stability during derbies, finals and title deciders.",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_lp_guar_cta_label",
+            "label": "Guarantee – Button Label",
+            "name": "lp_guar_cta_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Label inside the blue button. Displayed uppercase by the design; keep it to a few words so the button stays on one line.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "START STREAMING NOW",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_guar_trust_items",
+            "label": "Guarantee – Trust Row",
+            "name": "lp_guar_trust_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "The small icon + text items in the row below the button. Leave empty to use the three defaults. Icon must be one of: globe, server, shield-check (globe and shield-check render green, server renders blue).",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_guar_trust_items_icon",
+                    "label": "Icon",
+                    "name": "icon",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "globe",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_guar_trust_items"
+                },
+                {
+                    "key": "field_lp_guar_trust_items_text",
+                    "label": "Text",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "180+ Global Data Centers",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_guar_trust_items"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_tab_contact",
+            "label": "✉️ Landing: Support",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_lp_contact_badge",
+            "label": "Support badge",
+            "name": "lp_contact_badge",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Green pill above the heading.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "24/7 Live Support Active",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_contact_title",
+            "label": "Heading (first part)",
+            "name": "lp_contact_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Rendered in dark; the accent part follows on the same line.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Need",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_contact_title_accent",
+            "label": "Heading (blue part)",
+            "name": "lp_contact_title_accent",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Rendered in brand blue #007CEB.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Instant Help?",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_contact_subtitle",
+            "label": "Intro paragraph",
+            "name": "lp_contact_subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Our expert support team is available 24/7 to assist with your setup, device activation, or technical questions within minutes.",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_lp_contact_card1_title",
+            "label": "Card 1 – title",
+            "name": "lp_contact_card1_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "WhatsApp Live Chat",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_contact_card1_meta",
+            "label": "Card 1 – phone number",
+            "name": "lp_contact_card1_meta",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Display only. The WhatsApp link URL is fixed in the template.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "+1 (939) 699-3536",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_contact_card1_badge",
+            "label": "Card 1 – corner tag",
+            "name": "lp_contact_card1_badge",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Fastest",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_contact_card1_text",
+            "label": "Card 1 – description",
+            "name": "lp_contact_card1_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Get instant step-by-step assistance for Smart TV, Firestick, MAG, iOS, Android, or PC directly with a technical specialist.",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_lp_contact_card1_cta",
+            "label": "Card 1 – button label",
+            "name": "lp_contact_card1_cta",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Chat on WhatsApp",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_contact_card2_title",
+            "label": "Card 2 – title",
+            "name": "lp_contact_card2_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Email Help Desk",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_contact_card2_meta",
+            "label": "Card 2 – email address",
+            "name": "lp_contact_card2_meta",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Shown on the card AND used as the mailto: link target. Enter a valid email address only.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "support@ibostreaming.com",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_contact_card2_badge",
+            "label": "Card 2 – corner tag",
+            "name": "lp_contact_card2_badge",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "24/7 Desk",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_contact_card2_text",
+            "label": "Card 2 – description",
+            "name": "lp_contact_card2_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Prefer email communication? Send us your inquiry or account request and our team will send detailed instructions to your inbox.",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_lp_contact_card2_cta",
+            "label": "Card 2 – button label",
+            "name": "lp_contact_card2_cta",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Send An Email",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_contact_note_agents",
+            "label": "Footer strip – left note",
+            "name": "lp_contact_note_agents",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "4 Support Agents active now",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_contact_note_guarantee",
+            "label": "Footer strip – right note",
+            "name": "lp_contact_note_guarantee",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "100% Setup Guarantee or Money Back",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_tab_footer",
+            "label": "📝 Landing: Footer",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_lp_footer_logo",
+            "label": "Footer Logo",
+            "name": "lp_footer_logo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Footer logo image. Leave empty to keep the current logo.png. Rendered at h-8 / sm:h-9, max-width 200px. When empty the markup falls back to width=\"240\" height=\"123\", the dimensions in the original page.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "preview_size": "medium",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_lp_footer_logo_aria",
+            "label": "Logo Link – Accessible Label",
+            "name": "lp_footer_logo_aria",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "aria-label on the logo link. Screen-reader only.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "iBostreaming Home",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_logo_alt",
+            "label": "Logo – Alt Text",
+            "name": "lp_footer_logo_alt",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Alt text for the footer logo image.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "iBo Streaming IPTV",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_tagline",
+            "label": "Footer Tagline",
+            "name": "lp_footer_tagline",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Short paragraph under the logo. Plain text only – no HTML.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Premium 4K IPTV streaming service delivering 40,000+ live channels and 200,000+ VOD releases worldwide. Reliable, secure, and zero-buffering.",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_lp_footer_badge_support",
+            "label": "Badge 1 – Support",
+            "name": "lp_footer_badge_support",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Blue pill badge next to the check icon. Rendered uppercase by CSS – type it normally.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "24/7 Support",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_badge_quality",
+            "label": "Badge 2 – Quality",
+            "name": "lp_footer_badge_quality",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Green pill badge next to the shield icon. Rendered uppercase by CSS – type it normally.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "4K Ultra HD Quality",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_social_title",
+            "label": "Social Heading",
+            "name": "lp_footer_social_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Heading above the social icon row. Rendered uppercase by CSS.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Follow Us",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_social_instagram_aria",
+            "label": "Instagram – Accessible Label",
+            "name": "lp_footer_social_instagram_aria",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "aria-label on the Instagram icon link. Screen-reader only.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Follow iBostreaming on Instagram",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_social_instagram_title",
+            "label": "Instagram – Tooltip",
+            "name": "lp_footer_social_instagram_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "title attribute – the tooltip shown on hover.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Instagram",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_social_facebook_aria",
+            "label": "Facebook – Accessible Label",
+            "name": "lp_footer_social_facebook_aria",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "aria-label on the Facebook icon link. Screen-reader only.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Follow iBostreaming on Facebook",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_social_facebook_title",
+            "label": "Facebook – Tooltip",
+            "name": "lp_footer_social_facebook_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "title attribute – the tooltip shown on hover.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Facebook",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_social_x_aria",
+            "label": "X – Accessible Label",
+            "name": "lp_footer_social_x_aria",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "aria-label on the X (Twitter) icon link. Screen-reader only.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Follow iBostreaming on X",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_social_x_title",
+            "label": "X – Tooltip",
+            "name": "lp_footer_social_x_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "title attribute – the tooltip shown on hover.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "X",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_social_reddit_aria",
+            "label": "Reddit – Accessible Label",
+            "name": "lp_footer_social_reddit_aria",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "aria-label on the Reddit icon link. Screen-reader only.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Follow iBostreaming on Reddit",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_social_reddit_title",
+            "label": "Reddit – Tooltip",
+            "name": "lp_footer_social_reddit_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "title attribute – the tooltip shown on hover.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Reddit",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_nav_aria",
+            "label": "Footer Nav – Accessible Label",
+            "name": "lp_footer_nav_aria",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "aria-label on the <nav> holding the three link columns. Screen-reader only.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Footer navigation",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_col1_title",
+            "label": "Column 1 Heading",
+            "name": "lp_footer_col1_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Heading of the first footer column. Rendered uppercase by CSS.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Quick Links",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_col1_links",
+            "label": "Column 1 Links",
+            "name": "lp_footer_col1_links",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Quick Links column. Leave the repeater completely empty to keep the 7 built-in links, which resolve through iptv_page_url() and are therefore language-aware. Rows missing a label or a URL are skipped.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_footer_col1_links_label",
+                    "label": "Link Text",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Home",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_footer_col1_links"
+                },
+                {
+                    "key": "field_lp_footer_col1_links_url",
+                    "label": "URL",
+                    "name": "url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "https://ibostreaming.com/",
+                    "placeholder": "",
+                    "parent_repeater": "field_lp_footer_col1_links"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_footer_col2_title",
+            "label": "Column 2 Heading",
+            "name": "lp_footer_col2_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Heading of the second footer column. Rendered uppercase by CSS.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Legal",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_col2_links",
+            "label": "Column 2 Links",
+            "name": "lp_footer_col2_links",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Legal column. Leave empty to keep the 3 built-in links, which resolve through iptv_page_url() and are therefore language-aware. Rows missing a label or a URL are skipped.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_footer_col2_links_label",
+                    "label": "Link Text",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Refund Policy",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_footer_col2_links"
+                },
+                {
+                    "key": "field_lp_footer_col2_links_url",
+                    "label": "URL",
+                    "name": "url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "https://ibostreaming.com/refund-returns/",
+                    "placeholder": "",
+                    "parent_repeater": "field_lp_footer_col2_links"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_footer_col3_title",
+            "label": "Column 3 Heading",
+            "name": "lp_footer_col3_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Heading of the third footer column. Rendered uppercase by CSS.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Subscriptions",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_col3_links",
+            "label": "Column 3 Links",
+            "name": "lp_footer_col3_links",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Subscription links. Leave empty to keep the 4 built-in plan links, which are built from Site Config → checkout_base_url. If you edit a URL you MUST keep the whole query string (plan_type, connections, duration, source) – the panel derives the plan and the attribution from it. Rows missing a label or a URL are skipped.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_lp_footer_col3_links_label",
+                    "label": "Link Text",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "12 Months Plan",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_lp_footer_col3_links"
+                },
+                {
+                    "key": "field_lp_footer_col3_links_url",
+                    "label": "Checkout URL",
+                    "name": "url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "https://panel.ibostreaming.com/checkout?plan_type=m3u&connections=1&duration=12&source=landing_page",
+                    "placeholder": "",
+                    "parent_repeater": "field_lp_footer_col3_links"
+                }
+            ]
+        },
+        {
+            "key": "field_lp_footer_trust_ssl",
+            "label": "Trust Line – SSL",
+            "name": "lp_footer_trust_ssl",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Trust strip, next to the padlock icon.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "256-Bit SSL Encrypted & Secured",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_trust_servers",
+            "label": "Trust Line – Servers",
+            "name": "lp_footer_trust_servers",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Trust strip, next to the globe icon.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "100Gbps European Ultra-Fast Servers",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_uptime",
+            "label": "Uptime Pill",
+            "name": "lp_footer_uptime",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Text in the pill with the pulsing green dot.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "99.99% Server Uptime Guaranteed",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_copyright",
+            "label": "Copyright Line",
+            "name": "lp_footer_copyright",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Bottom copyright line. NOTE: the original page still says 2025 – reproduced verbatim, update it here.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "© 2025 iBostreaming 4K IPTV. All rights reserved. · Designed for ultimate streaming experience",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_top_label",
+            "label": "Back-to-Top Button Text",
+            "name": "lp_footer_top_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Visible label on the scroll-to-top button.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Back to top",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_lp_footer_top_aria",
+            "label": "Back-to-Top – Accessible Label",
+            "name": "lp_footer_top_aria",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "aria-label on the scroll-to-top button. Screen-reader only.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Scroll to top",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -5154,6 +9793,13 @@
                 "operator": "==",
                 "value": "front_page"
             }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-landing.php"
+            }
         ]
     ],
     "menu_order": 0,
@@ -5167,5 +9813,5 @@
     "show_in_rest": 1,
     "display_title": "",
     "pll_display_field_instructions": 1,
-    "modified": 1785580587
+    "modified": 1787000000
 }
