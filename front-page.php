@@ -52,11 +52,11 @@ $sections = array(
     'faq',              // Accordion
     'dark-cta',         // Zero-buffering guarantee band - re-enabled 2026-08-20
     'contact',          // Support cards
-    'xlinks',           // "Good to know" contextual internal links - added 2026-08-20
     // Not in this list (files and styles still exist - add the slug back to
     // render them again):
     //   'brands'      - logo strip; no ACF fields behind it
     //   'dashboard'   - Member area promo
+    //   'xlinks'      - "Good to know". See the note below.
 );
 
 $sections_after = array(
@@ -69,11 +69,20 @@ $sections_after = array(
 // section files and their ACF fields already existed - 35 comp_* fields and 7
 // cta_* fields - so this is a re-enable, not new work.
 //
-// 'xlinks' is new: the live homepage's "Good to know" block is injected by a
-// mu-plugin that only fires on the Elementor landing pages, so it disappears the
-// moment this template takes over. It is the page's only contextual link into
-// /shop/, /guide/ and /contact/, which is exactly the internal linking worth
-// keeping.
+// 'xlinks' — the "Good to know" block — is built (front-page/sections/xlinks.php)
+// but deliberately NOT in the list above.
+//
+// It was written on the assumption that the mu-plugin injecting that block fired
+// only on the Elementor landing pages and would stop once this template took
+// over. It does not: it gates on the page ID, so after the switch it still runs
+// and the page rendered "Good to know" twice — once from the theme inside <main>,
+// once from the plugin after the footer.
+//
+// The plugin's copy cannot be removed from here, so the theme's is the one that
+// gives way. Re-add 'xlinks' the moment that mu-plugin is gone, or on any page
+// where it does not fire: the section is better placed than the plugin's, which
+// sits outside <main>, and those three links into /shop/, /guide/ and /contact/
+// are the front page's only contextual internal links.
 ?>
 
 <?php
