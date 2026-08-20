@@ -175,6 +175,27 @@ function iptv_print_missing_front_page_assets($type = 'style')
         return;
     }
 
+    // iptv_is_front_page_template() is true whenever is_front_page() is, which
+    // includes the front page while it is still rendered by Elementor Canvas.
+    // Printing the theme's stylesheets onto that page is actively harmful: the
+    // landing page ships its own CSS, and the theme's layer fought it (the hero
+    // lost its container padding and ran to the edge of the viewport). The
+    // enqueue path got away with the same loose check only because the mu-plugin
+    // dequeued everything again; printing the tags directly bypasses that.
+    //
+    // So gate on the template WordPress actually resolved, not on "is this the
+    // front page". An explicitly assigned front-page.php counts; so does the
+    // front page with no template set, because WordPress picks front-page.php
+    // for it by convention. elementor_canvas does not.
+    $assigned = get_page_template_slug(get_queried_object_id());
+
+    $renders_front_page_template = ($assigned === 'front-page.php')
+        || ($assigned === '' && is_front_page() && is_page());
+
+    if (!$renders_front_page_template) {
+        return;
+    }
+
     $is_style = ($type === 'style');
     $handles  = $is_style ? iptv_front_page_style_handles() : iptv_front_page_script_handles();
     $dir      = $is_style ? 'front-page/css/' : 'front-page/js/';
