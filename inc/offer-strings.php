@@ -72,7 +72,7 @@ add_action('init', function () {
     pll_register_string('offer_faq_q5', 'Is payment secure?', $group);
     pll_register_string('offer_faq_a5', 'Yes. Payments are processed via industry-standard secure gateways with 256-bit SSL encryption. We never store your card details.', $group);
     pll_register_string('offer_faq_q6', 'Can I get support if I need help?', $group);
-    pll_register_string('offer_faq_a6', 'Absolutely. Our support team is available 24/7 via email at <a href="mailto:support@ibostreaming.com">support@ibostreaming.com</a>.', $group, true);
+    pll_register_string('offer_faq_a6', 'Absolutely. Our support team is available 24/7 via email at <!--email_off--><a href="mailto:support@ibostreaming.com">support@ibostreaming.com</a><!--/email_off-->.', $group, true);
 
     // ── Final CTA section ────────────────────────────────────────────────────
     pll_register_string('offer_final_cta_title', "Don't miss %d months for the price of %d", $group);

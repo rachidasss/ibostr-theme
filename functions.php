@@ -86,10 +86,109 @@ add_action('init', function () {
     do_action('litespeed_purge_all');
 }, 5);
 
+/**
+ * The front page's stylesheets, in cascade order.
+ *
+ * front-page.php used to read all thirteen of these with include and dump them
+ * into one <style> block inside <body> — 141KB of unminified CSS, comments and
+ * all, ahead of every piece of content, re-downloaded on every page view because
+ * inline CSS cannot be cached and shared between pages. Enqueued instead they
+ * get a filemtime version string, an immutable far-future cache, and they land
+ * in <head> where they belong.
+ *
+ * Order matters: design-v2* must come last so its tokens override the older
+ * layers. Keep this list identical to the one front-page.php used.
+ */
+function iptv_front_page_style_handles()
+{
+    return array(
+        'variables',
+        'base',
+        'header',
+        'pricing',
+        'reviews',
+        'contact',
+        'footer',
+        'responsive',
+        'redesign-theme',
+        'cta',
+        'activity-ticker',
+        'design-v2',
+        'design-v2-sections',
+    );
+}
+
+/**
+ * The front page's scripts, in execution order.
+ *
+ * Same story: seven files concatenated into a single inline <script>. One
+ * top-level error anywhere in that block killed every script after it, and none
+ * of it was cacheable. Enqueued in the footer they stay isolated and cached.
+ */
+function iptv_front_page_script_handles()
+{
+    return array(
+        'header',
+        'currency',
+        'carousels',
+        'pricing',
+        'hero-animation',
+        'reviews',
+        'activity-ticker',
+    );
+}
+
+/**
+ * True on the page that front-page.php renders.
+ *
+ * Both checks are needed: WordPress uses front-page.php automatically for the
+ * site's front page (where the stored template is 'default'), and the template
+ * can also be assigned by name to any page.
+ */
+function iptv_is_front_page_template()
+{
+    return is_front_page() || is_page_template('front-page.php');
+}
+
 // Enqueue theme styles
 function my_iptv_enqueue_styles()
 {
     wp_enqueue_style('my-iptv-style', get_stylesheet_uri(), array(), iptv_asset_version('style.css'));
+
+    if (iptv_is_front_page_template()) {
+        $base = get_template_directory_uri() . '/front-page/css/';
+        $prev = array();
+
+        foreach (iptv_front_page_style_handles() as $handle) {
+            $rel = 'front-page/css/' . $handle . '.css';
+
+            if (!file_exists(get_template_directory() . '/' . $rel)) {
+                continue;
+            }
+
+            // Each sheet depends on the previous one, which is how wp_enqueue is
+            // told to preserve the cascade order the inline concatenation had.
+            wp_enqueue_style('iptv-fp-' . $handle, $base . $handle . '.css', $prev, iptv_asset_version($rel));
+            $prev = array('iptv-fp-' . $handle);
+        }
+
+        $jsbase = get_template_directory_uri() . '/front-page/js/';
+        $prev   = array();
+
+        foreach (iptv_front_page_script_handles() as $handle) {
+            $rel = 'front-page/js/' . $handle . '.js';
+
+            if (!file_exists(get_template_directory() . '/' . $rel)) {
+                continue;
+            }
+
+            // In the footer, so nothing here blocks the first paint. The inline
+            // window.iptvPrices block printed by the pricing section still runs
+            // first, which is what pricing.js needs.
+            wp_enqueue_script('iptv-fp-' . $handle, $jsbase . $handle . '.js', $prev, iptv_asset_version($rel), true);
+            $prev = array('iptv-fp-' . $handle);
+        }
+    }
 
     // Design v2 typography is self-hosted now. inc/performance.php inlines the
     // @font-face block and preloads the latin subsets, which removes the

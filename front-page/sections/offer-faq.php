@@ -30,7 +30,7 @@ $default_faq = [
     ],
     [
         'question' => iptv_text('offer_faq_q6', 'Can I get support if I need help?'),
-        'answer' => wp_kses_post(iptv_text('offer_faq_a6', 'Absolutely. Our support team is available 24/7 via email at <a href="mailto:support@ibostreaming.com">support@ibostreaming.com</a>.')),
+        'answer' => wp_kses_post(iptv_text('offer_faq_a6', 'Absolutely. Our support team is available 24/7 via email at <!--email_off--><a href="mailto:support@ibostreaming.com">support@ibostreaming.com</a><!--/email_off-->.')),
     ],
 ];
 

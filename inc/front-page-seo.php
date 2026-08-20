@@ -287,7 +287,7 @@ if (!function_exists('iptv_front_page_support_cards')) {
             array(
                 'label' => iptv_front_page_field($post_id, 'contact_card_whatsapp_label', 'WhatsApp'),
                 'value' => iptv_front_page_field($post_id, 'contact_card_whatsapp_value', 'Chat with us live'),
-                'link'  => 'https://wa.me/33745476690',
+                'link'  => 'https://wa.me/19396993536',
             ),
             array(
                 'label' => iptv_front_page_field($post_id, 'contact_card_telegram_label', 'Telegram'),

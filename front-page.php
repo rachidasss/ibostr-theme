@@ -7,38 +7,17 @@ get_header();
 
 // Define file paths
 $front_page_dir = get_template_directory() . '/front-page';
-$css_dir = $front_page_dir . '/css';
-$js_dir = $front_page_dir . '/js';
 $sections_dir = $front_page_dir . '/sections';
 ?>
 
-<style>
-    <?php
-    // Load CSS files
-    $css_files = array(
-        'variables',      // Old vars (Keep for Pricing/Reviews)
-        'base',           // Old base (Keep for layout safety)
-        'header',         // Existing Header
-        'pricing',        // Existing Pricing
-        'reviews',        // Existing Reviews
-        'contact',        // Existing Contact form styling
-        'footer',         // Existing Footer
-        'responsive',     // Existing Responsive
-        'redesign-theme', // Previous redesign (Overrides + New Sections)
-        'cta',            // CTA Section Styles
-        'activity-ticker', // Social proof notifications
-        'design-v2',      // DESIGN V2 tokens (blue & white) - must come after the old layers
-        'design-v2-sections' // DESIGN V2 section components
-    );
-
-    foreach ($css_files as $file) {
-        $path = $css_dir . '/' . $file . '.css';
-        if (file_exists($path)) {
-            include $path;
-        }
-    }
-    ?>
-</style>
+<?php
+// The thirteen stylesheets that used to be concatenated into a <style> block
+// right here are now enqueued in functions.php (iptv_front_page_style_handles).
+// Inlining them put 141KB of unminified CSS inside <body> ahead of all content,
+// re-sent on every page view because inline CSS is not cacheable and cannot be
+// shared with any other page. Enqueued, each gets a filemtime version string
+// and an immutable far-future cache.
+?>
 
 <?php
 // Page-wide backdrop: a fixed, masked grid that sits behind every section.
@@ -132,26 +111,14 @@ foreach ($sections_after as $section) {
 include $front_page_dir . '/partials/activity-ticker.php';
 ?>
 
-<script>
-    <?php
-    // Load all JS files in order
-    $js_files = array(
-        'header',
-        'currency',
-        'carousels',
-        'pricing',
-        'hero-animation',   // New Hero Animation
-        'reviews',          // Reviews carousel arrows (no autoplay)
-        'activity-ticker'   // Social proof notifications
-    );
-
-    foreach ($js_files as $file) {
-        $path = $js_dir . '/' . $file . '.js';
-        if (file_exists($path)) {
-            include $path;
-        }
-    }
-    ?>
-</script>
+<?php
+// The seven scripts that used to be concatenated into a <script> block here are
+// enqueued in the footer instead (iptv_front_page_script_handles in
+// functions.php). Concatenated inline, a single top-level error in any one of
+// them silently killed every script after it, and none of it was cacheable.
+//
+// The inline window.iptvPrices block printed by the pricing section still runs
+// before them, which is the ordering pricing.js needs.
+?>
 
 <?php get_footer(); ?>

@@ -23,8 +23,30 @@ $secondary_url   = iptv_text('hero_secondary_cta_url', '#pricing');
     // the scrim (.dv2-hero-bg::after) can sit between the photo and the copy.
     // The section is full-bleed, so the shell moves to .dv2-hero-inner.
     ?>
-    <div class="dv2-hero-bg" aria-hidden="true"
-         style="background-image:url('<?php echo esc_url($hero_bg_url); ?>');"></div>
+    <?php
+    // A real <img>, not a CSS background.
+    //
+    // This artwork is the page's Largest Contentful Paint element. As a
+    // background-image it could not be fetched until the stylesheet had been
+    // parsed and the element laid out, so the browser's preload scanner - which
+    // reads the raw HTML before any of that - never saw it. A plain <img> with
+    // fetchpriority="high" is discovered in the first pass of the markup and
+    // starts downloading immediately, which is the single biggest lever on LCP
+    // here.
+    //
+    // It stays decorative: alt="" and aria-hidden on the wrapper, because the
+    // scrim over it means it carries no information. Explicit width/height give
+    // the browser the aspect ratio up front so nothing shifts (the file is
+    // 1376x768). object-fit/object-position in the CSS reproduce the previous
+    // background-size:cover and background-position:center right exactly.
+    ?>
+    <div class="dv2-hero-bg" aria-hidden="true">
+        <img class="dv2-hero-bg-img"
+             src="<?php echo esc_url($hero_bg_url); ?>"
+             alt=""
+             width="1376" height="768"
+             fetchpriority="high" decoding="async">
+    </div>
 
     <div class="dv2-hero-inner">
         <div class="dv2-hero-copy">

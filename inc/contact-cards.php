@@ -61,7 +61,7 @@ if (!function_exists('iptv_contact_cards')) {
                 array(
                     'label' => iptv_text('contact_card_whatsapp_label', 'WhatsApp'),
                     'value' => iptv_text('contact_card_whatsapp_value', 'Chat with us live'),
-                    'link'  => 'https://wa.me/33745476690',
+                    'link'  => 'https://wa.me/19396993536',
                     'blank' => true,
                 ),
                 array(
@@ -176,7 +176,19 @@ if (!function_exists('iptv_contact_cards_grid')) {
 
             $cta = isset($ctas[$channel]) ? $ctas[$channel] : null;
 
-            $out .= sprintf(
+            // Cloudflare's Scrape Shield rewrites any mailto: link and any email
+            // it finds in the HTML into <a href="/cdn-cgi/l/email-protection">
+            // with the address hidden in a data-cfemail attribute and the words
+            // "[email protected]" as the visible text. A crawler that does not
+            // execute the accompanying script sees exactly that string — so the
+            // support address, one of the strongest trust signals on the page,
+            // reached Google as a placeholder.
+            //
+            // <!--email_off--> is Cloudflare's own documented opt-out and is the
+            // fix that does not require turning obfuscation off for the whole
+            // zone (panel.ibostreaming.com shares it). Cloudflare strips these
+            // comments from the response, so nothing extra is shipped.
+            $card_markup = sprintf(
                 '<a href="%s" class="dv2-support-card dv2-support-card--%s"%s><h3>%s</h3><p>%s</p>%s</a>',
                 esc_url($card['link']),
                 esc_attr($channel),
@@ -193,6 +205,14 @@ if (!function_exists('iptv_contact_cards_grid')) {
                     )
                     : ''
             );
+
+            // Only the email card needs the opt-out; wrapping the others would
+            // be noise Cloudflare has to strip for nothing.
+            if ($channel === 'email') {
+                $card_markup = '<!--email_off-->' . $card_markup . '<!--/email_off-->';
+            }
+
+            $out .= $card_markup;
         }
 
         return $out . '</div>';
