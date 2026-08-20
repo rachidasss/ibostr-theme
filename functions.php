@@ -150,6 +150,82 @@ function iptv_is_front_page_template()
     return is_front_page() || is_page_template('front-page.php');
 }
 
+/**
+ * Print the front page's assets directly if something dequeued them.
+ *
+ * A must-use plugin strips every theme stylesheet on the four Elementor landing
+ * pages - measured 2026-08-20: /, /fr/, /de/, /sv/ serve 2 stylesheets and no
+ * my-iptv-style at all, while /about/, /shop/ and /privacy-policy/ serve 13.
+ * That made sense while those pages were a self-contained prerendered bundle
+ * with its own CSS. It stops making sense the moment one of them renders through
+ * this template, and the first attempt at that switch produced an unstyled front
+ * page: the plugin is gated on the page ID, not on the template, so it kept
+ * removing styles the page now depends on.
+ *
+ * The mu-plugin cannot be edited from here, and re-enqueueing does not help
+ * against a hook that runs later. So: check whether our handles actually made it
+ * into the output and, only if they did not, print the tags ourselves. On any
+ * normal page nothing was removed, nothing is missing, and this does nothing.
+ *
+ * @param string $type 'style' or 'script'.
+ */
+function iptv_print_missing_front_page_assets($type = 'style')
+{
+    if (!iptv_is_front_page_template()) {
+        return;
+    }
+
+    $is_style = ($type === 'style');
+    $handles  = $is_style ? iptv_front_page_style_handles() : iptv_front_page_script_handles();
+    $dir      = $is_style ? 'front-page/css/' : 'front-page/js/';
+    $ext      = $is_style ? '.css' : '.js';
+    $missing  = array();
+
+    foreach ($handles as $handle) {
+        $registered = 'iptv-fp-' . $handle;
+        $done       = $is_style
+            ? wp_style_is($registered, 'done')
+            : wp_script_is($registered, 'done');
+
+        if ($done) {
+            continue;
+        }
+
+        $rel = $dir . $handle . $ext;
+        if (file_exists(get_template_directory() . '/' . $rel)) {
+            $missing[] = $rel;
+        }
+    }
+
+    if (empty($missing)) {
+        return;
+    }
+
+    foreach ($missing as $rel) {
+        $url = get_template_directory_uri() . '/' . $rel;
+        $ver = iptv_asset_version($rel);
+        if ($ver) {
+            $url = add_query_arg('ver', $ver, $url);
+        }
+
+        if ($is_style) {
+            echo '<link rel="stylesheet" href="' . esc_url($url) . '" media="all">' . "\n";
+        } else {
+            echo '<script src="' . esc_url($url) . '"></script>' . "\n";
+        }
+    }
+}
+
+// Late enough that wp_print_styles (wp_head priority 8) has already run, so
+// "done" is a truthful answer rather than "not yet".
+add_action('wp_head', function () {
+    iptv_print_missing_front_page_assets('style');
+}, 999);
+
+add_action('wp_footer', function () {
+    iptv_print_missing_front_page_assets('script');
+}, 999);
+
 // Enqueue theme styles
 function my_iptv_enqueue_styles()
 {
