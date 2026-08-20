@@ -22,14 +22,14 @@
     // every Rank Math title on the site.
     ?>
     <?php wp_head(); ?>
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/front-page/css/variables.css">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/front-page/css/redesign-theme.css">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/front-page/css/base.css">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/front-page/css/header.css">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/front-page/css/footer.css">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/front-page/css/responsive.css">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/front-page/css/design-v2.css">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/front-page/css/design-v2-sections.css">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/front-page/css/variables.css?ver=<?php echo esc_attr(iptv_asset_version('front-page/css/variables.css')); ?>">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/front-page/css/redesign-theme.css?ver=<?php echo esc_attr(iptv_asset_version('front-page/css/redesign-theme.css')); ?>">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/front-page/css/base.css?ver=<?php echo esc_attr(iptv_asset_version('front-page/css/base.css')); ?>">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/front-page/css/header.css?ver=<?php echo esc_attr(iptv_asset_version('front-page/css/header.css')); ?>">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/front-page/css/footer.css?ver=<?php echo esc_attr(iptv_asset_version('front-page/css/footer.css')); ?>">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/front-page/css/responsive.css?ver=<?php echo esc_attr(iptv_asset_version('front-page/css/responsive.css')); ?>">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/front-page/css/design-v2.css?ver=<?php echo esc_attr(iptv_asset_version('front-page/css/design-v2.css')); ?>">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/front-page/css/design-v2-sections.css?ver=<?php echo esc_attr(iptv_asset_version('front-page/css/design-v2-sections.css')); ?>">
 </head>
 
 <body <?php body_class(); ?>>
