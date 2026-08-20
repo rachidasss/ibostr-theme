@@ -248,6 +248,81 @@ add_action('wp_footer', function () {
 }, 999);
 
 /**
+ * The same rescue, for the landing template.
+ *
+ * This is not belt-and-braces, it is the known failure. A must-use plugin strips
+ * every theme stylesheet on the four Elementor landing pages - /, /fr/, /de/ and
+ * /sv/ - and it gates on the page ID, not on the template. So the moment the
+ * front page starts rendering through template-landing.php, that plugin carries
+ * on removing the very stylesheet the design depends on, and the page comes back
+ * as unstyled HTML. That has already happened once here.
+ *
+ * Same approach as above: ask whether the handles actually reached the output
+ * after wp_print_styles has run, and print only what went missing. On a page
+ * where nothing was stripped this does nothing at all.
+ *
+ * @param string $type 'style' or 'script'.
+ */
+function iptv_print_missing_landing_assets($type = 'style')
+{
+    if (!iptv_is_landing_template()) {
+        return;
+    }
+
+    if ($type === 'style') {
+        if (wp_style_is('iptv-landing', 'done')) {
+            return;
+        }
+
+        $rel = 'front-page/css/landing.css';
+
+        if (!file_exists(get_template_directory() . '/' . $rel)) {
+            return;
+        }
+
+        $url = get_template_directory_uri() . '/' . $rel;
+        $ver = iptv_asset_version($rel);
+
+        if ($ver) {
+            $url = add_query_arg('ver', $ver, $url);
+        }
+
+        echo '<link rel="stylesheet" href="' . esc_url($url) . '" media="all">' . "\n";
+
+        return;
+    }
+
+    foreach (array('pricing', 'carousel', 'faq', 'nav') as $handle) {
+        if (wp_script_is('iptv-landing-' . $handle, 'done')) {
+            continue;
+        }
+
+        $rel = 'front-page/js/landing-' . $handle . '.js';
+
+        if (!file_exists(get_template_directory() . '/' . $rel)) {
+            continue;
+        }
+
+        $url = get_template_directory_uri() . '/' . $rel;
+        $ver = iptv_asset_version($rel);
+
+        if ($ver) {
+            $url = add_query_arg('ver', $ver, $url);
+        }
+
+        echo '<script src="' . esc_url($url) . '"></script>' . "\n";
+    }
+}
+
+add_action('wp_head', function () {
+    iptv_print_missing_landing_assets('style');
+}, 999);
+
+add_action('wp_footer', function () {
+    iptv_print_missing_landing_assets('script');
+}, 999);
+
+/**
  * True on the rebuilt landing-page template.
  */
 function iptv_is_landing_template()
