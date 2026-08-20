@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // The href is the authoritative destination: it is language-specific, while
     // data-currency is not — eur maps to French, German and Dutch alike, so
     // routing by currency alone would send Dutch and German visitors to /fr/.
-    document.querySelectorAll('.country-option, .mobile-lang-btn').forEach(option => {
+    document.querySelectorAll('.country-option, .mobile-lang-btn, .footer-country-option').forEach(option => {
         option.addEventListener('click', function (e) {
             const currency = this.dataset.currency;
 

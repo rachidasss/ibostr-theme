@@ -30,6 +30,33 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+if (!function_exists('iptv_languages')) {
+    /**
+     * The languages this site actually publishes.
+     *
+     * Single source of truth for both switchers. It used to be declared inline
+     * in front-page/sections/header.php, so the footer kept its own hardcoded
+     * copy - and that copy still offered Norsk, Dansk, Suomi and Islenska
+     * (/no/ /dk/ /fi/ /is/, none of which exist here) while offering nothing for
+     * French, German or Dutch.
+     *
+     * `currency` is kept because the switcher JS keys on it; `code` feeds both
+     * hreflang and lang.
+     *
+     * @return array<int,array<string,string>>
+     */
+    function iptv_languages()
+    {
+        return array(
+            array('code' => 'en', 'path' => '/',    'flag' => '🇺🇸', 'name' => 'English',    'currency' => 'usd'),
+            array('code' => 'fr', 'path' => '/fr/', 'flag' => '🇫🇷', 'name' => 'Français',   'currency' => 'eur'),
+            array('code' => 'de', 'path' => '/de/', 'flag' => '🇩🇪', 'name' => 'Deutsch',    'currency' => 'eur'),
+            array('code' => 'sv', 'path' => '/sv/', 'flag' => '🇸🇪', 'name' => 'Svenska',    'currency' => 'sek'),
+            array('code' => 'nl', 'path' => '/nl/', 'flag' => '🇳🇱', 'name' => 'Nederlands', 'currency' => 'eur'),
+        );
+    }
+}
+
 if (!defined('IPTV_LANG_COOKIE')) {
     define('IPTV_LANG_COOKIE', 'ibostreaming_lang');
 }

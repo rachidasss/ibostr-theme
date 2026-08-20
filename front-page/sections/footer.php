@@ -41,12 +41,27 @@ $home = function_exists('pll_home_url') ? pll_home_url() : home_url('/');
                             </svg>
                         </button>
                         <div class="footer-country-dropdown" id="footerCountryDropdown">
-                            <div class="footer-country-option" onclick="setFooterCurrency('usd')">🇺🇸 English</div>
-                            <div class="footer-country-option" onclick="setFooterCurrency('sek')">🇸🇪 Svenska</div>
-                            <div class="footer-country-option" onclick="setFooterCurrency('nok')">🇳🇴 Norsk</div>
-                            <div class="footer-country-option" onclick="setFooterCurrency('dkk')">🇩🇰 Dansk</div>
-                            <div class="footer-country-option" onclick="setFooterCurrency('eur')">🇫🇮 Suomi</div>
-                            <div class="footer-country-option" onclick="setFooterCurrency('isk')">🇮🇸 Íslenska</div>
+                            <?php
+                            // Was six hardcoded <div onclick> entries offering Norsk, Dansk,
+                            // Suomi and Islenska - four languages this site does not publish,
+                            // whose links went nowhere - and offering none for French, German
+                            // or Dutch. Real anchors now, from the same list the header uses,
+                            // so the translated home pages are reachable without JavaScript
+                            // and Google has a crawlable link to each.
+                            $iptv_footer_current = iptv_lp_lang();
+
+                            foreach (iptv_languages() as $iptv_footer_lang) :
+                                $iptv_footer_is_current = ($iptv_footer_lang['code'] === $iptv_footer_current);
+                                ?>
+                                <a class="footer-country-option<?php echo $iptv_footer_is_current ? ' footer-country-option--current' : ''; ?>"
+                                   href="<?php echo esc_url(home_url($iptv_footer_lang['path'])); ?>"
+                                   hreflang="<?php echo esc_attr($iptv_footer_lang['code']); ?>"
+                                   lang="<?php echo esc_attr($iptv_footer_lang['code']); ?>"
+                                   data-currency="<?php echo esc_attr($iptv_footer_lang['currency']); ?>"
+                                   <?php echo $iptv_footer_is_current ? ' aria-current="true"' : ''; ?>><?php
+                                    echo esc_html($iptv_footer_lang['flag'] . ' ' . $iptv_footer_lang['name']);
+                                ?></a>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>

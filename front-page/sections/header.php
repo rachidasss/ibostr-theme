@@ -23,31 +23,10 @@ $nav_guide = function_exists('iptv_page_url')
     ? iptv_page_url('guide', trailingslashit($nav_home) . 'guide/')
     : trailingslashit($nav_home) . 'guide/';
 
-/**
- * The languages this site actually publishes.
- *
- * Every entry is rendered as a real <a href> below. That is the whole point of
- * this array: the switcher used to be <div class="country-option"> elements with
- * no href at all, and the URLs lived only in front-page/js/currency.js. Google
- * therefore had no crawlable link from any page to /fr/, /de/, /sv/ or /nl/ —
- * four translated home pages reachable only by running JavaScript. hreflang in
- * <head> is a hint about alternates, not an internal link, and passes no weight.
- *
- * The old list was also simply wrong for this site: it offered Norsk, Dansk,
- * Suomi and Íslenska (/no/ /dk/ /fi/ /is/, none of which exist here) and offered
- * nothing for French, German or Dutch. Verified 2026-08-20: / /fr/ /de/ /sv/
- * /nl/ all return 200.
- *
- * data-currency is kept so the existing currency JS keeps working; 'code' feeds
- * both hreflang and lang.
- */
-$iptv_languages = array(
-    array('code' => 'en', 'path' => '/',    'flag' => '🇺🇸', 'name' => 'English',    'currency' => 'usd'),
-    array('code' => 'fr', 'path' => '/fr/', 'flag' => '🇫🇷', 'name' => 'Français',   'currency' => 'eur'),
-    array('code' => 'de', 'path' => '/de/', 'flag' => '🇩🇪', 'name' => 'Deutsch',    'currency' => 'eur'),
-    array('code' => 'sv', 'path' => '/sv/', 'flag' => '🇸🇪', 'name' => 'Svenska',    'currency' => 'sek'),
-    array('code' => 'nl', 'path' => '/nl/', 'flag' => '🇳🇱', 'name' => 'Nederlands', 'currency' => 'eur'),
-);
+// The five languages this site publishes, rendered as real <a href> below so
+// each translated home page is reachable without JavaScript. The list and the
+// reasoning live in iptv_languages(), which the footer switcher shares.
+$iptv_languages = iptv_languages();
 
 // Which one we are on, so the current language can be marked and the button
 // label can show it. Longest path first so '/' does not match everything.
