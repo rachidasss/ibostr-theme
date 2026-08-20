@@ -48,22 +48,45 @@ if (!function_exists('iptv_text')) {
 
         $front_page_id = get_option('page_on_front');
 
-        if (function_exists('get_field') && !in_array($key, $acf_skip_keys, true)) {
-            $value = $front_page_id
-                ? get_field($key, $front_page_id)
-                : get_field($key);
+        // Which pages to consult, in order.
+        //
+        // This used to read the front page and nothing else, which was correct
+        // while the front page was the only page these strings appeared on.
+        // It stops being correct the moment a translated landing page renders
+        // through the same template: /fr/, /de/ and /sv/ are their own pages, so
+        // every field lookup resolved against the English front page and the
+        // translated copy was unreachable. Polylang used to paper over this by
+        // filtering page_on_front per language; it is no longer installed.
+        //
+        // Current page first, front page as the fallback. A translated page that
+        // has not been filled in yet therefore shows the English copy rather than
+        // an empty section, which is the right failure mode.
+        $sources = array();
 
-            if ($value !== null && $value !== '' && !is_array($value)) {
-                return $value;
-            }
+        $current_id = get_queried_object_id();
+        if ($current_id && get_post_type($current_id) === 'page') {
+            $sources[] = $current_id;
         }
 
-        // get_field() resolves nothing for a field ACF has not registered, which
-        // is the case for any field added to acf-json/ but not yet synced into
-        // the database. The value is still plain post meta under the same key, so
-        // read it directly rather than falling through to the English default.
-        if ($front_page_id) {
-            $meta = get_post_meta($front_page_id, $key, true);
+        if ($front_page_id && !in_array($front_page_id, $sources, true)) {
+            $sources[] = $front_page_id;
+        }
+
+        foreach ($sources as $source_id) {
+            if (function_exists('get_field') && !in_array($key, $acf_skip_keys, true)) {
+                $value = get_field($key, $source_id);
+
+                if ($value !== null && $value !== '' && !is_array($value)) {
+                    return $value;
+                }
+            }
+
+            // get_field() resolves nothing for a field ACF has not registered,
+            // which is the case for any field added to acf-json/ but not yet
+            // synced into the database. The value is still plain post meta under
+            // the same key, so read it directly rather than falling through to
+            // the English default.
+            $meta = get_post_meta($source_id, $key, true);
             if (is_string($meta) && $meta !== '') {
                 return $meta;
             }

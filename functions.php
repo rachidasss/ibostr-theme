@@ -288,6 +288,30 @@ add_action('wp_enqueue_scripts', function () {
         array(),
         iptv_asset_version('front-page/css/landing.css')
     );
+
+    // The behaviour React used to provide, rewritten as plain JS: the plan
+    // configurator, the two carousels, the FAQ accordion, and the mobile nav and
+    // CTA buttons. One file per concern rather than one bundle, so a syntax error
+    // in the carousel cannot take the checkout button down with it - which is
+    // exactly what the old single concatenated <script> block did.
+    //
+    // Footer-loaded: none of it is needed for first paint, and the markup is
+    // already complete without it.
+    foreach (array('pricing', 'carousel', 'faq', 'nav') as $iptv_landing_js) {
+        $rel = 'front-page/js/landing-' . $iptv_landing_js . '.js';
+
+        if (!file_exists(get_template_directory() . '/' . $rel)) {
+            continue;
+        }
+
+        wp_enqueue_script(
+            'iptv-landing-' . $iptv_landing_js,
+            get_template_directory_uri() . '/' . $rel,
+            array(),
+            iptv_asset_version($rel),
+            true
+        );
+    }
 }, 100);
 
 // Enqueue theme styles
