@@ -13,49 +13,43 @@ if (!defined('ABSPATH')) {
 
 $lp_trust_front_id = get_option('page_on_front');
 
-$lp_trust_bad_items = function_exists('get_field') ? get_field('lp_trust_bad_items', $lp_trust_front_id) : null;
-if (empty($lp_trust_bad_items) || !is_array($lp_trust_bad_items)) {
-    $lp_trust_bad_items = array(
-        array(
-            'title' => 'Sell & Disappear (Zero Support)',
-            'text'  => 'Once you pay, support tickets go unanswered right when you need help.',
-        ),
-        array(
-            'title' => 'Buffering During Big Matches',
-            'text'  => 'Cheap, overcrowded servers freeze right when the match is at peak excitement.',
-        ),
-        array(
-            'title' => 'Confusing Setup & Broken Links',
-            'text'  => 'Complex setup instructions with cryptic links that stop working without warning.',
-        ),
-        array(
-            'title' => 'Geo-Blocked & Unstable Channels',
-            'text'  => 'Channels frequently go offline or block in USA, France, Canada, Germany, UK without VPN.',
-        ),
-    );
-}
+$lp_trust_bad_items = iptv_lp_list('lp_trust_bad_items', array(
+    array(
+        'title' => 'Sell & Disappear (Zero Support)',
+        'text'  => 'Once you pay, support tickets go unanswered right when you need help.',
+    ),
+    array(
+        'title' => 'Buffering During Big Matches',
+        'text'  => 'Cheap, overcrowded servers freeze right when the match is at peak excitement.',
+    ),
+    array(
+        'title' => 'Confusing Setup & Broken Links',
+        'text'  => 'Complex setup instructions with cryptic links that stop working without warning.',
+    ),
+    array(
+        'title' => 'Geo-Blocked & Unstable Channels',
+        'text'  => 'Channels frequently go offline or block in USA, France, Canada, Germany, UK without VPN.',
+    ),
+));
 
-$lp_trust_good_items = function_exists('get_field') ? get_field('lp_trust_good_items', $lp_trust_front_id) : null;
-if (empty($lp_trust_good_items) || !is_array($lp_trust_good_items)) {
-    $lp_trust_good_items = array(
-        array(
-            'title' => 'Support For Entire Subscription Duration',
-            'text'  => 'Our live technical VIP team is online 24/7 on WhatsApp & Email whenever you need help.',
-        ),
-        array(
-            'title' => 'Free Step-by-Step Installation Help',
-            'text'  => 'We guide you until live TV is playing smoothly on Smart TV, Firestick, Apple TV, or phone.',
-        ),
-        array(
-            'title' => '100Gbps Dedicated Anti-Freeze™ Servers',
-            'text'  => 'Load-balanced servers engineered for live events — uncompressed 4K with 60FPS motion smoothness.',
-        ),
-        array(
-            'title' => 'Worldwide Channels with Zero Regional Blocks',
-            'text'  => '40,000+ live channels & 200,000+ VOD from USA, France, Canada, Germany, UK without VPN.',
-        ),
-    );
-}
+$lp_trust_good_items = iptv_lp_list('lp_trust_good_items', array(
+    array(
+        'title' => 'Support For Entire Subscription Duration',
+        'text'  => 'Our live technical VIP team is online 24/7 on WhatsApp & Email whenever you need help.',
+    ),
+    array(
+        'title' => 'Free Step-by-Step Installation Help',
+        'text'  => 'We guide you until live TV is playing smoothly on Smart TV, Firestick, Apple TV, or phone.',
+    ),
+    array(
+        'title' => '100Gbps Dedicated Anti-Freeze™ Servers',
+        'text'  => 'Load-balanced servers engineered for live events — uncompressed 4K with 60FPS motion smoothness.',
+    ),
+    array(
+        'title' => 'Worldwide Channels with Zero Regional Blocks',
+        'text'  => '40,000+ live channels & 200,000+ VOD from USA, France, Canada, Germany, UK without VPN.',
+    ),
+));
 ?>
 <section class="relative w-full bg-zinc-950 text-white py-12 sm:py-16 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden border-b border-zinc-800/60 select-none" id="why-us-section">
 <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full bg-[radial-gradient(ellipse_at_top,rgba(0,124,235,0.08),transparent_70%)] pointer-events-none"></div>

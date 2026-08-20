@@ -6,16 +6,13 @@
  */
 if (!defined('ABSPATH')) { exit; }
 
-$lp_dev_items = function_exists('get_field') ? get_field('lp_dev_items', get_option('page_on_front')) : null;
-if (empty($lp_dev_items) || !is_array($lp_dev_items)) {
-    $lp_dev_items = array(
-        array('icon' => 'tv',         'title' => 'Smart TV',         'text' => 'Samsung, LG, Android'),
-        array('icon' => 'zap',        'title' => 'Streaming Sticks', 'text' => 'Firestick, Apple TV, Roku'),
-        array('icon' => 'smartphone', 'title' => 'Mobile & Tablet',  'text' => 'iOS, iPad, Android'),
-        array('icon' => 'hard-drive', 'title' => 'IPTV Boxes',       'text' => 'MAG, Formuler, BuzzTV'),
-        array('icon' => 'monitor',    'title' => 'PC & Laptop',      'text' => 'Windows, Mac, Web'),
-    );
-}
+$lp_dev_items = iptv_lp_list('lp_dev_items', array(
+    array('icon' => 'tv',         'title' => 'Smart TV',         'text' => 'Samsung, LG, Android'),
+    array('icon' => 'zap',        'title' => 'Streaming Sticks', 'text' => 'Firestick, Apple TV, Roku'),
+    array('icon' => 'smartphone', 'title' => 'Mobile & Tablet',  'text' => 'iOS, iPad, Android'),
+    array('icon' => 'hard-drive', 'title' => 'IPTV Boxes',       'text' => 'MAG, Formuler, BuzzTV'),
+    array('icon' => 'monitor',    'title' => 'PC & Laptop',      'text' => 'Windows, Mac, Web'),
+));
 
 /**
  * Lucide icon markup, copied verbatim from the prerendered page. The repeater's

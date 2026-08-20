@@ -100,25 +100,77 @@ if (!function_exists('iptv_text')) {
     }
 }
 
-if (!function_exists('iptv_lp_list')) {
+if (!function_exists('iptv_lp_lang')) {
     /**
-     * Resolve a simple one-column list for a landing section.
+     * Language of the page being rendered.
      *
-     * The site runs Advanced Custom Fields free, which has no Repeater field, so
-     * a one-item-per-line textarea is the editable form these lists can take. If
-     * ACF PRO is ever installed the same field name comes back as a repeater
-     * array instead and that value is used untouched — no template change needed.
+     * Polylang is deactivated on this site, so the page slug is the signal:
+     * the three translated landing pages are /fr/, /de/ and /sv/. Anything else
+     * is English.
      *
-     * Reads the current page first and the front page second, matching
-     * iptv_text(), so a translated landing page can override the list on its own
-     * page and otherwise inherits the English one.
+     * @return string One of fr, de, sv, en.
+     */
+    function iptv_lp_lang() {
+        $id = get_queried_object_id();
+        if (!$id) {
+            return 'en';
+        }
+
+        $slug = get_post_field('post_name', $id);
+
+        return in_array($slug, array('fr', 'de', 'sv'), true) ? $slug : 'en';
+    }
+}
+
+if (!function_exists('iptv_lp_i18n_lists')) {
+    /**
+     * The current language's list copy, or an empty array for English.
      *
-     * @param string $key      Field name.
-     * @param string $column   Sub-field name each returned row is keyed by.
-     * @param array  $defaults Rows to fall back to when nothing is stored.
      * @return array
      */
-    function iptv_lp_list($key, $column, $defaults) {
+    function iptv_lp_i18n_lists() {
+        static $cache = null;
+
+        if ($cache !== null) {
+            return $cache;
+        }
+
+        $lang = iptv_lp_lang();
+        if ($lang === 'en') {
+            $cache = array();
+            return $cache;
+        }
+
+        $file = get_template_directory() . '/inc/landing-i18n/' . $lang . '.php';
+        $data = is_readable($file) ? include $file : null;
+
+        $cache = is_array($data) ? $data : array();
+
+        return $cache;
+    }
+}
+
+if (!function_exists('iptv_lp_list')) {
+    /**
+     * Resolve a repeating list for a landing section.
+     *
+     * Three layers, most specific first:
+     *
+     * 1. Advanced Custom Fields. A repeater array is returned untouched, so
+     *    installing ACF PRO later needs no template change. ACF free has no
+     *    Repeater field, so a one-column list can instead be stored as a
+     *    textarea with one item per line - pass $column to enable that.
+     * 2. Translated copy for the current language, merged over the defaults.
+     *    Only the text columns are translated; icons, image paths, prices and
+     *    dynamic URLs stay exactly as the template defines them.
+     * 3. The defaults the template ships, which are the live English copy.
+     *
+     * @param string $key      Field name.
+     * @param array  $defaults Rows to fall back to.
+     * @param string $column   Sub-field name for the one-per-line textarea form.
+     * @return array
+     */
+    function iptv_lp_list($key, $defaults, $column = '') {
         $sources = array();
 
         $current_id = get_queried_object_id();
@@ -145,7 +197,8 @@ if (!function_exists('iptv_lp_list')) {
 
             // A repeater also leaves its row count behind as plain meta ("6"),
             // which is not a list and must not be read as one.
-            if (is_string($value) && trim($value) !== '' && !ctype_digit(trim($value))) {
+            if ($column !== '' && is_string($value) && trim($value) !== ''
+                && !ctype_digit(trim($value))) {
                 $rows = array();
 
                 foreach (preg_split('/\R/', $value) as $line) {
@@ -157,6 +210,22 @@ if (!function_exists('iptv_lp_list')) {
 
                 if (!empty($rows)) {
                     return $rows;
+                }
+            }
+        }
+
+        $translated = iptv_lp_i18n_lists();
+
+        if (!empty($translated[$key]) && is_array($translated[$key])) {
+            foreach ($translated[$key] as $i => $cells) {
+                if (!isset($defaults[$i]) || !is_array($cells)) {
+                    continue;
+                }
+
+                foreach ($cells as $col => $text) {
+                    if ($text !== '') {
+                        $defaults[$i][$col] = $text;
+                    }
                 }
             }
         }

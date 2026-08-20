@@ -12,66 +12,62 @@
  */
 if (!defined('ABSPATH')) { exit; }
 
-$faq_rows = function_exists('get_field') ? get_field('lp_faq_items', get_option('page_on_front')) : null;
-
-if (empty($faq_rows) || !is_array($faq_rows)) {
-    $faq_rows = array(
-        array(
-            'question'  => 'What happens right after I pay?',
-            'answer'    => 'Your IPTV subscription is activated automatically — nothing is queued for manual approval. Within about 2 to 5 minutes you get an email with your login details: an M3U playlist link plus your Xtream Codes username and password. The same line also appears under My IPTV Lines in your member panel. Paste the link into a free player such as TiviMate, IPTV Smarters or IBO Player Pro and you are watching in 4K. If the email is not there, check your spam folder before anything else.',
-            'link_text' => 'Step-by-step setup guide',
-            'link_url'  => iptv_page_url('guide', 'https://ibostreaming.com/guide/'),
-        ),
-        array(
-            'question'  => 'Do I need to create an account before I buy?',
-            'answer'    => 'Your order and your account are the same flow, so there is no separate signup to get out of the way first. Checkout runs inside the iBostreaming member panel, which means by the time your subscription is live you already have an account — and that account is where your IPTV credentials, your order history and your renewals live. Use the same email address throughout and everything stays in one place.',
-            'link_text' => '',
-            'link_url'  => '',
-        ),
-        array(
-            'question'  => 'Can I try it before paying?',
-            'answer'    => 'We do not offer a free IPTV trial. Free-trial links are the standard way throwaway resellers harvest email addresses, and we would rather not run that playbook. So the risk sits with us instead: start on the 1-month plan at $13.99 and you are covered by our 7-day money-back guarantee. Every plan carries the identical channel list, VOD library and 4K servers — the only difference between them is length and how many screens stream at once.',
-            'link_text' => '',
-            'link_url'  => '',
-        ),
-        array(
-            'question'  => 'Is it refundable if it doesn\'t work for me?',
-            'answer'    => 'Yes. Every plan includes a 7-day money-back guarantee. If we cannot get the service running properly on your device, contact support within 7 days of purchase and you get your money back. Worth knowing: most "it doesn\'t work" cases turn out to be one wrong setting in the player app or an ISP block, and our team clears those in a couple of minutes — so message us before you ask for a refund. It is usually the faster fix.',
-            'link_text' => 'Contact support',
-            'link_url'  => iptv_page_url('contact', 'https://ibostreaming.com/contact/'),
-        ),
-        array(
-            'question'  => 'How many devices can I use, and does everyone share one login?',
-            'answer'    => 'You pick the number of connections at checkout, from 1 to 4, and that is how many devices can stream at the same time. You may install your playlist on as many devices as you own — the limit is on simultaneous streams, not installations. So a single login on a 1-connection plan works on your TV, phone and tablet, but only one screen plays at a time. Two people watching different channels at once needs 2 connections; a whole family usually takes 3 or 4.',
-            'link_text' => '',
-            'link_url'  => '',
-        ),
-        array(
-            'question'  => 'Will this renew automatically / get charged again?',
-            'answer'    => 'No. Every plan is a one-time flat-rate payment for the period you choose — 1, 3, 6 or 12 months. There is no stored subscription, no automatic renewal and no second charge. When your time is nearly up you place a renewal order yourself from the member panel, which means you are never billed for something you did not ask for.',
-            'link_text' => '',
-            'link_url'  => '',
-        ),
-        array(
-            'question'  => 'Who am I actually paying — is the checkout secure?',
-            'answer'    => 'You are paying iBostreaming directly, never a third-party reseller. Checkout runs on our own member panel at panel.ibostreaming.com over an encrypted HTTPS/SSL connection, and all prices are in USD. Every order gets its own reference number and a receipt you can open any time under Orders in your panel — that reference is also what support asks for if you ever need to query a payment.',
-            'link_text' => '',
-            'link_url'  => '',
-        ),
-        array(
-            'question'  => 'What if my credentials never arrive, or stop working later?',
-            'answer'    => 'Message us — support is staffed 24/7. If nothing has arrived after about 10 minutes it is almost always the spam folder or a typo in the order email, and we resend to the correct address. If a line that was working stops later, that is normally a server switch or an expired plan rather than anything lost, and we re-issue or repoint your line. Fastest route is WhatsApp on +1 939 699 3536, or email support@ibostreaming.com.',
-            'link_text' => 'Get help now',
-            'link_url'  => iptv_page_url('contact', 'https://ibostreaming.com/contact/'),
-        ),
-        array(
-            'question'  => 'What devices does this work on?',
-            'answer'    => 'Essentially anything you already own. Smart TVs (Samsung, LG, Sony, Android TV), Amazon Firestick and Fire TV Cube, Apple TV, Android phones and tablets, iPhone and iPad, Windows and Mac computers, plus MAG and Formuler set-top boxes. You do not need to buy new hardware: install a free IPTV player like TiviMate, IPTV Smarters or IBO Player Pro, paste in your playlist, and the full channel list and VOD library load automatically.',
-            'link_text' => 'See the device setup guides',
-            'link_url'  => iptv_page_url('guide', 'https://ibostreaming.com/guide/'),
-        ),
-    );
-}
+$faq_rows = iptv_lp_list('lp_faq_items', array(
+    array(
+        'question'  => 'What happens right after I pay?',
+        'answer'    => 'Your IPTV subscription is activated automatically — nothing is queued for manual approval. Within about 2 to 5 minutes you get an email with your login details: an M3U playlist link plus your Xtream Codes username and password. The same line also appears under My IPTV Lines in your member panel. Paste the link into a free player such as TiviMate, IPTV Smarters or IBO Player Pro and you are watching in 4K. If the email is not there, check your spam folder before anything else.',
+        'link_text' => 'Step-by-step setup guide',
+        'link_url'  => iptv_page_url('guide', 'https://ibostreaming.com/guide/'),
+    ),
+    array(
+        'question'  => 'Do I need to create an account before I buy?',
+        'answer'    => 'Your order and your account are the same flow, so there is no separate signup to get out of the way first. Checkout runs inside the iBostreaming member panel, which means by the time your subscription is live you already have an account — and that account is where your IPTV credentials, your order history and your renewals live. Use the same email address throughout and everything stays in one place.',
+        'link_text' => '',
+        'link_url'  => '',
+    ),
+    array(
+        'question'  => 'Can I try it before paying?',
+        'answer'    => 'We do not offer a free IPTV trial. Free-trial links are the standard way throwaway resellers harvest email addresses, and we would rather not run that playbook. So the risk sits with us instead: start on the 1-month plan at $13.99 and you are covered by our 7-day money-back guarantee. Every plan carries the identical channel list, VOD library and 4K servers — the only difference between them is length and how many screens stream at once.',
+        'link_text' => '',
+        'link_url'  => '',
+    ),
+    array(
+        'question'  => 'Is it refundable if it doesn\'t work for me?',
+        'answer'    => 'Yes. Every plan includes a 7-day money-back guarantee. If we cannot get the service running properly on your device, contact support within 7 days of purchase and you get your money back. Worth knowing: most "it doesn\'t work" cases turn out to be one wrong setting in the player app or an ISP block, and our team clears those in a couple of minutes — so message us before you ask for a refund. It is usually the faster fix.',
+        'link_text' => 'Contact support',
+        'link_url'  => iptv_page_url('contact', 'https://ibostreaming.com/contact/'),
+    ),
+    array(
+        'question'  => 'How many devices can I use, and does everyone share one login?',
+        'answer'    => 'You pick the number of connections at checkout, from 1 to 4, and that is how many devices can stream at the same time. You may install your playlist on as many devices as you own — the limit is on simultaneous streams, not installations. So a single login on a 1-connection plan works on your TV, phone and tablet, but only one screen plays at a time. Two people watching different channels at once needs 2 connections; a whole family usually takes 3 or 4.',
+        'link_text' => '',
+        'link_url'  => '',
+    ),
+    array(
+        'question'  => 'Will this renew automatically / get charged again?',
+        'answer'    => 'No. Every plan is a one-time flat-rate payment for the period you choose — 1, 3, 6 or 12 months. There is no stored subscription, no automatic renewal and no second charge. When your time is nearly up you place a renewal order yourself from the member panel, which means you are never billed for something you did not ask for.',
+        'link_text' => '',
+        'link_url'  => '',
+    ),
+    array(
+        'question'  => 'Who am I actually paying — is the checkout secure?',
+        'answer'    => 'You are paying iBostreaming directly, never a third-party reseller. Checkout runs on our own member panel at panel.ibostreaming.com over an encrypted HTTPS/SSL connection, and all prices are in USD. Every order gets its own reference number and a receipt you can open any time under Orders in your panel — that reference is also what support asks for if you ever need to query a payment.',
+        'link_text' => '',
+        'link_url'  => '',
+    ),
+    array(
+        'question'  => 'What if my credentials never arrive, or stop working later?',
+        'answer'    => 'Message us — support is staffed 24/7. If nothing has arrived after about 10 minutes it is almost always the spam folder or a typo in the order email, and we resend to the correct address. If a line that was working stops later, that is normally a server switch or an expired plan rather than anything lost, and we re-issue or repoint your line. Fastest route is WhatsApp on +1 939 699 3536, or email support@ibostreaming.com.',
+        'link_text' => 'Get help now',
+        'link_url'  => iptv_page_url('contact', 'https://ibostreaming.com/contact/'),
+    ),
+    array(
+        'question'  => 'What devices does this work on?',
+        'answer'    => 'Essentially anything you already own. Smart TVs (Samsung, LG, Sony, Android TV), Amazon Firestick and Fire TV Cube, Apple TV, Android phones and tablets, iPhone and iPad, Windows and Mac computers, plus MAG and Formuler set-top boxes. You do not need to buy new hardware: install a free IPTV player like TiviMate, IPTV Smarters or IBO Player Pro, paste in your playlist, and the full channel list and VOD library load automatically.',
+        'link_text' => 'See the device setup guides',
+        'link_url'  => iptv_page_url('guide', 'https://ibostreaming.com/guide/'),
+    ),
+));
 
 $faq_open_class   = 'bg-white rounded-2xl border transition-all duration-200 overflow-hidden border-zinc-300 shadow-sm ring-1 ring-zinc-200/60';
 $faq_closed_class = 'bg-white rounded-2xl border transition-all duration-200 overflow-hidden border-zinc-200/90 hover:border-zinc-300 shadow-xs';

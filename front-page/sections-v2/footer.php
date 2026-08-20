@@ -28,12 +28,8 @@ $lp_front_id = get_option('page_on_front');
  * @param array  $defaults Rows to use when the field is empty or ACF is inactive.
  * @return array<int,array{label:string,url:string}>
  */
-$lp_footer_rows = function ($key, $defaults) use ($lp_front_id) {
-    $rows = function_exists('get_field') ? get_field($key, $lp_front_id) : null;
-
-    if (empty($rows) || !is_array($rows)) {
-        return $defaults;
-    }
+$lp_footer_rows = function ($key, $defaults) {
+    $rows = iptv_lp_list($key, $defaults);
 
     $clean = array();
     foreach ($rows as $row) {

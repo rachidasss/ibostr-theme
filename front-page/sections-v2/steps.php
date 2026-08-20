@@ -6,23 +6,20 @@
  */
 if (!defined('ABSPATH')) { exit; }
 
-$lp_steps_items = function_exists('get_field') ? get_field('lp_steps_items', get_option('page_on_front')) : null;
-if (empty($lp_steps_items) || !is_array($lp_steps_items)) {
-    $lp_steps_items = array(
-        array(
-            'title' => 'Select your plan',
-            'text'  => 'Pick the subscription that fits you and checkout securely in seconds.',
-        ),
-        array(
-            'title' => 'Receive credentials',
-            'text'  => 'We email your login and a simple setup guide instantly. Check spam if needed.',
-        ),
-        array(
-            'title' => 'Start watching',
-            'text'  => 'Connect your device and enjoy channels, movies, and live sports right away.',
-        ),
-    );
-}
+$lp_steps_items = iptv_lp_list('lp_steps_items', array(
+    array(
+        'title' => 'Select your plan',
+        'text'  => 'Pick the subscription that fits you and checkout securely in seconds.',
+    ),
+    array(
+        'title' => 'Receive credentials',
+        'text'  => 'We email your login and a simple setup guide instantly. Check spam if needed.',
+    ),
+    array(
+        'title' => 'Start watching',
+        'text'  => 'Connect your device and enjoy channels, movies, and live sports right away.',
+    ),
+));
 
 // Per-step icons are design, not copy: reproduced verbatim from the source and
 // matched to the step by position.

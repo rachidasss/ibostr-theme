@@ -11,72 +11,68 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$lp_showcase_rows = function_exists('get_field') ? get_field('lp_showcase_items', get_option('page_on_front')) : null;
-
-if (empty($lp_showcase_rows) || !is_array($lp_showcase_rows)) {
-    $lp_showcase_rows = array(
-        array(
-            'card_id'    => 'offering-card-live-sports-40k',
-            'image'      => 'https://ibostreaming.com/wp-content/uploads/2026/08/live-sports.webp',
-            'img_width'  => '1024',
-            'img_height' => '1536',
-            'title'      => '40,000+ Live Channels & Global Sports',
-            'badge'      => '🔥 No Blackouts & Zero Lag',
-            'text'       => 'Catch every goal, touchdown, and knockout live in crystal-clear quality. Zero regional blackouts, ultra-low latency streams, and full 7-day catch-up on all devices.',
-            'feature'    => 'Anti-Freeze Server Network',
-        ),
-        array(
-            'card_id'    => 'offering-card-movies-series',
-            'image'      => 'https://ibostreaming.com/wp-content/uploads/2026/07/movies-series.webp',
-            'img_width'  => '896',
-            'img_height' => '1200',
-            'title'      => '200,000+ VOD Movies & Complete Series',
-            'badge'      => '🍿 Updated Daily With New Releases',
-            'text'       => 'Cancel your expensive streaming apps! Instant access to over 200,000 cinema blockbusters and complete TV boxsets with multi-language subtitles & spatial audio.',
-            'feature'    => 'Multi-Language Subtitles',
-        ),
-        array(
-            'card_id'    => 'offering-card-ppv-events',
-            'image'      => 'https://ibostreaming.com/wp-content/uploads/2026/07/ppv-events.webp',
-            'img_width'  => '896',
-            'img_height' => '1200',
-            'title'      => 'Free PPV & Combat Sports Mega-Events',
-            'badge'      => '🥊 Zero Pay-Per-View Fees',
-            'text'       => 'Stop paying $80+ per event! Stream every MMA main card, championship boxing fight night, live wrestling event, and global pay-per-view mega-event live at no extra cost.',
-            'feature'    => 'Save $80 Per Fight Night',
-        ),
-        array(
-            'card_id'    => 'offering-card-live-news',
-            'image'      => 'https://ibostreaming.com/wp-content/uploads/2026/07/live-news.webp',
-            'img_width'  => '896',
-            'img_height' => '1200',
-            'title'      => '24/7 Worldwide Live News Networks',
-            'badge'      => '⚡ Real-Time Breaking Coverage',
-            'text'       => 'Stay informed around the clock with direct satellite feeds from leading international news, financial, and local world networks with zero stream delay.',
-            'feature'    => 'Direct Satellite Feed',
-        ),
-        array(
-            'card_id'    => 'offering-card-documentaries',
-            'image'      => 'https://ibostreaming.com/wp-content/uploads/2026/07/documentaries.webp',
-            'img_width'  => '896',
-            'img_height' => '1200',
-            'title'      => 'Documentaries & Nature Networks',
-            'badge'      => '🌿 Unlimited Binge Watching',
-            'text'       => 'Immerse yourself in breathtaking nature, science, space, true crime, and history documentary series from world-class producers in spatial surround sound.',
-            'feature'    => 'Nature & Wildlife',
-        ),
-        array(
-            'card_id'    => 'offering-card-kids-family',
-            'image'      => 'https://ibostreaming.com/wp-content/uploads/2026/07/kids-family.webp',
-            'img_width'  => '896',
-            'img_height' => '1200',
-            'title'      => 'Kids & Family Entertainment Hub',
-            'badge'      => '🛡️ Parental Control Locked',
-            'text'       => 'Safe, 100% commercial-free entertainment for children of all ages. Hundreds of live kids channels and animated family movies with instant multi-language audio.',
-            'feature'    => '100% Commercial-Free',
-        ),
-    );
-}
+$lp_showcase_rows = iptv_lp_list('lp_showcase_items', array(
+    array(
+        'card_id'    => 'offering-card-live-sports-40k',
+        'image'      => 'https://ibostreaming.com/wp-content/uploads/2026/08/live-sports.webp',
+        'img_width'  => '1024',
+        'img_height' => '1536',
+        'title'      => '40,000+ Live Channels & Global Sports',
+        'badge'      => '🔥 No Blackouts & Zero Lag',
+        'text'       => 'Catch every goal, touchdown, and knockout live in crystal-clear quality. Zero regional blackouts, ultra-low latency streams, and full 7-day catch-up on all devices.',
+        'feature'    => 'Anti-Freeze Server Network',
+    ),
+    array(
+        'card_id'    => 'offering-card-movies-series',
+        'image'      => 'https://ibostreaming.com/wp-content/uploads/2026/07/movies-series.webp',
+        'img_width'  => '896',
+        'img_height' => '1200',
+        'title'      => '200,000+ VOD Movies & Complete Series',
+        'badge'      => '🍿 Updated Daily With New Releases',
+        'text'       => 'Cancel your expensive streaming apps! Instant access to over 200,000 cinema blockbusters and complete TV boxsets with multi-language subtitles & spatial audio.',
+        'feature'    => 'Multi-Language Subtitles',
+    ),
+    array(
+        'card_id'    => 'offering-card-ppv-events',
+        'image'      => 'https://ibostreaming.com/wp-content/uploads/2026/07/ppv-events.webp',
+        'img_width'  => '896',
+        'img_height' => '1200',
+        'title'      => 'Free PPV & Combat Sports Mega-Events',
+        'badge'      => '🥊 Zero Pay-Per-View Fees',
+        'text'       => 'Stop paying $80+ per event! Stream every MMA main card, championship boxing fight night, live wrestling event, and global pay-per-view mega-event live at no extra cost.',
+        'feature'    => 'Save $80 Per Fight Night',
+    ),
+    array(
+        'card_id'    => 'offering-card-live-news',
+        'image'      => 'https://ibostreaming.com/wp-content/uploads/2026/07/live-news.webp',
+        'img_width'  => '896',
+        'img_height' => '1200',
+        'title'      => '24/7 Worldwide Live News Networks',
+        'badge'      => '⚡ Real-Time Breaking Coverage',
+        'text'       => 'Stay informed around the clock with direct satellite feeds from leading international news, financial, and local world networks with zero stream delay.',
+        'feature'    => 'Direct Satellite Feed',
+    ),
+    array(
+        'card_id'    => 'offering-card-documentaries',
+        'image'      => 'https://ibostreaming.com/wp-content/uploads/2026/07/documentaries.webp',
+        'img_width'  => '896',
+        'img_height' => '1200',
+        'title'      => 'Documentaries & Nature Networks',
+        'badge'      => '🌿 Unlimited Binge Watching',
+        'text'       => 'Immerse yourself in breathtaking nature, science, space, true crime, and history documentary series from world-class producers in spatial surround sound.',
+        'feature'    => 'Nature & Wildlife',
+    ),
+    array(
+        'card_id'    => 'offering-card-kids-family',
+        'image'      => 'https://ibostreaming.com/wp-content/uploads/2026/07/kids-family.webp',
+        'img_width'  => '896',
+        'img_height' => '1200',
+        'title'      => 'Kids & Family Entertainment Hub',
+        'badge'      => '🛡️ Parental Control Locked',
+        'text'       => 'Safe, 100% commercial-free entertainment for children of all ages. Hundreds of live kids channels and animated family movies with instant multi-language audio.',
+        'feature'    => '100% Commercial-Free',
+    ),
+));
 
 // ACF image sub-fields return an array, an ID or a URL depending on the field's
 // return format. Normalise all three to a URL string.

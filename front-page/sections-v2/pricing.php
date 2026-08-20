@@ -47,33 +47,27 @@ if (!empty($lp_price_table)) : ?>
 /* -----------------------------------------------------------------------
  * Step 1 – screen count buttons
  * -------------------------------------------------------------------- */
-$lp_price_screens = function_exists('get_field') ? get_field('lp_price_screens', $lp_price_front_id) : null;
-if (empty($lp_price_screens) || !is_array($lp_price_screens)) {
-    $lp_price_screens = array(
-        array('label' => '1 Screen',  'badge' => '',        'selected' => true),
-        array('label' => '2 Screens', 'badge' => 'POPULAR', 'selected' => false),
-        array('label' => '3 Screens', 'badge' => '',        'selected' => false),
-        array('label' => '4 Screens', 'badge' => '',        'selected' => false),
-    );
-}
+$lp_price_screens = iptv_lp_list('lp_price_screens', array(
+    array('label' => '1 Screen',  'badge' => '',        'selected' => true),
+    array('label' => '2 Screens', 'badge' => 'POPULAR', 'selected' => false),
+    array('label' => '3 Screens', 'badge' => '',        'selected' => false),
+    array('label' => '4 Screens', 'badge' => '',        'selected' => false),
+));
 
 /* -----------------------------------------------------------------------
  * Step 2 – duration buttons
  * -------------------------------------------------------------------- */
-$lp_price_durations = function_exists('get_field') ? get_field('lp_price_durations', $lp_price_front_id) : null;
-if (empty($lp_price_durations) || !is_array($lp_price_durations)) {
-    $lp_price_durations = array(
-        array('label' => '1 Month',   'badge' => '',           'price' => '$13.99', 'per_month' => '$13.99/mo', 'selected' => false),
-        array('label' => '3 Months',  'badge' => 'Save 35%',   'price' => '$24.99', 'per_month' => '$8.33/mo',  'selected' => false),
-        array('label' => '6 Months',  'badge' => 'Save 47%',   'price' => '$34.99', 'per_month' => '$5.83/mo',  'selected' => false),
-        array('label' => '12 Months', 'badge' => 'Best value', 'price' => '$59.99', 'per_month' => '$5.00/mo',  'selected' => true),
-    );
-}
+$lp_price_durations = iptv_lp_list('lp_price_durations', array(
+    array('label' => '1 Month',   'badge' => '',           'price' => '$13.99', 'per_month' => '$13.99/mo', 'selected' => false),
+    array('label' => '3 Months',  'badge' => 'Save 35%',   'price' => '$24.99', 'per_month' => '$8.33/mo',  'selected' => false),
+    array('label' => '6 Months',  'badge' => 'Save 47%',   'price' => '$34.99', 'per_month' => '$5.83/mo',  'selected' => false),
+    array('label' => '12 Months', 'badge' => 'Best value', 'price' => '$59.99', 'per_month' => '$5.00/mo',  'selected' => true),
+));
 
 /* -----------------------------------------------------------------------
  * "Every plan is fully loaded" checklist
  * -------------------------------------------------------------------- */
-$lp_price_features = iptv_lp_list('lp_price_features', 'text', array(
+$lp_price_features = iptv_lp_list('lp_price_features', array(
     array('text' => '40,000+ Live TV Channels'),
     array('text' => '200,000+ Movies & Series (VOD)'),
     array('text' => '4K, Ultra HD & HD quality'),
@@ -84,7 +78,7 @@ $lp_price_features = iptv_lp_list('lp_price_features', 'text', array(
     array('text' => 'Anti-Buffer™ 9.8'),
     array('text' => 'Pay-Per-View (PPV) events'),
     array('text' => '24/7 priority support'),
-));
+), 'text');
 
 /* -----------------------------------------------------------------------
  * Trust cards. The icon and its colour tone are design, not copy, so they stay
@@ -109,51 +103,45 @@ $lp_price_card_icons = array(
     ),
 );
 
-$lp_price_cards = function_exists('get_field') ? get_field('lp_price_cards', $lp_price_front_id) : null;
-if (empty($lp_price_cards) || !is_array($lp_price_cards)) {
-    $lp_price_cards = array(
-        array(
-            'icon'  => 'lock',
-            'badge' => 'BANK-GRADE SECURITY',
-            'title' => '256-Bit SSL Encrypted',
-            'text'  => '100% encrypted and PCI-DSS compliant checkout. Your payment and privacy are fully protected.',
-        ),
-        array(
-            'icon'  => 'zap',
-            'badge' => 'ANTI-FREEZE™ TECH',
-            'title' => '99.9% Server Uptime',
-            'text'  => 'High-speed 100Gbps European servers with failover protection ensure zero buffering during major sports.',
-        ),
-        array(
-            'icon'  => 'clock',
-            'badge' => '< 2 MIN ACTIVATION',
-            'title' => 'Instant Automated Delivery',
-            'text'  => 'Credentials and easy setup guides delivered directly to your email and WhatsApp within 120 seconds.',
-        ),
-        array(
-            'icon'  => 'award',
-            'badge' => 'MONEY-BACK GUARANTEE',
-            'title' => 'Risk-Free Guarantee',
-            'text'  => 'Not satisfied? Contact our support team for a swift, hassle-free refund policy.',
-        ),
-    );
-}
+$lp_price_cards = iptv_lp_list('lp_price_cards', array(
+    array(
+        'icon'  => 'lock',
+        'badge' => 'BANK-GRADE SECURITY',
+        'title' => '256-Bit SSL Encrypted',
+        'text'  => '100% encrypted and PCI-DSS compliant checkout. Your payment and privacy are fully protected.',
+    ),
+    array(
+        'icon'  => 'zap',
+        'badge' => 'ANTI-FREEZE™ TECH',
+        'title' => '99.9% Server Uptime',
+        'text'  => 'High-speed 100Gbps European servers with failover protection ensure zero buffering during major sports.',
+    ),
+    array(
+        'icon'  => 'clock',
+        'badge' => '< 2 MIN ACTIVATION',
+        'title' => 'Instant Automated Delivery',
+        'text'  => 'Credentials and easy setup guides delivered directly to your email and WhatsApp within 120 seconds.',
+    ),
+    array(
+        'icon'  => 'award',
+        'badge' => 'MONEY-BACK GUARANTEE',
+        'title' => 'Risk-Free Guarantee',
+        'text'  => 'Not satisfied? Contact our support team for a swift, hassle-free refund policy.',
+    ),
+));
 
 $lp_price_card_verified = iptv_text('lp_price_card_verified', 'Verified & Protected');
 
 /* -----------------------------------------------------------------------
  * Payment method badges
  * -------------------------------------------------------------------- */
-$lp_price_payments = function_exists('get_field') ? get_field('lp_price_payments', $lp_price_front_id) : null;
-if (empty($lp_price_payments) || !is_array($lp_price_payments)) {
-    $lp_price_payments = array(
-        array('label' => 'VISA',       'accent' => false),
-        array('label' => 'MASTERCARD', 'accent' => false),
-        array('label' => 'APPLE PAY',  'accent' => false),
-        array('label' => 'GOOGLE PAY', 'accent' => false),
-        array('label' => 'CRYPTO',     'accent' => true),
-    );
-}
+$lp_price_payments = iptv_lp_list('lp_price_payments', array(
+    array('label' => 'VISA',       'accent' => false),
+    array('label' => 'MASTERCARD', 'accent' => false),
+    array('label' => 'APPLE PAY',  'accent' => false),
+    array('label' => 'GOOGLE PAY', 'accent' => false),
+    array('label' => 'CRYPTO',     'accent' => true),
+));
 
 // Panel checkout endpoint. The button carries no href in the prerendered page —
 // JS builds the URL from the selected screen count and duration — so this is

@@ -33,83 +33,80 @@ $lp_feat_icons = array(
 );
 
 /* ---- Country chips ---- */
-$lp_feat_countries = iptv_lp_list('lp_feat_countries', 'label', array(
+$lp_feat_countries = iptv_lp_list('lp_feat_countries', array(
     array('label' => '🇺🇸 USA'),
     array('label' => '🇫🇷 France'),
     array('label' => '🇨🇦 Canada'),
     array('label' => '🇩🇪 Germany'),
     array('label' => '🇬🇧 UK'),
     array('label' => '🇨🇭 Switzerland'),
-));
+), 'label');
 
 /* ---- Trust strip ---- */
-$lp_feat_stats = iptv_lp_list('lp_feat_stats', 'label', array(
+$lp_feat_stats = iptv_lp_list('lp_feat_stats', array(
     array('label' => '40k+ Worldwide Live Channels'),
     array('label' => '200k+ Movies & Multi-Lang VOD'),
     array('label' => 'Anti-Freeze™ 100Gbps Servers'),
     array('label' => 'Instant 2-Minute Activation'),
-));
+), 'label');
 
 /* ---- Feature cards ---- */
-$lp_feat_cards = function_exists('get_field') ? get_field('lp_feat_cards', $lp_feat_front_id) : null;
-if (empty($lp_feat_cards) || !is_array($lp_feat_cards)) {
-    $lp_feat_cards = array(
-        array(
-            'icon'  => 'tv',
-            'badge' => 'USA • FR • CA • DE • UK • CH',
-            'title' => '40,000+ Worldwide Channels',
-            'text'  => 'Complete live sports & premium TV from USA, France, Canada, Germany, UK & Switzerland. Football, American football, basketball, motorsport & MMA in 60FPS.',
-            'tag_1' => '✓ USA, FR, CA, DE, UK, CH',
-            'tag_2' => '✓ Live Football & Cup Nights',
-            'tag_3' => '✓ Live Sports in 60FPS',
-        ),
-        array(
-            'icon'  => 'film',
-            'badge' => 'MULTI-AUDIO & SUBS',
-            'title' => '200,000+ 4K Movies & Series',
-            'text'  => 'Latest cinema blockbusters & complete box sets from the biggest studios and networks with multi-language audio (EN, FR, DE) and subtitles.',
-            'tag_1' => '✓ Cinema 4K HDR',
-            'tag_2' => '✓ Multi-Audio Dubs',
-            'tag_3' => '✓ Daily VOD Updates',
-        ),
-        array(
-            'icon'  => 'zap',
-            'badge' => '99.9% UPTIME GUARANTEE',
-            'title' => 'Anti-Freeze™ Load Balancing',
-            'text'  => 'Engineered with 100Gbps high-capacity global edge servers ensuring smooth, zero-buffer playback even during high-traffic finals and title-decider events.',
-            'tag_1' => '✓ Zero Buffering Tech',
-            'tag_2' => '✓ 100Gbps Edge Network',
-            'tag_3' => '✓ Ultra-Low Latency',
-        ),
-        array(
-            'icon'  => 'sparkles',
-            'badge' => 'OLED & SMART TV READY',
-            'title' => 'True 4K Ultra HD & 60 FPS',
-            'text'  => 'Native high-bitrate streaming with vibrant HDR colors and crisp Dolby Digital 5.1 surround sound tuned for big-screen TVs.',
-            'tag_1' => '✓ Uncompressed 4K',
-            'tag_2' => '✓ 60 FPS Smooth Motion',
-            'tag_3' => '✓ Dolby Surround',
-        ),
-        array(
-            'icon'  => 'compass',
-            'badge' => 'FULL REPLAY GUIDE',
-            'title' => '7-Day Catch-Up & Smart EPG',
-            'text'  => 'Never miss a goal or episode. Rewind live sports, access interactive TV program schedules, and replay past 7 days instantly.',
-            'tag_1' => '✓ 7-Day Replay',
-            'tag_2' => '✓ Interactive TV Guide',
-            'tag_3' => '✓ Pause & Rewind Live',
-        ),
-        array(
-            'icon'  => 'headphones',
-            'badge' => '2-MIN ACTIVATION',
-            'title' => 'Instant Setup & 24/7 VIP Help',
-            'text'  => 'Instant login delivery right after purchase. Compatible with Smart TV, Firestick, Apple TV, Android, MAG, iOS & PC with live 24/7 setup support.',
-            'tag_1' => '✓ Firestick & Smart TV',
-            'tag_2' => '✓ Instant Email/WhatsApp',
-            'tag_3' => '✓ 24/7 Live Support',
-        ),
-    );
-}
+$lp_feat_cards = iptv_lp_list('lp_feat_cards', array(
+    array(
+        'icon'  => 'tv',
+        'badge' => 'USA • FR • CA • DE • UK • CH',
+        'title' => '40,000+ Worldwide Channels',
+        'text'  => 'Complete live sports & premium TV from USA, France, Canada, Germany, UK & Switzerland. Football, American football, basketball, motorsport & MMA in 60FPS.',
+        'tag_1' => '✓ USA, FR, CA, DE, UK, CH',
+        'tag_2' => '✓ Live Football & Cup Nights',
+        'tag_3' => '✓ Live Sports in 60FPS',
+    ),
+    array(
+        'icon'  => 'film',
+        'badge' => 'MULTI-AUDIO & SUBS',
+        'title' => '200,000+ 4K Movies & Series',
+        'text'  => 'Latest cinema blockbusters & complete box sets from the biggest studios and networks with multi-language audio (EN, FR, DE) and subtitles.',
+        'tag_1' => '✓ Cinema 4K HDR',
+        'tag_2' => '✓ Multi-Audio Dubs',
+        'tag_3' => '✓ Daily VOD Updates',
+    ),
+    array(
+        'icon'  => 'zap',
+        'badge' => '99.9% UPTIME GUARANTEE',
+        'title' => 'Anti-Freeze™ Load Balancing',
+        'text'  => 'Engineered with 100Gbps high-capacity global edge servers ensuring smooth, zero-buffer playback even during high-traffic finals and title-decider events.',
+        'tag_1' => '✓ Zero Buffering Tech',
+        'tag_2' => '✓ 100Gbps Edge Network',
+        'tag_3' => '✓ Ultra-Low Latency',
+    ),
+    array(
+        'icon'  => 'sparkles',
+        'badge' => 'OLED & SMART TV READY',
+        'title' => 'True 4K Ultra HD & 60 FPS',
+        'text'  => 'Native high-bitrate streaming with vibrant HDR colors and crisp Dolby Digital 5.1 surround sound tuned for big-screen TVs.',
+        'tag_1' => '✓ Uncompressed 4K',
+        'tag_2' => '✓ 60 FPS Smooth Motion',
+        'tag_3' => '✓ Dolby Surround',
+    ),
+    array(
+        'icon'  => 'compass',
+        'badge' => 'FULL REPLAY GUIDE',
+        'title' => '7-Day Catch-Up & Smart EPG',
+        'text'  => 'Never miss a goal or episode. Rewind live sports, access interactive TV program schedules, and replay past 7 days instantly.',
+        'tag_1' => '✓ 7-Day Replay',
+        'tag_2' => '✓ Interactive TV Guide',
+        'tag_3' => '✓ Pause & Rewind Live',
+    ),
+    array(
+        'icon'  => 'headphones',
+        'badge' => '2-MIN ACTIVATION',
+        'title' => 'Instant Setup & 24/7 VIP Help',
+        'text'  => 'Instant login delivery right after purchase. Compatible with Smart TV, Firestick, Apple TV, Android, MAG, iOS & PC with live 24/7 setup support.',
+        'tag_1' => '✓ Firestick & Smart TV',
+        'tag_2' => '✓ Instant Email/WhatsApp',
+        'tag_3' => '✓ 24/7 Live Support',
+    ),
+));
 ?>
 <section class="relative w-full bg-[#FAFAFC] text-zinc-900 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 font-sans border-t border-b border-zinc-200/80 select-none overflow-hidden" id="features-section"><div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full bg-[radial-gradient(ellipse_at_top,rgba(0,124,235,0.06),transparent_60%)] pointer-events-none"></div><div class="max-w-6xl mx-auto space-y-8 relative z-10"><div class="text-center space-y-3 max-w-3xl mx-auto"><div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#007CEB] text-[11px] font-extrabold uppercase tracking-wider shadow-2xs"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flame w-3.5 h-3.5 fill-[#007CEB] text-[#007CEB] flex-none" aria-hidden="true"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"></path></svg><span><?php echo esc_html(iptv_text('lp_feat_badge', 'WORLDWIDE PREMIUM ENTERTAINMENT')); ?></span></div><h2 class="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-zinc-950 tracking-tight leading-tight uppercase"><?php echo esc_html(iptv_text('lp_feat_title', 'One Subscription.')); ?> <span class="text-[#007CEB]"><?php echo esc_html(iptv_text('lp_feat_title_accent', 'Every Channel Worldwide.')); ?></span></h2><p class="font-sans text-xs sm:text-sm text-zinc-600 max-w-2xl mx-auto leading-relaxed font-normal"><?php echo wp_kses_post(iptv_text('lp_feat_subtitle', 'Streaming built for top demand across <strong class="text-zinc-900 font-bold">USA, France, Canada, Germany, UK &amp; Switzerland</strong>. Raw 4K streams, full sports packages, 200,000+ VODs and anti-freeze reliability.')); ?></p><div class="pt-1 flex flex-wrap items-center justify-center gap-2 text-xs font-bold text-zinc-700"><?php foreach ($lp_feat_countries as $lp_feat_country) : ?><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white border border-zinc-200/90 shadow-2xs"><?php echo esc_html($lp_feat_sub($lp_feat_country, 'label')); ?></span><?php endforeach; ?><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-50 text-[#007CEB] border border-blue-200/80 shadow-2xs font-extrabold"><?php echo esc_html(iptv_text('lp_feat_countries_more', '+ 140 More')); ?></span></div></div><div class="p-3.5 rounded-2xl bg-white border border-zinc-200/90 flex flex-wrap items-center justify-around gap-3 text-xs font-bold text-zinc-800 text-center shadow-xs"><?php foreach ($lp_feat_stats as $lp_feat_stat) : ?><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check w-4 h-4 text-emerald-600 flex-none" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span><?php echo esc_html($lp_feat_sub($lp_feat_stat, 'label')); ?></span></div><?php endforeach; ?></div><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"><?php
 foreach ($lp_feat_cards as $lp_feat_card) :
