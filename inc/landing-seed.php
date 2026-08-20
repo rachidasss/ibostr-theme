@@ -352,7 +352,11 @@ add_action('wp_footer', function () {
         // than it returns them, so a value that does not survive a read would
         // quietly replace working copy with nothing - which is exactly how the
         // showcase images came back as src="" the first time this ran.
-        if (iptv_lp_seed_lost_content($collected[$key], get_field($key, $post_id))) {
+        // Compare against the prepared value, not the raw one: preparing is
+        // allowed to change shape on purpose (a one-column list becomes lines,
+        // an image URL becomes an attachment ID). Only content going missing
+        // is a failure.
+        if (iptv_lp_seed_lost_content($value, get_field($key, $post_id))) {
             if (function_exists('delete_field')) {
                 delete_field($key, $post_id);
             }
