@@ -497,7 +497,7 @@ if (!$is_thank_you_page && class_exists('WooCommerce') && function_exists('WC') 
     <?php endif; ?> <!-- End checkout page conditional -->
 
     <!-- Front Page Footer -->
-    <?php include get_template_directory() . '/front-page/sections/footer.php'; ?>
+    <?php include get_template_directory() . '/front-page/sections-v2/footer.php'; ?>
 
     <script
         src="<?php echo get_template_directory_uri(); ?>/front-page/js/checkout.js?v=<?php echo time(); ?>"></script>

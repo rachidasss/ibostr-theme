@@ -109,7 +109,7 @@ while (have_posts()) :
 
 endwhile;
 
-include $front_dir . '/sections/footer.php';
+include $front_dir . '/sections-v2/footer.php';
 ?>
 
 <script>

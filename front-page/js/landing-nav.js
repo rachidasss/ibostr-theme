@@ -426,6 +426,11 @@
         });
     }
 
+    // Tells front-page/js/landing-footer.js to stand down. That file carries the
+    // footer half of this one for templates that do not load landing-nav.js; if
+    // both bound the accordions, every click would toggle a column twice.
+    window.iptvLandingNavLoaded = true;
+
     function init() {
         // Mobile nav first: it appends the panel into the header, and the anchor
         // listener is scoped to the header, so the panel's links are covered

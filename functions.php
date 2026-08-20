@@ -421,6 +421,51 @@ add_action('wp_enqueue_scripts', function () {
     }
 }, 100);
 
+/**
+ * The landing footer, on every template that is not the landing template.
+ *
+ * All twelve legacy templates render front-page/sections-v2/footer.php now, so
+ * the site has one footer rather than two. They cannot load landing.css to style
+ * it: the bundle is 186 KB, and its preflight is a global reset that would
+ * restyle the whole page.
+ *
+ * landing-footer.css instead carries only the rules the footer's own classes
+ * need, every selector scoped to #ibo-footer - 54 KB raw, under 9 KB over the
+ * wire, and provably unable to touch anything outside the footer.
+ *
+ * landing-footer.js is the footer half of landing-nav.js. The column headings
+ * are buttons whose lists are `hidden md:block`, so without it every footer link
+ * is in the HTML but unreachable below 768px.
+ */
+add_action('wp_enqueue_scripts', function () {
+    if (iptv_is_landing_template()) {
+        return;
+    }
+
+    $css = 'front-page/css/landing-footer.css';
+
+    if (file_exists(get_template_directory() . '/' . $css)) {
+        wp_enqueue_style(
+            'iptv-landing-footer',
+            get_template_directory_uri() . '/' . $css,
+            array(),
+            iptv_asset_version($css)
+        );
+    }
+
+    $js = 'front-page/js/landing-footer.js';
+
+    if (file_exists(get_template_directory() . '/' . $js)) {
+        wp_enqueue_script(
+            'iptv-landing-footer',
+            get_template_directory_uri() . '/' . $js,
+            array(),
+            iptv_asset_version($js),
+            true
+        );
+    }
+}, 100);
+
 // Enqueue theme styles
 function my_iptv_enqueue_styles()
 {

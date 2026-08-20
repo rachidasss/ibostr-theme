@@ -315,7 +315,7 @@ body.single-faq .faq-single {
 <?php endwhile; ?>
 
 <!-- Footer -->
-<?php include get_template_directory() . '/front-page/sections/footer.php'; ?>
+<?php include get_template_directory() . '/front-page/sections-v2/footer.php'; ?>
 
 <?php
 $js_files = ['header.js', 'currency.js'];

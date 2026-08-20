@@ -152,7 +152,7 @@ http_response_code(404);
         </div>
     </div>
 
-    <?php include get_template_directory() . '/front-page/sections/footer.php'; ?>
+    <?php include get_template_directory() . '/front-page/sections-v2/footer.php'; ?>
 
     <script src="<?php echo get_template_directory_uri(); ?>/front-page/js/currency.js"></script>
 
