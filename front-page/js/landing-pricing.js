@@ -202,6 +202,12 @@
         var domCol = columnFromDom(tpl.price, monthVals);
         var domScreens = screenVals[selScreen];
 
+        // The screen count the server rendered as selected. Used to tell "the
+        // page is still showing what PHP printed" from "the visitor has changed
+        // something", which decides whether the authored savings badges are
+        // still trustworthy — see the badge block in apply().
+        var initialScreen = selScreen;
+
         function column(screens) {
             return localizedColumn(screens) || (screens === domScreens ? domCol : null);
         }
@@ -228,10 +234,27 @@
                 btn.setAttribute('aria-pressed', on ? 'true' : 'false');
             });
 
-            updateCheckoutUrl(screens, months);
-
             var col = column(screens);
-            if (!col) return; // no data for this column — keep the rendered numbers
+
+            if (!col) {
+                // No prices for this column. Do NOT point the checkout at a plan
+                // whose price the page cannot show: the panel would keep the
+                // rendered figures while the button bought a different plan, and
+                // a buy button that quotes one price and charges another is the
+                // worst failure this file can produce. Put the selection back
+                // where the numbers came from and leave the URL alone.
+                selScreen = initialScreen;
+
+                screenBtns.forEach(function (btn, i) {
+                    var on = i === selScreen;
+                    paint(btn, on, SCREEN_ON, SCREEN_OFF);
+                    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+                });
+
+                return;
+            }
+
+            updateCheckoutUrl(screens, months);
 
             var monthly = col[1];
             var now = col[months];
@@ -244,10 +267,23 @@
                 write(p.price, tpl.price[i], price);
                 write(p.per, tpl.per[i], price / m);
 
-                // Badge copy is the editor's. Rewrite it only when it already
-                // states a percentage, so "Best value" survives and the
-                // badge-less 1-month button never gains one.
-                if (p.badge && tpl.badge[i] && /%/.test(textOf(p.badge))) {
+                // Badge copy is the editor's, and on first paint it stays the
+                // editor's. The authored badges ("Save 35%", "Save 47%") are
+                // lower than the arithmetic on the 1-screen ladder (40%, 58%) —
+                // they understate the discount, which is a choice the editor is
+                // entitled to make and not something a script should overwrite
+                // the moment the page loads.
+                //
+                // Once the visitor picks a different screen count those numbers
+                // stop being conservative and start being wrong in the dangerous
+                // direction: at 4 screens a fixed "Save 35%" sits next to a real
+                // 23% saving, which overstates the discount. So recompute only
+                // after the selection has actually moved.
+                //
+                // Only badges that already state a percentage are touched, so
+                // "Best value" survives and the badge-less 1-month button never
+                // gains one.
+                if (selScreen !== initialScreen && p.badge && tpl.badge[i] && /%/.test(textOf(p.badge))) {
                     var pct = savingPct(price, monthly, m);
                     p.badge.classList.toggle('hidden', pct <= 0);
                     if (pct > 0) p.badge.textContent = renderLast(tpl.badge[i], pct);

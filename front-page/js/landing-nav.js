@@ -37,7 +37,13 @@
         '#why-us-section button',
         '#features-compact-cta-btn',
         '#how-it-works-cta-btn',
-        '#start-streaming-now-cta-btn'
+        '#start-streaming-now-cta-btn',
+        // The six "Access" buttons on the showcase cards. Same story as the
+        // rest: React held their destination and the prerendered markup has
+        // none, so without this they are six dead buttons in the middle of the
+        // page. This selector matches all six, which is why initCtas() uses
+        // querySelectorAll.
+        '#whats-popular-section [id^="offering-card-"] button'
     ];
 
     var PANEL_ID = 'landing-mobile-nav';
@@ -148,7 +154,13 @@
 
     function initCtas() {
         CTA_SELECTORS.forEach(function (selector) {
-            wireCta(document.querySelector(selector));
+            // querySelectorAll, not querySelector: CTA_SELECTORS grew a pattern
+            // that matches more than one element (the six showcase cards), and
+            // wiring only the first would have left five dead buttons that look
+            // identical to the working one.
+            var matches = document.querySelectorAll(selector);
+
+            Array.prototype.forEach.call(matches, wireCta);
         });
     }
 
@@ -331,10 +343,61 @@
         // the breakpoint change is the only reason this listener exists — the
         // header itself has a single visual state and needs no scroll or resize
         // handling. offsetParent is null exactly when the toggle is not rendered.
+        // Debounced: the body reads offsetParent, which forces a synchronous
+        // layout, and resize fires continuously while a window is dragged. The
+        // only thing being watched for is the breakpoint crossing that hides the
+        // hamburger, so answering once the drag settles is enough.
+        var resizeTimer = null;
+
         window.addEventListener('resize', function () {
-            if (isOpen() && toggle.offsetParent === null) {
-                setOpen(false, false);
+            if (resizeTimer) {
+                window.clearTimeout(resizeTimer);
             }
+
+            resizeTimer = window.setTimeout(function () {
+                resizeTimer = null;
+
+                if (isOpen() && toggle.offsetParent === null) {
+                    setOpen(false, false);
+                }
+            }, 150);
+        });
+    }
+
+    /**
+     * The footer's three column accordions.
+     *
+     * Each heading is a <button> followed by a <ul class="... hidden md:block">.
+     * From 768px up the md: rule shows the list and the button is inert by
+     * design (md:cursor-default). Below that the list is hidden and nothing ever
+     * unhid it: fourteen footer links — every legal page, the guide, the blog,
+     * the M3U converter — were present in the HTML but unreachable on a phone,
+     * which is most of this site's traffic.
+     *
+     * Toggling `hidden` is enough. `md:block` still wins above the breakpoint,
+     * so a column left closed on mobile is still open on desktop, and a column
+     * opened on mobile does not leak a stray inline style into the desktop
+     * layout.
+     */
+    function initFooterAccordions(footer) {
+        var buttons = footer.querySelectorAll('button.md\\:cursor-default');
+
+        Array.prototype.forEach.call(buttons, function (button) {
+            var list = button.nextElementSibling;
+
+            if (!list || list.tagName !== 'UL') {
+                return;
+            }
+
+            // Truthful from the start: on mobile these render closed.
+            button.setAttribute('aria-expanded', list.classList.contains('hidden') ? 'false' : 'true');
+
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                var nowHidden = list.classList.toggle('hidden');
+                button.setAttribute('aria-expanded', nowHidden ? 'false' : 'true');
+            });
         });
     }
 
@@ -344,6 +407,8 @@
         if (!footer) {
             return;
         }
+
+        initFooterAccordions(footer);
 
         // Keyed off the icon, not aria-label="Scroll to top": the label is ACF
         // and translatable, while lucide-arrow-up appears exactly once in the
