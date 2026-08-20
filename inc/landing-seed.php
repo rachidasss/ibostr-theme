@@ -131,6 +131,25 @@ if (!function_exists('iptv_lp_seed_prepare')) {
             return $id ? $id : null;
         }
 
+        // A one-column list is a textarea holding one item per line, but
+        // iptv_lp_list() hands back the row shape every template expects.
+        // Storing that array unchanged puts an array where ACF expects a
+        // string, and the editor fatals the moment it tries to render it -
+        // silently truncating the form from that field onwards.
+        if (is_array($value) && in_array($field['type'], array('textarea', 'text'), true)) {
+            $lines = array();
+
+            foreach ($value as $row) {
+                $cell = is_array($row) ? reset($row) : $row;
+
+                if (is_scalar($cell) && trim((string) $cell) !== '') {
+                    $lines[] = trim((string) $cell);
+                }
+            }
+
+            return $lines ? implode("\n", $lines) : null;
+        }
+
         if ($field['type'] !== 'repeater' || !is_array($value)) {
             return $value;
         }
@@ -313,6 +332,19 @@ add_action('wp_footer', function () {
         }
 
         if (!update_field($key, $value, $post_id)) {
+            continue;
+        }
+
+        // An array stored in a string field renders fine on the front end and
+        // kills the editor, so shape is checked as well as content.
+        $stored = get_field($key, $post_id);
+
+        if (is_array($stored) !== is_array($value)) {
+            if (function_exists('delete_field')) {
+                delete_field($key, $post_id);
+            }
+
+            $skipped[] = $key . ' (stored shape does not match the field)';
             continue;
         }
 
