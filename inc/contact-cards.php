@@ -138,6 +138,53 @@ if (!function_exists('iptv_contact_whatsapp_number')) {
     }
 }
 
+if (!function_exists('iptv_email_off')) {
+    /**
+     * Shield email addresses in editor content from Cloudflare's obfuscation.
+     *
+     * Cloudflare Scrape Shield rewrites every mailto: link it finds into
+     * <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+     * data-cfemail="..."> with the words "[email protected]" as the visible
+     * text, and only a script restores the real address. A crawler that does
+     * not run that script — and any tool reading the raw HTML — sees the
+     * placeholder. On /about/ the entire "Getting hold of a human" section
+     * offered readers "[email protected]".
+     *
+     * The theme's own templates wrap their addresses at the point of output,
+     * but addresses typed into the editor are not covered by that, and there is
+     * no reason to hand-edit every page. <!--email_off--> is Cloudflare's
+     * documented opt-out; it strips the comments from the response, so nothing
+     * extra is shipped.
+     *
+     * Preferred over switching Email Obfuscation off in the dashboard, because
+     * panel.ibostreaming.com sits on the same Cloudflare zone and that setting
+     * is zone-wide.
+     *
+     * @param string $html Post content.
+     * @return string
+     */
+    function iptv_email_off($html)
+    {
+        if ($html === '' || strpos($html, 'mailto:') === false) {
+            return $html;
+        }
+
+        // Already wrapped by a template: leave it alone rather than nest.
+        if (strpos($html, '<!--email_off-->') !== false) {
+            return $html;
+        }
+
+        return preg_replace(
+            '#(<a\s[^>]*href=(["\'])mailto:[^"\']*\2[^>]*>.*?</a>)#is',
+            '<!--email_off-->$1<!--/email_off-->',
+            $html
+        );
+    }
+
+    add_filter('the_content', 'iptv_email_off', 20);
+    add_filter('widget_text', 'iptv_email_off', 20);
+}
+
 if (!function_exists('iptv_contact_cards_grid')) {
     /**
      * The cards themselves, without any section chrome.
