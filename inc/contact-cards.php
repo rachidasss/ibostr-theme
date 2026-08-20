@@ -165,7 +165,7 @@ if (!function_exists('iptv_email_off')) {
      */
     function iptv_email_off($html)
     {
-        if ($html === '' || strpos($html, 'mailto:') === false) {
+        if (!is_string($html) || $html === '') {
             return $html;
         }
 
@@ -174,11 +174,20 @@ if (!function_exists('iptv_email_off')) {
             return $html;
         }
 
-        return preg_replace(
-            '#(<a\s[^>]*href=(["\'])mailto:[^"\']*\2[^>]*>.*?</a>)#is',
-            '<!--email_off-->$1<!--/email_off-->',
-            $html
-        );
+        // Cloudflare rewrites BARE addresses in text, not just mailto: links.
+        // /about/ has no mailto: anywhere — it prints the address as plain text
+        // and Cloudflare turned that into an obfuscated anchor by itself. So
+        // matching links alone misses the common case.
+        //
+        // Wrapping the whole body rather than each address: the markers are a
+        // region opt-out, one balanced pair is all Cloudflare needs, and it
+        // avoids a regex that has to tell an address in text from one inside an
+        // attribute. Nothing here is a link Cloudflare should be rewriting.
+        if (!preg_match('/[\w.+-]+@[\w-]+\.[\w.-]+/', $html)) {
+            return $html;
+        }
+
+        return '<!--email_off-->' . $html . '<!--/email_off-->';
     }
 
     add_filter('the_content', 'iptv_email_off', 20);
