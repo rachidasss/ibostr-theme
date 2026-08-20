@@ -6316,8 +6316,8 @@
             "label": "Features — Country Chips",
             "name": "lp_feat_countries",
             "aria-label": "",
-            "type": "repeater",
-            "instructions": "The white flag chips under the intro paragraph. Six rows by default. The blue \"+ 140 More\" chip is a separate field and always renders last.",
+            "type": "textarea",
+            "instructions": "One country chip per line, flag emoji included. Example: 🇺🇸 USA  Leave empty to keep the list the page already shows.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -6325,35 +6325,11 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
-            "button_label": "Add row",
-            "min": 0,
-            "max": 0,
-            "rows_per_page": 20,
-            "collapsed": "",
-            "sub_fields": [
-                {
-                    "key": "field_lp_feat_countries_label",
-                    "label": "Chip Label",
-                    "name": "label",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": false,
-                    "conditional_logic": false,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "🇺🇸 USA",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_lp_feat_countries"
-                }
-            ]
+            "default_value": "",
+            "maxlength": "",
+            "rows": 6,
+            "placeholder": "",
+            "new_lines": ""
         },
         {
             "key": "field_lp_feat_countries_more",
@@ -6380,8 +6356,8 @@
             "label": "Features — Trust Strip Items",
             "name": "lp_feat_stats",
             "aria-label": "",
-            "type": "repeater",
-            "instructions": "The white bar of green-ticked claims between the intro and the cards. Four rows by default; the green tick icon is added automatically. More than four rows will wrap onto a second line.",
+            "type": "textarea",
+            "instructions": "One trust-strip item per line.  Leave empty to keep the list the page already shows.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -6389,35 +6365,11 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
-            "button_label": "Add row",
-            "min": 0,
-            "max": 0,
-            "rows_per_page": 20,
-            "collapsed": "",
-            "sub_fields": [
-                {
-                    "key": "field_lp_feat_stats_label",
-                    "label": "Claim",
-                    "name": "label",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": false,
-                    "conditional_logic": false,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "40k+ Worldwide Live Channels",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_lp_feat_stats"
-                }
-            ]
+            "default_value": "",
+            "maxlength": "",
+            "rows": 6,
+            "placeholder": "",
+            "new_lines": ""
         },
         {
             "key": "field_lp_feat_cards",
@@ -7285,8 +7237,8 @@
             "label": "Pricing – Feature Checklist",
             "name": "lp_price_features",
             "aria-label": "",
-            "type": "repeater",
-            "instructions": "Two-column checklist. Each line is truncated with an ellipsis if it overflows its pill, so keep entries short.",
+            "type": "textarea",
+            "instructions": "One feature bullet per line — these appear under every plan.  Leave empty to keep the list the page already shows.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -7294,35 +7246,11 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
-            "button_label": "Add row",
-            "min": 0,
-            "max": 0,
-            "rows_per_page": 20,
-            "collapsed": "",
-            "sub_fields": [
-                {
-                    "key": "field_lp_price_features_text",
-                    "label": "Feature",
-                    "name": "text",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": false,
-                    "conditional_logic": false,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "40,000+ Live TV Channels",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_lp_price_features"
-                }
-            ]
+            "default_value": "",
+            "maxlength": "",
+            "rows": 6,
+            "placeholder": "",
+            "new_lines": ""
         },
         {
             "key": "field_lp_price_scarcity",
@@ -8123,8 +8051,8 @@
             "label": "Reviews – Category Scores",
             "name": "lp_rev_ratings",
             "aria-label": "",
-            "type": "repeater",
-            "instructions": "The three scored categories in the summary card. Each row always renders five amber stars – only the label is editable. Three rows fit the card height; adding more will make the card taller.",
+            "type": "textarea",
+            "instructions": "One rating label per line.  Leave empty to keep the list the page already shows.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -8132,35 +8060,11 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
-            "button_label": "Add row",
-            "min": 0,
-            "max": 0,
-            "rows_per_page": 20,
-            "collapsed": "",
-            "sub_fields": [
-                {
-                    "key": "field_lp_rev_ratings_label",
-                    "label": "Category",
-                    "name": "label",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": false,
-                    "conditional_logic": false,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "Streaming Quality",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_lp_rev_ratings"
-                }
-            ]
+            "default_value": "",
+            "maxlength": "",
+            "rows": 6,
+            "placeholder": "",
+            "new_lines": ""
         },
         {
             "key": "field_lp_rev_items",
@@ -9813,5 +9717,5 @@
     "show_in_rest": 1,
     "display_title": "",
     "pll_display_field_instructions": 1,
-    "modified": 1787000000
+    "modified": 1787000100
 }

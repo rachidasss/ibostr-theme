@@ -99,3 +99,68 @@ if (!function_exists('iptv_text')) {
         return $default;
     }
 }
+
+if (!function_exists('iptv_lp_list')) {
+    /**
+     * Resolve a simple one-column list for a landing section.
+     *
+     * The site runs Advanced Custom Fields free, which has no Repeater field, so
+     * a one-item-per-line textarea is the editable form these lists can take. If
+     * ACF PRO is ever installed the same field name comes back as a repeater
+     * array instead and that value is used untouched — no template change needed.
+     *
+     * Reads the current page first and the front page second, matching
+     * iptv_text(), so a translated landing page can override the list on its own
+     * page and otherwise inherits the English one.
+     *
+     * @param string $key      Field name.
+     * @param string $column   Sub-field name each returned row is keyed by.
+     * @param array  $defaults Rows to fall back to when nothing is stored.
+     * @return array
+     */
+    function iptv_lp_list($key, $column, $defaults) {
+        $sources = array();
+
+        $current_id = get_queried_object_id();
+        if ($current_id && get_post_type($current_id) === 'page') {
+            $sources[] = $current_id;
+        }
+
+        $front_id = (int) get_option('page_on_front');
+        if ($front_id && !in_array($front_id, $sources, true)) {
+            $sources[] = $front_id;
+        }
+
+        foreach ($sources as $source_id) {
+            $value = function_exists('get_field') ? get_field($key, $source_id) : null;
+
+            if ($value === null || $value === '') {
+                $value = get_post_meta($source_id, $key, true);
+            }
+
+            // ACF PRO repeater: already the shape the template expects.
+            if (is_array($value) && !empty($value)) {
+                return $value;
+            }
+
+            // A repeater also leaves its row count behind as plain meta ("6"),
+            // which is not a list and must not be read as one.
+            if (is_string($value) && trim($value) !== '' && !ctype_digit(trim($value))) {
+                $rows = array();
+
+                foreach (preg_split('/\R/', $value) as $line) {
+                    $line = trim($line);
+                    if ($line !== '') {
+                        $rows[] = array($column => $line);
+                    }
+                }
+
+                if (!empty($rows)) {
+                    return $rows;
+                }
+            }
+        }
+
+        return $defaults;
+    }
+}

@@ -73,21 +73,18 @@ if (empty($lp_price_durations) || !is_array($lp_price_durations)) {
 /* -----------------------------------------------------------------------
  * "Every plan is fully loaded" checklist
  * -------------------------------------------------------------------- */
-$lp_price_features = function_exists('get_field') ? get_field('lp_price_features', $lp_price_front_id) : null;
-if (empty($lp_price_features) || !is_array($lp_price_features)) {
-    $lp_price_features = array(
-        array('text' => '40,000+ Live TV Channels'),
-        array('text' => '200,000+ Movies & Series (VOD)'),
-        array('text' => '4K, Ultra HD & HD quality'),
-        array('text' => 'Full TV guide (EPG)'),
-        array('text' => 'Hockey, football & handball'),
-        array('text' => 'Auto-updating channels & VOD'),
-        array('text' => 'Stable, fast servers'),
-        array('text' => 'Anti-Buffer™ 9.8'),
-        array('text' => 'Pay-Per-View (PPV) events'),
-        array('text' => '24/7 priority support'),
-    );
-}
+$lp_price_features = iptv_lp_list('lp_price_features', 'text', array(
+    array('text' => '40,000+ Live TV Channels'),
+    array('text' => '200,000+ Movies & Series (VOD)'),
+    array('text' => '4K, Ultra HD & HD quality'),
+    array('text' => 'Full TV guide (EPG)'),
+    array('text' => 'Hockey, football & handball'),
+    array('text' => 'Auto-updating channels & VOD'),
+    array('text' => 'Stable, fast servers'),
+    array('text' => 'Anti-Buffer™ 9.8'),
+    array('text' => 'Pay-Per-View (PPV) events'),
+    array('text' => '24/7 priority support'),
+));
 
 /* -----------------------------------------------------------------------
  * Trust cards. The icon and its colour tone are design, not copy, so they stay

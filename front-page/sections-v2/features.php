@@ -33,28 +33,22 @@ $lp_feat_icons = array(
 );
 
 /* ---- Country chips ---- */
-$lp_feat_countries = function_exists('get_field') ? get_field('lp_feat_countries', $lp_feat_front_id) : null;
-if (empty($lp_feat_countries) || !is_array($lp_feat_countries)) {
-    $lp_feat_countries = array(
-        array('label' => '🇺🇸 USA'),
-        array('label' => '🇫🇷 France'),
-        array('label' => '🇨🇦 Canada'),
-        array('label' => '🇩🇪 Germany'),
-        array('label' => '🇬🇧 UK'),
-        array('label' => '🇨🇭 Switzerland'),
-    );
-}
+$lp_feat_countries = iptv_lp_list('lp_feat_countries', 'label', array(
+    array('label' => '🇺🇸 USA'),
+    array('label' => '🇫🇷 France'),
+    array('label' => '🇨🇦 Canada'),
+    array('label' => '🇩🇪 Germany'),
+    array('label' => '🇬🇧 UK'),
+    array('label' => '🇨🇭 Switzerland'),
+));
 
 /* ---- Trust strip ---- */
-$lp_feat_stats = function_exists('get_field') ? get_field('lp_feat_stats', $lp_feat_front_id) : null;
-if (empty($lp_feat_stats) || !is_array($lp_feat_stats)) {
-    $lp_feat_stats = array(
-        array('label' => '40k+ Worldwide Live Channels'),
-        array('label' => '200k+ Movies & Multi-Lang VOD'),
-        array('label' => 'Anti-Freeze™ 100Gbps Servers'),
-        array('label' => 'Instant 2-Minute Activation'),
-    );
-}
+$lp_feat_stats = iptv_lp_list('lp_feat_stats', 'label', array(
+    array('label' => '40k+ Worldwide Live Channels'),
+    array('label' => '200k+ Movies & Multi-Lang VOD'),
+    array('label' => 'Anti-Freeze™ 100Gbps Servers'),
+    array('label' => 'Instant 2-Minute Activation'),
+));
 
 /* ---- Feature cards ---- */
 $lp_feat_cards = function_exists('get_field') ? get_field('lp_feat_cards', $lp_feat_front_id) : null;

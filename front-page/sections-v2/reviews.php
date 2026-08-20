@@ -24,14 +24,11 @@ $lp_rev_star_amber = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height=
 $lp_rev_quote_icon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square-quote w-4 h-4 text-zinc-300" aria-hidden="true"><path d="M14 14a2 2 0 0 0 2-2V8h-2"></path><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"></path><path d="M8 14a2 2 0 0 0 2-2V8H8"></path></svg>';
 
 /** The three category score rows. Every row is five amber stars in the source. */
-$lp_rev_ratings = function_exists('get_field') ? get_field('lp_rev_ratings', $front_page_id) : null;
-if (empty($lp_rev_ratings) || !is_array($lp_rev_ratings)) {
-    $lp_rev_ratings = array(
-        array('label' => 'Streaming Quality'),
-        array('label' => 'VOD Selection'),
-        array('label' => 'Support Response'),
-    );
-}
+$lp_rev_ratings = iptv_lp_list('lp_rev_ratings', 'label', array(
+    array('label' => 'Streaming Quality'),
+    array('label' => 'VOD Selection'),
+    array('label' => 'Support Response'),
+));
 
 /** The six scrollable review cards. Every card is five green stars in the source. */
 $lp_rev_items = function_exists('get_field') ? get_field('lp_rev_items', $front_page_id) : null;
