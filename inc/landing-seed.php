@@ -112,9 +112,14 @@ if (!function_exists('iptv_lp_seed_prepare')) {
      */
     function iptv_lp_seed_prepare($key, $value, $post_id)
     {
-        $field = function_exists('get_field_object')
-            ? get_field_object($key, $post_id, false, false)
-            : null;
+        // acf_get_field() reads the definition straight from the field group,
+        // sub_fields included. get_field_object() does not always carry them,
+        // and a missing sub_fields list means an image sub-field goes unnoticed.
+        $field = function_exists('acf_get_field') ? acf_get_field($key) : null;
+
+        if (!$field && function_exists('get_field_object')) {
+            $field = get_field_object($key, $post_id, false, false);
+        }
 
         if (!$field || empty($field['type'])) {
             return $value;
@@ -161,6 +166,41 @@ if (!function_exists('iptv_lp_seed_prepare')) {
         }
 
         return $value;
+    }
+}
+
+if (!function_exists('iptv_lp_seed_lost_content')) {
+    /**
+     * Whether reading a value back lost something that was there before.
+     *
+     * Deliberately one-directional: ACF is free to add keys, reformat or reorder
+     * on the way out. The only failure worth catching is content going missing.
+     *
+     * @param mixed $before Value the page rendered.
+     * @param mixed $after  Value ACF returns now that it is stored.
+     * @return bool
+     */
+    function iptv_lp_seed_lost_content($before, $after)
+    {
+        if (is_array($before)) {
+            if (!is_array($after) || count($after) < count($before)) {
+                return true;
+            }
+
+            foreach ($before as $k => $v) {
+                if (!array_key_exists($k, $after)
+                    || iptv_lp_seed_lost_content($v, $after[$k])) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        $b = is_scalar($before) ? trim((string) $before) : '';
+        $a = is_scalar($after) ? trim((string) $after) : '';
+
+        return $b !== '' && $a === '';
     }
 }
 
@@ -216,9 +256,24 @@ add_action('wp_footer', function () {
             continue;
         }
 
-        if (update_field($key, $value, $post_id)) {
-            $written[] = $key;
+        if (!update_field($key, $value, $post_id)) {
+            continue;
         }
+
+        // Never trust the write. ACF stores several types in a different shape
+        // than it returns them, so a value that does not survive a read would
+        // quietly replace working copy with nothing - which is exactly how the
+        // showcase images came back as src="" the first time this ran.
+        if (iptv_lp_seed_lost_content($collected[$key], get_field($key, $post_id))) {
+            if (function_exists('delete_field')) {
+                delete_field($key, $post_id);
+            }
+
+            $skipped[] = $key . ' (did not survive a read - left on the template default)';
+            continue;
+        }
+
+        $written[] = $key;
     }
 
     printf(
