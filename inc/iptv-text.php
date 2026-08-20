@@ -92,6 +92,17 @@ if (!function_exists('iptv_text')) {
             }
         }
 
+        // Nothing stored for this page. On a translated landing page the copy
+        // published in that language is the default; English falls through to
+        // the string the template ships.
+        if (strpos($key, 'lp_') === 0) {
+            $translated = iptv_lp_i18n_text();
+
+            if (isset($translated[$key]) && $translated[$key] !== '') {
+                return $translated[$key];
+            }
+        }
+
         if ($default !== '' && function_exists('pll__')) {
             return pll__($default);
         }
@@ -122,13 +133,17 @@ if (!function_exists('iptv_lp_lang')) {
     }
 }
 
-if (!function_exists('iptv_lp_i18n_lists')) {
+if (!function_exists('iptv_lp_i18n')) {
     /**
-     * The current language's list copy, or an empty array for English.
+     * The current language's landing copy, or an empty array for English.
+     *
+     * Two sections: 'text' for the single strings iptv_text() resolves, 'lists'
+     * for the repeating sections. Loaded once per request and only when the page
+     * is actually translated.
      *
      * @return array
      */
-    function iptv_lp_i18n_lists() {
+    function iptv_lp_i18n() {
         static $cache = null;
 
         if ($cache !== null) {
@@ -147,6 +162,32 @@ if (!function_exists('iptv_lp_i18n_lists')) {
         $cache = is_array($data) ? $data : array();
 
         return $cache;
+    }
+}
+
+if (!function_exists('iptv_lp_i18n_text')) {
+    /**
+     * Translated single strings, keyed by field name.
+     *
+     * @return array
+     */
+    function iptv_lp_i18n_text() {
+        $data = iptv_lp_i18n();
+
+        return isset($data['text']) && is_array($data['text']) ? $data['text'] : array();
+    }
+}
+
+if (!function_exists('iptv_lp_i18n_lists')) {
+    /**
+     * Translated list rows, keyed by field name.
+     *
+     * @return array
+     */
+    function iptv_lp_i18n_lists() {
+        $data = iptv_lp_i18n();
+
+        return isset($data['lists']) && is_array($data['lists']) ? $data['lists'] : array();
     }
 }
 

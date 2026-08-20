@@ -1,13 +1,19 @@
 <?php
 /**
- * German copy for the landing page list sections.
+ * German copy for the landing page.
  *
  * Lifted verbatim from the german landing page as it was published, so this is
- * the wording the site already used - not a re-translation. Only text columns
- * appear here: icons, image paths, prices and dynamic URLs are shared across
- * languages and stay in front-page/sections-v2/, which is where the row count
- * and ordering are defined. A row or column missing from this file simply
- * keeps its English value.
+ * the wording the site already used - not a re-translation. The single strings
+ * and the visible list copy come from the rendered page; the FAQ answers come
+ * from the data array the page ships, since its accordion only renders the open
+ * one.
+ *
+ * These are defaults, exactly as the English strings in the section templates
+ * are defaults: a value entered in wp-admin for this page wins over anything
+ * here. Only text lives in this file. Icons, image paths, prices and dynamic
+ * URLs are shared across languages and stay in front-page/sections-v2/, which
+ * is also where list row counts and ordering are defined - a row or column
+ * missing here simply keeps its English value.
  *
  * Generated - edit the section templates, not this file.
  */
@@ -15,376 +21,506 @@
 if (!defined('ABSPATH')) { exit; }
 
 return array(
-    'lp_steps_items' => array(
-        array(
-            'title' => 'Paket auswählen',
-            'text' => 'Wählen Sie das passende Abo und zahlen Sie in Sekunden sicher.',
-        ),
-        array(
-            'title' => 'Zugangsdaten erhalten',
-            'text' => 'Wir senden Ihnen Zugangsdaten und eine einfache Anleitung sofort per E-Mail. Prüfen Sie notfalls den Spam-Ordner.',
-        ),
-        array(
-            'title' => 'Losschauen',
-            'text' => 'Gerät verbinden und sofort Sender, Filme und Live-Sport genießen.',
-        ),
+
+    // Single strings, resolved by iptv_text().
+    'text' => array(
+        'lp_steps_badge' => 'Schnell eingerichtet',
+        'lp_steps_title' => 'In',
+        'lp_steps_title_accent' => '3 einfachen Schritten',
+        'lp_steps_subtitle' => 'In wenigen Minuten verbunden. Ohne Umwege, mit klaren Schritten für jedes Gerät.',
+        'lp_steps_cta' => 'JETZT PAKET WÄHLEN',
+        'lp_nav_logo_alt' => 'iBo Streaming IPTV',
+        'lp_nav_cta' => 'Rabatt sichern',
+        'lp_nav_menu_aria' => 'Menü öffnen oder schließen',
+        'lp_guar_badge' => 'CDN-GARANTIE OHNE RUCKELN',
+        'lp_guar_title_before' => 'Garantiert',
+        'lp_guar_title_highlight' => '0 % Ruckeln',
+        'lp_guar_title_after' => 'bei den großen Spielen',
+        'lp_guar_subtitle' => 'Unsere lastverteilten CDN-Server verteilen den Datenverkehr auf über 180 Rechenzentren weltweit — für stabile 60 FPS bei großen Derbys und europäischen Endspielen.',
+        'lp_guar_cta_label' => 'JETZT LOSSTREAMEN',
+        'lp_trust_eyebrow' => 'DIE WAHRHEIT ÜBER IPTV',
+        'lp_trust_title' => 'GENUG VON IPTV-ANBIETERN, DIE',
+        'lp_trust_title_accent' => 'IHR GELD NEHMEN UND VERSCHWINDEN?',
+        'lp_trust_subtitle' => 'Die meisten IPTV-Anbieter sind verschwunden, sobald Sie bezahlt haben. Bei <strong class="text-white font-bold">iBo Streaming</strong>begleiten wir Sie an jedem Tag Ihres Abonnements — mit garantierter Betreuung rund um die Uhr und Anti-Freeze-Servern.',
+        'lp_trust_bad_heading' => 'Andere IPTV-Anbieter',
+        'lp_trust_bad_badge' => '⚠️ HOHES RISIKO',
+        'lp_trust_bad_footnote' => '❌ Verschwenden Sie kein Geld an Anbieter, die Sie nach dem ersten Tag im Stich lassen.',
+        'lp_trust_good_heading' => 'Die iBo-Streaming-Garantie',
+        'lp_trust_good_badge' => '100 % ZUVERLÄSSIG',
+        'lp_trust_cta_label' => 'JETZT ZUVERLÄSSIG STREAMEN',
+        'lp_contact_badge' => 'Live-Support rund um die Uhr aktiv',
+        'lp_contact_title' => 'Brauchen Sie',
+        'lp_contact_title_accent' => 'Sofort Hilfe?',
+        'lp_contact_subtitle' => 'Unser Expertenteam ist rund um die Uhr für Sie da — bei Einrichtung, Geräteaktivierung oder technischen Fragen, mit Antwort in wenigen Minuten.',
+        'lp_contact_card1_title' => 'WhatsApp-Live-Chat',
+        'lp_contact_card1_meta' => '+1 (939) 699-3536',
+        'lp_contact_card1_badge' => 'Am schnellsten',
+        'lp_contact_card1_text' => 'Sofortige Schritt-für-Schritt-Hilfe für Smart TV, Firestick, MAG, iOS, Android oder PC — direkt von einem Techniker.',
+        'lp_contact_card1_cta' => 'Auf WhatsApp schreiben',
+        'lp_contact_card2_title' => 'Hilfe per E-Mail',
+        'lp_contact_card2_meta' => '[email protected]',
+        'lp_contact_card2_badge' => 'Rund um die Uhr',
+        'lp_contact_card2_text' => 'Lieber per E-Mail? Schicken Sie uns Ihre Anfrage — unser Team sendet Ihnen eine ausführliche Anleitung in Ihr Postfach.',
+        'lp_contact_card2_cta' => 'E-Mail senden',
+        'lp_contact_note_agents' => '4 Mitarbeitende gerade online',
+        'lp_contact_note_guarantee' => 'Einrichtungsgarantie oder Geld zurück',
+        'lp_dev_badge' => 'UNIVERSELL KOMPATIBEL',
+        'lp_dev_title_pre' => 'LÄUFT AUF',
+        'lp_dev_title_accent' => 'JEDEM GERÄT',
+        'lp_dev_title_post' => ', ÜBERALL.',
+        'lp_dev_subtitle' => 'Plug-and-play in unter 2 Minuten — auf allen Smart TVs, Firestick, Apple TV, iOS, Android, MAG und PC.',
+        'lp_showcase_card_cta' => 'Ansehen',
+        'lp_showcase_eyebrow' => '⚡ UNBEGRENZTE 4K-UNTERHALTUNG',
+        'lp_showcase_title' => 'JEDES SPIEL, JEDER FILM, JEDE SERIE —',
+        'lp_showcase_title_accent' => 'EIN ABONNEMENT',
+        'lp_showcase_subtitle' => 'Schluss mit über 200 $ im Monat für teures Kabelfernsehen und ein Dutzend Apps. Über 40.000 Live-Sender in HD/4K, 200.000 Filme, jede PPV-Fight-Night und Live-Sport mit 60 FPS — ohne Ruckeln, auf all Ihren Geräten.',
+        'lp_hero_bg_alt' => 'iBo Streaming — 4K-Ultra-HD-Hintergrund',
+        'lp_hero_title' => 'Jeder Sender, den Sie vermisst haben —',
+        'lp_hero_title_accent' => 'an einem einzigen Ort.',
+        'lp_hero_title_savings' => 'Sparen Sie 1.500 $ pro Jahr.',
+        'lp_hero_subtitle' => 'Der größte IPTV-Dienst der Welt. Über 40.000 Sender aus den USA, Großbritannien, Kanada, Europa, Asien und Lateinamerika in gestochen scharfem 4K. Keine Vertragsbindung. Einmalzahlung. Keine Ländersperren. Auf jedem Gerät, überall.',
+        'lp_hero_cta_label' => 'Rabatt sichern',
+        'lp_feat_badge' => 'PREMIUM-UNTERHALTUNG WELTWEIT',
+        'lp_feat_title' => 'Ein Abonnement.',
+        'lp_feat_title_accent' => 'Jeder Sender weltweit.',
+        'lp_feat_subtitle' => 'Streaming, ausgelegt auf die anspruchsvollsten Märkte: <strong class="text-zinc-900 font-bold">Deutschland, Österreich, Schweiz, UK, Frankreich und USA</strong>. Native 4K-Streams, alle Sportpakete, über 200.000 VOD-Titel und Anti-Freeze-Zuverlässigkeit.',
+        'lp_feat_countries_more' => '+ 140 weitere',
+        'lp_feat_cta_title' => 'Bereit für 4K-Streaming, überall auf der Welt?',
+        'lp_feat_cta_subtitle' => 'Einrichtung in 2 Minuten • Keine Vertragsbindung • Geld-zurück-Garantie',
+        'lp_feat_cta_button' => 'Jetzt starten — Paket wählen',
+        'lp_rev_badge' => 'GEPRÜFTE KUNDENBEWERTUNGEN',
+        'lp_rev_title' => 'Über 10.000 Zuschauer vertrauen uns',
+        'lp_rev_subtitle' => 'Echte Rückmeldungen von Abonnenten, die iBo Streaming täglich auf allen Geräten nutzen.',
+        'lp_rev_score' => '5.0',
+        'lp_rev_count' => 'Basierend auf 642 Bewertungen',
+        'lp_rev_source' => 'Trustpilot',
+        'lp_rev_verified' => 'Zu 100 % geprüfte Kundenstimmen',
+        'lp_rev_scroll_label' => 'Nach rechts scrollen',
+        'lp_price_card_verified' => 'Geprüft und geschützt',
+        'lp_price_eyebrow' => 'SOFORT FREIGESCHALTET, DAUERHAFT GÜNSTIGER',
+        'lp_price_title' => 'Wählen Sie das passende Paket',
+        'lp_price_subtitle' => 'Sichern Sie sich ein unschlagbares Preis-Leistungs-Verhältnis und sparen Sie spürbar — mit dem derzeit günstigsten IPTV-Angebot.',
+        'lp_price_step1_title' => 'Wie viele Bildschirme?',
+        'lp_price_step2_title' => 'Für welchen Zeitraum?',
+        'lp_price_total_label' => 'IHR GESAMTPREIS',
+        'lp_price_total_save' => 'ERSPARNIS $107.89 (64%)',
+        'lp_price_total_strike' => '$167.88',
+        'lp_price_total_note' => 'einmalig · 5,00 $/Mon.',
+        'lp_price_timer_label' => 'Rabatt reserviert für:',
+        'lp_price_timer_initial' => '03:36:31',
+        'lp_price_cta' => 'SOFORT FREISCHALTEN · $59.99',
+        'lp_price_guarantee_1' => '7 Tage Geld zurück',
+        'lp_price_guarantee_2' => 'Sofortige Freischaltung',
+        'lp_price_guarantee_3' => 'Keine automatische Verlängerung',
+        'lp_price_features_title' => 'Jedes Paket enthält alles',
+        'lp_price_features_subtitle' => 'Alle Funktionen sind in jedem Abo enthalten — ohne versteckte Kosten',
+        'lp_price_scarcity' => 'Diesen Monat sind nur noch 34 Freischaltungen verfügbar',
+        'lp_price_secure_label' => 'Garantiert sichere Zahlung mit 256 Bit',
+        'lp_faq_badge' => 'Noch Fragen?',
+        'lp_faq_title' => 'Häufige',
+        'lp_faq_title_accent' => 'Fragen',
+        'lp_faq_subtitle' => 'Klare Antworten zu Zahlung, Freischaltung, Rückgabe, Geräten und der Zahl der Bildschirme.',
+        'lp_faq_cta_text' => 'Ihre Frage ist hier nicht dabei?',
+        'lp_faq_cta_link_text' => 'Support kontaktieren →',
+        'lp_footer_logo_aria' => 'iBostreaming Startseite',
+        'lp_footer_logo_alt' => 'iBo Streaming IPTV',
+        'lp_footer_tagline' => 'Premium-IPTV-Streaming in 4K mit über 40.000 Live-Sendern und 200.000 VOD-Titeln weltweit. Zuverlässig, sicher und ohne Ruckeln.',
+        'lp_footer_badge_support' => 'Support rund um die Uhr',
+        'lp_footer_badge_quality' => '4K-Ultra-HD-Qualität',
+        'lp_footer_social_title' => 'Folgen Sie uns',
+        'lp_footer_social_instagram_aria' => 'iBostreaming auf Instagram folgen',
+        'lp_footer_social_instagram_title' => 'Instagram',
+        'lp_footer_social_facebook_aria' => 'iBostreaming auf Facebook folgen',
+        'lp_footer_social_facebook_title' => 'Facebook',
+        'lp_footer_social_x_aria' => 'iBostreaming auf X folgen',
+        'lp_footer_social_x_title' => 'X',
+        'lp_footer_social_reddit_aria' => 'iBostreaming auf Reddit folgen',
+        'lp_footer_social_reddit_title' => 'Reddit',
+        'lp_footer_nav_aria' => 'Fußzeilen-Navigation',
+        'lp_footer_col1_title' => 'Schnellzugriff',
+        'lp_footer_col2_title' => 'Rechtliches',
+        'lp_footer_col3_title' => 'Abonnements',
+        'lp_footer_trust_ssl' => 'Mit 256-Bit-SSL verschlüsselt und gesichert',
+        'lp_footer_trust_servers' => 'Ultraschnelle europäische Server mit 100 Gbit/s',
+        'lp_footer_uptime' => '99,99 % Verfügbarkeit garantiert',
+        'lp_footer_copyright' => '© 2025 iBostreaming 4K IPTV. Alle Rechte vorbehalten. · Für das beste Streaming-Erlebnis entwickelt',
+        'lp_footer_top_aria' => 'Nach oben scrollen',
+        'lp_footer_top_label' => 'Nach oben',
     ),
-    'lp_nav_links' => array(
-        array('label' => 'Startseite'),
-        array('label' => 'Preise'),
-        array('label' => 'Bewertungen'),
-        array('label' => 'Anleitung'),
-        array('label' => 'Kontakt'),
-        array('label' => 'FAQ'),
-    ),
-    'lp_guar_trust_items' => array(
-        array('text' => '180+ Rechenzentren weltweit'),
-        array('text' => '100 Gbit/s dedizierte Bandbreite'),
-        array('text' => '99,9 % garantierte Verfügbarkeit'),
-    ),
-    'lp_trust_bad_items' => array(
-        array(
-            'title' => 'Verkaufen und verschwinden (kein Support)',
-            'text' => 'Nach der Zahlung bleiben Support-Anfragen unbeantwortet — genau dann, wenn Sie Hilfe brauchen.',
+
+    // Repeating sections, resolved by iptv_lp_list().
+    'lists' => array(
+        'lp_steps_items' => array(
+            array(
+                'title' => 'Paket auswählen',
+                'text' => 'Wählen Sie das passende Abo und zahlen Sie in Sekunden sicher.',
+            ),
+            array(
+                'title' => 'Zugangsdaten erhalten',
+                'text' => 'Wir senden Ihnen Zugangsdaten und eine einfache Anleitung sofort per E-Mail. Prüfen Sie notfalls den Spam-Ordner.',
+            ),
+            array(
+                'title' => 'Losschauen',
+                'text' => 'Gerät verbinden und sofort Sender, Filme und Live-Sport genießen.',
+            ),
         ),
-        array(
-            'title' => 'Ruckeln bei den wichtigen Spielen',
-            'text' => 'Billige, überlastete Server frieren genau im spannendsten Moment ein.',
+        'lp_nav_links' => array(
+            array('label' => 'Startseite'),
+            array('label' => 'Preise'),
+            array('label' => 'Bewertungen'),
+            array('label' => 'Anleitung'),
+            array('label' => 'Kontakt'),
+            array('label' => 'FAQ'),
         ),
-        array(
-            'title' => 'Verwirrende Einrichtung, tote Links',
-            'text' => 'Komplizierte Anleitungen und kryptische Links, die ohne Vorwarnung nicht mehr funktionieren.',
+        'lp_guar_trust_items' => array(
+            array('text' => '180+ Rechenzentren weltweit'),
+            array('text' => '100 Gbit/s dedizierte Bandbreite'),
+            array('text' => '99,9 % garantierte Verfügbarkeit'),
         ),
-        array(
-            'title' => 'Gesperrte und instabile Sender',
-            'text' => 'Sender fallen regelmäßig aus oder sind in Deutschland, Österreich und der Schweiz ohne VPN gesperrt.',
+        'lp_trust_bad_items' => array(
+            array(
+                'title' => 'Verkaufen und verschwinden (kein Support)',
+                'text' => 'Nach der Zahlung bleiben Support-Anfragen unbeantwortet — genau dann, wenn Sie Hilfe brauchen.',
+            ),
+            array(
+                'title' => 'Ruckeln bei den wichtigen Spielen',
+                'text' => 'Billige, überlastete Server frieren genau im spannendsten Moment ein.',
+            ),
+            array(
+                'title' => 'Verwirrende Einrichtung, tote Links',
+                'text' => 'Komplizierte Anleitungen und kryptische Links, die ohne Vorwarnung nicht mehr funktionieren.',
+            ),
+            array(
+                'title' => 'Gesperrte und instabile Sender',
+                'text' => 'Sender fallen regelmäßig aus oder sind in Deutschland, Österreich und der Schweiz ohne VPN gesperrt.',
+            ),
         ),
-    ),
-    'lp_trust_good_items' => array(
-        array(
-            'title' => 'Support über die gesamte Laufzeit',
-            'text' => 'Unser technisches VIP-Team ist rund um die Uhr per WhatsApp und E-Mail erreichbar — wann immer Sie Hilfe brauchen.',
+        'lp_trust_good_items' => array(
+            array(
+                'title' => 'Support über die gesamte Laufzeit',
+                'text' => 'Unser technisches VIP-Team ist rund um die Uhr per WhatsApp und E-Mail erreichbar — wann immer Sie Hilfe brauchen.',
+            ),
+            array(
+                'title' => 'Kostenlose Einrichtung Schritt für Schritt',
+                'text' => 'Wir begleiten Sie, bis Live-TV auf Smart TV, Firestick, Apple TV oder Smartphone einwandfrei läuft.',
+            ),
+            array(
+                'title' => 'Dedizierte Anti-Freeze™-Server mit 100 Gbit/s',
+                'text' => 'Lastverteilte Server, gebaut für Live-Events — unkomprimiertes 4K mit flüssigen 60 FPS.',
+            ),
+            array(
+                'title' => 'Sender weltweit, ganz ohne Ländersperren',
+                'text' => 'Über 40.000 Live-Sender und 200.000 VOD-Titel in Deutschland, Österreich und der Schweiz — ohne VPN.',
+            ),
         ),
-        array(
-            'title' => 'Kostenlose Einrichtung Schritt für Schritt',
-            'text' => 'Wir begleiten Sie, bis Live-TV auf Smart TV, Firestick, Apple TV oder Smartphone einwandfrei läuft.',
+        'lp_dev_items' => array(
+            array(
+                'title' => 'Smart TV',
+                'text' => 'Samsung, LG, Android',
+            ),
+            array(
+                'title' => 'Streaming-Sticks',
+                'text' => 'Firestick, Apple TV, Roku',
+            ),
+            array(
+                'title' => 'Smartphone und Tablet',
+                'text' => 'iOS, iPad, Android',
+            ),
+            array(
+                'title' => 'IPTV-Boxen',
+                'text' => 'MAG, Formuler, BuzzTV',
+            ),
+            array(
+                'title' => 'PC und Notebook',
+                'text' => 'Windows, Mac, Web',
+            ),
         ),
-        array(
-            'title' => 'Dedizierte Anti-Freeze™-Server mit 100 Gbit/s',
-            'text' => 'Lastverteilte Server, gebaut für Live-Events — unkomprimiertes 4K mit flüssigen 60 FPS.',
+        'lp_showcase_items' => array(
+            array(
+                'title' => '40.000+ Live-Sender und Sport weltweit',
+                'badge' => '🔥 Keine Blackouts, keine Verzögerung',
+                'text' => 'Erleben Sie jedes Tor, jeden Touchdown und jeden K.-o. live in gestochen scharfer Qualität. Keine regionalen Blackouts, extrem niedrige Latenz und 7 Tage Replay auf allen Geräten.',
+                'feature' => 'Anti-Freeze-Servernetz',
+            ),
+            array(
+                'title' => '200.000+ Filme und komplette Serien on Demand',
+                'badge' => '🍿 Täglich neue Titel',
+                'text' => 'Kündigen Sie Ihre teuren Streaming-Abos. Sofortzugriff auf über 200.000 Kino-Blockbuster und komplette Serienboxen — mit mehrsprachigen Untertiteln und räumlichem Klang.',
+                'feature' => 'Mehrsprachige Untertitel',
+            ),
+            array(
+                'title' => 'PPV und Kampfsport-Highlights inklusive',
+                'badge' => '🥊 Keine Pay-per-View-Gebühren',
+                'text' => 'Zahlen Sie nie wieder 80 $ pro Event. Sehen Sie jede MMA-Hauptkarte, jeden WM-Boxkampf, jedes Wrestling-Event und alle großen Pay-per-View-Highlights live — ohne Aufpreis.',
+                'feature' => '80 $ pro Fight Night sparen',
+            ),
+            array(
+                'title' => 'Internationale Nachrichtensender rund um die Uhr',
+                'badge' => '⚡ Eilmeldungen in Echtzeit',
+                'text' => 'Bleiben Sie rund um die Uhr informiert — mit direkten Satelliten-Feeds führender internationaler Nachrichten- und Wirtschaftssender, ganz ohne Verzögerung.',
+                'feature' => 'Direkter Satelliten-Feed',
+            ),
+            array(
+                'title' => 'Dokumentationen und Natursender',
+                'badge' => '🌿 Unbegrenztes Binge-Watching',
+                'text' => 'Tauchen Sie ein in atemberaubende Dokureihen aus Natur, Wissenschaft, Raumfahrt, True Crime und Geschichte — von Weltklasse-Produzenten, in räumlichem Surround-Klang.',
+                'feature' => 'Natur und Tierwelt',
+            ),
+            array(
+                'title' => 'Unterhaltung für Kinder und die ganze Familie',
+                'badge' => '🛡️ Mit Kindersicherung geschützt',
+                'text' => 'Sichere, komplett werbefreie Unterhaltung für Kinder jeden Alters. Hunderte Live-Kindersender und Animationsfilme mit sofort umschaltbarer Mehrsprachigkeit.',
+                'feature' => '100 % werbefrei',
+            ),
         ),
-        array(
-            'title' => 'Sender weltweit, ganz ohne Ländersperren',
-            'text' => 'Über 40.000 Live-Sender und 200.000 VOD-Titel in Deutschland, Österreich und der Schweiz — ohne VPN.',
+        'lp_hero_trust_items' => array(
+            array('text' => 'Einrichtung in 2 Minuten'),
+            array('text' => '7 Tage Geld-zurück-Garantie'),
+            array('text' => 'Keine Vertragsbindung, keine versteckten Kosten'),
+            array('text' => 'Läuft auf allen Geräten'),
         ),
-    ),
-    'lp_dev_items' => array(
-        array(
-            'title' => 'Smart TV',
-            'text' => 'Samsung, LG, Android',
+        'lp_feat_countries' => array(
+            array('label' => '🇺🇸 USA'),
+            array('label' => '🇫🇷 Frankreich'),
+            array('label' => '🇨🇦 Kanada'),
+            array('label' => '🇩🇪 Deutschland'),
+            array('label' => '🇬🇧 UK'),
+            array('label' => '🇨🇭 Schweiz'),
         ),
-        array(
-            'title' => 'Streaming-Sticks',
-            'text' => 'Firestick, Apple TV, Roku',
+        'lp_feat_stats' => array(
+            array('label' => '40.000+ Live-Sender weltweit'),
+            array('label' => '200.000+ Filme und mehrsprachige VOD'),
+            array('label' => 'Anti-Freeze™-Server mit 100 Gbit/s'),
+            array('label' => 'Freischaltung in 2 Minuten'),
         ),
-        array(
-            'title' => 'Smartphone und Tablet',
-            'text' => 'iOS, iPad, Android',
+        'lp_feat_cards' => array(
+            array(
+                'badge' => 'DE • AT • CH • UK • FR • US',
+                'title' => 'Über 40.000 Sender weltweit',
+                'text' => 'Kompletter Live-Sport und Premium-TV aus Deutschland, Österreich, der Schweiz, Großbritannien, Frankreich und den USA. Fußball, American Football, Basketball, Motorsport und MMA mit 60 FPS.',
+                'tag_1' => '✓ DE, AT, CH, UK, FR, US',
+                'tag_2' => '✓ Fußball und Europapokal',
+                'tag_3' => '✓ Live-Sport mit 60 FPS',
+            ),
+            array(
+                'badge' => 'MEHRSPRACHIG MIT UNTERTITELN',
+                'title' => '200.000+ Filme und Serien in 4K',
+                'text' => 'Aktuelle Kino-Blockbuster und komplette Staffelboxen der größten Studios und Sender — mit mehrsprachigen Tonspuren (DE, EN, FR) und Untertiteln.',
+                'tag_1' => '✓ Kino in 4K HDR',
+                'tag_2' => '✓ Mehrsprachige Tonspuren',
+                'tag_3' => '✓ Täglich neue VOD-Titel',
+            ),
+            array(
+                'badge' => '99,9 % VERFÜGBARKEIT GARANTIERT',
+                'title' => 'Anti-Freeze™-Lastverteilung',
+                'text' => 'Gebaut auf globalen Edge-Servern mit 100 Gbit/s Kapazität — für flüssige, ruckelfreie Wiedergabe selbst bei Lastspitzen wie großen Finalspielen.',
+                'tag_1' => '✓ Technik ohne Ruckeln',
+                'tag_2' => '✓ Edge-Netz mit 100 Gbit/s',
+                'tag_3' => '✓ Extrem niedrige Latenz',
+            ),
+            array(
+                'badge' => 'FÜR OLED UND SMART TV',
+                'title' => 'Echtes 4K Ultra HD mit 60 FPS',
+                'text' => 'Natives Streaming mit hoher Bitrate, kräftigen HDR-Farben und klarem Dolby-Digital-5.1-Surround — abgestimmt auf große Bildschirme.',
+                'tag_1' => '✓ Unkomprimiertes 4K',
+                'tag_2' => '✓ Flüssige 60 FPS',
+                'tag_3' => '✓ Dolby Surround',
+            ),
+            array(
+                'badge' => 'KOMPLETTER REPLAY-GUIDE',
+                'title' => '7 Tage Replay und smarter EPG',
+                'text' => 'Verpassen Sie kein Tor und keine Folge mehr. Spulen Sie Live-Sport zurück, nutzen Sie den interaktiven Programmführer und holen Sie die letzten 7 Tage sofort nach.',
+                'tag_1' => '✓ 7 Tage Replay',
+                'tag_2' => '✓ Interaktiver Programmführer',
+                'tag_3' => '✓ Live pausieren und zurückspulen',
+            ),
+            array(
+                'badge' => 'FREISCHALTUNG IN 2 MIN',
+                'title' => 'Sofort startklar, VIP-Hilfe rund um die Uhr',
+                'text' => 'Ihre Zugangsdaten kommen direkt nach dem Kauf. Kompatibel mit Smart TV, Firestick, Apple TV, Android, MAG, iOS und PC — inklusive Einrichtungshilfe rund um die Uhr.',
+                'tag_1' => '✓ Firestick und Smart TV',
+                'tag_2' => '✓ Sofort per E-Mail/WhatsApp',
+                'tag_3' => '✓ Live-Support rund um die Uhr',
+            ),
         ),
-        array(
-            'title' => 'IPTV-Boxen',
-            'text' => 'MAG, Formuler, BuzzTV',
+        'lp_rev_ratings' => array(
+            array('label' => 'Streaming-Qualität'),
+            array('label' => 'VOD-Auswahl'),
+            array('label' => 'Reaktionszeit des Supports'),
         ),
-        array(
-            'title' => 'PC und Notebook',
-            'text' => 'Windows, Mac, Web',
+        'lp_rev_items' => array(
+            array(
+                'time' => 'vor 1 Woche',
+                'title' => 'Herausragende Stabilität und Qualität',
+                'text' => '"iBo Streaming überzeugt mit absolut stabiler Übertragung von deutschem und europäischem Fußball. Ich hatte keine einzige Unterbrechung — rundum angenehmes Schauen. Top-Service!"',
+                'name' => 'Johan S.',
+                'location' => 'Stockholm, Sweden',
+            ),
+            array(
+                'time' => 'vor 3 Tagen',
+                'title' => 'Zuverlässigkeit neu definiert',
+                'text' => '"Mit iBo Streaming habe ich endlich die Zuverlässigkeit gefunden, die ich bei einem IPTV-Dienst gesucht habe. Die 4K-Streams laufen stabil und gestochen scharf auf meinem LG OLED — eine echte Freude."',
+                'name' => 'Mikkel B.',
+                'location' => 'Copenhagen, Denmark',
+            ),
+            array(
+                'time' => 'vor 2 Wochen',
+                'title' => 'Riesige Auswahl, fantastisches Preis-Leistungs-Verhältnis!',
+                'text' => '"Ich bin restlos begeistert von iBo Streaming. Die schiere Menge an Live-Sendern und VOD-Titeln ist beeindruckend — und das zu einem sehr fairen Preis. Das beste Angebot im Netz."',
+                'name' => 'Emil T.',
+                'location' => 'Oslo, Norway',
+            ),
+            array(
+                'time' => 'vor 5 Tagen',
+                'title' => 'Erstklassige Auswahl, unschlagbarer Support',
+                'text' => '"Die Einrichtung auf meinem Firestick ging erstaunlich schnell. Beim Support bekam ich in unter 5 Minuten eine freundliche Antwort von einem echten Menschen. Die Auswahl an Sendern und VOD übertrifft meine Erwartungen deutlich."',
+                'name' => 'Sari W.',
+                'location' => 'Helsinki, Finland',
+            ),
+            array(
+                'time' => 'vor 2 Tagen',
+                'title' => 'Starkes Preis-Leistungs-Verhältnis',
+                'text' => '"iBo Streaming verändert alles. Eine großartige Auswahl an 4K-Sportsendern und Filmen zu Preisen, die das Budget nicht sprengen. Mit meinem Abo bin ich sehr zufrieden."',
+                'name' => 'Lars K.',
+                'location' => 'Gothenburg, Sweden',
+            ),
+            array(
+                'time' => 'Gestern',
+                'title' => 'Der beste IPTV-Dienst',
+                'text' => '"Ich bin von einem Anbieter gewechselt, bei dem das Bild in Champions-League-Spielen ständig einfror. iBo Streaming läuft zu 100 % stabil, die Anti-Freeze-Technik funktioniert auf all meinen Geräten einwandfrei."',
+                'name' => 'Astrid M.',
+                'location' => 'Bergen, Norway',
+            ),
         ),
-    ),
-    'lp_showcase_items' => array(
-        array(
-            'title' => '40.000+ Live-Sender und Sport weltweit',
-            'badge' => '🔥 Keine Blackouts, keine Verzögerung',
-            'text' => 'Erleben Sie jedes Tor, jeden Touchdown und jeden K.-o. live in gestochen scharfer Qualität. Keine regionalen Blackouts, extrem niedrige Latenz und 7 Tage Replay auf allen Geräten.',
-            'feature' => 'Anti-Freeze-Servernetz',
+        'lp_price_screens' => array(
+            array('label' => '1 Bildschirm'),
+            array(
+                'label' => '2 Bildschirme',
+                'badge' => 'BELIEBT',
+            ),
+            array('label' => '3 Bildschirme'),
+            array('label' => '4 Bildschirme'),
         ),
-        array(
-            'title' => '200.000+ Filme und komplette Serien on Demand',
-            'badge' => '🍿 Täglich neue Titel',
-            'text' => 'Kündigen Sie Ihre teuren Streaming-Abos. Sofortzugriff auf über 200.000 Kino-Blockbuster und komplette Serienboxen — mit mehrsprachigen Untertiteln und räumlichem Klang.',
-            'feature' => 'Mehrsprachige Untertitel',
+        'lp_price_durations' => array(
+            array('label' => '1 Monat'),
+            array(
+                'label' => '3 Monate',
+                'badge' => '-35 %',
+            ),
+            array(
+                'label' => '6 Monate',
+                'badge' => '-47 %',
+            ),
+            array(
+                'label' => '12 Monate',
+                'badge' => 'Bestes Angebot',
+            ),
         ),
-        array(
-            'title' => 'PPV und Kampfsport-Highlights inklusive',
-            'badge' => '🥊 Keine Pay-per-View-Gebühren',
-            'text' => 'Zahlen Sie nie wieder 80 $ pro Event. Sehen Sie jede MMA-Hauptkarte, jeden WM-Boxkampf, jedes Wrestling-Event und alle großen Pay-per-View-Highlights live — ohne Aufpreis.',
-            'feature' => '80 $ pro Fight Night sparen',
+        'lp_price_features' => array(
+            array('text' => '40.000+ Live-TV-Sender'),
+            array('text' => '200.000+ Filme und Serien (VOD)'),
+            array('text' => 'Qualität in 4K, Ultra HD und HD'),
+            array('text' => 'Vollständiger Programmführer (EPG)'),
+            array('text' => 'Fußball, Eishockey und Handball'),
+            array('text' => 'Sender und VOD aktualisieren sich automatisch'),
+            array('text' => 'Stabile, schnelle Server'),
+            array('text' => 'Anti-Buffer™ 9.8'),
+            array('text' => 'Pay-per-View-Events (PPV)'),
+            array('text' => 'Priorisierter Support rund um die Uhr'),
         ),
-        array(
-            'title' => 'Internationale Nachrichtensender rund um die Uhr',
-            'badge' => '⚡ Eilmeldungen in Echtzeit',
-            'text' => 'Bleiben Sie rund um die Uhr informiert — mit direkten Satelliten-Feeds führender internationaler Nachrichten- und Wirtschaftssender, ganz ohne Verzögerung.',
-            'feature' => 'Direkter Satelliten-Feed',
+        'lp_price_cards' => array(
+            array(
+                'badge' => 'SICHERHEIT WIE BEI DER BANK',
+                'title' => '256-Bit-SSL-Verschlüsselung',
+                'text' => 'Vollständig verschlüsselte, PCI-DSS-konforme Kaufabwicklung. Zahlungsdaten und Privatsphäre sind umfassend geschützt.',
+            ),
+            array(
+                'badge' => 'ANTI-FREEZE™-TECHNIK',
+                'title' => '99,9 % Verfügbarkeit',
+                'text' => 'Europäische Hochleistungsserver mit 100 Gbit/s und automatischer Ausfallsicherung sorgen für ruckelfreies Streaming bei Sport-Highlights.',
+            ),
+            array(
+                'title' => 'Sofortige automatische Lieferung',
+                'text' => 'Zugangsdaten und eine verständliche Anleitung erreichen Sie innerhalb von 120 Sekunden per E-Mail und WhatsApp.',
+            ),
+            array(
+                'badge' => 'GELD-ZURÜCK-GARANTIE',
+                'title' => 'Ohne Risiko',
+                'text' => 'Nicht zufrieden? Melden Sie sich beim Support — die Rückerstattung erfolgt schnell und unkompliziert.',
+            ),
         ),
-        array(
-            'title' => 'Dokumentationen und Natursender',
-            'badge' => '🌿 Unbegrenztes Binge-Watching',
-            'text' => 'Tauchen Sie ein in atemberaubende Dokureihen aus Natur, Wissenschaft, Raumfahrt, True Crime und Geschichte — von Weltklasse-Produzenten, in räumlichem Surround-Klang.',
-            'feature' => 'Natur und Tierwelt',
+        'lp_price_payments' => array(
+            array('label' => 'VISA'),
+            array('label' => 'MASTERCARD'),
+            array('label' => 'APPLE PAY'),
+            array('label' => 'GOOGLE PAY'),
+            array('label' => 'CRYPTO'),
         ),
-        array(
-            'title' => 'Unterhaltung für Kinder und die ganze Familie',
-            'badge' => '🛡️ Mit Kindersicherung geschützt',
-            'text' => 'Sichere, komplett werbefreie Unterhaltung für Kinder jeden Alters. Hunderte Live-Kindersender und Animationsfilme mit sofort umschaltbarer Mehrsprachigkeit.',
-            'feature' => '100 % werbefrei',
+        'lp_footer_col1_links' => array(
+            array('label' => 'Startseite'),
+            array('label' => 'IPTV einrichten'),
+            array('label' => 'Senderlisten'),
+            array('label' => 'Preise'),
+            array('label' => 'Hilfe-Center'),
+            array('label' => 'M3U-Konverter'),
+            array('label' => 'Reseller werden'),
         ),
-    ),
-    'lp_hero_trust_items' => array(
-        array('text' => 'Einrichtung in 2 Minuten'),
-        array('text' => '7 Tage Geld-zurück-Garantie'),
-        array('text' => 'Keine Vertragsbindung, keine versteckten Kosten'),
-        array('text' => 'Läuft auf allen Geräten'),
-    ),
-    'lp_feat_countries' => array(
-        array('label' => '🇺🇸 USA'),
-        array('label' => '🇫🇷 Frankreich'),
-        array('label' => '🇨🇦 Kanada'),
-        array('label' => '🇩🇪 Deutschland'),
-        array('label' => '🇬🇧 UK'),
-        array('label' => '🇨🇭 Schweiz'),
-    ),
-    'lp_feat_stats' => array(
-        array('label' => '40.000+ Live-Sender weltweit'),
-        array('label' => '200.000+ Filme und mehrsprachige VOD'),
-        array('label' => 'Anti-Freeze™-Server mit 100 Gbit/s'),
-        array('label' => 'Freischaltung in 2 Minuten'),
-    ),
-    'lp_feat_cards' => array(
-        array(
-            'badge' => 'DE • AT • CH • UK • FR • US',
-            'title' => 'Über 40.000 Sender weltweit',
-            'text' => 'Kompletter Live-Sport und Premium-TV aus Deutschland, Österreich, der Schweiz, Großbritannien, Frankreich und den USA. Fußball, American Football, Basketball, Motorsport und MMA mit 60 FPS.',
-            'tag_1' => '✓ DE, AT, CH, UK, FR, US',
-            'tag_2' => '✓ Fußball und Europapokal',
-            'tag_3' => '✓ Live-Sport mit 60 FPS',
+        'lp_footer_col2_links' => array(
+            array('label' => 'Rückerstattung'),
+            array('label' => 'Datenschutz'),
+            array('label' => 'AGB'),
         ),
-        array(
-            'badge' => 'MEHRSPRACHIG MIT UNTERTITELN',
-            'title' => '200.000+ Filme und Serien in 4K',
-            'text' => 'Aktuelle Kino-Blockbuster und komplette Staffelboxen der größten Studios und Sender — mit mehrsprachigen Tonspuren (DE, EN, FR) und Untertiteln.',
-            'tag_1' => '✓ Kino in 4K HDR',
-            'tag_2' => '✓ Mehrsprachige Tonspuren',
-            'tag_3' => '✓ Täglich neue VOD-Titel',
+        'lp_footer_col3_links' => array(
+            array('label' => 'Paket 12 Monate'),
+            array('label' => 'Paket 6 Monate'),
+            array('label' => 'Paket 3 Monate'),
+            array('label' => 'Paket 1 Monat'),
         ),
-        array(
-            'badge' => '99,9 % VERFÜGBARKEIT GARANTIERT',
-            'title' => 'Anti-Freeze™-Lastverteilung',
-            'text' => 'Gebaut auf globalen Edge-Servern mit 100 Gbit/s Kapazität — für flüssige, ruckelfreie Wiedergabe selbst bei Lastspitzen wie großen Finalspielen.',
-            'tag_1' => '✓ Technik ohne Ruckeln',
-            'tag_2' => '✓ Edge-Netz mit 100 Gbit/s',
-            'tag_3' => '✓ Extrem niedrige Latenz',
-        ),
-        array(
-            'badge' => 'FÜR OLED UND SMART TV',
-            'title' => 'Echtes 4K Ultra HD mit 60 FPS',
-            'text' => 'Natives Streaming mit hoher Bitrate, kräftigen HDR-Farben und klarem Dolby-Digital-5.1-Surround — abgestimmt auf große Bildschirme.',
-            'tag_1' => '✓ Unkomprimiertes 4K',
-            'tag_2' => '✓ Flüssige 60 FPS',
-            'tag_3' => '✓ Dolby Surround',
-        ),
-        array(
-            'badge' => 'KOMPLETTER REPLAY-GUIDE',
-            'title' => '7 Tage Replay und smarter EPG',
-            'text' => 'Verpassen Sie kein Tor und keine Folge mehr. Spulen Sie Live-Sport zurück, nutzen Sie den interaktiven Programmführer und holen Sie die letzten 7 Tage sofort nach.',
-            'tag_1' => '✓ 7 Tage Replay',
-            'tag_2' => '✓ Interaktiver Programmführer',
-            'tag_3' => '✓ Live pausieren und zurückspulen',
-        ),
-        array(
-            'badge' => 'FREISCHALTUNG IN 2 MIN',
-            'title' => 'Sofort startklar, VIP-Hilfe rund um die Uhr',
-            'text' => 'Ihre Zugangsdaten kommen direkt nach dem Kauf. Kompatibel mit Smart TV, Firestick, Apple TV, Android, MAG, iOS und PC — inklusive Einrichtungshilfe rund um die Uhr.',
-            'tag_1' => '✓ Firestick und Smart TV',
-            'tag_2' => '✓ Sofort per E-Mail/WhatsApp',
-            'tag_3' => '✓ Live-Support rund um die Uhr',
-        ),
-    ),
-    'lp_rev_ratings' => array(
-        array('label' => 'Streaming-Qualität'),
-        array('label' => 'VOD-Auswahl'),
-        array('label' => 'Reaktionszeit des Supports'),
-    ),
-    'lp_rev_items' => array(
-        array(
-            'time' => 'vor 1 Woche',
-            'title' => 'Herausragende Stabilität und Qualität',
-            'text' => '"iBo Streaming überzeugt mit absolut stabiler Übertragung von deutschem und europäischem Fußball. Ich hatte keine einzige Unterbrechung — rundum angenehmes Schauen. Top-Service!"',
-            'name' => 'Johan S.',
-            'location' => 'Stockholm, Sweden',
-        ),
-        array(
-            'time' => 'vor 3 Tagen',
-            'title' => 'Zuverlässigkeit neu definiert',
-            'text' => '"Mit iBo Streaming habe ich endlich die Zuverlässigkeit gefunden, die ich bei einem IPTV-Dienst gesucht habe. Die 4K-Streams laufen stabil und gestochen scharf auf meinem LG OLED — eine echte Freude."',
-            'name' => 'Mikkel B.',
-            'location' => 'Copenhagen, Denmark',
-        ),
-        array(
-            'time' => 'vor 2 Wochen',
-            'title' => 'Riesige Auswahl, fantastisches Preis-Leistungs-Verhältnis!',
-            'text' => '"Ich bin restlos begeistert von iBo Streaming. Die schiere Menge an Live-Sendern und VOD-Titeln ist beeindruckend — und das zu einem sehr fairen Preis. Das beste Angebot im Netz."',
-            'name' => 'Emil T.',
-            'location' => 'Oslo, Norway',
-        ),
-        array(
-            'time' => 'vor 5 Tagen',
-            'title' => 'Erstklassige Auswahl, unschlagbarer Support',
-            'text' => '"Die Einrichtung auf meinem Firestick ging erstaunlich schnell. Beim Support bekam ich in unter 5 Minuten eine freundliche Antwort von einem echten Menschen. Die Auswahl an Sendern und VOD übertrifft meine Erwartungen deutlich."',
-            'name' => 'Sari W.',
-            'location' => 'Helsinki, Finland',
-        ),
-        array(
-            'time' => 'vor 2 Tagen',
-            'title' => 'Starkes Preis-Leistungs-Verhältnis',
-            'text' => '"iBo Streaming verändert alles. Eine großartige Auswahl an 4K-Sportsendern und Filmen zu Preisen, die das Budget nicht sprengen. Mit meinem Abo bin ich sehr zufrieden."',
-            'name' => 'Lars K.',
-            'location' => 'Gothenburg, Sweden',
-        ),
-        array(
-            'time' => 'Gestern',
-            'title' => 'Der beste IPTV-Dienst',
-            'text' => '"Ich bin von einem Anbieter gewechselt, bei dem das Bild in Champions-League-Spielen ständig einfror. iBo Streaming läuft zu 100 % stabil, die Anti-Freeze-Technik funktioniert auf all meinen Geräten einwandfrei."',
-            'name' => 'Astrid M.',
-            'location' => 'Bergen, Norway',
-        ),
-    ),
-    'lp_price_screens' => array(
-        array('label' => '1 Bildschirm'),
-        array(
-            'label' => '2 Bildschirme',
-            'badge' => 'BELIEBT',
-        ),
-        array('label' => '3 Bildschirme'),
-        array('label' => '4 Bildschirme'),
-    ),
-    'lp_price_durations' => array(
-        array('label' => '1 Monat'),
-        array(
-            'label' => '3 Monate',
-            'badge' => '-35 %',
-        ),
-        array(
-            'label' => '6 Monate',
-            'badge' => '-47 %',
-        ),
-        array(
-            'label' => '12 Monate',
-            'badge' => 'Bestes Angebot',
-        ),
-    ),
-    'lp_price_features' => array(
-        array('text' => '40.000+ Live-TV-Sender'),
-        array('text' => '200.000+ Filme und Serien (VOD)'),
-        array('text' => 'Qualität in 4K, Ultra HD und HD'),
-        array('text' => 'Vollständiger Programmführer (EPG)'),
-        array('text' => 'Fußball, Eishockey und Handball'),
-        array('text' => 'Sender und VOD aktualisieren sich automatisch'),
-        array('text' => 'Stabile, schnelle Server'),
-        array('text' => 'Anti-Buffer™ 9.8'),
-        array('text' => 'Pay-per-View-Events (PPV)'),
-        array('text' => 'Priorisierter Support rund um die Uhr'),
-    ),
-    'lp_price_cards' => array(
-        array(
-            'badge' => 'SICHERHEIT WIE BEI DER BANK',
-            'title' => '256-Bit-SSL-Verschlüsselung',
-            'text' => 'Vollständig verschlüsselte, PCI-DSS-konforme Kaufabwicklung. Zahlungsdaten und Privatsphäre sind umfassend geschützt.',
-        ),
-        array(
-            'badge' => 'ANTI-FREEZE™-TECHNIK',
-            'title' => '99,9 % Verfügbarkeit',
-            'text' => 'Europäische Hochleistungsserver mit 100 Gbit/s und automatischer Ausfallsicherung sorgen für ruckelfreies Streaming bei Sport-Highlights.',
-        ),
-        array(
-            'title' => 'Sofortige automatische Lieferung',
-            'text' => 'Zugangsdaten und eine verständliche Anleitung erreichen Sie innerhalb von 120 Sekunden per E-Mail und WhatsApp.',
-        ),
-        array(
-            'badge' => 'GELD-ZURÜCK-GARANTIE',
-            'title' => 'Ohne Risiko',
-            'text' => 'Nicht zufrieden? Melden Sie sich beim Support — die Rückerstattung erfolgt schnell und unkompliziert.',
-        ),
-    ),
-    'lp_price_payments' => array(
-        array('label' => 'VISA'),
-        array('label' => 'MASTERCARD'),
-        array('label' => 'APPLE PAY'),
-        array('label' => 'GOOGLE PAY'),
-        array('label' => 'CRYPTO'),
-    ),
-    'lp_footer_col1_links' => array(
-        array('label' => 'Startseite'),
-        array('label' => 'IPTV einrichten'),
-        array('label' => 'Senderlisten'),
-        array('label' => 'Preise'),
-        array('label' => 'Hilfe-Center'),
-        array('label' => 'M3U-Konverter'),
-        array('label' => 'Reseller werden'),
-    ),
-    'lp_footer_col2_links' => array(
-        array('label' => 'Rückerstattung'),
-        array('label' => 'Datenschutz'),
-        array('label' => 'AGB'),
-    ),
-    'lp_footer_col3_links' => array(
-        array('label' => 'Paket 12 Monate'),
-        array('label' => 'Paket 6 Monate'),
-        array('label' => 'Paket 3 Monate'),
-        array('label' => 'Paket 1 Monat'),
-    ),
-    'lp_faq_items' => array(
-        array(
-            'question' => 'Was passiert direkt nach der Zahlung?',
-            'answer' => 'Ihr IPTV Abo wird automatisch freigeschaltet, ohne manuelle Prüfung. Innerhalb von etwa 2 bis 5 Minuten erhalten Sie eine E-Mail mit Ihren Zugangsdaten: einen M3U-Playlist-Link sowie Benutzername und Passwort für Xtream Codes. Dieselbe Linie erscheint außerdem unter „My IPTV Lines“ in Ihrem Kundenbereich. Den Link fügen Sie in eine kostenlose App wie TiviMate, IPTV Smarters oder IBO Player Pro ein und schauen sofort in 4K. Kommt die E-Mail nicht an, prüfen Sie zuerst den Spam-Ordner.',
-            'link_text' => 'Installationsanleitung Schritt für Schritt',
-            'link_url' => 'https://ibostreaming.com/de/installationsanleitung/',
-        ),
-        array(
-            'question' => 'Muss ich vor dem Kauf ein Konto anlegen?',
-            'answer' => 'Bestellung und Konto sind derselbe Vorgang — eine separate Registrierung vorab entfällt. Der Kauf läuft im iBostreaming Kundenbereich, das heißt sobald Ihr Abo aktiv ist, haben Sie bereits ein Konto. Dort liegen Ihre IPTV-Zugangsdaten, Ihre Bestellhistorie und Ihre Verlängerungen. Verwenden Sie durchgehend dieselbe E-Mail-Adresse, dann bleibt alles an einem Ort.',
-        ),
-        array(
-            'question' => 'Kann ich es vor dem Kauf testen?',
-            'answer' => 'Einen kostenlosen IPTV Test bieten wir nicht an. Gratis-Testlinks sind der übliche Weg, auf dem kurzlebige Wiederverkäufer E-Mail-Adressen sammeln — dieses Spiel machen wir nicht mit. Das Risiko liegt deshalb bei uns: Starten Sie mit dem 1-Monats-Abo für 13,99 $, abgesichert durch unsere 7 Tage Geld-zurück-Garantie. Alle Abos enthalten dieselben Sender, dieselbe VOD-Bibliothek und dieselben 4K-Server — unterschiedlich sind nur Laufzeit und Anzahl der Bildschirme.',
-        ),
-        array(
-            'question' => 'Bekomme ich mein Geld zurück, wenn es bei mir nicht funktioniert?',
-            'answer' => 'Ja. Jedes IPTV Abo enthält eine 7 Tage Geld-zurück-Garantie. Wenn wir den Dienst auf Ihrem Gerät nicht zum Laufen bringen, wenden Sie sich innerhalb von 7 Tagen nach dem Kauf an den Support und Sie erhalten Ihr Geld zurück. Gut zu wissen: Die meisten „funktioniert nicht“-Fälle sind eine falsche Einstellung in der Player-App oder eine Sperre des Internetanbieters, und unser Team behebt das in wenigen Minuten. Schreiben Sie uns also lieber zuerst — das ist meist der schnellere Weg.',
-            'link_text' => 'Support kontaktieren',
-            'link_url' => 'https://ibostreaming.com/de/kontakt-de/',
-        ),
-        array(
-            'question' => 'Auf wie vielen Geräten kann ich es nutzen, und teilen alle einen Zugang?',
-            'answer' => 'Die Anzahl der Verbindungen wählen Sie beim Kauf, von 1 bis 4 — so viele Geräte können gleichzeitig streamen. Installieren dürfen Sie Ihre Playlist auf so vielen Geräten, wie Sie besitzen: begrenzt sind die gleichzeitigen Streams, nicht die Installationen. Ein Zugang mit 1 Verbindung funktioniert also auf Fernseher, Handy und Tablet, aber es läuft immer nur ein Bildschirm. Zwei Personen, die gleichzeitig verschiedene Sender schauen, brauchen 2 Verbindungen; eine Familie nimmt meist 3 oder 4.',
-        ),
-        array(
-            'question' => 'Verlängert sich das Abo automatisch? Werde ich erneut belastet?',
-            'answer' => 'Nein. Jedes Abo ist eine einmalige Zahlung zum Festpreis für die gewählte Laufzeit — 1, 3, 6 oder 12 Monate. Es gibt kein hinterlegtes Abonnement, keine automatische Verlängerung und keine zweite Abbuchung. Läuft Ihre Zeit ab, geben Sie die Verlängerung selbst im Kundenbereich in Auftrag. So zahlen Sie nie für etwas, das Sie nicht bestellt haben.',
-        ),
-        array(
-            'question' => 'An wen zahle ich eigentlich, und ist der Bezahlvorgang sicher?',
-            'answer' => 'Sie zahlen direkt an iBostreaming, nie an einen Zwischenhändler. Der Kauf läuft über unseren eigenen Kundenbereich panel.ibostreaming.com über eine verschlüsselte HTTPS/SSL-Verbindung, alle Preise sind in US-Dollar (USD). Jede Bestellung erhält eine eigene Referenznummer und einen Beleg, den Sie jederzeit unter „Orders“ im Kundenbereich öffnen können — nach dieser Referenz fragt auch der Support, falls es einmal Rückfragen zur Zahlung gibt.',
-        ),
-        array(
-            'question' => 'Was, wenn meine Zugangsdaten nie ankommen oder später nicht mehr funktionieren?',
-            'answer' => 'Schreiben Sie uns — der Support ist rund um die Uhr erreichbar. Ist nach etwa 10 Minuten nichts angekommen, liegt es fast immer am Spam-Ordner oder an einem Tippfehler in der Bestell-E-Mail; wir senden alles an die richtige Adresse erneut. Hört eine funktionierende Linie später auf, ist das in der Regel ein Serverwechsel oder ein abgelaufenes Abo und nichts ist verloren: Wir stellen die Linie neu aus oder leiten sie um. Am schnellsten per WhatsApp unter +1 939 699 3536 oder support@ibostreaming.com.',
-            'link_text' => 'Jetzt Hilfe holen',
-            'link_url' => 'https://ibostreaming.com/de/kontakt-de/',
-        ),
-        array(
-            'question' => 'Auf welchen Geräten funktioniert das?',
-            'answer' => 'Praktisch auf allem, was Sie schon besitzen. Smart TVs (Samsung, LG, Sony, Android TV), Amazon Firestick und Fire TV Cube, Apple TV, Android-Handys und -Tablets, iPhone und iPad, Windows- und Mac-Rechner sowie MAG- und Formuler-Boxen. Neue Hardware brauchen Sie nicht: Installieren Sie einen kostenlosen IPTV-Player wie TiviMate, IPTV Smarters oder IBO Player Pro, fügen Sie Ihre Playlist ein, und die komplette Senderliste samt VOD-Bibliothek lädt automatisch.',
-            'link_text' => 'Anleitungen je Gerät ansehen',
-            'link_url' => 'https://ibostreaming.com/de/installationsanleitung/',
+        'lp_faq_items' => array(
+            array(
+                'question' => 'Was passiert direkt nach der Zahlung?',
+                'answer' => 'Ihr IPTV Abo wird automatisch freigeschaltet, ohne manuelle Prüfung. Innerhalb von etwa 2 bis 5 Minuten erhalten Sie eine E-Mail mit Ihren Zugangsdaten: einen M3U-Playlist-Link sowie Benutzername und Passwort für Xtream Codes. Dieselbe Linie erscheint außerdem unter „My IPTV Lines“ in Ihrem Kundenbereich. Den Link fügen Sie in eine kostenlose App wie TiviMate, IPTV Smarters oder IBO Player Pro ein und schauen sofort in 4K. Kommt die E-Mail nicht an, prüfen Sie zuerst den Spam-Ordner.',
+                'link_text' => 'Installationsanleitung Schritt für Schritt',
+                'link_url' => 'https://ibostreaming.com/de/installationsanleitung/',
+            ),
+            array(
+                'question' => 'Muss ich vor dem Kauf ein Konto anlegen?',
+                'answer' => 'Bestellung und Konto sind derselbe Vorgang — eine separate Registrierung vorab entfällt. Der Kauf läuft im iBostreaming Kundenbereich, das heißt sobald Ihr Abo aktiv ist, haben Sie bereits ein Konto. Dort liegen Ihre IPTV-Zugangsdaten, Ihre Bestellhistorie und Ihre Verlängerungen. Verwenden Sie durchgehend dieselbe E-Mail-Adresse, dann bleibt alles an einem Ort.',
+            ),
+            array(
+                'question' => 'Kann ich es vor dem Kauf testen?',
+                'answer' => 'Einen kostenlosen IPTV Test bieten wir nicht an. Gratis-Testlinks sind der übliche Weg, auf dem kurzlebige Wiederverkäufer E-Mail-Adressen sammeln — dieses Spiel machen wir nicht mit. Das Risiko liegt deshalb bei uns: Starten Sie mit dem 1-Monats-Abo für 13,99 $, abgesichert durch unsere 7 Tage Geld-zurück-Garantie. Alle Abos enthalten dieselben Sender, dieselbe VOD-Bibliothek und dieselben 4K-Server — unterschiedlich sind nur Laufzeit und Anzahl der Bildschirme.',
+            ),
+            array(
+                'question' => 'Bekomme ich mein Geld zurück, wenn es bei mir nicht funktioniert?',
+                'answer' => 'Ja. Jedes IPTV Abo enthält eine 7 Tage Geld-zurück-Garantie. Wenn wir den Dienst auf Ihrem Gerät nicht zum Laufen bringen, wenden Sie sich innerhalb von 7 Tagen nach dem Kauf an den Support und Sie erhalten Ihr Geld zurück. Gut zu wissen: Die meisten „funktioniert nicht“-Fälle sind eine falsche Einstellung in der Player-App oder eine Sperre des Internetanbieters, und unser Team behebt das in wenigen Minuten. Schreiben Sie uns also lieber zuerst — das ist meist der schnellere Weg.',
+                'link_text' => 'Support kontaktieren',
+                'link_url' => 'https://ibostreaming.com/de/kontakt-de/',
+            ),
+            array(
+                'question' => 'Auf wie vielen Geräten kann ich es nutzen, und teilen alle einen Zugang?',
+                'answer' => 'Die Anzahl der Verbindungen wählen Sie beim Kauf, von 1 bis 4 — so viele Geräte können gleichzeitig streamen. Installieren dürfen Sie Ihre Playlist auf so vielen Geräten, wie Sie besitzen: begrenzt sind die gleichzeitigen Streams, nicht die Installationen. Ein Zugang mit 1 Verbindung funktioniert also auf Fernseher, Handy und Tablet, aber es läuft immer nur ein Bildschirm. Zwei Personen, die gleichzeitig verschiedene Sender schauen, brauchen 2 Verbindungen; eine Familie nimmt meist 3 oder 4.',
+            ),
+            array(
+                'question' => 'Verlängert sich das Abo automatisch? Werde ich erneut belastet?',
+                'answer' => 'Nein. Jedes Abo ist eine einmalige Zahlung zum Festpreis für die gewählte Laufzeit — 1, 3, 6 oder 12 Monate. Es gibt kein hinterlegtes Abonnement, keine automatische Verlängerung und keine zweite Abbuchung. Läuft Ihre Zeit ab, geben Sie die Verlängerung selbst im Kundenbereich in Auftrag. So zahlen Sie nie für etwas, das Sie nicht bestellt haben.',
+            ),
+            array(
+                'question' => 'An wen zahle ich eigentlich, und ist der Bezahlvorgang sicher?',
+                'answer' => 'Sie zahlen direkt an iBostreaming, nie an einen Zwischenhändler. Der Kauf läuft über unseren eigenen Kundenbereich panel.ibostreaming.com über eine verschlüsselte HTTPS/SSL-Verbindung, alle Preise sind in US-Dollar (USD). Jede Bestellung erhält eine eigene Referenznummer und einen Beleg, den Sie jederzeit unter „Orders“ im Kundenbereich öffnen können — nach dieser Referenz fragt auch der Support, falls es einmal Rückfragen zur Zahlung gibt.',
+            ),
+            array(
+                'question' => 'Was, wenn meine Zugangsdaten nie ankommen oder später nicht mehr funktionieren?',
+                'answer' => 'Schreiben Sie uns — der Support ist rund um die Uhr erreichbar. Ist nach etwa 10 Minuten nichts angekommen, liegt es fast immer am Spam-Ordner oder an einem Tippfehler in der Bestell-E-Mail; wir senden alles an die richtige Adresse erneut. Hört eine funktionierende Linie später auf, ist das in der Regel ein Serverwechsel oder ein abgelaufenes Abo und nichts ist verloren: Wir stellen die Linie neu aus oder leiten sie um. Am schnellsten per WhatsApp unter +1 939 699 3536 oder support@ibostreaming.com.',
+                'link_text' => 'Jetzt Hilfe holen',
+                'link_url' => 'https://ibostreaming.com/de/kontakt-de/',
+            ),
+            array(
+                'question' => 'Auf welchen Geräten funktioniert das?',
+                'answer' => 'Praktisch auf allem, was Sie schon besitzen. Smart TVs (Samsung, LG, Sony, Android TV), Amazon Firestick und Fire TV Cube, Apple TV, Android-Handys und -Tablets, iPhone und iPad, Windows- und Mac-Rechner sowie MAG- und Formuler-Boxen. Neue Hardware brauchen Sie nicht: Installieren Sie einen kostenlosen IPTV-Player wie TiviMate, IPTV Smarters oder IBO Player Pro, fügen Sie Ihre Playlist ein, und die komplette Senderliste samt VOD-Bibliothek lädt automatisch.',
+                'link_text' => 'Anleitungen je Gerät ansehen',
+                'link_url' => 'https://ibostreaming.com/de/installationsanleitung/',
+            ),
         ),
     ),
 );

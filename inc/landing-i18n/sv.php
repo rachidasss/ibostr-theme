@@ -1,13 +1,19 @@
 <?php
 /**
- * Swedish copy for the landing page list sections.
+ * Swedish copy for the landing page.
  *
  * Lifted verbatim from the swedish landing page as it was published, so this is
- * the wording the site already used - not a re-translation. Only text columns
- * appear here: icons, image paths, prices and dynamic URLs are shared across
- * languages and stay in front-page/sections-v2/, which is where the row count
- * and ordering are defined. A row or column missing from this file simply
- * keeps its English value.
+ * the wording the site already used - not a re-translation. The single strings
+ * and the visible list copy come from the rendered page; the FAQ answers come
+ * from the data array the page ships, since its accordion only renders the open
+ * one.
+ *
+ * These are defaults, exactly as the English strings in the section templates
+ * are defaults: a value entered in wp-admin for this page wins over anything
+ * here. Only text lives in this file. Icons, image paths, prices and dynamic
+ * URLs are shared across languages and stay in front-page/sections-v2/, which
+ * is also where list row counts and ordering are defined - a row or column
+ * missing here simply keeps its English value.
  *
  * Generated - edit the section templates, not this file.
  */
@@ -15,376 +21,506 @@
 if (!defined('ABSPATH')) { exit; }
 
 return array(
-    'lp_steps_items' => array(
-        array(
-            'title' => 'Välj ditt paket',
-            'text' => 'Välj abonnemanget som passar dig och betala säkert på några sekunder.',
-        ),
-        array(
-            'title' => 'Få dina uppgifter',
-            'text' => 'Vi mejlar din inloggning och en enkel guide direkt. Kolla skräpposten om den dröjer.',
-        ),
-        array(
-            'title' => 'Börja titta',
-            'text' => 'Anslut din enhet och njut av kanaler, filmer och livesport direkt.',
-        ),
+
+    // Single strings, resolved by iptv_text().
+    'text' => array(
+        'lp_steps_badge' => 'Snabb installation',
+        'lp_steps_title' => 'Kom igång på',
+        'lp_steps_title_accent' => '3 enkla steg',
+        'lp_steps_subtitle' => 'Anslut på några minuter. Inget krångel, tydliga steg som fungerar på alla enheter.',
+        'lp_steps_cta' => 'VÄLJ DITT PAKET NU',
+        'lp_nav_logo_alt' => 'iBo Streaming IPTV',
+        'lp_nav_cta' => 'Hämta rabatten',
+        'lp_nav_menu_aria' => 'Öppna eller stäng menyn',
+        'lp_guar_badge' => 'CDN-GARANTI UTAN BUFFRING',
+        'lp_guar_title_before' => 'Garanterat',
+        'lp_guar_title_highlight' => '0 % buffring',
+        'lp_guar_title_after' => 'under de stora matcherna',
+        'lp_guar_subtitle' => 'Våra lastbalanserade CDN-servrar fördelar trafiken över fler än 180 datacenter världen över — för stabila 60 FPS under stora derbyn och europeiska finaler.',
+        'lp_guar_cta_label' => 'BÖRJA STREAMA NU',
+        'lp_trust_eyebrow' => 'SANNINGEN OM IPTV',
+        'lp_trust_title' => 'TRÖTT PÅ IPTV-LEVERANTÖRER SOM',
+        'lp_trust_title_accent' => 'TAR DINA PENGAR OCH FÖRSVINNER?',
+        'lp_trust_subtitle' => 'De flesta IPTV-säljare försvinner i samma stund som du betalat. Hos <strong class="text-white font-bold">iBo Streaming</strong>finns vi där varje dag av ditt abonnemang — med garanterad hjälp dygnet runt och servrar utan frysningar.',
+        'lp_trust_bad_heading' => 'Andra IPTV-säljare',
+        'lp_trust_bad_badge' => '⚠️ HÖG RISK',
+        'lp_trust_bad_footnote' => '❌ Lägg inte pengar på säljare som lämnar dig efter första dagen.',
+        'lp_trust_good_heading' => 'iBo Streamings garanti',
+        'lp_trust_good_badge' => '100 % PÅLITLIG',
+        'lp_trust_cta_label' => 'BÖRJA STREAMA PÅLITLIGT',
+        'lp_contact_badge' => 'Livesupport aktiv dygnet runt',
+        'lp_contact_title' => 'Behöver du',
+        'lp_contact_title_accent' => 'Behöver du hjälp direkt?',
+        'lp_contact_subtitle' => 'Vårt expertteam finns tillgängligt dygnet runt och hjälper dig med installation, aktivering och tekniska frågor inom några minuter.',
+        'lp_contact_card1_title' => 'WhatsApp-chatt',
+        'lp_contact_card1_meta' => '+1 (939) 699-3536',
+        'lp_contact_card1_badge' => 'Snabbast',
+        'lp_contact_card1_text' => 'Få hjälp steg för steg direkt av en tekniker — för smart-tv, Firestick, MAG, iOS, Android eller PC.',
+        'lp_contact_card1_cta' => 'Chatta på WhatsApp',
+        'lp_contact_card2_title' => 'Hjälp via e-post',
+        'lp_contact_card2_meta' => '[email protected]',
+        'lp_contact_card2_badge' => 'Öppet dygnet runt',
+        'lp_contact_card2_text' => 'Föredrar du e-post? Skicka din fråga så återkommer vårt team med utförliga instruktioner till din inkorg.',
+        'lp_contact_card2_cta' => 'Skicka e-post',
+        'lp_contact_note_agents' => '4 supportmedarbetare online just nu',
+        'lp_contact_note_guarantee' => 'Installationsgaranti eller pengarna tillbaka',
+        'lp_dev_badge' => 'FUNGERAR MED ALLT',
+        'lp_dev_title_pre' => 'FUNGERAR PÅ',
+        'lp_dev_title_accent' => 'ALLA ENHETER',
+        'lp_dev_title_post' => ', VAR SOM HELST.',
+        'lp_dev_subtitle' => 'Klart att använda på under 2 minuter på alla smart-tv, Firestick, Apple TV, iOS, Android, MAG och PC.',
+        'lp_showcase_card_cta' => 'Öppna',
+        'lp_showcase_eyebrow' => '⚡ OBEGRÄNSAD 4K-UNDERHÅLLNING',
+        'lp_showcase_title' => 'VARJE MATCH, FILM OCH SERIE —',
+        'lp_showcase_title_accent' => 'ETT ABONNEMANG',
+        'lp_showcase_subtitle' => 'Sluta betala över 200 $ i månaden för dyrt kabel-tv och en hög med appar. Lås upp över 40 000 livekanaler i HD/4K, 200 000 filmer, varje PPV-fightkväll och livesport i 60 FPS — helt utan buffring, på alla dina enheter.',
+        'lp_hero_bg_alt' => 'iBo Streaming — bakgrund i 4K Ultra HD',
+        'lp_hero_title' => 'Alla kanaler du saknat —',
+        'lp_hero_title_accent' => 'samlade på ett ställe.',
+        'lp_hero_title_savings' => 'Spara 1 500 $ per år.',
+        'lp_hero_subtitle' => 'Världens största IPTV-tjänst. Se över 40 000 kanaler från USA, Storbritannien, Kanada, Europa, Asien och Latinamerika i knivskarp 4K. Ingen bindningstid. Engångsbetalning. Inga regionsspärrar. Fungerar på alla enheter, var du än är.',
+        'lp_hero_cta_label' => 'Hämta rabatten',
+        'lp_feat_badge' => 'PREMIUMUNDERHÅLLNING VÄRLDEN ÖVER',
+        'lp_feat_title' => 'Ett abonnemang.',
+        'lp_feat_title_accent' => 'Varenda kanal i världen.',
+        'lp_feat_subtitle' => 'Streaming byggt för de mest krävande marknaderna: <strong class="text-zinc-900 font-bold">Sverige, Norge, Danmark, Finland, Storbritannien och USA</strong>. Nativa 4K-strömmar, alla sportpaket, över 200 000 VOD-titlar och pålitlighet utan frysningar.',
+        'lp_feat_countries_more' => '+ 140 till',
+        'lp_feat_cta_title' => 'Redo för 4K-streaming var som helst i världen?',
+        'lp_feat_cta_subtitle' => 'Igång på 2 minuter • Ingen bindningstid • Öppet köp',
+        'lp_feat_cta_button' => 'Börja streama — välj paket',
+        'lp_rev_badge' => 'VERIFIERADE KUNDOMDÖMEN',
+        'lp_rev_title' => 'Över 10 000 tittare litar på oss',
+        'lp_rev_subtitle' => 'Läs riktiga omdömen från abonnenter som använder iBo Streaming varje dag, på alla sina enheter.',
+        'lp_rev_score' => '5.0',
+        'lp_rev_count' => 'Baserat på 642 omdömen',
+        'lp_rev_source' => 'Trustpilot',
+        'lp_rev_verified' => '100 % verifierade kundomdömen',
+        'lp_rev_scroll_label' => 'Bläddra åt höger',
+        'lp_price_card_verified' => 'Verifierad och skyddad',
+        'lp_price_eyebrow' => 'DIREKT AKTIVERING OCH LÄGRE PRIS',
+        'lp_price_title' => 'Välj paketet som passar dig',
+        'lp_price_subtitle' => 'Få ett oslagbart värde och spara rejält med marknadens bäst prissatta IPTV.',
+        'lp_price_step1_title' => 'Hur många skärmar?',
+        'lp_price_step2_title' => 'Hur länge?',
+        'lp_price_total_label' => 'DITT TOTALPRIS',
+        'lp_price_total_save' => 'DU SPARAR $107.89 (64%)',
+        'lp_price_total_strike' => '$167.88',
+        'lp_price_total_note' => 'engångsbetalning · 5,00 $/mån',
+        'lp_price_timer_label' => 'Rabatten gäller i:',
+        'lp_price_timer_initial' => '03:36:30',
+        'lp_price_cta' => 'FÅ TILLGÅNG DIREKT · $59.99',
+        'lp_price_guarantee_1' => '7 dagars öppet köp',
+        'lp_price_guarantee_2' => 'Direkt aktivering',
+        'lp_price_guarantee_3' => 'Ingen automatisk förnyelse',
+        'lp_price_features_title' => 'Alla paket innehåller allt',
+        'lp_price_features_subtitle' => 'Alla funktioner ingår i varje abonnemang, utan dolda avgifter',
+        'lp_price_scarcity' => 'Bara 34 aktiveringar kvar den här månaden',
+        'lp_price_secure_label' => 'Garanterat säker kassa med 256 bitar',
+        'lp_faq_badge' => 'Har du frågor?',
+        'lp_faq_title' => 'Vanliga',
+        'lp_faq_title_accent' => 'frågor',
+        'lp_faq_subtitle' => 'Tydliga svar om betalning, aktivering, återbetalning, enheter och antal skärmar.',
+        'lp_faq_cta_text' => 'Hittar du inte din fråga här?',
+        'lp_faq_cta_link_text' => 'Kontakta supporten →',
+        'lp_footer_logo_aria' => 'iBostreaming startsida',
+        'lp_footer_logo_alt' => 'iBo Streaming IPTV',
+        'lp_footer_tagline' => 'Premium IPTV-streaming i 4K med över 40 000 livekanaler och 200 000 VOD-titlar världen över. Pålitligt, säkert och utan buffring.',
+        'lp_footer_badge_support' => 'Support dygnet runt',
+        'lp_footer_badge_quality' => 'Kvalitet i 4K Ultra HD',
+        'lp_footer_social_title' => 'Följ oss',
+        'lp_footer_social_instagram_aria' => 'Följ iBostreaming på Instagram',
+        'lp_footer_social_instagram_title' => 'Instagram',
+        'lp_footer_social_facebook_aria' => 'Följ iBostreaming på Facebook',
+        'lp_footer_social_facebook_title' => 'Facebook',
+        'lp_footer_social_x_aria' => 'Följ iBostreaming på X',
+        'lp_footer_social_x_title' => 'X',
+        'lp_footer_social_reddit_aria' => 'Följ iBostreaming på Reddit',
+        'lp_footer_social_reddit_title' => 'Reddit',
+        'lp_footer_nav_aria' => 'Sidfotsnavigering',
+        'lp_footer_col1_title' => 'Snabblänkar',
+        'lp_footer_col2_title' => 'Juridik',
+        'lp_footer_col3_title' => 'Abonnemang',
+        'lp_footer_trust_ssl' => 'Krypterat och säkrat med 256-bitars SSL',
+        'lp_footer_trust_servers' => 'Ultrasnabba europeiska servrar på 100 Gbit/s',
+        'lp_footer_uptime' => '99,99 % drifttid garanterat',
+        'lp_footer_copyright' => '© 2025 iBostreaming 4K IPTV. Alla rättigheter förbehållna. · Utvecklad för bästa möjliga streamingupplevelse',
+        'lp_footer_top_aria' => 'Till toppen av sidan',
+        'lp_footer_top_label' => 'Till toppen',
     ),
-    'lp_nav_links' => array(
-        array('label' => 'Hem'),
-        array('label' => 'Priser'),
-        array('label' => 'Omdömen'),
-        array('label' => 'Installationsguide'),
-        array('label' => 'Kontakta oss'),
-        array('label' => 'Vanliga frågor'),
-    ),
-    'lp_guar_trust_items' => array(
-        array('text' => '180+ datacenter världen över'),
-        array('text' => '100 Gbit/s dedikerad bandbredd'),
-        array('text' => '99,9 % garanterad drifttid'),
-    ),
-    'lp_trust_bad_items' => array(
-        array(
-            'title' => 'Säljer och försvinner (ingen support)',
-            'text' => 'Så snart du betalat förblir supportärendena obesvarade — precis när du behöver hjälp.',
+
+    // Repeating sections, resolved by iptv_lp_list().
+    'lists' => array(
+        'lp_steps_items' => array(
+            array(
+                'title' => 'Välj ditt paket',
+                'text' => 'Välj abonnemanget som passar dig och betala säkert på några sekunder.',
+            ),
+            array(
+                'title' => 'Få dina uppgifter',
+                'text' => 'Vi mejlar din inloggning och en enkel guide direkt. Kolla skräpposten om den dröjer.',
+            ),
+            array(
+                'title' => 'Börja titta',
+                'text' => 'Anslut din enhet och njut av kanaler, filmer och livesport direkt.',
+            ),
         ),
-        array(
-            'title' => 'Buffring under de stora matcherna',
-            'text' => 'Billiga, överbelastade servrar fryser precis när matchen är som mest spännande.',
+        'lp_nav_links' => array(
+            array('label' => 'Hem'),
+            array('label' => 'Priser'),
+            array('label' => 'Omdömen'),
+            array('label' => 'Installationsguide'),
+            array('label' => 'Kontakta oss'),
+            array('label' => 'Vanliga frågor'),
         ),
-        array(
-            'title' => 'Rörig installation och trasiga länkar',
-            'text' => 'Krångliga instruktioner och kryptiska länkar som slutar fungera utan förvarning.',
+        'lp_guar_trust_items' => array(
+            array('text' => '180+ datacenter världen över'),
+            array('text' => '100 Gbit/s dedikerad bandbredd'),
+            array('text' => '99,9 % garanterad drifttid'),
         ),
-        array(
-            'title' => 'Blockerade och instabila kanaler',
-            'text' => 'Kanaler försvinner ofta eller blockeras i Sverige, Norge, Danmark och Finland utan VPN.',
+        'lp_trust_bad_items' => array(
+            array(
+                'title' => 'Säljer och försvinner (ingen support)',
+                'text' => 'Så snart du betalat förblir supportärendena obesvarade — precis när du behöver hjälp.',
+            ),
+            array(
+                'title' => 'Buffring under de stora matcherna',
+                'text' => 'Billiga, överbelastade servrar fryser precis när matchen är som mest spännande.',
+            ),
+            array(
+                'title' => 'Rörig installation och trasiga länkar',
+                'text' => 'Krångliga instruktioner och kryptiska länkar som slutar fungera utan förvarning.',
+            ),
+            array(
+                'title' => 'Blockerade och instabila kanaler',
+                'text' => 'Kanaler försvinner ofta eller blockeras i Sverige, Norge, Danmark och Finland utan VPN.',
+            ),
         ),
-    ),
-    'lp_trust_good_items' => array(
-        array(
-            'title' => 'Support under hela abonnemangstiden',
-            'text' => 'Vårt tekniska VIP-team finns online dygnet runt på WhatsApp och e-post, när du än behöver hjälp.',
+        'lp_trust_good_items' => array(
+            array(
+                'title' => 'Support under hela abonnemangstiden',
+                'text' => 'Vårt tekniska VIP-team finns online dygnet runt på WhatsApp och e-post, när du än behöver hjälp.',
+            ),
+            array(
+                'title' => 'Gratis installationshjälp steg för steg',
+                'text' => 'Vi guidar dig tills live-tv rullar felfritt på din smart-tv, Firestick, Apple TV eller mobil.',
+            ),
+            array(
+                'title' => 'Dedikerade Anti-Freeze™-servrar på 100 Gbit/s',
+                'text' => 'Lastbalanserade servrar byggda för direktsändning — okomprimerad 4K med mjuka 60 FPS.',
+            ),
+            array(
+                'title' => 'Kanaler världen över, helt utan regionsspärrar',
+                'text' => 'Över 40 000 livekanaler och 200 000 VOD-titlar i Sverige, Norge, Danmark och Finland — utan VPN.',
+            ),
         ),
-        array(
-            'title' => 'Gratis installationshjälp steg för steg',
-            'text' => 'Vi guidar dig tills live-tv rullar felfritt på din smart-tv, Firestick, Apple TV eller mobil.',
+        'lp_dev_items' => array(
+            array(
+                'title' => 'Smart TV',
+                'text' => 'Samsung, LG, Android',
+            ),
+            array(
+                'title' => 'Streamingstickor',
+                'text' => 'Firestick, Apple TV, Roku',
+            ),
+            array(
+                'title' => 'Mobil och surfplatta',
+                'text' => 'iOS, iPad, Android',
+            ),
+            array(
+                'title' => 'IPTV-boxar',
+                'text' => 'MAG, Formuler, BuzzTV',
+            ),
+            array(
+                'title' => 'Dator och laptop',
+                'text' => 'Windows, Mac, webb',
+            ),
         ),
-        array(
-            'title' => 'Dedikerade Anti-Freeze™-servrar på 100 Gbit/s',
-            'text' => 'Lastbalanserade servrar byggda för direktsändning — okomprimerad 4K med mjuka 60 FPS.',
+        'lp_showcase_items' => array(
+            array(
+                'title' => '40 000+ livekanaler och sport från hela världen',
+                'badge' => '🔥 Inga blackouts, ingen fördröjning',
+                'text' => 'Upplev varje mål, varje touchdown och varje knockout live i knivskarp kvalitet. Inga regionala blackouts, extremt låg fördröjning och 7 dagars repris på alla enheter.',
+                'feature' => 'Servernätverk utan frysningar',
+            ),
+            array(
+                'title' => '200 000+ filmer och kompletta serier on demand',
+                'badge' => '🍿 Nyheter varje dag',
+                'text' => 'Säg upp dina dyra streamingtjänster. Få direkt tillgång till över 200 000 biosuccéer och kompletta serieboxar med undertexter på flera språk och rumsligt ljud.',
+                'feature' => 'Undertexter på flera språk',
+            ),
+            array(
+                'title' => 'PPV och kampsportsgalor ingår',
+                'badge' => '🥊 Inga pay-per-view-avgifter',
+                'text' => 'Sluta betala 80 $ per gala. Se varje MMA-huvudkort, varje VM-boxningskväll, varje brottningsgala och alla stora betal-per-gala-event live — utan extra kostnad.',
+                'feature' => 'Spara 80 $ per fightkväll',
+            ),
+            array(
+                'title' => 'Internationella nyhetskanaler dygnet runt',
+                'badge' => '⚡ Nyhetsbevakning i realtid',
+                'text' => 'Håll dig uppdaterad dygnet runt med direkta satellitflöden från ledande internationella nyhets- och ekonomikanaler, helt utan fördröjning.',
+                'feature' => 'Direkt satellitflöde',
+            ),
+            array(
+                'title' => 'Dokumentärer och naturkanaler',
+                'badge' => '🌿 Obegränsat maratontittande',
+                'text' => 'Försvinn in i hisnande dokumentärserier om natur, vetenskap, rymden, true crime och historia — från världsledande producenter, i rumsligt surroundljud.',
+                'feature' => 'Natur och djurliv',
+            ),
+            array(
+                'title' => 'Underhållning för barn och hela familjen',
+                'badge' => '🛡️ Låst med föräldrakontroll',
+                'text' => 'Trygg och helt reklamfri underhållning för barn i alla åldrar. Hundratals barnkanaler live och animerade familjefilmer med ljudspår på flera språk.',
+                'feature' => '100 % reklamfritt',
+            ),
         ),
-        array(
-            'title' => 'Kanaler världen över, helt utan regionsspärrar',
-            'text' => 'Över 40 000 livekanaler och 200 000 VOD-titlar i Sverige, Norge, Danmark och Finland — utan VPN.',
+        'lp_hero_trust_items' => array(
+            array('text' => 'Igång på 2 minuter'),
+            array('text' => '7 dagars öppet köp'),
+            array('text' => 'Ingen bindningstid, inga dolda avgifter'),
+            array('text' => 'Fungerar på alla enheter'),
         ),
-    ),
-    'lp_dev_items' => array(
-        array(
-            'title' => 'Smart TV',
-            'text' => 'Samsung, LG, Android',
+        'lp_feat_countries' => array(
+            array('label' => '🇺🇸 USA'),
+            array('label' => '🇫🇷 Frankrike'),
+            array('label' => '🇨🇦 Kanada'),
+            array('label' => '🇩🇪 Tyskland'),
+            array('label' => '🇬🇧 Storbritannien'),
+            array('label' => '🇨🇭 Schweiz'),
         ),
-        array(
-            'title' => 'Streamingstickor',
-            'text' => 'Firestick, Apple TV, Roku',
+        'lp_feat_stats' => array(
+            array('label' => '40 000+ livekanaler världen över'),
+            array('label' => '200 000+ filmer och VOD på flera språk'),
+            array('label' => 'Anti-Freeze™-servrar på 100 Gbit/s'),
+            array('label' => 'Aktivering på 2 minuter'),
         ),
-        array(
-            'title' => 'Mobil och surfplatta',
-            'text' => 'iOS, iPad, Android',
+        'lp_feat_cards' => array(
+            array(
+                'badge' => 'SE • NO • DK • FI • UK • US',
+                'title' => 'Över 40 000 kanaler världen över',
+                'text' => 'All livesport och premium-tv från Sverige, Norge, Danmark, Finland, Storbritannien och USA. Hockey, fotboll, amerikansk fotboll, motorsport och MMA i 60 FPS.',
+                'tag_1' => '✓ SE, NO, DK, FI, UK, US',
+                'tag_2' => '✓ Hockey och fotboll',
+                'tag_3' => '✓ Livesport i 60 FPS',
+            ),
+            array(
+                'badge' => 'FLERA SPRÅK OCH UNDERTEXTER',
+                'title' => '200 000+ filmer och serier i 4K',
+                'text' => 'Färska biosuccéer och kompletta serieboxar från de största studiorna och kanalerna — med ljudspår på flera språk (SV, EN, DE) och undertexter.',
+                'tag_1' => '✓ Bio i 4K HDR',
+                'tag_2' => '✓ Ljudspår på flera språk',
+                'tag_3' => '✓ Nya VOD-titlar varje dag',
+            ),
+            array(
+                'badge' => '99,9 % DRIFTTID GARANTERAT',
+                'title' => 'Anti-Freeze™-lastbalansering',
+                'text' => 'Byggt på globala edge-servrar med 100 Gbit/s kapacitet — för mjuk uppspelning utan buffring, även vid toppbelastning som stora finaler.',
+                'tag_1' => '✓ Teknik utan buffring',
+                'tag_2' => '✓ Edge-nätverk på 100 Gbit/s',
+                'tag_3' => '✓ Extremt låg fördröjning',
+            ),
+            array(
+                'badge' => 'FÖR OLED OCH SMART-TV',
+                'title' => 'Äkta 4K Ultra HD och 60 FPS',
+                'text' => 'Nativ streaming med hög bithastighet, färgstark HDR och skarpt Dolby Digital 5.1-surroundljud, anpassat för stora tv-skärmar.',
+                'tag_1' => '✓ Okomprimerad 4K',
+                'tag_2' => '✓ Mjuka 60 FPS',
+                'tag_3' => '✓ Dolby Surround',
+            ),
+            array(
+                'badge' => 'KOMPLETT REPRISGUIDE',
+                'title' => '7 dagars repris och smart EPG',
+                'text' => 'Missa aldrig ett mål eller ett avsnitt. Spola tillbaka livesport, använd den interaktiva programguiden och se om de senaste 7 dagarna direkt.',
+                'tag_1' => '✓ 7 dagars repris',
+                'tag_2' => '✓ Interaktiv tv-guide',
+                'tag_3' => '✓ Pausa och spola i direktsändning',
+            ),
+            array(
+                'badge' => 'AKTIVERING PÅ 2 MIN',
+                'title' => 'Igång direkt, VIP-hjälp dygnet runt',
+                'text' => 'Inloggningen skickas direkt efter köpet. Fungerar med smart-tv, Firestick, Apple TV, Android, MAG, iOS och PC — med installationshjälp dygnet runt.',
+                'tag_1' => '✓ Firestick och smart-tv',
+                'tag_2' => '✓ Direkt via e-post/WhatsApp',
+                'tag_3' => '✓ Livesupport dygnet runt',
+            ),
         ),
-        array(
-            'title' => 'IPTV-boxar',
-            'text' => 'MAG, Formuler, BuzzTV',
+        'lp_rev_ratings' => array(
+            array('label' => 'Streamingkvalitet'),
+            array('label' => 'VOD-utbud'),
+            array('label' => 'Supportens svarstid'),
         ),
-        array(
-            'title' => 'Dator och laptop',
-            'text' => 'Windows, Mac, webb',
+        'lp_rev_items' => array(
+            array(
+                'time' => 'för 1 vecka sedan',
+                'title' => 'Enastående stabilitet och kvalitet',
+                'text' => '"iBo Streaming utmärker sig med stenhård stabilitet på hockey och fotboll. Jag har inte haft ett enda avbrott, vilket gör tittandet riktigt njutbart. Toppentjänst!"',
+                'name' => 'Johan S.',
+                'location' => 'Stockholm, Sweden',
+            ),
+            array(
+                'time' => 'för 3 dagar sedan',
+                'title' => 'Pålitlighet på en ny nivå',
+                'text' => '"Med iBo Streaming har jag äntligen hittat den pålitlighet jag letat efter hos en IPTV-tjänst. 4K-strömmarna är stabila och knivskarpa på min LG OLED — ett rent nöje."',
+                'name' => 'Mikkel B.',
+                'location' => 'Copenhagen, Denmark',
+            ),
+            array(
+                'time' => 'för 2 veckor sedan',
+                'title' => 'Otroligt utbud, fantastiskt värde!',
+                'text' => '"Jag är helt nöjd med iBo Streaming. Antalet livekanaler och VOD-titlar är svindlande, och till ett så överkomligt pris. Bästa affären på nätet."',
+                'name' => 'Emil T.',
+                'location' => 'Oslo, Norway',
+            ),
+            array(
+                'time' => 'för 5 dagar sedan',
+                'title' => 'Enastående utbud, oslagbar support',
+                'text' => '"Jag är imponerad av hur snabbt installationen gick på min Firestick. Jag kontaktade supporten och fick ett vänligt svar från en riktig människa på under 5 minuter. Utbudet av kanaler och VOD överträffar förväntningarna rejält."',
+                'name' => 'Sari W.',
+                'location' => 'Helsinki, Finland',
+            ),
+            array(
+                'time' => 'för 2 dagar sedan',
+                'title' => 'Prisvärt rakt igenom',
+                'text' => '"iBo Streaming förändrar allt. Ett fantastiskt utbud av sportkanaler i 4K och filmer till priser som inte spräcker budgeten. Mycket nöjd med mitt abonnemang."',
+                'name' => 'Lars K.',
+                'location' => 'Gothenburg, Sweden',
+            ),
+            array(
+                'time' => 'I går',
+                'title' => 'Bästa IPTV-tjänsten',
+                'text' => '"Jag bytte från en konkurrent vars bild frös under de stora cupmatcherna. iBo Streaming har varit 100 % stabil och anti-freeze-tekniken fungerar felfritt på alla mina tv-apparater."',
+                'name' => 'Astrid M.',
+                'location' => 'Bergen, Norway',
+            ),
         ),
-    ),
-    'lp_showcase_items' => array(
-        array(
-            'title' => '40 000+ livekanaler och sport från hela världen',
-            'badge' => '🔥 Inga blackouts, ingen fördröjning',
-            'text' => 'Upplev varje mål, varje touchdown och varje knockout live i knivskarp kvalitet. Inga regionala blackouts, extremt låg fördröjning och 7 dagars repris på alla enheter.',
-            'feature' => 'Servernätverk utan frysningar',
+        'lp_price_screens' => array(
+            array('label' => '1 skärm'),
+            array(
+                'label' => '2 skärmar',
+                'badge' => 'POPULÄRAST',
+            ),
+            array('label' => '3 skärmar'),
+            array('label' => '4 skärmar'),
         ),
-        array(
-            'title' => '200 000+ filmer och kompletta serier on demand',
-            'badge' => '🍿 Nyheter varje dag',
-            'text' => 'Säg upp dina dyra streamingtjänster. Få direkt tillgång till över 200 000 biosuccéer och kompletta serieboxar med undertexter på flera språk och rumsligt ljud.',
-            'feature' => 'Undertexter på flera språk',
+        'lp_price_durations' => array(
+            array('label' => '1 månad'),
+            array(
+                'label' => '3 månader',
+                'badge' => '-35 %',
+            ),
+            array(
+                'label' => '6 månader',
+                'badge' => '-47 %',
+            ),
+            array(
+                'label' => '12 månader',
+                'badge' => 'Bäst värde',
+            ),
         ),
-        array(
-            'title' => 'PPV och kampsportsgalor ingår',
-            'badge' => '🥊 Inga pay-per-view-avgifter',
-            'text' => 'Sluta betala 80 $ per gala. Se varje MMA-huvudkort, varje VM-boxningskväll, varje brottningsgala och alla stora betal-per-gala-event live — utan extra kostnad.',
-            'feature' => 'Spara 80 $ per fightkväll',
+        'lp_price_features' => array(
+            array('text' => '40 000+ livekanaler'),
+            array('text' => '200 000+ filmer och serier (VOD)'),
+            array('text' => 'Kvalitet i 4K, Ultra HD och HD'),
+            array('text' => 'Komplett tv-guide (EPG)'),
+            array('text' => 'Hockey, fotboll och handboll'),
+            array('text' => 'Kanaler och VOD uppdateras automatiskt'),
+            array('text' => 'Stabila och snabba servrar'),
+            array('text' => 'Anti-Buffer™ 9.8'),
+            array('text' => 'Pay-per-view-galor (PPV)'),
+            array('text' => 'Prioriterad support dygnet runt'),
         ),
-        array(
-            'title' => 'Internationella nyhetskanaler dygnet runt',
-            'badge' => '⚡ Nyhetsbevakning i realtid',
-            'text' => 'Håll dig uppdaterad dygnet runt med direkta satellitflöden från ledande internationella nyhets- och ekonomikanaler, helt utan fördröjning.',
-            'feature' => 'Direkt satellitflöde',
+        'lp_price_cards' => array(
+            array(
+                'badge' => 'SÄKERHET PÅ BANKNIVÅ',
+                'title' => '256-bitars SSL-kryptering',
+                'text' => 'Helt krypterad kassa som följer PCI-DSS. Din betalning och din integritet är fullt skyddade.',
+            ),
+            array(
+                'badge' => 'ANTI-FREEZE™-TEKNIK',
+                'title' => '99,9 % drifttid',
+                'text' => 'Snabba europeiska servrar på 100 Gbit/s med automatisk redundans ger noll buffring under de stora sportevenemangen.',
+            ),
+            array(
+                'title' => 'Automatisk leverans direkt',
+                'text' => 'Inloggningsuppgifter och en enkel guide skickas till din e-post och WhatsApp inom 120 sekunder.',
+            ),
+            array(
+                'badge' => 'PENGARNA TILLBAKA',
+                'title' => 'Helt utan risk',
+                'text' => 'Inte nöjd? Kontakta supporten så får du pengarna tillbaka snabbt och krångelfritt.',
+            ),
         ),
-        array(
-            'title' => 'Dokumentärer och naturkanaler',
-            'badge' => '🌿 Obegränsat maratontittande',
-            'text' => 'Försvinn in i hisnande dokumentärserier om natur, vetenskap, rymden, true crime och historia — från världsledande producenter, i rumsligt surroundljud.',
-            'feature' => 'Natur och djurliv',
+        'lp_price_payments' => array(
+            array('label' => 'VISA'),
+            array('label' => 'MASTERCARD'),
+            array('label' => 'APPLE PAY'),
+            array('label' => 'GOOGLE PAY'),
+            array('label' => 'CRYPTO'),
         ),
-        array(
-            'title' => 'Underhållning för barn och hela familjen',
-            'badge' => '🛡️ Låst med föräldrakontroll',
-            'text' => 'Trygg och helt reklamfri underhållning för barn i alla åldrar. Hundratals barnkanaler live och animerade familjefilmer med ljudspår på flera språk.',
-            'feature' => '100 % reklamfritt',
+        'lp_footer_col1_links' => array(
+            array('label' => 'Hem'),
+            array('label' => 'Så installerar du IPTV'),
+            array('label' => 'Kanallistor'),
+            array('label' => 'Priser'),
+            array('label' => 'Hjälpcenter'),
+            array('label' => 'M3U-konverterare'),
+            array('label' => 'Bli återförsäljare'),
         ),
-    ),
-    'lp_hero_trust_items' => array(
-        array('text' => 'Igång på 2 minuter'),
-        array('text' => '7 dagars öppet köp'),
-        array('text' => 'Ingen bindningstid, inga dolda avgifter'),
-        array('text' => 'Fungerar på alla enheter'),
-    ),
-    'lp_feat_countries' => array(
-        array('label' => '🇺🇸 USA'),
-        array('label' => '🇫🇷 Frankrike'),
-        array('label' => '🇨🇦 Kanada'),
-        array('label' => '🇩🇪 Tyskland'),
-        array('label' => '🇬🇧 Storbritannien'),
-        array('label' => '🇨🇭 Schweiz'),
-    ),
-    'lp_feat_stats' => array(
-        array('label' => '40 000+ livekanaler världen över'),
-        array('label' => '200 000+ filmer och VOD på flera språk'),
-        array('label' => 'Anti-Freeze™-servrar på 100 Gbit/s'),
-        array('label' => 'Aktivering på 2 minuter'),
-    ),
-    'lp_feat_cards' => array(
-        array(
-            'badge' => 'SE • NO • DK • FI • UK • US',
-            'title' => 'Över 40 000 kanaler världen över',
-            'text' => 'All livesport och premium-tv från Sverige, Norge, Danmark, Finland, Storbritannien och USA. Hockey, fotboll, amerikansk fotboll, motorsport och MMA i 60 FPS.',
-            'tag_1' => '✓ SE, NO, DK, FI, UK, US',
-            'tag_2' => '✓ Hockey och fotboll',
-            'tag_3' => '✓ Livesport i 60 FPS',
+        'lp_footer_col2_links' => array(
+            array('label' => 'Återbetalningspolicy'),
+            array('label' => 'Integritetspolicy'),
+            array('label' => 'Användarvillkor'),
         ),
-        array(
-            'badge' => 'FLERA SPRÅK OCH UNDERTEXTER',
-            'title' => '200 000+ filmer och serier i 4K',
-            'text' => 'Färska biosuccéer och kompletta serieboxar från de största studiorna och kanalerna — med ljudspår på flera språk (SV, EN, DE) och undertexter.',
-            'tag_1' => '✓ Bio i 4K HDR',
-            'tag_2' => '✓ Ljudspår på flera språk',
-            'tag_3' => '✓ Nya VOD-titlar varje dag',
+        'lp_footer_col3_links' => array(
+            array('label' => 'Paket 12 månader'),
+            array('label' => 'Paket 6 månader'),
+            array('label' => 'Paket 3 månader'),
+            array('label' => 'Paket 1 månad'),
         ),
-        array(
-            'badge' => '99,9 % DRIFTTID GARANTERAT',
-            'title' => 'Anti-Freeze™-lastbalansering',
-            'text' => 'Byggt på globala edge-servrar med 100 Gbit/s kapacitet — för mjuk uppspelning utan buffring, även vid toppbelastning som stora finaler.',
-            'tag_1' => '✓ Teknik utan buffring',
-            'tag_2' => '✓ Edge-nätverk på 100 Gbit/s',
-            'tag_3' => '✓ Extremt låg fördröjning',
-        ),
-        array(
-            'badge' => 'FÖR OLED OCH SMART-TV',
-            'title' => 'Äkta 4K Ultra HD och 60 FPS',
-            'text' => 'Nativ streaming med hög bithastighet, färgstark HDR och skarpt Dolby Digital 5.1-surroundljud, anpassat för stora tv-skärmar.',
-            'tag_1' => '✓ Okomprimerad 4K',
-            'tag_2' => '✓ Mjuka 60 FPS',
-            'tag_3' => '✓ Dolby Surround',
-        ),
-        array(
-            'badge' => 'KOMPLETT REPRISGUIDE',
-            'title' => '7 dagars repris och smart EPG',
-            'text' => 'Missa aldrig ett mål eller ett avsnitt. Spola tillbaka livesport, använd den interaktiva programguiden och se om de senaste 7 dagarna direkt.',
-            'tag_1' => '✓ 7 dagars repris',
-            'tag_2' => '✓ Interaktiv tv-guide',
-            'tag_3' => '✓ Pausa och spola i direktsändning',
-        ),
-        array(
-            'badge' => 'AKTIVERING PÅ 2 MIN',
-            'title' => 'Igång direkt, VIP-hjälp dygnet runt',
-            'text' => 'Inloggningen skickas direkt efter köpet. Fungerar med smart-tv, Firestick, Apple TV, Android, MAG, iOS och PC — med installationshjälp dygnet runt.',
-            'tag_1' => '✓ Firestick och smart-tv',
-            'tag_2' => '✓ Direkt via e-post/WhatsApp',
-            'tag_3' => '✓ Livesupport dygnet runt',
-        ),
-    ),
-    'lp_rev_ratings' => array(
-        array('label' => 'Streamingkvalitet'),
-        array('label' => 'VOD-utbud'),
-        array('label' => 'Supportens svarstid'),
-    ),
-    'lp_rev_items' => array(
-        array(
-            'time' => 'för 1 vecka sedan',
-            'title' => 'Enastående stabilitet och kvalitet',
-            'text' => '"iBo Streaming utmärker sig med stenhård stabilitet på hockey och fotboll. Jag har inte haft ett enda avbrott, vilket gör tittandet riktigt njutbart. Toppentjänst!"',
-            'name' => 'Johan S.',
-            'location' => 'Stockholm, Sweden',
-        ),
-        array(
-            'time' => 'för 3 dagar sedan',
-            'title' => 'Pålitlighet på en ny nivå',
-            'text' => '"Med iBo Streaming har jag äntligen hittat den pålitlighet jag letat efter hos en IPTV-tjänst. 4K-strömmarna är stabila och knivskarpa på min LG OLED — ett rent nöje."',
-            'name' => 'Mikkel B.',
-            'location' => 'Copenhagen, Denmark',
-        ),
-        array(
-            'time' => 'för 2 veckor sedan',
-            'title' => 'Otroligt utbud, fantastiskt värde!',
-            'text' => '"Jag är helt nöjd med iBo Streaming. Antalet livekanaler och VOD-titlar är svindlande, och till ett så överkomligt pris. Bästa affären på nätet."',
-            'name' => 'Emil T.',
-            'location' => 'Oslo, Norway',
-        ),
-        array(
-            'time' => 'för 5 dagar sedan',
-            'title' => 'Enastående utbud, oslagbar support',
-            'text' => '"Jag är imponerad av hur snabbt installationen gick på min Firestick. Jag kontaktade supporten och fick ett vänligt svar från en riktig människa på under 5 minuter. Utbudet av kanaler och VOD överträffar förväntningarna rejält."',
-            'name' => 'Sari W.',
-            'location' => 'Helsinki, Finland',
-        ),
-        array(
-            'time' => 'för 2 dagar sedan',
-            'title' => 'Prisvärt rakt igenom',
-            'text' => '"iBo Streaming förändrar allt. Ett fantastiskt utbud av sportkanaler i 4K och filmer till priser som inte spräcker budgeten. Mycket nöjd med mitt abonnemang."',
-            'name' => 'Lars K.',
-            'location' => 'Gothenburg, Sweden',
-        ),
-        array(
-            'time' => 'I går',
-            'title' => 'Bästa IPTV-tjänsten',
-            'text' => '"Jag bytte från en konkurrent vars bild frös under de stora cupmatcherna. iBo Streaming har varit 100 % stabil och anti-freeze-tekniken fungerar felfritt på alla mina tv-apparater."',
-            'name' => 'Astrid M.',
-            'location' => 'Bergen, Norway',
-        ),
-    ),
-    'lp_price_screens' => array(
-        array('label' => '1 skärm'),
-        array(
-            'label' => '2 skärmar',
-            'badge' => 'POPULÄRAST',
-        ),
-        array('label' => '3 skärmar'),
-        array('label' => '4 skärmar'),
-    ),
-    'lp_price_durations' => array(
-        array('label' => '1 månad'),
-        array(
-            'label' => '3 månader',
-            'badge' => '-35 %',
-        ),
-        array(
-            'label' => '6 månader',
-            'badge' => '-47 %',
-        ),
-        array(
-            'label' => '12 månader',
-            'badge' => 'Bäst värde',
-        ),
-    ),
-    'lp_price_features' => array(
-        array('text' => '40 000+ livekanaler'),
-        array('text' => '200 000+ filmer och serier (VOD)'),
-        array('text' => 'Kvalitet i 4K, Ultra HD och HD'),
-        array('text' => 'Komplett tv-guide (EPG)'),
-        array('text' => 'Hockey, fotboll och handboll'),
-        array('text' => 'Kanaler och VOD uppdateras automatiskt'),
-        array('text' => 'Stabila och snabba servrar'),
-        array('text' => 'Anti-Buffer™ 9.8'),
-        array('text' => 'Pay-per-view-galor (PPV)'),
-        array('text' => 'Prioriterad support dygnet runt'),
-    ),
-    'lp_price_cards' => array(
-        array(
-            'badge' => 'SÄKERHET PÅ BANKNIVÅ',
-            'title' => '256-bitars SSL-kryptering',
-            'text' => 'Helt krypterad kassa som följer PCI-DSS. Din betalning och din integritet är fullt skyddade.',
-        ),
-        array(
-            'badge' => 'ANTI-FREEZE™-TEKNIK',
-            'title' => '99,9 % drifttid',
-            'text' => 'Snabba europeiska servrar på 100 Gbit/s med automatisk redundans ger noll buffring under de stora sportevenemangen.',
-        ),
-        array(
-            'title' => 'Automatisk leverans direkt',
-            'text' => 'Inloggningsuppgifter och en enkel guide skickas till din e-post och WhatsApp inom 120 sekunder.',
-        ),
-        array(
-            'badge' => 'PENGARNA TILLBAKA',
-            'title' => 'Helt utan risk',
-            'text' => 'Inte nöjd? Kontakta supporten så får du pengarna tillbaka snabbt och krångelfritt.',
-        ),
-    ),
-    'lp_price_payments' => array(
-        array('label' => 'VISA'),
-        array('label' => 'MASTERCARD'),
-        array('label' => 'APPLE PAY'),
-        array('label' => 'GOOGLE PAY'),
-        array('label' => 'CRYPTO'),
-    ),
-    'lp_footer_col1_links' => array(
-        array('label' => 'Hem'),
-        array('label' => 'Så installerar du IPTV'),
-        array('label' => 'Kanallistor'),
-        array('label' => 'Priser'),
-        array('label' => 'Hjälpcenter'),
-        array('label' => 'M3U-konverterare'),
-        array('label' => 'Bli återförsäljare'),
-    ),
-    'lp_footer_col2_links' => array(
-        array('label' => 'Återbetalningspolicy'),
-        array('label' => 'Integritetspolicy'),
-        array('label' => 'Användarvillkor'),
-    ),
-    'lp_footer_col3_links' => array(
-        array('label' => 'Paket 12 månader'),
-        array('label' => 'Paket 6 månader'),
-        array('label' => 'Paket 3 månader'),
-        array('label' => 'Paket 1 månad'),
-    ),
-    'lp_faq_items' => array(
-        array(
-            'question' => 'Vad händer direkt efter att jag betalat?',
-            'answer' => 'Ditt IPTV-abonnemang aktiveras automatiskt, utan manuell granskning. Inom ungefär 2 till 5 minuter får du ett e-postmeddelande med dina inloggningsuppgifter: en M3U-spellistelänk samt användarnamn och lösenord för Xtream Codes. Samma linje syns också under ”My IPTV Lines” i ditt medlemskonto. Klistra in länken i en gratis app som TiviMate, IPTV Smarters eller IBO Player Pro och du tittar i 4K. Om e-posten inte kommer fram, kontrollera skräpposten först.',
-            'link_text' => 'Installationsguide steg för steg',
-            'link_url' => 'https://ibostreaming.com/sv/installationsguide/',
-        ),
-        array(
-            'question' => 'Måste jag skapa ett konto innan jag köper?',
-            'answer' => 'Ordern och kontot är samma flöde — ingen separat registrering krävs i förväg. Köpet sker inne i iBostreamings medlemspanel, vilket betyder att du redan har ett konto när abonnemanget är aktivt. Där finns dina IPTV-uppgifter, din orderhistorik och dina förnyelser. Använd samma e-postadress hela vägen så håller du allt på ett ställe.',
-        ),
-        array(
-            'question' => 'Kan jag testa innan jag betalar?',
-            'answer' => 'Vi erbjuder inget gratis IPTV-test. Gratis testlänkar är det vanliga sättet för kortlivade återförsäljare att samla in e-postadresser, och det spelet avstår vi från. Risken ligger därför hos oss: börja med 1-månadsabonnemanget för 13,99 $, som täcks av vår 7 dagars öppet köp. Alla abonnemang har samma kanaler, samma filmbibliotek och samma 4K-servrar — det enda som skiljer är längd och antal skärmar.',
-        ),
-        array(
-            'question' => 'Får jag pengarna tillbaka om det inte fungerar för mig?',
-            'answer' => 'Ja. Varje IPTV-abonnemang omfattas av 7 dagars öppet köp. Om vi inte får tjänsten att fungera ordentligt på din enhet kontaktar du supporten inom 7 dagar från köpet och får pengarna tillbaka. Värt att veta: de flesta ”det fungerar inte”-fallen beror på en felaktig inställning i appen eller en blockering från internetleverantören, och vårt team löser det på några minuter. Skriv till oss innan du begär återbetalning — det går oftast snabbare.',
-            'link_text' => 'Kontakta supporten',
-            'link_url' => 'https://ibostreaming.com/sv/kontakt-sv/',
-        ),
-        array(
-            'question' => 'Hur många enheter kan jag använda, och delar alla samma inloggning?',
-            'answer' => 'Du väljer antal anslutningar i kassan, från 1 till 4 — så många enheter kan strömma samtidigt. Du får installera din spellista på så många enheter du äger; gränsen gäller samtidiga strömmar, inte installationer. En inloggning med 1 anslutning fungerar alltså på tv, mobil och surfplatta, men bara en skärm spelar i taget. Två personer som ser olika kanaler samtidigt behöver 2 anslutningar; en familj tar oftast 3 eller 4.',
-        ),
-        array(
-            'question' => 'Förnyas det automatiskt? Blir jag debiterad igen?',
-            'answer' => 'Nej. Varje abonnemang är en engångsbetalning till fast pris för den period du väljer — 1, 3, 6 eller 12 månader. Det finns inget sparat abonnemang, ingen automatisk förnyelse och ingen andra debitering. När tiden närmar sig slutet lägger du själv en förnyelseorder i medlemspanelen, så du betalar aldrig för något du inte har beställt.',
-        ),
-        array(
-            'question' => 'Vem betalar jag egentligen till, och är kassan säker?',
-            'answer' => 'Du betalar iBostreaming direkt, aldrig en tredjepartsåterförsäljare. Kassan ligger i vår egen medlemspanel på panel.ibostreaming.com över en krypterad HTTPS/SSL-anslutning, och alla priser anges i amerikanska dollar (USD). Varje order får ett eget referensnummer och ett kvitto som du kan öppna när som helst under ”Orders” i panelen — det är den referensen supporten frågar efter om du har frågor om en betalning.',
-        ),
-        array(
-            'question' => 'Vad händer om mina uppgifter aldrig kommer fram, eller slutar fungera senare?',
-            'answer' => 'Skriv till oss — supporten är bemannad dygnet runt. Har inget kommit efter ungefär 10 minuter är det nästan alltid skräpposten eller ett stavfel i orderadressen, och vi skickar om till rätt adress. Om en linje som fungerat slutar senare beror det normalt på ett serverbyte eller ett utgånget abonnemang, inte på att något gått förlorat: vi utfärdar eller pekar om din linje. Snabbast är WhatsApp på +1 939 699 3536, eller support@ibostreaming.com.',
-            'link_text' => 'Få hjälp nu',
-            'link_url' => 'https://ibostreaming.com/sv/kontakt-sv/',
-        ),
-        array(
-            'question' => 'Vilka enheter fungerar det på?',
-            'answer' => 'I praktiken allt du redan äger. Smart-tv (Samsung, LG, Sony, Android TV), Amazon Firestick och Fire TV Cube, Apple TV, Android-mobiler och surfplattor, iPhone och iPad, Windows- och Mac-datorer samt MAG- och Formuler-boxar. Du behöver ingen ny hårdvara: installera en gratis IPTV-spelare som TiviMate, IPTV Smarters eller IBO Player Pro, klistra in din spellista, och hela kanallistan och filmbiblioteket laddas automatiskt.',
-            'link_text' => 'Se guider per enhet',
-            'link_url' => 'https://ibostreaming.com/sv/installationsguide/',
+        'lp_faq_items' => array(
+            array(
+                'question' => 'Vad händer direkt efter att jag betalat?',
+                'answer' => 'Ditt IPTV-abonnemang aktiveras automatiskt, utan manuell granskning. Inom ungefär 2 till 5 minuter får du ett e-postmeddelande med dina inloggningsuppgifter: en M3U-spellistelänk samt användarnamn och lösenord för Xtream Codes. Samma linje syns också under ”My IPTV Lines” i ditt medlemskonto. Klistra in länken i en gratis app som TiviMate, IPTV Smarters eller IBO Player Pro och du tittar i 4K. Om e-posten inte kommer fram, kontrollera skräpposten först.',
+                'link_text' => 'Installationsguide steg för steg',
+                'link_url' => 'https://ibostreaming.com/sv/installationsguide/',
+            ),
+            array(
+                'question' => 'Måste jag skapa ett konto innan jag köper?',
+                'answer' => 'Ordern och kontot är samma flöde — ingen separat registrering krävs i förväg. Köpet sker inne i iBostreamings medlemspanel, vilket betyder att du redan har ett konto när abonnemanget är aktivt. Där finns dina IPTV-uppgifter, din orderhistorik och dina förnyelser. Använd samma e-postadress hela vägen så håller du allt på ett ställe.',
+            ),
+            array(
+                'question' => 'Kan jag testa innan jag betalar?',
+                'answer' => 'Vi erbjuder inget gratis IPTV-test. Gratis testlänkar är det vanliga sättet för kortlivade återförsäljare att samla in e-postadresser, och det spelet avstår vi från. Risken ligger därför hos oss: börja med 1-månadsabonnemanget för 13,99 $, som täcks av vår 7 dagars öppet köp. Alla abonnemang har samma kanaler, samma filmbibliotek och samma 4K-servrar — det enda som skiljer är längd och antal skärmar.',
+            ),
+            array(
+                'question' => 'Får jag pengarna tillbaka om det inte fungerar för mig?',
+                'answer' => 'Ja. Varje IPTV-abonnemang omfattas av 7 dagars öppet köp. Om vi inte får tjänsten att fungera ordentligt på din enhet kontaktar du supporten inom 7 dagar från köpet och får pengarna tillbaka. Värt att veta: de flesta ”det fungerar inte”-fallen beror på en felaktig inställning i appen eller en blockering från internetleverantören, och vårt team löser det på några minuter. Skriv till oss innan du begär återbetalning — det går oftast snabbare.',
+                'link_text' => 'Kontakta supporten',
+                'link_url' => 'https://ibostreaming.com/sv/kontakt-sv/',
+            ),
+            array(
+                'question' => 'Hur många enheter kan jag använda, och delar alla samma inloggning?',
+                'answer' => 'Du väljer antal anslutningar i kassan, från 1 till 4 — så många enheter kan strömma samtidigt. Du får installera din spellista på så många enheter du äger; gränsen gäller samtidiga strömmar, inte installationer. En inloggning med 1 anslutning fungerar alltså på tv, mobil och surfplatta, men bara en skärm spelar i taget. Två personer som ser olika kanaler samtidigt behöver 2 anslutningar; en familj tar oftast 3 eller 4.',
+            ),
+            array(
+                'question' => 'Förnyas det automatiskt? Blir jag debiterad igen?',
+                'answer' => 'Nej. Varje abonnemang är en engångsbetalning till fast pris för den period du väljer — 1, 3, 6 eller 12 månader. Det finns inget sparat abonnemang, ingen automatisk förnyelse och ingen andra debitering. När tiden närmar sig slutet lägger du själv en förnyelseorder i medlemspanelen, så du betalar aldrig för något du inte har beställt.',
+            ),
+            array(
+                'question' => 'Vem betalar jag egentligen till, och är kassan säker?',
+                'answer' => 'Du betalar iBostreaming direkt, aldrig en tredjepartsåterförsäljare. Kassan ligger i vår egen medlemspanel på panel.ibostreaming.com över en krypterad HTTPS/SSL-anslutning, och alla priser anges i amerikanska dollar (USD). Varje order får ett eget referensnummer och ett kvitto som du kan öppna när som helst under ”Orders” i panelen — det är den referensen supporten frågar efter om du har frågor om en betalning.',
+            ),
+            array(
+                'question' => 'Vad händer om mina uppgifter aldrig kommer fram, eller slutar fungera senare?',
+                'answer' => 'Skriv till oss — supporten är bemannad dygnet runt. Har inget kommit efter ungefär 10 minuter är det nästan alltid skräpposten eller ett stavfel i orderadressen, och vi skickar om till rätt adress. Om en linje som fungerat slutar senare beror det normalt på ett serverbyte eller ett utgånget abonnemang, inte på att något gått förlorat: vi utfärdar eller pekar om din linje. Snabbast är WhatsApp på +1 939 699 3536, eller support@ibostreaming.com.',
+                'link_text' => 'Få hjälp nu',
+                'link_url' => 'https://ibostreaming.com/sv/kontakt-sv/',
+            ),
+            array(
+                'question' => 'Vilka enheter fungerar det på?',
+                'answer' => 'I praktiken allt du redan äger. Smart-tv (Samsung, LG, Sony, Android TV), Amazon Firestick och Fire TV Cube, Apple TV, Android-mobiler och surfplattor, iPhone och iPad, Windows- och Mac-datorer samt MAG- och Formuler-boxar. Du behöver ingen ny hårdvara: installera en gratis IPTV-spelare som TiviMate, IPTV Smarters eller IBO Player Pro, klistra in din spellista, och hela kanallistan och filmbiblioteket laddas automatiskt.',
+                'link_text' => 'Se guider per enhet',
+                'link_url' => 'https://ibostreaming.com/sv/installationsguide/',
+            ),
         ),
     ),
 );
