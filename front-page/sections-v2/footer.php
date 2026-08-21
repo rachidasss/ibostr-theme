@@ -62,12 +62,45 @@ $lp_footer_checkout = iptv_config('checkout_base_url', 'https://panel.ibostreami
 $lp_footer_col1 = $lp_footer_rows('lp_footer_col1_links', array(
     array('label' => 'Home',                'url' => home_url('/')),
     array('label' => 'How To Install IPTV', 'url' => iptv_page_url('guide', home_url('/guide/'))),
-    array('label' => 'Channel Lists',       'url' => home_url('/en/channels/')),
+    // Was 'Channel Lists' => /en/channels/, which 301s straight to the home
+    // page. That made the site's most repeated internal link - it is in the
+    // footer of all 40 pages - a redirect hop to a page already linked from
+    // every one of them. The blog is a real destination that nothing else in
+    // the footer pointed to.
+    array('label' => 'IPTV Blog',           'url' => iptv_page_url('iptv-blog', home_url('/iptv-blog/'))),
     array('label' => 'Pricing',             'url' => '#pricing-section'),
     array('label' => 'Help Center',         'url' => iptv_page_url('help-center', home_url('/help-center/'))),
     array('label' => 'M3U Converter',       'url' => home_url('/free-m3u-to-xtream-codes-converter-2025/')),
     array('label' => 'Become Reseller',     'url' => iptv_page_url('contact', home_url('/contact/'))),
 ));
+
+// Pages that only exist in one language, linked from that language's own
+// landing page.
+//
+// /iptv-france/ had no internal link anywhere on the site - 1,764 words
+// reachable only through the sitemap. /fr/abonnement-iptv/ and
+// /fr/iptv-premium/ had two inbound links each and /de/iptv-kaufen/ had one,
+// while targeting 22,200, 5,400 and 8,100 searches a month respectively.
+//
+// These append to the first column and only appear on the landing page of the
+// matching language, so the English footer stays English.
+$lp_footer_lang_extra = array(
+    'fr' => array(
+        array('label' => 'Abonnement IPTV', 'url' => home_url('/fr/abonnement-iptv/')),
+        array('label' => 'IPTV Premium',    'url' => home_url('/fr/iptv-premium/')),
+        array('label' => 'IPTV France',     'url' => home_url('/iptv-france/')),
+    ),
+    'de' => array(
+        array('label' => 'IPTV kaufen',     'url' => home_url('/de/iptv-kaufen/')),
+    ),
+    'sv' => array(),
+);
+
+$lp_footer_this_lang = function_exists('iptv_lp_lang') ? iptv_lp_lang() : 'en';
+
+if (!empty($lp_footer_lang_extra[$lp_footer_this_lang])) {
+    $lp_footer_col1 = array_merge($lp_footer_col1, $lp_footer_lang_extra[$lp_footer_this_lang]);
+}
 
 $lp_footer_col2 = $lp_footer_rows('lp_footer_col2_links', array(
     array('label' => 'Refund Policy',    'url' => iptv_page_url('refund-returns', home_url('/refund-returns/'))),
@@ -130,6 +163,42 @@ $lp_footer_col3 = $lp_footer_rows('lp_footer_col3_links', array(
 </div>
 <div class="inline-flex items-center gap-1.5 text-[11px] text-zinc-400 bg-zinc-900/80 px-3 py-1 rounded-full border border-zinc-800"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span><span><?php echo esc_html(iptv_text('lp_footer_uptime', '99.99% Server Uptime Guaranteed')); ?></span></div>
 </div>
+<?php
+/**
+ * Language links.
+ *
+ * The four landing pages carried hreflang tags and no crawlable link to each
+ * other. hreflang is an alternate-language hint - it passes no weight and it is
+ * not a crawl path, so /, /fr/, /de/ and /sv/ read as four loosely related
+ * pages rather than one product in four languages.
+ *
+ * This footer renders on every template, so one row here gives all of them real
+ * <a> links. Inner pages also keep the header switcher; a second set in the
+ * footer is normal and costs nothing.
+ *
+ * Every class below is already in front-page/css/landing.css - the compiled
+ * bundle only contains classes the original design used, so a new one would
+ * simply render unstyled.
+ */
+$lp_footer_lang_current = function_exists('iptv_lp_lang') ? iptv_lp_lang() : 'en';
+$lp_footer_langs        = function_exists('iptv_languages') ? iptv_languages() : array();
+?>
+<?php if ($lp_footer_langs) : ?>
+<div class="mt-6 pt-4 border-t border-zinc-900 flex flex-wrap items-center justify-center gap-2">
+<span class="text-[11px] text-zinc-500 font-medium"><?php echo esc_html(iptv_text('lp_footer_lang_label', 'Language')); ?></span>
+<?php foreach ($lp_footer_langs as $lp_footer_lang) :
+    $lp_lang_is_current = ($lp_footer_lang['code'] === $lp_footer_lang_current);
+    ?>
+<a href="<?php echo esc_url(home_url($lp_footer_lang['path'])); ?>"
+   hreflang="<?php echo esc_attr($lp_footer_lang['code']); ?>"
+   lang="<?php echo esc_attr($lp_footer_lang['code']); ?>"
+   <?php echo $lp_lang_is_current ? ' aria-current="true"' : ''; ?>
+   class="inline-flex items-center gap-1.5 text-[11px] <?php echo $lp_lang_is_current ? 'text-white' : 'text-zinc-400'; ?> bg-zinc-900/80 px-3 py-1 rounded-full border border-zinc-800 hover:text-white transition-colors"><?php
+   echo esc_html($lp_footer_lang['flag'] . ' ' . $lp_footer_lang['name']);
+?></a>
+<?php endforeach; ?>
+</div>
+<?php endif; ?>
 <div class="mt-6 pt-4 border-t border-zinc-900 flex flex-col-reverse sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
 <p class="text-xs font-normal text-zinc-500"><?php echo esc_html(iptv_text('lp_footer_copyright', '© 2025 iBostreaming 4K IPTV. All rights reserved. · Designed for ultimate streaming experience')); ?></p>
 <button type="button" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 hover:bg-[#007ceb] border border-zinc-800 text-xs font-bold text-zinc-300 hover:text-white transition-all duration-200 hover:-translate-y-0.5 cursor-pointer shadow-md" aria-label="<?php echo esc_attr(iptv_text('lp_footer_top_aria', 'Scroll to top')); ?>"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up w-3.5 h-3.5 stroke-[2.2]" aria-hidden="true"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg><span><?php echo esc_html(iptv_text('lp_footer_top_label', 'Back to top')); ?></span></button>

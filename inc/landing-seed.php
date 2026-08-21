@@ -281,6 +281,43 @@ add_action('template_redirect', function () {
         )), 'Fields cleared', array('response' => 200));
     }
 
+    // Clear one field rather than the whole page. Needed when a template default
+    // changes and a seeded ACF value would otherwise keep overriding it - the
+    // footer's first column is the case this was written for.
+    if (!empty($_GET['iptv_clear_field'])
+        && is_user_logged_in() && current_user_can('manage_options')
+        && function_exists('iptv_is_landing_template') && iptv_is_landing_template()) {
+        global $wpdb;
+
+        $field   = sanitize_key(wp_unslash($_GET['iptv_clear_field']));
+        $post_id = get_queried_object_id();
+
+        if ($field !== '' && strpos($field, 'lp_') === 0 && $post_id) {
+            $keys = $wpdb->get_col($wpdb->prepare(
+                "SELECT DISTINCT meta_key FROM {$wpdb->postmeta}
+                 WHERE post_id = %d AND (meta_key = %s OR meta_key LIKE %s OR meta_key = %s OR meta_key LIKE %s)",
+                $post_id,
+                $field,
+                $wpdb->esc_like($field . '_') . '%',
+                '_' . $field,
+                $wpdb->esc_like('_' . $field . '_') . '%'
+            ));
+
+            foreach ($keys as $key) {
+                delete_post_meta($post_id, $key);
+            }
+
+            wp_cache_delete($post_id, 'post_meta');
+
+            wp_die(esc_html(sprintf(
+                'Removed %d stored rows for "%s" on page %d. It now falls back to the theme default.',
+                count($keys),
+                $field,
+                $post_id
+            )), 'Field cleared', array('response' => 200));
+        }
+    }
+
     if (iptv_lp_seed_requested()) {
         $GLOBALS['iptv_lp_seed'] = array();
     }

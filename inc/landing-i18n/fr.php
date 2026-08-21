@@ -460,7 +460,7 @@ return array(
         'lp_footer_col1_links' => array(
             array('label' => 'Accueil'),
             array('label' => 'Comment installer l’IPTV'),
-            array('label' => 'Liste des chaînes'),
+            array('label' => 'Blog IPTV'),
             array('label' => 'Tarifs'),
             array('label' => 'Centre d’aide'),
             array('label' => 'Convertisseur M3U'),

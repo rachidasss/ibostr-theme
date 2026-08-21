@@ -460,7 +460,7 @@ return array(
         'lp_footer_col1_links' => array(
             array('label' => 'Hem'),
             array('label' => 'Så installerar du IPTV'),
-            array('label' => 'Kanallistor'),
+            array('label' => 'IPTV-blogg'),
             array('label' => 'Priser'),
             array('label' => 'Hjälpcenter'),
             array('label' => 'M3U-konverterare'),

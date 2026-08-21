@@ -460,7 +460,7 @@ return array(
         'lp_footer_col1_links' => array(
             array('label' => 'Startseite'),
             array('label' => 'IPTV einrichten'),
-            array('label' => 'Senderlisten'),
+            array('label' => 'IPTV-Blog'),
             array('label' => 'Preise'),
             array('label' => 'Hilfe-Center'),
             array('label' => 'M3U-Konverter'),
