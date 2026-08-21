@@ -53,6 +53,41 @@ add_action('wp_default_scripts', function ($scripts) {
     );
 });
 
+/**
+ * Move jQuery out of <head>.
+ *
+ * The Chaty plugin pulls jQuery in as a dependency, and WordPress prints it in
+ * the head with no defer, where it is the only parser-blocking script on the
+ * page. It delays first paint on every template that loads it - seven of nine -
+ * and the theme itself only uses jQuery on admin screens.
+ *
+ * Checked before moving it, on the rendered page:
+ *   - no inline script in <head> references jQuery
+ *   - its consumer, chaty's cht-front-script.min.js, is already deferred and in
+ *     the body
+ *   - the one inline body script that touches jQuery is Perfmatters' lazyload
+ *     config, which guards with `typeof window.jQuery != "undefined"` and only
+ *     runs inside a callback
+ *
+ * Moving rather than deferring keeps execution order intact for anything that
+ * enqueues against it. If some plugin ever registers a head script that depends
+ * on jQuery, WordPress resolves the dependency and prints jQuery in the head
+ * again by itself, so this cannot silently break that case.
+ */
+add_action('wp_enqueue_scripts', function () {
+    if (is_admin()) {
+        return;
+    }
+
+    $scripts = wp_scripts();
+
+    foreach (array('jquery', 'jquery-core', 'jquery-migrate') as $handle) {
+        if (isset($scripts->registered[$handle])) {
+            $scripts->add_data($handle, 'group', 1);
+        }
+    }
+}, 99);
+
 /* -------------------------------------------------------------------------
    Webfonts, served from this domain
    ------------------------------------------------------------------------- */
