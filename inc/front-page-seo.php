@@ -400,3 +400,47 @@ add_action('admin_enqueue_scripts', function ($hook) {
 JS
     );
 });
+
+/**
+ * Let Rank Math own the <title> on the language landing pages.
+ *
+ * A mu-plugin hardcodes the title for /fr/, /de/, /sv/ and /nl/, so editing the
+ * title in Rank Math has no effect on exactly the four pages that matter most
+ * for the non-English markets. That produced real keyword cannibalisation:
+ * /de/ and /de/iptv-kaufen/ both shipped "IPTV kaufen" in the title, and /fr/
+ * competed with /fr/abonnement-iptv/ on "Abonnement IPTV" - the single biggest
+ * keyword we target (18,100/mo).
+ *
+ * Runs last so it beats the mu-plugin, and only for the IDs listed here.
+ * Deliberately NOT site-wide: /nl/ (9299) currently carries the Rank Math title
+ * "NL", so a blanket "Rank Math always wins" rule would retitle the Dutch
+ * landing page to two letters. Add an ID once its Rank Math title is known good.
+ */
+function iptv_rank_math_title_pages()
+{
+    return array(
+        8811, // /fr/ - owns "meilleur iptv" (5,400/mo)
+        8812, // /de/ - owns "iptv anbieter" (6,600/mo)
+    );
+}
+
+add_filter('pre_get_document_title', function ($title) {
+    if (!is_page(iptv_rank_math_title_pages())) {
+        return $title;
+    }
+
+    $custom = get_post_meta(get_queried_object_id(), 'rank_math_title', true);
+
+    if (!is_string($custom) || $custom === '') {
+        return $title;
+    }
+
+    // Rank Math titles may hold unresolved variables (%title%, %sep%). Rendering
+    // those raw would be worse than the mu-plugin's hardcoded string, so leave
+    // anything containing a percent sign to the existing chain.
+    if (strpos($custom, '%') !== false) {
+        return $title;
+    }
+
+    return $custom;
+}, PHP_INT_MAX);
