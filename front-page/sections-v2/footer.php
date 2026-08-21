@@ -109,7 +109,11 @@ $lp_footer_col2 = $lp_footer_rows('lp_footer_col2_links', array(
     array('label' => 'Refund Policy',    'url' => iptv_page_url('refund-returns', home_url('/refund-returns/'))),
     array('label' => 'Privacy Policy',   'url' => iptv_page_url('privacy-policy', home_url('/privacy-policy/'))),
     array('label' => 'Terms of Service', 'url' => iptv_page_url('terms-of-service', home_url('/terms-of-service/'))),
-    array('label' => 'Cookie Policy',    'url' => iptv_page_url('cookies', home_url('/en/cookies/'))),
+    // Translated, because iptv_lp_list_resolve() overlays the language file's
+    // labels onto THIS array by index and returns the whole thing. The language
+    // files carry three legal rows, so row four is never overlaid and whatever
+    // is hardcoded here is what a French or German page renders.
+    array('label' => iptv_text('lp_footer_cookie_label', 'Cookie Policy'), 'url' => iptv_page_url('cookies', home_url('/en/cookies/'))),
 ));
 
 // The legal column is an ACF repeater when one has rows, and several pages still
