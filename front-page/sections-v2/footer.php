@@ -112,6 +112,28 @@ $lp_footer_col2 = $lp_footer_rows('lp_footer_col2_links', array(
     array('label' => 'Cookie Policy',    'url' => iptv_page_url('cookies', home_url('/en/cookies/'))),
 ));
 
+// The legal column is an ACF repeater when one has rows, and several pages still
+// hold the three rows they were seeded with - so anything added to the default
+// list above is silently dropped on exactly those pages. /en/cookies/ is
+// indexable and had no internal link anywhere on the site, so guarantee it
+// whatever the column was built from. Appending only when it is missing means
+// the default path does not end up with it twice.
+$lp_footer_has_cookie_link = false;
+
+foreach ($lp_footer_col2 as $lp_footer_legal_link) {
+    if (!empty($lp_footer_legal_link['url']) && strpos($lp_footer_legal_link['url'], 'cookies') !== false) {
+        $lp_footer_has_cookie_link = true;
+        break;
+    }
+}
+
+if (!$lp_footer_has_cookie_link) {
+    $lp_footer_col2[] = array(
+        'label' => 'Cookie Policy',
+        'url'   => iptv_page_url('cookies', home_url('/en/cookies/')),
+    );
+}
+
 $lp_footer_col3 = $lp_footer_rows('lp_footer_col3_links', array(
     array('label' => '12 Months Plan', 'url' => $lp_footer_checkout . '?plan_type=m3u&connections=1&duration=12&source=landing_page'),
     array('label' => '6 Months Plan',  'url' => $lp_footer_checkout . '?plan_type=m3u&connections=1&duration=6&source=landing_page'),
