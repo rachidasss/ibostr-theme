@@ -123,6 +123,7 @@ return array(
         'lp_faq_subtitle' => 'Des réponses claires sur le paiement, l’activation, le remboursement, les appareils et le nombre d’écrans.',
         'lp_faq_cta_text' => 'Votre question ne figure pas ici ?',
         'lp_faq_cta_link_text' => 'Contacter le support →',
+        'lp_footer_cookie_label' => 'Politique de cookies',
         'lp_footer_logo_aria' => 'Accueil iBostreaming',
         'lp_footer_logo_alt' => 'iBo Streaming IPTV',
         'lp_footer_tagline' => 'Service de streaming IPTV 4K premium : plus de 40 000 chaînes en direct et 200 000 titres en VOD dans le monde entier. Fiable, sécurisé et sans coupure.',

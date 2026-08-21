@@ -129,7 +129,7 @@ foreach ($lp_footer_col2 as $lp_footer_legal_link) {
 
 if (!$lp_footer_has_cookie_link) {
     $lp_footer_col2[] = array(
-        'label' => 'Cookie Policy',
+        'label' => iptv_text('lp_footer_cookie_label', 'Cookie Policy'),
         'url'   => iptv_page_url('cookies', home_url('/en/cookies/')),
     );
 }

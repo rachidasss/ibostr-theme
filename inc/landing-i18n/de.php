@@ -123,6 +123,7 @@ return array(
         'lp_faq_subtitle' => 'Klare Antworten zu Zahlung, Freischaltung, Rückgabe, Geräten und der Zahl der Bildschirme.',
         'lp_faq_cta_text' => 'Ihre Frage ist hier nicht dabei?',
         'lp_faq_cta_link_text' => 'Support kontaktieren →',
+        'lp_footer_cookie_label' => 'Cookie-Richtlinie',
         'lp_footer_logo_aria' => 'iBostreaming Startseite',
         'lp_footer_logo_alt' => 'iBo Streaming IPTV',
         'lp_footer_tagline' => 'Premium-IPTV-Streaming in 4K mit über 40.000 Live-Sendern und 200.000 VOD-Titeln weltweit. Zuverlässig, sicher und ohne Ruckeln.',

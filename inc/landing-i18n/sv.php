@@ -123,6 +123,7 @@ return array(
         'lp_faq_subtitle' => 'Tydliga svar om betalning, aktivering, återbetalning, enheter och antal skärmar.',
         'lp_faq_cta_text' => 'Hittar du inte din fråga här?',
         'lp_faq_cta_link_text' => 'Kontakta supporten →',
+        'lp_footer_cookie_label' => 'Cookiepolicy',
         'lp_footer_logo_aria' => 'iBostreaming startsida',
         'lp_footer_logo_alt' => 'iBo Streaming IPTV',
         'lp_footer_tagline' => 'Premium IPTV-streaming i 4K med över 40 000 livekanaler och 200 000 VOD-titlar världen över. Pålitligt, säkert och utan buffring.',
