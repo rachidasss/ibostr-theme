@@ -1104,6 +1104,7 @@ require_once get_template_directory() . '/inc/contact-cards.php';
 // Defines iptv_lp_seed_record(), which iptv-text.php calls on every lookup,
 // so it has to be in scope first.
 require_once get_template_directory() . '/inc/shop-plans.php';
+require_once get_template_directory() . '/inc/guide-hub.php';
 require_once get_template_directory() . '/inc/retired-urls.php';
 require_once get_template_directory() . '/inc/landing-seed.php';
 require_once get_template_directory() . '/inc/iptv-text.php';

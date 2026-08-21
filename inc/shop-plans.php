@@ -160,6 +160,79 @@ if (!function_exists('iptv_shop_plans_html')) {
             <p class="iptv-shop-plans__note"><?php
                 esc_html_e('Every plan carries the same channel list, the same film and series library and the same 4K servers. Only the length and the number of simultaneous screens change the price. Each is a single payment with no automatic renewal, activated in about two to five minutes, and covered by a 7-day money-back guarantee.', 'iptv');
             ?></p>
+
+            <?php
+            /*
+             * Buying guidance.
+             *
+             * The page was 246 words - a price table and a sentence - while twelve
+             * blog posts link to it as the place to buy. Thin for a commercial page,
+             * and it answered none of the questions a first-time buyer actually has:
+             * how many screens they need, what arrives after paying, whether it
+             * renews. Every claim below is the same one the refund policy, the
+             * checkout and the FAQ already make, so nothing new is promised here.
+             */
+            ?>
+            <h2 id="choosing"><?php esc_html_e('Choosing between the sixteen plans', 'iptv'); ?></h2>
+
+            <p><?php esc_html_e('Only two things change the price, and neither of them changes what you can watch.', 'iptv'); ?></p>
+
+            <h3><?php esc_html_e('How long you want it for', 'iptv'); ?></h3>
+            <p><?php
+                esc_html_e('Plans run for 1, 3, 6 or 12 months. The longer terms cost less per month, and because nothing renews automatically, a 12-month plan is simply one payment that lasts a year rather than a commitment you have to remember to cancel. A 1-month plan is the sensible way to see whether the service suits you before paying for longer.', 'iptv');
+            ?></p>
+
+            <h3><?php esc_html_e('How many screens you need at once', 'iptv'); ?></h3>
+            <p><?php
+                esc_html_e('This is the one people get wrong. It is not how many devices you own - it is how many are watching at the same moment. Your line works on any device you install it on; the screen count only limits simultaneous streams.', 'iptv');
+            ?></p>
+            <ul class="iptv-shop-plans__list">
+                <li><?php esc_html_e('1 screen - one person watching at a time, on as many devices as you like.', 'iptv'); ?></li>
+                <li><?php esc_html_e('2 screens - two people watching different channels at once, the usual choice for a couple.', 'iptv'); ?></li>
+                <li><?php esc_html_e('3 or 4 screens - a family watching separately, or a second home.', 'iptv'); ?></li>
+            </ul>
+            <p><?php
+                esc_html_e('Buying more screens than you need is the most common way to overpay. Start with the number of people who genuinely watch at the same time.', 'iptv');
+            ?></p>
+
+            <h2 id="included"><?php esc_html_e('What every plan includes', 'iptv'); ?></h2>
+            <p><?php
+                printf(
+                    /* translators: %s: link to the setup guide */
+                    wp_kses(
+                        __('The same live channels, the same film and series library and the same 4K servers on all sixteen plans - the cheapest and the most expensive differ only in length and screen count. Your line works on Firestick, Samsung and LG Smart TVs, Android TV boxes, Android and iOS phones and tablets, MAG and Formuler boxes, Windows and Mac. The <a href="%s">setup guide</a> has the steps for each one.', 'iptv'),
+                        array('a' => array('href' => array()))
+                    ),
+                    esc_url(home_url('/guide/'))
+                );
+            ?></p>
+
+            <h2 id="after-payment"><?php esc_html_e('What happens after you pay', 'iptv'); ?></h2>
+            <p><?php
+                esc_html_e('Activation is automatic - nothing waits on manual approval. Within roughly two to five minutes you receive an email with your credentials: an M3U playlist link, plus an Xtream Codes username and password. The same line also appears under "My IPTV Lines" in your account, so you are never dependent on that email arriving.', 'iptv');
+            ?></p>
+            <p><?php
+                printf(
+                    /* translators: %s: link to the setup guide */
+                    wp_kses(
+                        __('Paste the link into a free player such as TiviMate, IPTV Smarters or IBO Player Pro and you are watching. If the email has not arrived, check your spam folder first - that is where it usually is. Step-by-step instructions for each device are in the <a href="%s">setup guide</a>.', 'iptv'),
+                        array('a' => array('href' => array()))
+                    ),
+                    esc_url(home_url('/guide/'))
+                );
+            ?></p>
+
+            <h2 id="payment"><?php esc_html_e('Payment, renewal and refunds', 'iptv'); ?></h2>
+            <p><?php
+                printf(
+                    /* translators: %s: link to the refund policy */
+                    wp_kses(
+                        __('Every plan is a single payment. There is no subscription to cancel and no card stored for automatic renewal - when the term ends, it simply ends, and you choose whether to buy again. If the service is not what you expected, the <a href="%s">refund policy</a> gives you a full refund within 7 days of purchase.', 'iptv'),
+                        array('a' => array('href' => array()))
+                    ),
+                    esc_url(home_url('/refund-returns/'))
+                );
+            ?></p>
         </div>
         <?php
         return (string) ob_get_clean();
@@ -221,6 +294,12 @@ add_action('wp_head', function () {
     .iptv-shop-plans__price{display:inline-block;padding:.35rem .8rem;border-radius:999px;background:#007CEB;color:#fff;font-weight:700;text-decoration:none;white-space:nowrap}
     .iptv-shop-plans__price:hover,.iptv-shop-plans__price:focus{background:#0063bd;color:#fff}
     .iptv-shop-plans__note{margin:1.1rem 0 0;font-size:.9rem;color:#475569;max-width:60ch}
+    .iptv-shop-plans h2{margin:2.4rem 0 .7rem;font-size:1.4rem;line-height:1.28}
+    .iptv-shop-plans h3{margin:1.6rem 0 .4rem;font-size:1.08rem;line-height:1.3}
+    .iptv-shop-plans p{margin:0 0 1rem;max-width:66ch}
+    .iptv-shop-plans a{color:#007CEB}
+    .iptv-shop-plans__list{margin:0 0 1rem;padding-left:1.15rem;max-width:66ch}
+    .iptv-shop-plans__list li{margin-bottom:.35rem}
     .screen-reader-text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
     </style>
     <?php
