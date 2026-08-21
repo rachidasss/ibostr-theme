@@ -93,6 +93,9 @@ $lp_footer_lang_extra = array(
     'de' => array(
         array('label' => 'IPTV kaufen',     'url' => home_url('/de/iptv-kaufen/')),
     ),
+    'nl' => array(
+        array('label' => 'Beste IPTV',      'url' => home_url('/nl/beste-iptv/')),
+    ),
     'sv' => array(),
 );
 
@@ -106,6 +109,7 @@ $lp_footer_col2 = $lp_footer_rows('lp_footer_col2_links', array(
     array('label' => 'Refund Policy',    'url' => iptv_page_url('refund-returns', home_url('/refund-returns/'))),
     array('label' => 'Privacy Policy',   'url' => iptv_page_url('privacy-policy', home_url('/privacy-policy/'))),
     array('label' => 'Terms of Service', 'url' => iptv_page_url('terms-of-service', home_url('/terms-of-service/'))),
+    array('label' => 'Cookie Policy',    'url' => iptv_page_url('cookies', home_url('/en/cookies/'))),
 ));
 
 $lp_footer_col3 = $lp_footer_rows('lp_footer_col3_links', array(

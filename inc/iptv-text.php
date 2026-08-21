@@ -164,9 +164,29 @@ if (!function_exists('iptv_lp_lang')) {
             return 'en';
         }
 
+        $langs = array('fr', 'de', 'sv', 'nl');
+
+        // The landing pages carry the language in their own slug. Their children
+        // carry it in an ancestor: /fr/abonnement-iptv/ is post_parent 8811,
+        // whose slug is "fr". Reading only the page's own slug meant every French
+        // and German sub-page fell back to 'en' and rendered an English footer
+        // under French copy - and missed that language's internal links, leaving
+        // /iptv-france/ and /de/iptv-kaufen/ on a single inbound link each.
         $slug = get_post_field('post_name', $id);
 
-        return in_array($slug, array('fr', 'de', 'sv'), true) ? $slug : 'en';
+        if (in_array($slug, $langs, true)) {
+            return $slug;
+        }
+
+        foreach (get_post_ancestors($id) as $ancestor_id) {
+            $ancestor_slug = get_post_field('post_name', $ancestor_id);
+
+            if (in_array($ancestor_slug, $langs, true)) {
+                return $ancestor_slug;
+            }
+        }
+
+        return 'en';
     }
 }
 
