@@ -77,9 +77,13 @@ $customer_note = $order->get_customer_note();
 
 // =====================================================
 // PAYMENT LINK CONFIGURATION
-// Includes product details for payment provider
+// Sends the buyer to our own panel checkout. This used to point at a
+// third-party bridge shipped with the purchased template, which handed the
+// customer's email address to a domain we do not control.
 // =====================================================
-$payment_link_base = 'https://aikotent.id/payment-bridge';
+$payment_link_base = function_exists('iptv_config')
+    ? iptv_config('checkout_base_url', 'https://panel.ibostreaming.com/checkout')
+    : 'https://panel.ibostreaming.com/checkout';
 
 $payment_params = array(
     'order_id' => (string) $order_id,
